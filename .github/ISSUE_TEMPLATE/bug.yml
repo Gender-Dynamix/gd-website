@@ -1,0 +1,66 @@
+name: Bug
+description: Report a bug that needs fixing
+title: "[fix]: "
+labels: ["fix"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Fill in the sections below so we can reproduce and fix the issue.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug description
+      description: A clear and concise description of the bug.
+      placeholder: What is happening?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Step-by-step instructions to reproduce the bug.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behaviour
+    attributes:
+      label: Expected behaviour
+      description: What should happen instead?
+      placeholder: Describe the correct or expected behaviour.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behaviour
+    attributes:
+      label: Actual behaviour
+      description: What is actually happening?
+      placeholder: Describe what you observe instead of the expected behaviour.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-fix
+    attributes:
+      label: Proposed fix
+      description: If you have an idea of what's causing this or how to fix it, describe it here.
+      placeholder: Describe the suspected cause or proposed fix.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Screenshots, error logs, browser/device info, or anything else that helps.
+    validations:
+      required: false

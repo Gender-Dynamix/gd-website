@@ -1,0 +1,53 @@
+name: Content
+description: Propose a site content change
+title: "[content]: "
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request changes to site content — text, images, links, or other non-code material.
+
+  - type: textarea
+    id: what-content
+    attributes:
+      label: What content needs changing
+      description: Identify the specific content and where it lives on the site.
+      placeholder: Describe the content and its location (page, section, URL).
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this change is needed
+      description: Explain the reason for the change.
+      placeholder: Is the content outdated, incorrect, missing, or being replaced?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: Current content
+      description: What does the content currently say or look like?
+      placeholder: Paste or describe the existing content.
+    validations:
+      required: false
+
+  - type: textarea
+    id: new-content
+    attributes:
+      label: New content
+      description: What should the content be replaced with?
+      placeholder: Provide the exact new text, image descriptions, or links.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Screenshots, links, or anything else that helps.
+    validations:
+      required: false

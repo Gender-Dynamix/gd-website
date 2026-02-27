@@ -1,0 +1,53 @@
+name: Refactor
+description: Propose code restructuring with no behaviour change
+title: "[refactor]: "
+labels: ["refactor"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for code restructuring that improves maintainability without changing behaviour.
+
+  - type: textarea
+    id: what-code
+    attributes:
+      label: What code needs restructuring
+      description: Identify the specific code, module, or area to refactor.
+      placeholder: Which files, components, or patterns are involved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Explain why this refactor is needed.
+      placeholder: Is the code hard to maintain, duplicated, poorly structured, or difficult to extend?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-approach
+    attributes:
+      label: Proposed approach
+      description: How should the code be restructured?
+      placeholder: Describe the target structure, patterns, or architecture.
+    validations:
+      required: true
+
+  - type: textarea
+    id: verify-no-behaviour-change
+    attributes:
+      label: How to verify no behaviour change
+      description: How can a reviewer confirm that behaviour is unchanged after the refactor?
+      placeholder: Describe the tests, comparisons, or checks that prove nothing broke.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Links, references, or anything else that helps.
+    validations:
+      required: false

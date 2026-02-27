@@ -1,0 +1,44 @@
+name: Chore
+description: Tooling, config, or dependency change
+title: "[chore]: "
+labels: ["chore"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for tooling, configuration, and dependency changes — things that don't affect site content or behaviour directly.
+
+  - type: textarea
+    id: what-change
+    attributes:
+      label: What needs changing
+      description: Describe the tooling, config, or dependency change.
+      placeholder: What tool, config file, or dependency is involved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Explain the reason for the change.
+      placeholder: Is this a security update, performance improvement, new tooling, or maintenance?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-approach
+    attributes:
+      label: Proposed approach
+      description: How should this change be implemented?
+      placeholder: Describe the approach — what to add, remove, or update.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Links, references, or anything else that helps.
+    validations:
+      required: false

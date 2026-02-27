@@ -1,0 +1,44 @@
+name: Docs
+description: Propose a documentation change
+title: "[docs]: "
+labels: ["docs"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for documentation updates — READMEs, guides, contributing docs, and other project documentation.
+
+  - type: textarea
+    id: what-docs
+    attributes:
+      label: What documentation needs updating
+      description: Identify the specific documentation and where it lives.
+      placeholder: Which document or section needs changing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Explain the reason for the change.
+      placeholder: Is the documentation outdated, incorrect, missing, or unclear?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-changes
+    attributes:
+      label: Proposed changes
+      description: What should the documentation say or include?
+      placeholder: Describe the changes or provide the new content.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Links, references, or anything else that helps.
+    validations:
+      required: false

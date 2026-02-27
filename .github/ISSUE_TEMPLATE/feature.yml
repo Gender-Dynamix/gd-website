@@ -1,12 +1,12 @@
-name: Task
-description: Propose a new task or piece of work
-title: "[Task]: "
-labels: []
+name: Feature
+description: Propose new functionality
+title: "[feature]: "
+labels: ["feature"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for opening a task! Fill in the sections below to clearly define the work.
+        Thanks for proposing a new feature! Fill in the sections below to clearly define the work.
         Think about the **Three W's** — Why, What, and Who — and frame this around a specific problem.
 
   - type: textarea

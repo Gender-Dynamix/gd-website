@@ -1,3 +1,5 @@
+<!-- Title format: type: Short description (e.g. "feature: Add contact page", "fix: Nav alignment") -->
+
 ## Problem
 
 <!-- What problem does this PR solve? Link to the relevant issue. -->

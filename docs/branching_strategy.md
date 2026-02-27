@@ -19,6 +19,7 @@ Branches follow the pattern `type/description` where the description uses kebab-
 | `feature/` | New functionality                 | `feature/add-contact-page`     |
 | `fix/`     | Bug fixes                         | `fix/nav-alignment`            |
 | `docs/`    | Documentation changes             | `docs/update-readme`           |
+| `content/` | Site content changes              | `content/update-office-address`|
 | `chore/`   | Tooling, config, and dependencies | `chore/setup-linting`          |
 | `style/`   | Visual/design changes only        | `style/update-colour-palette`  |
 | `refactor/`| Code restructuring (no behaviour change) | `refactor/simplify-header` |
@@ -53,6 +54,10 @@ git push -u origin feature/your-feature-name
 ### 4. Open a pull request
 
 - Open a PR when your work is ready for review (or open a **draft PR** early if you want feedback on work in progress)
+- Prefix the PR title with the branch type — since we squash merge, the PR title becomes the commit message on `main`:
+  - `feature: Add contact page`
+  - `fix: Nav alignment on mobile`
+  - `docs: Update contributing guide`
 - Link the PR to the relevant GitHub issue by including `Closes #<issue-number>` in the PR description
 - Fill in the PR template with a summary of changes and a test plan
 

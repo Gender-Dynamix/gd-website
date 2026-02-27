@@ -1,0 +1,53 @@
+name: Style
+description: Propose a visual or design change
+title: "[style]: "
+labels: ["style"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for visual or design changes — colours, spacing, typography, layout, and other appearance updates.
+
+  - type: textarea
+    id: what-change
+    attributes:
+      label: What visual change is needed
+      description: Describe the specific visual or design change.
+      placeholder: What element or area of the site needs updating?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Explain the reason for the change.
+      placeholder: Is this a design refresh, accessibility improvement, brand alignment, or bug?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-appearance
+    attributes:
+      label: Current appearance
+      description: What does it look like now? Screenshots are helpful.
+      placeholder: Attach screenshots or describe the current appearance.
+    validations:
+      required: false
+
+  - type: textarea
+    id: proposed-appearance
+    attributes:
+      label: Proposed appearance
+      description: What should it look like? Screenshots or mockups are helpful.
+      placeholder: Attach screenshots, mockups, or describe the desired appearance.
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Design files, links to inspiration, or anything else that helps.
+    validations:
+      required: false
