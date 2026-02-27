@@ -1,0 +1,77 @@
+name: Task
+description: Propose a new task or piece of work
+title: "[Task]: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for opening a task! Fill in the sections below to clearly define the work.
+        Think about the **Three W's** — Why, What, and Who — and frame this around a specific problem.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem are we trying to solve?
+      placeholder: Describe the problem clearly and specifically.
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-process
+    attributes:
+      label: Current process
+      description: What is the current process or workaround, if any?
+      placeholder: How is this handled today? What pain points exist?
+    validations:
+      required: false
+
+  - type: textarea
+    id: why-what-who
+    attributes:
+      label: Why, What, Who
+      description: The Three W's — why this matters, what success looks like, and who benefits.
+      placeholder: |
+        **Why:** Why does this need to change?
+        **What:** What does success look like?
+        **Who:** Who benefits from this work?
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: Acceptance criteria that help scope the work.
+      placeholder: |
+        - [ ] Criterion one
+        - [ ] Criterion two
+    validations:
+      required: false
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed solution
+      description: How do we solve this problem?
+      placeholder: Describe the approach, technical details, or design decisions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: Anything discovered during investigation that is outside this issue's resolution path.
+      placeholder: List items that are related but should be addressed separately.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Screenshots, links, references, or anything else that helps.
+    validations:
+      required: false
