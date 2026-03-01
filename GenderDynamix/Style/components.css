@@ -1,0 +1,496 @@
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-white);
+  padding-bottom: 150px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--purple);
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+.hero-content p {
+  margin-top: 1rem;
+  line-height: 1.6;
+  font-size: clamp(1.4rem, 2vw, 1.1rem);
+}
+
+/*SVG Wave*/
+.custom-shape-divider-top {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 3;
+}
+
+.custom-shape-divider-top svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 300px;
+}
+
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  margin-top: -10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.12;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  text-align: center;
+  color: var(--purple);
+  padding: 20px;
+  margin-bottom: 80px;
+}
+
+/* Form Styles */
+input,
+textarea {
+  border: 1px solid #ccc;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background: var(--url-purple);
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.submit-btn:hover {
+  opacity: 0.8;
+}
+
+/* Privacy Banner */
+.privacy-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--url-purple) 100%);
+  color: white;
+  padding: 1.25rem 5%;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  display: block;
+  visibility: hidden;
+}
+
+.privacy-banner.show {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.privacy-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.privacy-content p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.privacy-content i {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+.privacy-content a {
+  color: white;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.privacy-content a:hover {
+  opacity: 0.8;
+}
+
+.privacy-accept-btn {
+  background: white;
+  color: var(--purple);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.privacy-accept-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.privacy-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.privacy-decline-btn {
+  background: transparent;
+  font-size: 1rem;
+  color: white;
+  border: 2px solid white;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.privacy-decline-btn:hover {
+  background: white;
+  color: var(--purple);
+}
+
+/* ---  Modal --- */
+.modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(32, 23, 58, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-container {
+  position: relative;
+  z-index: 100001;
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+
+  /* Centering fallback and animation */
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-body ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-body li {
+  list-style: none;
+}
+
+.modal.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--purple);
+  line-height: 1;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+.btn-modal-primary {
+  background-color: var(--purple);
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(32, 23, 58, 0.2);
+}
+
+.btn-modal:hover {
+  background-color: var(--url-purple);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(32, 23, 58, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--purple);
+  font-size: 1.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-lavender);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(173, 152, 196, 0.4);
+  z-index: 1000;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: var(--purple);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(173, 152, 196, 0.5);
+}
+
+.back-to-top:active {
+  transform: translateY(-2px);
+}
+
+/*Safe escape button */
+.btn-safety-exit {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 1000;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #c6332e;
+  color: white;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-safety-exit.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.btn-safety-exit .exit-text {
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.btn-safety-exit .esc-text {
+  font-weight: 500;
+  font-size: 0.65rem;
+  opacity: 0.9;
+}
+
+.btn-safety-exit.at-footer {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Mobile Responsive*/
+@media (max-width: 768px) {
+  .hero {
+    min-height: 60vh;
+    padding-bottom: 100px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content {
+    padding: 15px;
+    margin-bottom: 40px;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .hero-bg-img {
+    object-position: center center;
+    transform: scale(1.2);
+  }
+
+  .custom-shape-divider-top svg {
+    height: 100px;
+  }
+
+  .privacy-banner {
+    padding: 1rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  .privacy-content {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .privacy-content p {
+    font-size: 0.9rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .privacy-content p a {
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+
+  .privacy-buttons {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .privacy-decline-btn,
+  .privacy-accept-btn {
+    flex: 1;
+    max-width: 150px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+  .btn-safety-exit {
+    bottom: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+}

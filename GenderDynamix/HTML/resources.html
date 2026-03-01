@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Base styles (loaded first - has variables & reset) -->
+    <link rel="stylesheet" href="/Style/base.css" />
+
+    <!-- Shared component styles (used on all pages) -->
+    <link rel="stylesheet" href="/Style/navigation.css" />
+    <link rel="stylesheet" href="/Style/footer.css" />
+    <link rel="stylesheet" href="/Style/components.css" />
+
+    <!-- Page-specific styles (only for home page) -->
+    <link rel="stylesheet" href="/Style/resources.css" />
+
+    <link rel="icon" href="/Images/favicon.ico" type="image/x-icon" />
+    <title>
+      Community Resources | Gender Affirming Gear & Info | Gender Dynamix
+    </title>
+    <meta
+      name="description"
+      content="Access curated resources for the gender-diverse community in Aotearoa. Find NZ organisations, gender-affirming gear, and educational video content."
+    />
+    <meta
+      property="og:title"
+      content="NZ Gender Diverse Resource Directory | Gender Dynamix"
+    />
+    <meta
+      property="og:description"
+      content="A comprehensive guide to gender-affirming gear, local organisations, and educational tools for our community."
+    />
+    <meta property="og:image" content="/Images/GD-LogoLong.webp" />
+    <meta property="og:url" content="https://gdnz.org/HTML/resources.html" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; 
+           script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com; 
+           style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+           font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+           img-src 'self' data:;
+           connect-src 'self' https://formspree.io;
+           frame-src https://www.youtube.com https://www.youtube-nocookie.com;"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div
+      id="privacyModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-overlay" onclick="closeModal()"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="modalTitle">Cookies & Privacy Information</h3>
+          <button
+            class="modal-close"
+            onclick="closeModal()"
+            aria-label="Close Modal"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p><strong>Essential Cookies Only</strong></p>
+          <p>
+            Gender Dynamix Aotearoa uses strictly necessary cookies to ensure
+            our website functions correctly. These help with:
+          </p>
+          <ul>
+            <li>
+              <strong>Security:</strong> Preventing CSRF attacks on our referral
+              forms
+            </li>
+            <li>
+              <strong>Performance:</strong> Ensuring the site loads quickly for
+              our users.
+            </li>
+            <li>
+              <strong>Preferences:</strong> Remembering if you've seen this
+              banner before.
+            </li>
+          </ul>
+          <p>
+            Under the <em>NZ Privacy Act 2020</em>, we do not use tracking or
+            advertising cookies. Your data remains your own.
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-modal-primary" onclick="closeModal()">
+            Got it
+          </button>
+        </div>
+      </div>
+    </div>
+    <header>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#">
+          <picture>
+            <source media="(max-width: 768px)" srcset="/Images/favicon.ico" />
+            <img
+              src="/Images/GD-LogoLong.webp"
+              alt="Gender Dynamix Logo"
+              class="logo"
+            />
+          </picture>
+        </a>
+
+        <!-- Hamburger button -->
+        <button class="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-right">
+          <ul>
+            <li><a href="/HTML/index.html">Home</a></li>
+            <li><a href="/HTML/about.html">About</a></li>
+
+            <li class="dropdown">
+              <a href="/HTML/services.html">Services</a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="/HTML/services.html#individual-support"
+                    >Individual Info</a
+                  >
+                </li>
+                <li>
+                  <a href="/HTML/services.html#peer-support"
+                    >Peer Support Info</a
+                  >
+                </li>
+                <li>
+                  <a href="/HTML/services.html#group-support">Group Info</a>
+                </li>
+                <li><a href="/HTML/services.html#training">Training</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="/HTML/resources.html">Resources</a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="/HTML/resources.html#kiwi-organisations"
+                    >Kiwi Organisations</a
+                  >
+                </li>
+                <li>
+                  <a href="/HTML/resources.html#gender-affirming-gear"
+                    >Gender Affirming Gear</a
+                  >
+                </li>
+                <li>
+                  <a href="/HTML/resources.html#video-resources"
+                    >Video Resources</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="/HTML/contact.html">Contact</a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="/HTML/contact.html#general-contact"
+                    >General Inquiry</a
+                  >
+                </li>
+                <li><a href="/HTML/contact.html#referrals">Referrals</a></li>
+                <li>
+                  <a href="/HTML/contact.html#contact-info">Contact Info</a>
+                </li>
+              </ul>
+            </li>
+
+            <li><a href="/HTML/donate.html" class="btn-donate">Donate</a></li>
+          </ul>
+
+          <li class="social-wrapper">
+            <div class="nav-socials">
+              <a
+                href="https://www.instagram.com/genderdynamixnz/"
+                rel="noopener noreferrer"
+                aria-label="Visit our Instagram page"
+                target="_blank"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/genderdynamixnz/"
+                rel="noopener noreferrer"
+                aria-label="Visit our Facebook page"
+                ><i class="fab fa-facebook" target="_blank"></i
+              ></a>
+              <a
+                href="#"
+                class="email-link"
+                data-user="referrals"
+                data-domain="gdnz.org"
+                ><i class="fa-solid fa-envelope"></i
+              ></a>
+            </div>
+          </li>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-bg-container">
+          <img src="/Images/hero-pattern-bg.webp" alt="" class="hero-bg-img" />
+        </div>
+
+        <div class="hero-content">
+          <h1>Resources</h1>
+          <p>
+            Your guide to essential support and resources. Connect with
+            transgender and gender diverse organisations throughout Aotearoa,
+            explore trusted suppliers of gender affirming gear, and discover
+            educational videos to support your journey of self-discovery and
+            empowerment.
+          </p>
+        </div>
+        <div class="custom-shape-divider-top">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#ad98c4"
+              fill-opacity="1"
+              d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+      </section>
+      <section class="quick-nav-services">
+        <div class="quick-nav-container">
+          <h2>Jump to Section</h2>
+          <div class="quick-nav-grid">
+            <a href="#kiwi-organisations" class="quick-nav-btn">
+              <div class="nav-icon">
+                <img src="/Images/Kiwi.svg" alt="Kiwi Organisations" />
+              </div>
+              <h3>Kiwi Organisations</h3>
+            </a>
+            <a href="#gender-affirming-gear" class="quick-nav-btn">
+              <div class="nav-icon">
+                <img src="/Images/icons-01.webp" alt="Gender Affirming Gear" />
+              </div>
+              <h3>Gender Affirming Gear</h3>
+            </a>
+            <a href="#video-resources" class="quick-nav-btn">
+              <div class="nav-icon">
+                <img src="/Images/icons-03.webp" alt="Group Support" />
+              </div>
+              <h3>Video Resources</h3>
+            </a>
+          </div>
+        </div>
+      </section>
+      <div class="wave-divider">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ad98c4"
+            fill-opacity="1"
+            d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+          ></path>
+        </svg>
+      </div>
+      <section class="kiwi-organisations" id="kiwi-organisations">
+        <div class="section-heading">
+          <h2>Kiwi Organisations</h2>
+          <p>
+            Connect with transgender and gender diverse organizations across
+            Aotearoa New Zealand
+          </p>
+        </div>
+
+        <div class="kiwi-cards-container">
+          <!-- Template Card  -->
+          <!-- 
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img src="/Images/Kiwi.svg" alt="Kiwi Organisation" />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category">Organisation</span>
+              <h3>Kiwi Organisation</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam voluptate quos quibusdam neque optio ut natus nobis suscipit, eligendi sequi. Reprehenderit, neque maiores quaerat accusamus hic fugiat vero veritatis aut?
+              </p>
+              <a href="#" class="kiwi-link">Visit Website!</a>
+            </div>
+          </div>
+           -->
+          <!-- Card 1 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/OutlineAotearoa.jpg"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Mental Health & Support Organisation</span
+              >
+              <h3>Outline Aotearoa</h3>
+              <p>
+                Nationwide rainbow support, counselling, and trans and nonbinary
+                peer support service.
+              </p>
+              <a href="https://outline.org.nz/" class="kiwi-link"
+                >Visit Website!</a
+              >
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/MHF.svg"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Mental Health & Support Organisation</span
+              >
+              <h3>Mental Health Foundation of New Zealand</h3>
+              <p>Resources on mental health and wellbeing.</p>
+              <a href="https://mentalhealth.org.nz/" class="kiwi-link"
+                >Visit Website!</a
+              >
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/Insideout-logo-transparent-550.png"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Mental Health & Support Organisation</span
+              >
+              <h3>InsideOUT</h3>
+              <p>
+                InsideOUT Kōaro is a national charity working to make Aotearoa
+                safer for all rainbow and takatāpui people. We provide
+                resources, workshops, consulting, advocacy and support for
+                anything concerning rainbow (LGBTQIA+) communities.
+              </p>
+              <a href="#" class="kiwi-link">Visit Website!</a>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/tki-logo.jpg"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Gender Diverse Education Organisation</span
+              >
+              <h3>Inclusive Education</h3>
+              <p>
+                How New Zealand schools support trans and other rainbow
+                students.
+              </p>
+              <a href="#" class="kiwi-link">Visit Website!</a>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/PATHA-logo.png"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Gender Diverse Health Organisation</span
+              >
+              <h3>PATHA</h3>
+              <p>
+                The Professional Association for Transgender Health Aotearoa is
+                an interdisciplinary professional organisation working to
+                promote the health, wellbeing and rights of transgender people.
+              </p>
+              <a href="https://patha.nz/" class="kiwi-link">Visit Website!</a>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/RY-Logo.png"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Mental Health & Support Organisation</span
+              >
+              <h3>Rainbow Youth</h3>
+              <p>
+                An organisation that supports gender-diverse young people in New
+                Zealand.
+              </p>
+              <a href="https://ry.org.nz/" class="kiwi-link">Visit Website!</a>
+            </div>
+          </div>
+          <!-- Card 7 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/RMH-Logo.webp"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Gender Diverse Health Organisation</span
+              >
+              <h3>Rainbow Mental Health</h3>
+              <p>
+                This guide is for anyone who provides mental health support in
+                Aotearoa, including counsellors, psychologists, psychiatrists,
+                psychotherapists, tohunga (Māori healers), social workers,
+                mental health nurses, and GPs.
+              </p>
+              <a href="http://rainbowmentalhealth.nz/" class="kiwi-link"
+                >Visit Website!</a
+              >
+            </div>
+          </div>
+          <!-- Card 8  -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/Counting-Ourselves_Logo-Web-Original.png"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Gender Diverse Informational Organisation</span
+              >
+              <h3>Counting Ourselves</h3>
+              <p>
+                Counting Ourselves is an anonymous health survey designed by and
+                for trans and non-binary people living in Aotearoa New Zealand.
+              </p>
+              <a href="https://countingourselves.nz/" class="kiwi-link"
+                >Visit Website!</a
+              >
+            </div>
+          </div>
+          <!-- Card 9 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/250930-GMA-Rectangle-Logo-Black.png"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Gender Diverse Informational Organisation</span
+              >
+              <h3>Gender Minorities Aotearoa</h3>
+              <p>
+                A peer-led organisation that provides a national service and
+                information database.
+              </p>
+              <a href="https://genderminorities.com/" class="kiwi-link"
+                >Visit Website!</a
+              >
+            </div>
+          </div>
+          <!-- Card 10  -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/HealthNZ-logo-v2.svg"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category"
+                >Gender Diverse Health Organisation</span
+              >
+              <h3>Health New Zealand</h3>
+              <p>Gender affirming care and support services.</p>
+              <a
+                href="https://info.health.nz/health-topics/keeping-healthy/transgender-gender-diversity"
+                class="kiwi-link"
+                >Visit Website!</a
+              >
+            </div>
+          </div>
+          <!-- Card 11 -->
+          <div class="kiwi-card">
+            <div class="kiwi-img">
+              <img
+                src="/Images/Organisation-Logos/wpath_logo_words-1.png"
+                alt="Kiwi Organisation"
+              />
+            </div>
+            <div class="kiwi-body">
+              <span class="kiwi-category">
+                Worldwide Gender Diverse Health Organisation</span
+              >
+              <h3>Kiwi Organisation</h3>
+              <p>
+                Standards of Care for Transgender Healthcare [mental health &
+                medical]
+              </p>
+              <a href="https://wpath.org/" class="kiwi-link">Visit Website!</a>
+            </div>
+          </div>
+          <!-- Add additional cards here -->
+        </div>
+        <!-- End of kiwi-cards-container -->
+      </section>
+
+      <section class="affiliate-section">
+        <div class="section-heading affilate-heading">
+          <h2>Featured Partner - Transcend Garments</h2>
+          <p>Our trusted partner for high-quality gender affirming gear</p>
+        </div>
+
+        <div class="affilate-card">
+          <div class="affilate-img">
+            <img
+              src="/Images/Organisation-Logos/transcendgarments.png"
+              alt="affilate Organisation"
+            />
+          </div>
+          <div class="affilate-body">
+            <span class="affilate-category">Featured Partner</span>
+            <h3>Transcend Garments</h3>
+            <p>
+              Transcend is a small New Zealand-based business, dedicated to
+              creating high-quality gender-affirming garments. Each piece is
+              handcrafted in small batches to ensure quality and consistency.
+              Transcend is passionate about addressing gaps in resources for
+              transgender individuals and actively seeks input from the
+              community to develop new, accessible products tailored to their
+              needs. As a brand, we aim to push the boundaries of what
+              gender-affirming clothing can be.
+            </p>
+            <a href="https://transcendgarments.com/" class="affilate-link"
+              >Visit Website!</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="gender-affirming-gear" id="gender-affirming-gear">
+        <div class="section-heading">
+          <h2>Gender Affirming Gear</h2>
+          <p>
+            Discover trusted suppliers of binders, packers, and other gender
+            affirming products
+          </p>
+        </div>
+
+        <div class="gear-categories-grid">
+          <!-- Binders Category -->
+          <div class="gear-category-card blue">
+            <h3>Binders/Tape</h3>
+            <ul class="gear-links-list">
+              <li>
+                <a href="https://www.transshape.co.nz/" target="_blank"
+                  >TransShape</a
+                >
+              </li>
+              <li>
+                <a href="https://www.bindme.co.nz/" target="_blank">BindMe</a>
+              </li>
+              <li><a href="https://gc2b.co/" target="_blank">GC2B</a></li>
+              <li>
+                <a href="https://transtape.life/" target="_blank">TransTape</a>
+              </li>
+              <li>
+                <a href="https://www.tomscout.com/en-nz" target="_blank"
+                  >TomboyX</a
+                >
+              </li>
+              <li>
+                <a href="https://sockdrawerheroes.com/" target="_blank"
+                  >Sock Drawer Heroes</a
+                >
+              </li>
+              <li>
+                <a href="https://www.underworks.com/" target="_blank"
+                  >Underworks</a
+                >
+              </li>
+              <li>
+                <a href="https://paxsies.com/" target="_blank">Paxsies</a>
+              </li>
+              <li>
+                <a href="https://amorsensory.com/en-nz" target="_blank"
+                  >Amor Sensory</a
+                >
+              </li>
+              <li>
+                <a href="https://origamicustoms.com/" target="_blank"
+                  >Origami Customs</a
+                >
+              </li>
+              <li>
+                <a href="https://www.t-kingdom.com/" target="_blank"
+                  >T-Kingdom</a
+                >
+              </li>
+              <li>
+                <a href="https://shapeshifters.co/" target="_blank"
+                  >Shapeshifters</a
+                >
+              </li>
+              <li>
+                <a href="https://gynecomastiasolutions.co.uk/" target="_blank"
+                  >Gynecomastia Solutions</a
+                >
+              </li>
+              <li>
+                <a href="https://peecockproducts.com/" target="_blank"
+                  >Peecock Products</a
+                >
+              </li>
+              <li>
+                <a href="https://transguysupply.com/" target="_blank"
+                  >Trans Guy Supply</a
+                >
+              </li>
+              <li>
+                <a href="https://www.ftmessentials.com/" target="_blank"
+                  >FTM Essentials</a
+                >
+              </li>
+              <li>
+                <a href="https://spectrumoutfitters.co.uk/"
+                  >Spectrum Outfitters</a
+                >
+              </li>
+              <li>
+                <a href="https://transcendgarments.com/" target="_blank"
+                  >Transcend Gender Affirming Garments</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Swimwear Category -->
+          <div class="gear-category-card pink">
+            <h3>Swimwear</h3>
+            <ul class="gear-links-list">
+              <li>
+                <a href="https://rubyshines.com/" target="_blank"
+                  >Ruby Shines</a
+                >
+              </li>
+              <li>
+                <a href="https://www.beefcakeswimwear.com/" target="_blank"
+                  >Beefcake Swimwear</a
+                >
+              </li>
+              <li><a href="https://chromat.co/" target="_blank">Chromat</a></li>
+              <li>
+                <a href="https://origamicustoms.com/" target="_blank"
+                  >Origami Customs</a
+                >
+              </li>
+              <li>
+                <a href="https://tuckandbind.com">Tuck & Bind</a>
+              </li>
+              <li>
+                <a href="https://unitycoveswim.com/" target="_blank"
+                  >Unity Cove</a
+                >
+              </li>
+              <li>
+                <a href="https://outplay.co.nz/" target="_blank">Outplay</a>
+              </li>
+              <li><a href="https://tomboyx.com" target="_blank">TomboyX</a></li>
+            </ul>
+          </div>
+
+          <!-- Packers Category -->
+          <div class="gear-category-card green">
+            <h3>Packers/STP</h3>
+            <ul class="gear-links-list">
+              <li><a href="https://rodeoh.com/" target="_blank">Rodeoh</a></li>
+              <li>
+                <a href="https://sockdrawerheroes.com/" target="_blank"
+                  >Sock Drawer Heroes</a
+                >
+              </li>
+              <li>
+                <a href="https://paxsies.com/" target="_blank">Paxsies</a>
+              </li>
+              <li>
+                <a href="https://origamicustoms.com/" target="_blank"
+                  >Origami Customs</a
+                >
+              </li>
+              <li>
+                <a href="https://peecockproducts.com/" target="_blank"
+                  >Peecock Products (18+)</a
+                >
+              </li>
+              <li>
+                <a href="https://bananaprosthetics.com/en#" target="_blank"
+                  >Banana Prosthetics (18+)</a
+                >
+              </li>
+              <li>
+                <a href="https://transguysupply.com/" target="_blank"
+                  >Trans Guy Supply</a
+                >
+              </li>
+              <li>
+                <a href="https://www.ftmessentials.com/" target="_blank"
+                  >FTM Essentials</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.etsy.com/nz/shop/BulletBriefs"
+                  target="_blank"
+                  >Bullet Briefs (Etsy)</a
+                >
+              </li>
+              <li>
+                <a href="https://www.mypackftm.com/shop" target="_blank"
+                  >My Pack FTM</a
+                >
+              </li>
+              <li>
+                <a href="https://tuckandbind.com" target="_blank"
+                  >Tuck & Bind</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Gaffs Category -->
+          <div class="gear-category-card purple">
+            <h3>Gaffs</h3>
+            <ul class="gear-links-list">
+              <li>
+                <a href="https://www.etsy.com/nz/shop/LeoLines" target="_blank"
+                  >Leo Lines (Etsy)</a
+                >
+              </li>
+              <li>
+                <a href="https://sockdrawerheroes.com/" target="_blank"
+                  >Sock Drawer Heroes</a
+                >
+              </li>
+              <li>
+                <a href="https://paxsies.com/" target="_blank">Paxsies</a>
+              </li>
+              <li>
+                <a href="https://origamicustoms.com/" target="_blank"
+                  >Origami Customs</a
+                >
+              </li>
+              <li>
+                <a href="https://www.carmenliulingerie.co.uk/" target="_blank"
+                  >Carmen Liu Lingerie</a
+                >
+              </li>
+              <li>
+                <a href="https://tuckandbind.com" target="_blank"
+                  >Tuck & Bind</a
+                >
+              </li>
+              <li>
+                <a href="https://zhebykarynelizabeth.com/shop/" target="_blank"
+                  >Zhe By Karyn Elizabeth</a
+                >
+              </li>
+              <li>
+                <a href="https://unclockable.com/" target="_blank"
+                  >Unclockable</a
+                >
+              </li>
+              <li>
+                <a href="https://www.ftmessentials.com/" target="_blank"
+                  >FTM Essentials</a
+                >
+              </li>
+              <li>
+                <a href="https://enfemmestyle.com" target="_blank">Enfemme</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="video-resources" id="video-resources">
+        <div class="section-heading">
+          <h2>Video Resources</h2>
+          <p>
+            Educational videos to support your journey and expand your
+            understanding
+          </p>
+        </div>
+
+        <div class="video-cards-container">
+          <div class="video-card">
+            <div class="video-img">
+              <img
+                src="/Images/organisation-logos/Insideout-logo-transparent-550.png"
+                alt="Video Resource"
+              />
+            </div>
+            <div class="video-body">
+              <span class="video-category">Educational Video</span>
+              <h3>InsideOUT</h3>
+              <p>
+                Created by RainbowYOUTH and partners. This resource is curated
+                for NZ education, it features a series of short episodes
+                (Episodes 1-5) covering everything from "Gender, Sex &
+                sexuality" to "Transgender & intersex identities". <br />
+                Recommended for: Beginners, Teachers, Family members and youth
+              </p>
+              <a
+                href="https://insideout.ry.org.nz/video-resources"
+                class="video-link"
+                >Watch Videos!</a
+              >
+            </div>
+          </div>
+
+          <!-- Add more video cards here -->
+          <div class="video-card">
+            <div class="video-img">
+              <img
+                src="/Images/organisation-logos/Healthify.webp"
+                alt="Video Resource"
+              />
+            </div>
+            <div class="video-body">
+              <span class="video-category">Educational Video</span>
+              <h3>Healthify Gender Diversity</h3>
+              <p>
+                This health portal hosts several short and practical videos
+                including "What it's like to be intersex" and other personal
+                stories like "Charly Walsh's Transgender Story". <br />
+                Recommended for: A clinical yet empathetic overview of what
+                gender dysphoria feels like and how it is treated in NZ.
+              </p>
+              <a
+                href="https://healthify.nz/health-a-z/g/gender-diversity"
+                class="video-link"
+                >Watch Videos!</a
+              >
+            </div>
+          </div>
+
+          <!-- Add more video resources here -->
+        </div>
+        <!-- YouTube Embeds Section -->
+        <div class="youtube-embeds-section">
+          <div class="subsection-title">
+            <h3>Featured Videos</h3>
+          </div>
+
+          <div class="youtube-embed-card">
+            <div class="embed-container">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube-nocookie.com/embed?listType=playlist&list=PL4lyxUW1_5XPUDoDD6HGWNZWYhe8O_FXA"
+                title="YouTube video player"
+                frameborder="0"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+            <div class="embed-info">
+              <span class="video-badge">Video Series</span>
+              <h4>Te Ao Takatāpui</h4>
+              <p>
+                A beautiful documentary series by InsideOUT Kōaro that shares
+                the stories of Takatāpui (Māori Rainbow) community members.
+              </p>
+              <p class="video-meta">
+                <i class="fas fa-info-circle"></i>
+                Recommended for: Understanding the intersection of culture,
+                indigeneity, and gender identity in Aotearoa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!--Back to top button-->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!--Safe Exit Button-->
+    <a href="https://www.stuff.co.nz/" class="btn-safety-exit" id="quickExit">
+      <span class="exit-text">Exit</span>
+      <span class="esc-text">ESC</span>
+    </a>
+    <!--Footer Starts Here!-->
+    <div class="wave-divider">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#20173a"
+          fill-opacity="1"
+          d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-section contact-info">
+        <p>Gender Dynamix of Aotearoa</p>
+        <p>Building 55, Historic Village</p>
+        <p>17th Avenue, Tauranga</p>
+        <p>Phone: <a href="tel:075482972" rel="nofollow">07 548 2972</a></p>
+        <p>
+          <a
+            href="#"
+            class="email-link"
+            data-user="referrals"
+            data-domain="gdnz.org"
+            >Email Us</a
+          >
+        </p>
+      </div>
+      <div class="footer-section links-socials">
+        <a
+          href="https://www.instagram.com/genderdynamixnz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Instagram page"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/genderdynamixnz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Facebook page"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="mailto:referrals@gdnz.org" aria-label="Email Us"
+          ><i class="fa-solid fa-envelope"></i
+        ></a>
+      </div>
+      <div class="footer-legal">
+        <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a>
+        <p>&copy; Gender Dynamix of Aotearoa <span id="year"></span></p>
+      </div>
+    </footer>
+    <div class="privacy-banner" id="privacyBanner">
+      <div class="privacy-content">
+        <p>
+          <i class="fas fa-cookie-bite"></i>
+          We use essential cookies to ensure our website works properly.
+          <a href="#">Learn more</a>
+        </p>
+        <div class="privacy-buttons">
+          <button onclick="declinePrivacy()" class="privacy-decline-btn">
+            Decline
+          </button>
+          <button onclick="acceptPrivacy()" class="privacy-accept-btn">
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/JS/script.js"></script>
+  </body>
+</html>
