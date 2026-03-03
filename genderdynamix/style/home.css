@@ -1,0 +1,288 @@
+/* Services Section */
+.home-services {
+  color: var(--trans-white);
+  background-color: var(--primary-lavender);
+  padding: 100px 5%;
+  min-height: 400px;
+  transform: translateZ(0);
+}
+
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-container h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--trans-white);
+}
+
+.services-intro {
+  font-size: clamp(1.3rem, 2vw, 1.2rem);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  opacity: 0.95;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 3rem;
+}
+
+.service-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.service-card {
+  text-decoration: none;
+  color: var(--trans-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.service-card:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.service-card:hover .circle-icon {
+  transform: scale(1.1);
+}
+
+.circle-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--trans-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.circle-icon img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 300px;
+}
+
+.service-card:last-child .circle-icon img {
+  width: 70px;
+  height: 70px;
+}
+
+/* Contact Section */
+.home-contact {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  max-width: 1100px;
+  min-width: 320px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.form-container {
+  flex: 1;
+}
+
+.home-contact h2 {
+  font-size: 2.5rem;
+  color: var(--purple);
+  margin-bottom: 2rem;
+}
+
+.home-contact-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--trans-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-contact-form label {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--primary-font);
+}
+
+.home-contact p {
+  font-size: 1.2rem;
+}
+
+.home-contact-form label span {
+  color: #999;
+  font-weight: normal;
+}
+
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.image-container {
+  margin-top: 60px;
+}
+
+.image-container img {
+  width: 100%;
+  margin-top: 20px;
+  max-width: 800px;
+  border-radius: 30px;
+  object-fit: cover;
+  aspect-ratio: 4 / 5;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 60vh;
+    padding-bottom: 100px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content {
+    padding: 15px;
+    margin-bottom: 40px;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .hero-bg-img {
+    object-position: center center;
+    transform: scale(1.2);
+  }
+
+  .custom-shape-divider-bottom svg {
+    height: 100px;
+  }
+
+  .home-services {
+    padding: 60px 5%;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .circle-icon {
+    width: 120px;
+    height: 120px;
+  }
+
+  .circle-icon img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .service-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .service-card p {
+    font-size: 0.95rem;
+  }
+
+  .home-contact {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 5%;
+  }
+
+  .home-contact h2 {
+    font-size: 2rem;
+  }
+
+  .home-contact-form {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .home-contact-form label {
+    font-size: 1rem;
+  }
+
+  .name-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .image-container {
+    margin-top: 20px;
+  }
+
+  .image-container img {
+    display: none;
+  }
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  .home-contact {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 5%;
+  }
+
+  .contact-content {
+    width: 100%;
+  }
+
+  .home-contact-form {
+    max-width: 100%;
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .home-contact-form label {
+    font-size: 1rem;
+  }
+
+  .image-container {
+    display: none;
+  }
+}

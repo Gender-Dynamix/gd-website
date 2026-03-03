@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Base styles (loaded first - has variables & reset) -->
+    <link rel="stylesheet" href="/style/base.css" />
+
+    <!-- Shared component styles (used on all pages) -->
+    <link rel="stylesheet" href="/style/navigation.css" />
+    <link rel="stylesheet" href="/style/footer.css" />
+    <link rel="stylesheet" href="/style/components.css" />
+
+    <!-- Page-specific styles (only for services page) -->
+    <link rel="stylesheet" href="/style/services.css" />
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>Gender Dynamix Aotearoa</title>
+    <meta
+      name="description"
+      content="Explore our gender-diverse services in Tauranga: individual advocacy, peer support groups, and professional diversity training for organisations and schools."
+    />
+    <meta
+      property="og:title"
+      content="Gender-Diverse Support Services | Gender Dynamix Aotearoa"
+    />
+    <meta
+      property="og:description"
+      content="From individual advocacy to community groups—see how we support the transgender and gender-diverse community."
+    />
+    <meta property="og:image" content="/images/gd-logolong.webp" />
+    <meta property="og:url" content="https://gdnz.org/html/services.html" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; 
+    script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; 
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data:;
+    connect-src 'self' https://formspree.io;"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!--Privacy Modal-->
+    <div
+      id="privacyModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="privacyModalTitle"
+    >
+      <div class="modal-overlay" onclick="closeModal()"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="privacyModalTitle">Privacy Policy</h3>
+          <button
+            class="modal-close"
+            onclick="closeModal()"
+            aria-label="Close Modal"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p><em>Last Updated: March 2026</em></p>
+
+          <h4>1. Information We Collect</h4>
+          <p>
+            We may collect information such as your name, gender identity, and
+            email address when you voluntarily provide it for referrals or
+            contact forms.
+          </p>
+
+          <h4>2. How We Use Your Information</h4>
+          <p>
+            We use the collected information only for the purpose for which it
+            was provided – for communication or referrals.
+          </p>
+
+          <h4>3. Third-Party Services</h4>
+          <p>
+            We do not share your information with third parties unless required
+            for website functionality (e.g., hosting providers, form processing
+            services like Formspree). We do not sell, trade, or otherwise
+            transfer your personally identifiable information to outside
+            parties.
+          </p>
+
+          <h4>4. Cookies</h4>
+          <p><strong>Essential Cookies Only</strong></p>
+          <p>
+            Gender Dynamix Aotearoa uses strictly necessary cookies to ensure
+            our website functions correctly. These help with:
+          </p>
+          <ul>
+            <li>
+              <strong>Security:</strong> Preventing CSRF attacks on our referral
+              forms
+            </li>
+            <li>
+              <strong>Performance:</strong> Ensuring the site loads quickly for
+              our users
+            </li>
+            <li>
+              <strong>Preferences:</strong> Remembering if you've seen our
+              privacy banner and age verification status
+            </li>
+          </ul>
+          <p>
+            You may choose to disable cookies through your browser settings.
+            However, this may affect certain functionality of our website.
+          </p>
+          <p>
+            Under the <em>NZ Privacy Act 2020</em>, we do not use tracking or
+            advertising cookies. Your data remains your own.
+          </p>
+
+          <h4>5. Security</h4>
+          <p>
+            We take reasonable measures to protect your personal information.
+            However, no method of transmission over the internet or electronic
+            storage is 100% secure.
+          </p>
+
+          <h4>6. Links to Other Websites</h4>
+          <p>
+            Our website contains links to other websites, including external
+            resources for gender-affirming products. We are not responsible for
+            the privacy practices of these external sites. Some linked websites
+            may contain age-restricted content.
+          </p>
+
+          <h4>7. Your Consent</h4>
+          <p>By using our website, you consent to our privacy policy.</p>
+
+          <h4>8. Changes to this Privacy Policy</h4>
+          <p>
+            Any changes to the privacy policy will be reflected on this page.
+            Check this page regularly for updates.
+          </p>
+
+          <h4>9. Contact Us</h4>
+          <p>
+            If you have any questions regarding this privacy policy, you may
+            contact us at
+            <a href="mailto:referrals@gdnz.org">referrals@gdnz.org</a>
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-modal-primary" onclick="closeModal()">
+            Got it
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--Terms & Conditions Modal-->
+    <div
+      id="termsModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="termsModalTitle"
+    >
+      <div class="modal-overlay" onclick="closeTermsModal()"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="termsModalTitle">Terms & Conditions</h3>
+          <button
+            class="modal-close"
+            onclick="closeTermsModal()"
+            aria-label="Close Modal"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p><em>Last Updated: March 2026</em></p>
+
+          <h4>1. Acceptance of Terms</h4>
+          <p>
+            By accessing and using this website, you agree to comply with and be
+            bound by these terms and conditions. If you do not agree with any
+            part of these terms, please do not use our website.
+          </p>
+
+          <h4>2. User Conduct</h4>
+          <p>
+            You agree to use this website for lawful purposes and in a way that
+            does not infringe on the rights of others or restrict or inhibit
+            anyone else's use and enjoyment of the website.
+          </p>
+
+          <h4>3. Intellectual Property</h4>
+          <p>
+            All content on this website, including text, graphics, logos,
+            images, and software, is the property of Gender Dynamix of Aotearoa
+            and is protected by copyright laws. You may not reproduce,
+            distribute, or display any portion of the website without prior
+            written consent.
+          </p>
+
+          <h4>4. Privacy</h4>
+          <p>
+            By using this website, you acknowledge and agree to the terms of our
+            privacy policy.
+          </p>
+
+          <h4>5. Age-Restricted Content</h4>
+          <p>
+            Our website contains links to external resources that may include
+            age-restricted content. Age verification may be required before
+            accessing certain external websites. Users under 18 should seek
+            parental guidance when browsing external resources.
+          </p>
+
+          <h4>6. Disclaimer of Warranties</h4>
+          <p>
+            Gender Dynamix of Aotearoa makes no warranties, expressed or
+            implied, regarding the accuracy, reliability, or completeness of the
+            content on this website. Your use of the website is at your own
+            risk.
+          </p>
+
+          <h4>7. Limitation of Liability</h4>
+          <p>
+            Gender Dynamix of Aotearoa shall not be liable for any direct,
+            indirect, incidental, special, or consequential damages arising out
+            of or in any way connected with the use of, or with the delay or
+            inability to use this website.
+          </p>
+
+          <h4>8. Changes to Terms</h4>
+          <p>
+            Gender Dynamix of Aotearoa reserves the right to update, change, or
+            replace any part of these terms and conditions at our discretion.
+            Your continued use of this website following the posting of any
+            changes constitutes acceptance of those changes.
+          </p>
+
+          <h4>9. Governing Law</h4>
+          <p>
+            These terms and conditions are governed by and construed in
+            accordance with the laws of New Zealand. Any disputes will be
+            subject to the exclusive jurisdiction of the courts of New Zealand.
+          </p>
+
+          <h4>10. Contact Information</h4>
+          <p>
+            For questions or concerns about these terms and conditions, please
+            contact us at
+            <a href="mailto:referrals@gdnz.org">referrals@gdnz.org</a>
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-modal-primary" onclick="closeTermsModal()">
+            Got it
+          </button>
+        </div>
+      </div>
+    </div>
+    <header>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#">
+          <picture>
+            <source media="(max-width: 768px)" srcset="/images/favicon.ico" />
+            <img
+              src="/images/gd-logolong.webp"
+              alt="Gender Dynamix Logo"
+              class="logo"
+            />
+          </picture>
+        </a>
+
+        <!-- Hamburger button -->
+        <button class="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-right">
+          <ul>
+            <li><a href="/html/index.html" data-text="Home">Home</a></li>
+            <li><a href="/html/about.html" data-text="About">About</a></li>
+            <li class="dropdown">
+              <a href="/html/services.html" data-text="Services">Services</a>
+              <ul class="dropdown-content">
+                <li>
+                  <a
+                    href="/html/services.html#individual-support"
+                    data-text="Individual Info"
+                    >Individual Info</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/services.html#peer-support"
+                    data-text="Peer Support Info"
+                    >Peer Support Info</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/services.html#group-support"
+                    data-text="Group Info"
+                    >Group Info</a
+                  >
+                </li>
+                <li>
+                  <a href="/html/services.html#training" data-text="Training"
+                    >Training</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="/html/resources.html">Resources</a>
+              <ul class="dropdown-content">
+                <li>
+                  <a
+                    href="/html/resources.html#kiwi-organisations"
+                    data-text="Kiwi Organisations"
+                    >Kiwi Organisations</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/resources.html#gender-affirming-gear"
+                    data-text="Gender Affirming Gear"
+                    >Gender Affirming Gear</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/resources.html#video-resources"
+                    data-text="Video Resources"
+                    >Video Resources</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/html/contact.html" data-text="Contact">Contact</a>
+            </li>
+            <li>
+              <a href="/html/donate.html" class="btn-donate" data-text="Donate"
+                >Donate</a
+              >
+            </li>
+
+            <li class="social-wrapper">
+              <div class="nav-socials">
+                <a
+                  href="https://www.instagram.com/genderdynamixnz/"
+                  target="_blank"
+                  aria-label="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  href="https://www.facebook.com/genderdynamixnz/"
+                  target="_blank"
+                  aria-label="Facebook"
+                  ><i class="fab fa-facebook"></i
+                ></a>
+                <a
+                  href="#"
+                  class="email-link"
+                  data-user="referrals"
+                  data-domain="gdnz.org"
+                  aria-label="Email"
+                  ><i class="fa-solid fa-envelope"></i
+                ></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-bg-container">
+          <img src="/images/hero-pattern-bg.webp" alt="" class="hero-bg-img" />
+        </div>
+        <div class="hero-content">
+          <h1>Our Services</h1>
+          <p>
+            At Gender Dynamix we offer a range of comprehensive services and
+            resources tailored to the unique needs of our trans and non-binary
+            and gender diverse whānau.<br />
+            We are committed to fostering a welcoming community where you can
+            explore, grow, and connect on your journey towards self-discovery
+            and empowerment.
+          </p>
+        </div>
+        <div class="custom-shape-divider-top">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#ad98c4"
+              fill-opacity="1"
+              d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+      </section>
+      <section class="quick-nav-services">
+        <div class="quick-nav-container">
+          <h2>Jump to Section</h2>
+          <div class="quick-nav-grid">
+            <a href="#individual-support" class="quick-nav-btn">
+              <div class="nav-icon">
+                <img src="/images/icons-01.webp" alt="Individual Support" />
+              </div>
+              <h3>Individual Support</h3>
+            </a>
+            <a href="#peer-support" class="quick-nav-btn">
+              <div class="nav-icon">
+                <img src="/images/icons-02.webp" alt="Peer Support" />
+              </div>
+              <h3>Peer Support</h3>
+            </a>
+            <a href="#group-support" class="quick-nav-btn">
+              <div class="nav-icon">
+                <img src="/images/icons-03.webp" alt="Group Support" />
+              </div>
+              <h3>Group Support</h3>
+            </a>
+            <a href="#training" class="quick-nav-btn">
+              <div class="nav-icon">
+                <img src="/images/work_icon.svg" alt="Training" />
+              </div>
+              <h3>Training</h3>
+            </a>
+          </div>
+        </div>
+      </section>
+      <div class="wave-divider">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ad98c4"
+            fill-opacity="1"
+            d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+          ></path>
+        </svg>
+      </div>
+      <!--individual Support-->
+      <section class="service-detail" id="individual-support">
+        <div class="service-detail-container">
+          <div class="service-header" onclick="toggleAccordion(this)">
+            <div class="service-title-group">
+              <div class="service-icon-small">
+                <img
+                  src="/images/icons-01.webp"
+                  alt="Individual Support Icon"
+                />
+              </div>
+              <h2>Individual Support Services</h2>
+            </div>
+            <button
+              class="accordion-toggle"
+              aria-label="Toggle section"
+              aria-expanded="true"
+            >
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+
+          <div class="service-content">
+            <p class="service-description">
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor amet
+              consectetur adipiscing elit quisque faucibus.
+            </p>
+
+            <div class="service-categories">
+              <div class="category-card">
+                <h3>Mental Health Care:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+
+              <div class="category-card">
+                <h3>Transition Support:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+
+              <div class="category-card">
+                <h3>Ongoing Care:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+
+              <div class="category-card">
+                <h3>IPL Laser Hair Removal:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Peer Support-->
+      <section class="service-detail" id="peer-support">
+        <div class="service-detail-container">
+          <div class="service-header" onclick="toggleAccordion(this)">
+            <div class="service-title-group">
+              <div class="service-icon-small">
+                <img src="/images/icons-02.webp" alt="Peer Support Icon" />
+              </div>
+              <h2>Peer Support Services</h2>
+            </div>
+            <button
+              class="accordion-toggle"
+              aria-label="Toggle section"
+              aria-expanded="true"
+            >
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+
+          <div class="service-content">
+            <p class="service-description">
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor amet
+              consectetur adipiscing elit quisque faucibus.
+            </p>
+
+            <div class="service-categories">
+              <div class="category-card">
+                <h3>Peer to Peer:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+
+              <div class="category-card">
+                <h3>Transition Support:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+
+              <div class="category-card">
+                <h3>Ongoing Care:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Group Support Services-->
+      <section class="service-detail" id="group-support">
+        <div class="service-detail-container">
+          <div class="service-header" onclick="toggleAccordion(this)">
+            <div class="service-title-group">
+              <div class="service-icon-small">
+                <img src="/images/icons-03.webp" alt="group Support Icon" />
+              </div>
+              <h2>Group Support Services</h2>
+            </div>
+            <button
+              class="accordion-toggle"
+              aria-label="Toggle section"
+              aria-expanded="true"
+            >
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+
+          <div class="service-content">
+            <p class="service-description">
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor amet
+              consectetur adipiscing elit quisque faucibus.
+            </p>
+
+            <div class="service-categories">
+              <div class="category-card">
+                <h3>Mental Health Care:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+
+              <div class="category-card">
+                <h3>Transition Support:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+
+              <div class="category-card">
+                <h3>Ongoing Care:</h3>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cta-banner">
+        <div class="cta-banner-container">
+          <h2>Ready To Connect?</h2>
+          <p>
+            Reach out today to learn more about our services or book a referral
+          </p>
+          <a href="/html/contact.html" class="cta-button">Get In Touch</a>
+        </div>
+      </section>
+      <!-- Form Section -->
+      <section class="form-card-section" id="training">
+        <div class="form-card-container">
+          <div class="form-card-header" onclick="toggleAccordion(this)">
+            <div class="form-title-group">
+              <div class="form-icon">
+                <img src="/images/icons-03.webp" alt="Training Icon" />
+              </div>
+              <h2>Training</h2>
+            </div>
+            <button
+              class="form-collapse-btn accordion-toggle"
+              aria-label="Toggle form"
+            >
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+
+          <div class="form-content service-content">
+            <p class="form-description">
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit
+              amet consectetur adipiscing elit quisque faucibus.
+            </p>
+
+            <div class="form-info-box">
+              <h3>What We Offer</h3>
+              <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+              </ul>
+            </div>
+
+            <h3>Interested in Training?</h3>
+            <p class="form-subtitle">
+              Book a Training Session<br />Organisations/Schools
+            </p>
+            <!-- TODO: Replace this with Finger-Ink Form  -->
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <div class="form-group">
+                <label for="contact-name">Contact Name:*</label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="contact-name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email:*</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-phone">Contact Phone:*</label>
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="contact-phone"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>What would you like covered in training?*</label>
+                <div class="checkbox-group">
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item1"
+                      name="training-topics"
+                      value="Item 1"
+                    />
+                    <label for="item1">Item 1</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item2"
+                      name="training-topics"
+                      value="Item 2"
+                    />
+                    <label for="item2">Item 2</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item3"
+                      name="training-topics"
+                      value="Item 3"
+                    />
+                    <label for="item3">Item 3</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item4"
+                      name="training-topics"
+                      value="Item 4"
+                    />
+                    <label for="item4">Item 4</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item5"
+                      name="training-topics"
+                      value="Item 5"
+                    />
+                    <label for="item5">Item 5</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item6"
+                      name="training-topics"
+                      value="Item 6"
+                    />
+                    <label for="item6">Item 6</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item7"
+                      name="training-topics"
+                      value="Item 7"
+                    />
+                    <label for="item7">Item 7</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item8"
+                      name="training-topics"
+                      value="Item 8"
+                    />
+                    <label for="item8">Item 8</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item9"
+                      name="training-topics"
+                      value="Item 9"
+                    />
+                    <label for="item9">Item 9</label>
+                  </div>
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id="item10"
+                      name="training-topics"
+                      value="Item 10"
+                    />
+                    <label for="item10">Item 10</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="training-hours"
+                  >How long should training take place?*</label
+                >
+                <select id="training-hours" name="training-hours" required>
+                  <option value="30-min">30 Minutes</option>
+                  <option value="1-hour">1 Hour</option>
+                  <option value="2-hours">2 Hours</option>
+                  <option value="3-hours">3 Hours</option>
+                  <option value="half-day">Half Day</option>
+                  <option value="full-day">Full Day</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="start-date"
+                    >What should training take place?*</label
+                  >
+                  <input
+                    type="text"
+                    id="start-date"
+                    name="start-date"
+                    placeholder="DD/MM/YYYY"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="end-date"
+                    >What should training take place?*</label
+                  >
+                  <input
+                    type="text"
+                    id="end-date"
+                    name="end-date"
+                    placeholder="DD/MM/YYYY"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="additional-notes">Additional Notes:</label>
+                <textarea
+                  id="additional-notes"
+                  name="additional-notes"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">Submit</button>
+              <p class="privacy-notice">
+                🔒 All information is encrypted and confidential
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!--Footer Starts Here!-->
+    <div class="wave-divider">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#20173a"
+          fill-opacity="1"
+          d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-section contact-info">
+        <p>Gender Dynamix of Aotearoa</p>
+        <p>Building 55, Historic Village</p>
+        <p>17th Avenue, Tauranga</p>
+        <p>Phone: <a href="tel:075482972" rel="nofollow">07 548 2972</a></p>
+        <p>
+          <a
+            href="#"
+            class="email-link"
+            data-user="referrals"
+            data-domain="gdnz.org"
+            >Email Us</a
+          >
+        </p>
+      </div>
+      <div class="footer-section links-socials">
+        <a
+          href="https://www.instagram.com/genderdynamixnz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Instagram page"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/genderdynamixnz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Facebook page"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="mailto:referrals@gdnz.org" aria-label="Email Us"
+          ><i class="fa-solid fa-envelope"></i
+        ></a>
+      </div>
+      <div class="footer-legal">
+        <a
+          href="javacript:void(0)"
+          onclick="
+            openTermsModal();
+            return false;
+          "
+          >Terms & Conditions</a
+        >
+        |
+        <a href="javascript:void(0)" class="js-privacy-trigger"
+          >Privacy Policy</a
+        >
+        <p>&copy; Gender Dynamix of Aotearoa <span id="year"></span></p>
+      </div>
+    </footer>
+    <!--Back to top button-->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!--Safe Exit Button-->
+    <a href="https://www.stuff.co.nz/" class="btn-safety-exit" id="quickExit">
+      <span class="exit-text">Exit</span>
+      <span class="esc-text">ESC</span>
+    </a>
+    <div class="privacy-banner" id="privacyBanner">
+      <div class="privacy-content">
+        <p>
+          <i class="fas fa-cookie-bite"></i>
+          We use essential cookies to ensure our website works properly.
+          <a href="javascript:void(0)">Learn more</a>
+        </p>
+        <div class="privacy-buttons">
+          <button onclick="declinePrivacy()" class="privacy-decline-btn">
+            Decline
+          </button>
+          <button onclick="acceptPrivacy()" class="privacy-accept-btn">
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
