@@ -270,6 +270,80 @@
         </div>
       </div>
     </div>
+    <!-- Safety Exit Tutorial Modal -->
+    <div
+      id="safetyTutorialModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="safetyTutorialTitle"
+    >
+      <div class="modal-overlay"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="safetyTutorialTitle">Quick Exit Feature</h3>
+          <button
+            class="modal-close"
+            onclick="closeSafetyModal()"
+            aria-label="Close Modal"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="safety-tutorial-icon">
+            <i class="fas fa-door-open"></i>
+          </div>
+
+          <p class="safety-tutorial-intro">
+            <strong>Your safety and privacy matter to us.</strong>
+          </p>
+
+          <p>
+            We've included a Quick Exit feature to help you leave this website
+            instantly if you need to. Here's how it works:
+          </p>
+
+          <div class="safety-tutorial-methods">
+            <div class="safety-method">
+              <div class="method-icon">
+                <i class="fas fa-keyboard"></i>
+              </div>
+              <h4>Keyboard Shortcut</h4>
+              <p>
+                Press the <kbd>ESC</kbd> key
+                <strong>three times quickly</strong> to immediately exit to a
+                neutral website.
+              </p>
+            </div>
+
+            <div class="safety-method">
+              <div class="method-icon">
+                <i class="fas fa-mouse-pointer"></i>
+              </div>
+              <h4>Exit Button</h4>
+              <p>
+                Click the red <strong>"EXIT"</strong> button in the bottom left
+                corner of any page.
+              </p>
+            </div>
+          </div>
+          <div class="safety-tutorial-note">
+            <i class="fas fa-info-circle"></i>
+            <p>
+              <strong>Note:</strong> The Quick Exit will clear your session data
+              and redirect you to a neutral website. Your browser history may
+              still show this site unless you use a private/incognito mode.
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-modal-primary" onclick="confirmSafetyTutorial()">
+            Got it, thanks!
+          </button>
+        </div>
+      </div>
+    </div>
     <header>
       <nav class="nav-menu" id="nav-menu">
         <a href="#">
@@ -284,13 +358,18 @@
         </a>
 
         <!-- Hamburger button -->
-        <button class="hamburger" aria-label="Toggle menu">
+        <button
+          class="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="nav-menu-content"
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <div class="nav-right">
+        <div class="nav-right" id="nav-menu-content">
           <ul>
             <li><a href="/html/index.html" data-text="Home">Home</a></li>
             <li><a href="/html/about.html" data-text="About">About</a></li>
