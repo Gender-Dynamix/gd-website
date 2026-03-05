@@ -407,6 +407,95 @@ textarea {
   background: var(--purple);
 }
 
+/* Safety Tutorial Modal Styles */
+.safety-tutorial-icon {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.safety-tutorial-icon i {
+  font-size: 3.5rem;
+  color: #c6332e;
+  margin-bottom: 1rem;
+}
+
+.safety-tutorial-intro {
+  text-align: center;
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+  color: var(--purple);
+}
+
+.safety-tutorial-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.safety-method {
+  background-color: var(--secondary-white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid var(--primary-lavender);
+}
+
+.method-icon {
+  margin-bottom: 1rem;
+}
+
+.method-icon i {
+  font-size: 2.5rem;
+  color: var(--primary-lavender);
+}
+
+.safety-method h4 {
+  color: var(--purple);
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.safety-method p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.safety-method kbd {
+  background-color: var(--purple);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.safety-tutorial-note {
+  background-color: rgba(198, 51, 46, 0.1);
+  border-left: 4px solid #c6332e;
+  padding: 1rem 1rem 1rem 3rem;
+  border-radius: 8px;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.safety-tutorial-note i {
+  position: absolute;
+  left: 1rem;
+  top: 1.2rem;
+  color: #c6332e;
+  font-size: 1.2rem;
+}
+
+.safety-tutorial-note p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 /* Back to top button */
 .back-to-top {
   position: fixed;
@@ -613,5 +702,31 @@ textarea {
   .btn-modal-primary,
   .btn-modal-secondary {
     width: 100%;
+  }
+  .safety-tutorial-methods {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .safety-tutorial-icon i {
+    font-size: 2.5rem;
+  }
+
+  .method-icon i {
+    font-size: 2rem;
+  }
+
+  .safety-method {
+    padding: 1.25rem;
+  }
+
+  .safety-tutorial-note {
+    padding: 1rem 1rem 1rem 2.5rem;
+  }
+
+  .safety-tutorial-note i {
+    left: 0.75rem;
+    top: 1rem;
+    font-size: 1rem;
   }
 }
