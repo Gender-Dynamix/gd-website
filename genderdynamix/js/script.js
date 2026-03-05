@@ -1,83 +1,95 @@
-//Hamburger Menu
+//===========================================
+// NAVIGATION & MOBILE MENU
+//===========================================
 const hamburger = document.querySelector(".hamburger");
 const navRight = document.querySelector(".nav-right");
 const dropdowns = document.querySelectorAll(".dropdown");
 
 //Toggle Mobile View
-hamburger.addEventListener("click", (e) => {
-  e.stopPropagation();
-  hamburger.classList.toggle("active");
-  navRight.classList.toggle("active");
+if (hamburger && navRight) {
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hamburger.classList.toggle("active");
+    navRight.classList.toggle("active");
 
-  //Disable/Enable Body Scroll
-  if (navRight.classList.contains("active")) {
-    document.body.classList.add("no-scroll");
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
-  } else {
-    document.body.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.width = "";
-  }
-});
-
-// Handle dropdown clicks on mobile
-dropdowns.forEach((dropdown) => {
-  const dropdownLink = dropdown.querySelector("a");
-
-  dropdownLink.addEventListener("click", (e) => {
-    if (window.innerWidth <= 968) {
-      if (!dropdown.classList.contains("active")) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        dropdowns.forEach((d) => {
-          if (d !== dropdown) d.classList.remove("active");
-        });
-
-        dropdown.classList.add("active");
-      }
+    //Disable/Enable Body Scroll
+    if (navRight.classList.contains("active")) {
+      document.body.classList.add("no-scroll");
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
     }
   });
-});
 
-//Close menu when clicking outside
-document.addEventListener("click", (e) => {
-  if (!navRight.contains(e.target) && !hamburger.contains(e.target)) {
-    hamburger.classList.remove("active");
-    navRight.classList.remove("active");
+  //Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navRight.contains(e.target) && !hamburger.contains(e.target)) {
+      hamburger.classList.remove("active");
+      navRight.classList.remove("active");
 
-    // Re-enable scrolling
-    document.body.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.width = "";
-  }
-});
+      // Re-enable scrolling
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
+  });
+}
+
+// Handle dropdown clicks on mobile
+if (dropdowns.length > 0) {
+  dropdowns.forEach((dropdown) => {
+    const dropdownLink = dropdown.querySelector("a");
+
+    dropdownLink.addEventListener("click", (e) => {
+      if (window.innerWidth <= 968) {
+        if (!dropdown.classList.contains("active")) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          dropdowns.forEach((d) => {
+            if (d !== dropdown) d.classList.remove("active");
+          });
+
+          dropdown.classList.add("active");
+        }
+      }
+    });
+  });
+}
 
 //Close menu when clicking a link
 const topLevelLinks = document.querySelectorAll(
   ".nav-right a:not(.dropdown > a)",
 );
-topLevelLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navRight.classList.remove("active");
+if (topLevelLinks.length > 0 && hamburger && navRight) {
+  topLevelLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navRight.classList.remove("active");
 
-    // Re-enable scrolling
-    document.body.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.width = "";
+      // Re-enable scrolling
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    });
   });
-});
+}
+//===========================================
+// EMAIL OBFUSCATION
+//===========================================
 
-//Email Obfuscation
 document.querySelectorAll(".email-link").forEach((link) => {
   const user = link.dataset.user;
   const domain = link.dataset.domain;
   link.href = `mailto:${user}@${domain}`;
 });
 
-/*Privacy Notice */
+//===========================================
+// PRIVACY BANNER
+//===========================================
 window.addEventListener("DOMContentLoaded", () => {
   // 1. Privacy Banner Display
   const consentStatus = localStorage.getItem("gdnz-privacy-consent");
@@ -111,6 +123,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
 //Function to hide privacy banner
 function hidePrivacyBanner() {
   const banner = document.getElementById("privacyBanner");
@@ -132,9 +145,9 @@ function declinePrivacy() {
   hidePrivacyBanner();
 }
 
-//===========================
-//         MODALS
-//==========================
+//===========================================
+// MODALS
+//===========================================
 
 //Privacy Modal
 function openModal() {
@@ -151,7 +164,7 @@ function closeModal() {
   if (modal) {
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+    document.body.classList.remove("no-scroll");
   }
 }
 
@@ -170,11 +183,14 @@ function closeTermsModal() {
   if (modal) {
     modal.classList.remove("active");
     modal.setAttribute("aria-hidden", "true");
-    document.body.classList.add("no-scroll");
+    document.body.classList.remove("no-scroll");
   }
 }
 
-//Age Verification Modal
+//===========================================
+// AGE VERIFICATION MODAL
+//===========================================
+
 let pendingAgeRestrictedUrl = null;
 
 //Intercept clicks on age-restricted websites
@@ -233,10 +249,15 @@ function cancelAgeRestricted() {
   closeAgeVerificationModal();
 }
 
-/* Copyright Year */
+//===========================================
+// COPYRIGHT YEAR
+//===========================================
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Accordion toggle functionality
+//===========================================
+// ACCORDION
+//===========================================
+
 function toggleAccordion(header) {
   const button = header.querySelector(".accordion-toggle, .form-collapse-btn");
   const content = header.nextElementSibling;
@@ -246,7 +267,6 @@ function toggleAccordion(header) {
   button.classList.toggle("collapsed");
   content.classList.toggle("collapsed");
 
-  // This is the key part that shrinks the actual card padding
   if (container) {
     container.classList.toggle("is-collapsed");
   }
@@ -255,7 +275,10 @@ function toggleAccordion(header) {
   button.setAttribute("aria-expanded", isExpanded);
 }
 
-/*Back to top Button*/
+//===========================================
+// BACK TO TOP BUTTON
+//===========================================
+
 const backToTopButton = document.getElementById("backToTop");
 
 //Show/hide button based on scroll position
@@ -275,19 +298,50 @@ backToTopButton.addEventListener("click", () => {
   });
 });
 
-//Safety Exit
+//===========================================
+// SAFETY EXIT
+//===========================================
+
 const safetyBtn = document.getElementById("quickExit");
-window.addEventListener("scroll", () => {
-  const scrollPosition = window.scrollY;
 
-  if (scrollPosition > 300) {
-    safetyBtn.classList.add("show");
-  } else {
-    safetyBtn.classList.remove("show");
+if (safetyBtn) {
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 300) {
+      safetyBtn.classList.add("show");
+    } else {
+      safetyBtn.classList.remove("show");
+    }
+  });
+
+  // Footer observer
+  const footer = document.querySelector(".main-footer");
+  if (footer) {
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            safetyBtn.classList.add("at-footer");
+          } else {
+            safetyBtn.classList.remove("at-footer");
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: "0px 0px -20px 0px",
+      },
+    );
+    footerObserver.observe(footer);
   }
-});
+}
 
-// Triple Escape Logic
+//===========================================
+// SAFETY EXIT - TRIPLE ESC LOGIC
+//===========================================
+
 const SafetyExit = {
   pressCount: 0,
   timeout: null,
@@ -300,11 +354,8 @@ const SafetyExit = {
   },
 
   handleKeydown(e) {
-    const modal = document.getElementById("privacyModal");
-
     e.preventDefault();
     this.pressCount++;
-
     clearTimeout(this.timeout);
 
     if (this.pressCount === 3) {
@@ -318,28 +369,10 @@ const SafetyExit = {
   },
 };
 
-/* Intersection Observer to hide Safety Exit at Footer */
-const footer = document.querySelector(".main-footer");
-const footerOptions = {
-  root: null,
-  threshold: 0,
-  rootMargin: "0px 0px -20px 0px",
-};
+//===========================================
+// LIGHTBOX
+//===========================================
 
-const footerObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      safetyBtn.classList.add("at-footer");
-    } else {
-      safetyBtn.classList.remove("at-footer");
-    }
-  });
-}, footerOptions);
-
-footerObserver.observe(footer);
-
-// Image preview
-// Get lightbox elements
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const captionText = document.getElementById("lightbox-caption");
@@ -373,10 +406,12 @@ if (lightbox) {
     }
   };
 }
-
-// Marquee Pause/Play Toggle
+//===========================================
+// MARQUEE
+//===========================================
 const marqueeTrack = document.querySelector(".marquee-track");
 const pauseBtn = document.getElementById("marqueePauseBtn");
+
 if (pauseBtn && marqueeTrack) {
   pauseBtn.addEventListener("click", () => {
     const isPaused = marqueeTrack.classList.toggle("paused");
@@ -393,133 +428,131 @@ if (pauseBtn && marqueeTrack) {
   });
 }
 
-// Carousel configuration
-let currentSlide = 0;
+//===========================================
+// CAROUSEL
+//===========================================
+
 const slides = document.querySelectorAll(".carousel-slide");
 const indicators = document.querySelectorAll(".carousel-indicator");
-const totalSlides = slides.length;
-
-// Captions for each slide (customize these)
-const captions = [
-  {
-    title: "Community Gathering 2024",
-    description: "Celebrating our community with pride and joy",
-  },
-  {
-    title: "Support Workshop",
-    description: "Providing education and resources to our community",
-  },
-  {
-    title: "Pride Celebration",
-    description: "Standing together in solidarity and celebration",
-  },
-  {
-    title: "Our Team",
-    description: "Dedicated to supporting and empowering our community",
-  },
-  {
-    title: "Youth Support Program",
-    description: "Creating safe spaces for young people to thrive",
-  },
-];
-
-// Update carousel display
-function updateCarousel() {
-  const track = document.getElementById("carouselTrack");
-  const captionElement = document.getElementById("carouselCaption");
-
-  // Move the carousel track
-  if (track) {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  }
-
-  // Update indicators
-  indicators.forEach((indicator, index) => {
-    if (index === currentSlide) {
-      indicator.classList.add("active");
-    } else {
-      indicator.classList.remove("active");
-    }
-  });
-
-  // Update caption
-  if (captionElement && captions[currentSlide]) {
-    captionElement.innerHTML = `
-      <h3>${captions[currentSlide].title}</h3>
-      <p>${captions[currentSlide].description}</p>
-    `;
-  }
-}
-
-// Move carousel by direction (-1 for prev, 1 for next)
-function moveCarousel(direction) {
-  currentSlide += direction;
-
-  // Loop around
-  if (currentSlide < 0) {
-    currentSlide = totalSlides - 1;
-  } else if (currentSlide >= totalSlides) {
-    currentSlide = 0;
-  }
-
-  updateCarousel();
-}
-
-// Go to specific slide
-function goToSlide(index) {
-  currentSlide = index;
-  updateCarousel();
-}
-
-// Auto-advance carousel every 5 seconds
-let autoplayInterval = setInterval(() => {
-  moveCarousel(1);
-}, 5000);
-
-window.addEventListener("beforeunload", () => {
-  clearInterval(autoplayInterval);
-});
-
-// Pause autoplay on hover
 const carouselContainer = document.querySelector(".carousel-container");
-if (carouselContainer) {
-  carouselContainer.addEventListener("mouseenter", () => {
+
+if (slides.length > 0) {
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+
+  const captions = [
+    {
+      title: "Community Gathering 2024",
+      description: "Celebrating our community with pride and joy",
+    },
+    {
+      title: "Support Workshop",
+      description: "Providing education and resources to our community",
+    },
+    {
+      title: "Pride Celebration",
+      description: "Standing together in solidarity and celebration",
+    },
+    {
+      title: "Our Team",
+      description: "Dedicated to supporting and empowering our community",
+    },
+    {
+      title: "Youth Support Program",
+      description: "Creating safe spaces for young people to thrive",
+    },
+  ];
+
+  function updateCarousel() {
+    const track = document.getElementById("carouselTrack");
+    const captionElement = document.getElementById("carouselCaption");
+
+    if (track) {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    if (indicators.length > 0) {
+      indicators.forEach((indicator, index) => {
+        if (index === currentSlide) {
+          indicator.classList.add("active");
+        } else {
+          indicator.classList.remove("active");
+        }
+      });
+    }
+
+    if (captionElement && captions[currentSlide]) {
+      captionElement.innerHTML = `
+        <h3>${captions[currentSlide].title}</h3>
+        <p>${captions[currentSlide].description}</p>
+      `;
+    }
+  }
+
+  function moveCarousel(direction) {
+    currentSlide += direction;
+
+    if (currentSlide < 0) {
+      currentSlide = totalSlides - 1;
+    } else if (currentSlide >= totalSlides) {
+      currentSlide = 0;
+    }
+
+    updateCarousel();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
+
+  // Autoplay
+  let autoplayInterval = setInterval(() => {
+    moveCarousel(1);
+  }, 5000);
+
+  window.addEventListener("beforeunload", () => {
     clearInterval(autoplayInterval);
   });
 
-  carouselContainer.addEventListener("mouseleave", () => {
-    autoplayInterval = setInterval(() => {
-      moveCarousel(1);
-    }, 5000);
-  });
-}
+  // Pause on hover
+  if (carouselContainer) {
+    carouselContainer.addEventListener("mouseenter", () => {
+      clearInterval(autoplayInterval);
+    });
 
-// Touch/swipe support for mobile
-let touchStartX = 0;
-let touchEndX = 0;
+    carouselContainer.addEventListener("mouseleave", () => {
+      autoplayInterval = setInterval(() => {
+        moveCarousel(1);
+      }, 5000);
+    });
 
-if (carouselContainer) {
-  carouselContainer.addEventListener("touchstart", (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-  carouselContainer.addEventListener("touchend", (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  });
-}
+    carouselContainer.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
 
-function handleSwipe() {
-  if (touchEndX < touchStartX - 50) {
-    moveCarousel(1);
+    carouselContainer.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50) {
+        moveCarousel(1);
+      }
+      if (touchEndX > touchStartX + 50) {
+        moveCarousel(-1);
+      }
+    });
   }
-  if (touchEndX > touchStartX + 50) {
-    moveCarousel(-1);
-  }
+
+  // Make functions global for HTML onclick
+  window.moveCarousel = moveCarousel;
+  window.goToSlide = goToSlide;
 }
 
 //=======================================================
-// Unified keyboard Handler
+// UNIFIED KEYBOARD HANDLER
 // Priority: Modals -> Lightbox -> Safety Exit -> Carousel
 //=======================================================
 document.addEventListener("keydown", (e) => {
