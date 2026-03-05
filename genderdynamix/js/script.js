@@ -12,6 +12,10 @@ if (hamburger && navRight) {
     hamburger.classList.toggle("active");
     navRight.classList.toggle("active");
 
+    //Update aria-expanded for accessibility
+    const isExpanded = navRight.classList.contains("active");
+    hamburger.setAttribute("aria-expanded", isExpanded);
+
     //Disable/Enable Body Scroll
     if (navRight.classList.contains("active")) {
       document.body.classList.add("no-scroll");
@@ -29,6 +33,7 @@ if (hamburger && navRight) {
     if (!navRight.contains(e.target) && !hamburger.contains(e.target)) {
       hamburger.classList.remove("active");
       navRight.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
 
       // Re-enable scrolling
       document.body.style.overflow = "";
@@ -69,6 +74,7 @@ if (topLevelLinks.length > 0 && hamburger && navRight) {
     link.addEventListener("click", () => {
       hamburger.classList.remove("active");
       navRight.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
 
       // Re-enable scrolling
       document.body.style.overflow = "";
@@ -88,7 +94,7 @@ document.querySelectorAll(".email-link").forEach((link) => {
 });
 
 //===========================================
-// PRIVACY BANNER
+// PRIVACY BANNER & SAFETY EXIT TUTORIAL MODAL
 //===========================================
 window.addEventListener("DOMContentLoaded", () => {
   // 1. Privacy Banner Display
@@ -122,7 +128,35 @@ window.addEventListener("DOMContentLoaded", () => {
       openModal();
     });
   }
+
+  //4. Safety Tutorial Modal
+  const hasSeenTutorial = localStorage.getItem("gdnz-safety-tutorial-seen");
+  const tutorialModal = document.getElementById("safetyTutorialModal");
+
+  if (tutorialModal && !hasSeenTutorial) {
+    setTimeout(() => {
+      tutorialModal.classList.add("active");
+      tutorialModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+    }, 2000);
+  }
 });
+
+//Function to close Safe Exit Tutorial Modal
+function closeSafetyModal() {
+  const modal = document.getElementById("safetyTutorialModal");
+  if (modal) {
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+  }
+}
+
+function confirmSafetyTutorial() {
+  //Mark as seen in local storage
+  localStorage.setItem("gdnz-safety-tutorial-seen", "true");
+  closeSafetyModal();
+}
 
 //Function to hide privacy banner
 function hidePrivacyBanner() {
@@ -557,7 +591,15 @@ if (slides.length > 0) {
 //=======================================================
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
-    //1. Close Age verification Modal
+    //1. Safety Tutorial Modal (Can't Escape Must Confirm)
+    const tutorialModal = document.getElementById("safetyTutorialModal");
+    if (tutorialModal && tutorialModal.classList.contains("active")) {
+      //Don't allow ESC to close tutorial - User must click "Got it"
+      SafetyExit.pressCount = 0;
+      return;
+    }
+
+    //2. Close Age verification Modal
     const ageModal = document.getElementById("ageVerificationModal");
     if (ageModal && ageModal.classList.contains("active")) {
       cancelAgeRestricted();
@@ -565,14 +607,14 @@ document.addEventListener("keydown", (e) => {
       return;
     }
 
-    //2. Close Terms & Conditions Modal
+    //3. Close Terms & Conditions Modal
     const termsModal = document.getElementById("termsModal");
     if (termsModal && termsModal.classList.contains("active")) {
       closeTermsModal();
       SafetyExit.pressCount = 0;
       return;
     }
-    //3. Close Privacy Modal
+    //4. Close Privacy Modal
     const privacyModal = document.getElementById("privacyModal");
     if (privacyModal && privacyModal.classList.contains("active")) {
       closeModal();
@@ -580,7 +622,7 @@ document.addEventListener("keydown", (e) => {
       return;
     }
 
-    //4. Close Lightbox if open
+    //5. Close Lightbox if open
     const lightbox = document.getElementById("lightbox");
     if (lightbox && lightbox.style.display === "block") {
       lightbox.style.display = "none";
@@ -588,7 +630,7 @@ document.addEventListener("keydown", (e) => {
       return;
     }
 
-    //5. Safety exit
+    //6. Safety exit
     SafetyExit.handleKeydown(e);
   }
 
