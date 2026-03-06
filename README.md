@@ -6,6 +6,17 @@ Gender Dynamix provides clinical mental health care, one-on-one trans peer suppo
 
 *Where your authentic self can thrive.*
 
+## Getting Started
+
+Install dependencies and start the dev server:
+
+```bash
+npm install
+npm run dev
+```
+
+Then open [http://localhost:3000/HTML/index.html](http://localhost:3000/HTML/index.html) in your browser.
+
 ## Documentation
 
 - [Project Standards](docs/standards.md) — strategy, communication, quality, planning, and automation standards

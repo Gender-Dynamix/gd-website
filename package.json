@@ -1,0 +1,10 @@
+{
+  "name": "gd-website",
+  "private": true,
+  "scripts": {
+    "dev": "serve GenderDynamix"
+  },
+  "devDependencies": {
+    "serve": "^14"
+  }
+}

@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Base styles (loaded first - has variables & reset) -->
+    <link rel="stylesheet" href="/style/base.css" />
+
+    <!-- Shared component styles (used on all pages) -->
+    <link rel="stylesheet" href="/style/navigation.css" />
+    <link rel="stylesheet" href="/style/footer.css" />
+    <link rel="stylesheet" href="/style/components.css" />
+
+    <!-- Page-specific styles (only for about page) -->
+    <link rel="stylesheet" href="/style/about.css" />
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>About Us | Gender Dynamix</title>
+    <meta
+      name="description"
+      content="Discover the mission and values of Gender Dynamix Aotearoa. We are dedicated to supporting transgender, nonbinary, and gender diverse people across the Bay of Plenty"
+    />
+    <meta
+      property="og:title"
+      content="About Us | Our Values & Community Commitment"
+    />
+    <meta
+      property="og:description"
+      content="Empowering gender diverse voices in Aotearoa. Learn about our dedication to advocacy and Individual, group, and peer support"
+    />
+    <meta property="og:image" content="/images/gd-logolong.webp" />
+    <meta property="og:url" content="https://gdnz.org/about.html" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; 
+    script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; 
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data:;
+    connect-src 'self' https://formspree.io;"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!--Privacy Modal-->
+    <div
+      id="privacyModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="privacyModalTitle"
+    >
+      <div class="modal-overlay" onclick="closeModal()"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="privacyModalTitle">Privacy Policy</h3>
+          <button
+            class="modal-close"
+            onclick="closeModal()"
+            aria-label="Close Modal"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p><em>Last Updated: March 2026</em></p>
+
+          <h4>1. Information We Collect</h4>
+          <p>
+            We may collect information such as your name, gender identity, and
+            email address when you voluntarily provide it for referrals or
+            contact forms.
+          </p>
+
+          <h4>2. How We Use Your Information</h4>
+          <p>
+            We use the collected information only for the purpose for which it
+            was provided – for communication or referrals.
+          </p>
+
+          <h4>3. Third-Party Services</h4>
+          <p>
+            We do not share your information with third parties unless required
+            for website functionality (e.g., hosting providers, form processing
+            services like Formspree). We do not sell, trade, or otherwise
+            transfer your personally identifiable information to outside
+            parties.
+          </p>
+
+          <h4>4. Cookies</h4>
+          <p><strong>Essential Cookies Only</strong></p>
+          <p>
+            Gender Dynamix Aotearoa uses strictly necessary cookies to ensure
+            our website functions correctly. These help with:
+          </p>
+          <ul>
+            <li>
+              <strong>Security:</strong> Preventing CSRF attacks on our referral
+              forms
+            </li>
+            <li>
+              <strong>Performance:</strong> Ensuring the site loads quickly for
+              our users
+            </li>
+            <li>
+              <strong>Preferences:</strong> Remembering if you've seen our
+              privacy banner and age verification status
+            </li>
+          </ul>
+          <p>
+            You may choose to disable cookies through your browser settings.
+            However, this may affect certain functionality of our website.
+          </p>
+          <p>
+            Under the <em>NZ Privacy Act 2020</em>, we do not use tracking or
+            advertising cookies. Your data remains your own.
+          </p>
+
+          <h4>5. Security</h4>
+          <p>
+            We take reasonable measures to protect your personal information.
+            However, no method of transmission over the internet or electronic
+            storage is 100% secure.
+          </p>
+
+          <h4>6. Links to Other Websites</h4>
+          <p>
+            Our website contains links to other websites, including external
+            resources for gender-affirming products. We are not responsible for
+            the privacy practices of these external sites. Some linked websites
+            may contain age-restricted content.
+          </p>
+
+          <h4>7. Your Consent</h4>
+          <p>By using our website, you consent to our privacy policy.</p>
+
+          <h4>8. Changes to this Privacy Policy</h4>
+          <p>
+            Any changes to the privacy policy will be reflected on this page.
+            Check this page regularly for updates.
+          </p>
+
+          <h4>9. Contact Us</h4>
+          <p>
+            If you have any questions regarding this privacy policy, you may
+            contact us at
+            <a href="mailto:referrals@gdnz.org">referrals@gdnz.org</a>
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-modal-primary" onclick="closeModal()">
+            Got it
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--Terms & Conditions Modal-->
+    <div
+      id="termsModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="termsModalTitle"
+    >
+      <div class="modal-overlay" onclick="closeTermsModal()"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="termsModalTitle">Terms & Conditions</h3>
+          <button
+            class="modal-close"
+            onclick="closeTermsModal()"
+            aria-label="Close Modal"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <p><em>Last Updated: March 2026</em></p>
+
+          <h4>1. Acceptance of Terms</h4>
+          <p>
+            By accessing and using this website, you agree to comply with and be
+            bound by these terms and conditions. If you do not agree with any
+            part of these terms, please do not use our website.
+          </p>
+
+          <h4>2. User Conduct</h4>
+          <p>
+            You agree to use this website for lawful purposes and in a way that
+            does not infringe on the rights of others or restrict or inhibit
+            anyone else's use and enjoyment of the website.
+          </p>
+
+          <h4>3. Intellectual Property</h4>
+          <p>
+            All content on this website, including text, graphics, logos,
+            images, and software, is the property of Gender Dynamix of Aotearoa
+            and is protected by copyright laws. You may not reproduce,
+            distribute, or display any portion of the website without prior
+            written consent.
+          </p>
+
+          <h4>4. Privacy</h4>
+          <p>
+            By using this website, you acknowledge and agree to the terms of our
+            privacy policy.
+          </p>
+
+          <h4>5. Age-Restricted Content</h4>
+          <p>
+            Our website contains links to external resources that may include
+            age-restricted content. Age verification may be required before
+            accessing certain external websites. Users under 18 should seek
+            parental guidance when browsing external resources.
+          </p>
+
+          <h4>6. Disclaimer of Warranties</h4>
+          <p>
+            Gender Dynamix of Aotearoa makes no warranties, expressed or
+            implied, regarding the accuracy, reliability, or completeness of the
+            content on this website. Your use of the website is at your own
+            risk.
+          </p>
+
+          <h4>7. Limitation of Liability</h4>
+          <p>
+            Gender Dynamix of Aotearoa shall not be liable for any direct,
+            indirect, incidental, special, or consequential damages arising out
+            of or in any way connected with the use of, or with the delay or
+            inability to use this website.
+          </p>
+
+          <h4>8. Changes to Terms</h4>
+          <p>
+            Gender Dynamix of Aotearoa reserves the right to update, change, or
+            replace any part of these terms and conditions at our discretion.
+            Your continued use of this website following the posting of any
+            changes constitutes acceptance of those changes.
+          </p>
+
+          <h4>9. Governing Law</h4>
+          <p>
+            These terms and conditions are governed by and construed in
+            accordance with the laws of New Zealand. Any disputes will be
+            subject to the exclusive jurisdiction of the courts of New Zealand.
+          </p>
+
+          <h4>10. Contact Information</h4>
+          <p>
+            For questions or concerns about these terms and conditions, please
+            contact us at
+            <a href="mailto:referrals@gdnz.org">referrals@gdnz.org</a>
+          </p>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-modal-primary" onclick="closeTermsModal()">
+            Got it
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Safety Exit Tutorial Modal -->
+    <div
+      id="safetyTutorialModal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="safetyTutorialTitle"
+    >
+      <div class="modal-overlay"></div>
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3 id="safetyTutorialTitle">Quick Exit Feature</h3>
+          <button
+            class="modal-close"
+            onclick="closeSafetyModal()"
+            aria-label="Close Modal"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="safety-tutorial-icon">
+            <i class="fas fa-door-open"></i>
+          </div>
+
+          <p class="safety-tutorial-intro">
+            <strong>Your safety and privacy matter to us.</strong>
+          </p>
+
+          <p>
+            We've included a Quick Exit feature to help you leave this website
+            instantly if you need to. Here's how it works:
+          </p>
+
+          <div class="safety-tutorial-methods">
+            <div class="safety-method">
+              <div class="method-icon">
+                <i class="fas fa-keyboard"></i>
+              </div>
+              <h4>Keyboard Shortcut</h4>
+              <p>
+                Press the <kbd>ESC</kbd> key
+                <strong>three times quickly</strong> to immediately exit to a
+                neutral website.
+              </p>
+            </div>
+
+            <div class="safety-method">
+              <div class="method-icon">
+                <i class="fas fa-mouse-pointer"></i>
+              </div>
+              <h4>Exit Button</h4>
+              <p>
+                Click the red <strong>"EXIT"</strong> button in the bottom left
+                corner of any page.
+              </p>
+            </div>
+          </div>
+          <div class="safety-tutorial-note">
+            <i class="fas fa-info-circle"></i>
+            <p>
+              <strong>Note:</strong> The Quick Exit will clear your session data
+              and redirect you to a neutral website. Your browser history may
+              still show this site unless you use a private/incognito mode.
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-modal-primary" onclick="confirmSafetyTutorial()">
+            Got it, thanks!
+          </button>
+        </div>
+      </div>
+    </div>
+    <header>
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#">
+          <picture>
+            <source media="(max-width: 768px)" srcset="/images/favicon.ico" />
+            <img
+              src="/images/gd-logolong.webp"
+              alt="Gender Dynamix Logo"
+              class="logo"
+            />
+          </picture>
+        </a>
+
+        <!-- Hamburger button -->
+        <button
+          class="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="nav-menu-content"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-right" id="nav-menu-content">
+          <ul>
+            <li><a href="/html/index.html" data-text="Home">Home</a></li>
+            <li><a href="/html/about.html" data-text="About">About</a></li>
+            <li class="dropdown">
+              <a href="/html/services.html" data-text="Services">Services</a>
+              <ul class="dropdown-content">
+                <li>
+                  <a
+                    href="/html/services.html#individual-support"
+                    data-text="Individual Info"
+                    >Individual Info</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/services.html#peer-support"
+                    data-text="Peer Support Info"
+                    >Peer Support Info</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/services.html#group-support"
+                    data-text="Group Info"
+                    >Group Info</a
+                  >
+                </li>
+                <li>
+                  <a href="/html/services.html#training" data-text="Training"
+                    >Training</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="/html/resources.html">Resources</a>
+              <ul class="dropdown-content">
+                <li>
+                  <a
+                    href="/html/resources.html#kiwi-organisations"
+                    data-text="Kiwi Organisations"
+                    >Kiwi Organisations</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/resources.html#gender-affirming-gear"
+                    data-text="Gender Affirming Gear"
+                    >Gender Affirming Gear</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/html/resources.html#video-resources"
+                    data-text="Video Resources"
+                    >Video Resources</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/html/contact.html" data-text="Contact">Contact</a>
+            </li>
+            <li>
+              <a href="/html/donate.html" class="btn-donate" data-text="Donate"
+                >Donate</a
+              >
+            </li>
+
+            <li class="social-wrapper">
+              <div class="nav-socials">
+                <a
+                  href="https://www.instagram.com/genderdynamixnz/"
+                  target="_blank"
+                  aria-label="Instagram"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  href="https://www.facebook.com/genderdynamixnz/"
+                  target="_blank"
+                  aria-label="Facebook"
+                  ><i class="fab fa-facebook"></i
+                ></a>
+                <a
+                  href="#"
+                  class="email-link"
+                  data-user="referrals"
+                  data-domain="gdnz.org"
+                  aria-label="Email"
+                  ><i class="fa-solid fa-envelope"></i
+                ></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="hero-bg-container">
+          <img src="/images/hero-pattern-bg.webp" alt="" class="hero-bg-img" />
+        </div>
+        <div class="hero-content">
+          <h1>About Us</h1>
+          <p>
+            Gender Dynamix is a clinical and social organisation meeting the
+            specific mental health service needs of the transgender, gender
+            diverse, nonbinary, and <span lang="mi">takatāpui</span> community
+            in the Bay of Plenty through our unique framework of care.
+          </p>
+        </div>
+        <div class="custom-shape-divider-top">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#ad98c4"
+              fill-opacity="0.99"
+              d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
+      </section>
+
+      <section class="identity-marquee-section">
+        <div class="marquee-header-container">
+          <h2 class="marquee-text">Celebrating Our Diverse Community</h2>
+          <button
+            id="marqueePauseBtn"
+            class="marquee-toggle-btn"
+            aria-label="Pause Animation"
+          >
+            <i class="fas fa-pause"></i>
+          </button>
+        </div>
+        <div
+          class="marquee-container"
+          id="marquee-container"
+          aria-hidden="true"
+        >
+          <div class="marquee-track">
+            <div class="identity-item">
+              <div class="heart-icon progress"></div>
+              <span class="identity-label">Progress</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon transgender"></div>
+              <span class="identity-label">Transgender</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon nonbinary"></div>
+              <span class="identity-label">Non Binary</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon genderfluid"></div>
+              <span class="identity-label">Genderfluid</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon agender"></div>
+              <span class="identity-label">Agender</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon genderqueer"></div>
+              <span class="identity-label">Genderqueer</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon intersex"></div>
+              <span class="identity-label">Intersex</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon takatapui"></div>
+              <span class="identity-label" lang="mi">Takatāpui</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon mvpfaff"></div>
+              <span class="identity-label">MVPFAFF</span>
+            </div>
+
+            <!--Duplicate For seamless loop-->
+            <div class="identity-item">
+              <div class="heart-icon progress"></div>
+              <span class="identity-label">Progress</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon transgender"></div>
+              <span class="identity-label">Transgender</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon nonbinary"></div>
+              <span class="identity-label">Non Binary</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon genderfluid"></div>
+              <span class="identity-label">Genderfluid</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon agender"></div>
+              <span class="identity-label">Agender</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon genderqueer"></div>
+              <span class="identity-label">Genderqueer</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon intersex"></div>
+              <span class="identity-label">Intersex</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon takatapui"></div>
+              <span class="identity-label" lang="mi">Takatāpui</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon mvpfaff"></div>
+              <span class="identity-label">MVPFAFF</span>
+            </div>
+            <!--Duplicate For seamless loop-->
+            <div class="identity-item">
+              <div class="heart-icon progress"></div>
+              <span class="identity-label">Progress</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon transgender"></div>
+              <span class="identity-label">Transgender</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon nonbinary"></div>
+              <span class="identity-label">Non Binary</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon genderfluid"></div>
+              <span class="identity-label">Genderfluid</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon agender"></div>
+              <span class="identity-label">Agender</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon genderqueer"></div>
+              <span class="identity-label">Genderqueer</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon intersex"></div>
+              <span class="identity-label">Intersex</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon takatapui"></div>
+              <span class="identity-label" lang="mi">Takatāpui</span>
+            </div>
+
+            <div class="identity-item">
+              <div class="heart-icon mvpfaff"></div>
+              <span class="identity-label">MVPFAFF</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="marquee-wave-bottom">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ad98c4"
+            fill-opacity="0.99"
+            shape-rendering="geometricPrecision"
+            d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+          ></path>
+        </svg>
+      </div>
+      <section class="about-content">
+        <div class="content-row image-right">
+          <div class="content-text">
+            <h2>About Gender Dynamix</h2>
+            <p>
+              Gender Dynamix is a clinical and social organisation meeting the
+              specific mental health service needs of the transgender, gender
+              diverse, nonbinary, and
+              <span lang="mi"> takatāpui </span>community in the Bay of Plenty
+              through our unique framework of care.
+            </p>
+          </div>
+          <div class="content-image">
+            <img
+              src="/images/trans-maori-art.png"
+              alt="Trans woman (Whakawāhine) wearing a pounamu necklace and trans pride earring artwork"
+              lang="mi"
+            />
+          </div>
+        </div>
+
+        <div class="content-row image-left">
+          <div class="content-image">
+            <img
+              src="/images/community.jpg"
+              alt="Group of people with hands in the center"
+            />
+          </div>
+          <div class="content-text">
+            <h2>Who We Are</h2>
+            <p>
+              We are a <strong>Charitable Trust</strong> supporting Trans people
+              (Transgender, Nonbinary, Trans-Intersex,
+              <span lang="mi">Irawhiti</span>,
+              <abbr
+                title="Mahu, Vakasalewalewa, Palopa, Fa’afafine, Akava’ine, Fakafifine, and Fakaleiti"
+                >MVPFAFF</abbr
+              >, and more). Our staff includes providers with
+              <strong>lived experience</strong>. Gender Dynamix respects and
+              works in partnership with the spirit of
+              <span lang="mi">Te Tiriti o Waitangi</span> through
+              <span lang="mi">mana</span> enhancing practices.
+            </p>
+            <div class="sr-only">
+              Detailed list of communities supported: Transgender, Nonbinary,
+              Trans-Intersex,
+              <span lang="mi">Irawhiti</span>, and the Pacific identities of
+              <span lang="haw">Māhū</span>,
+              <span lang="fj">Vakasalewalewa</span>,
+              <span lang="tpi">Palopa</span>, <span lang="sm">Fa’afafine</span>,
+              <span lang="mi">Akava’ine</span>,
+              <span lang="to">Fakafifine</span>, and
+              <span lang="to">Fakaleiti</span>.
+            </div>
+          </div>
+        </div>
+
+        <div class="content-row image-right">
+          <div class="content-text">
+            <h2>Our Goal</h2>
+
+            <p>
+              We are a charitable trust supporting Trans people (Transgender,
+              Nonbinary, Trans-Intersex, <span lang="mi">Irawhiti</span>,
+              MVPFAFF, and more). Our staff includes providers with lived
+              experience, ensuring our care is authentic and peer-driven.
+            </p>
+            <br />
+
+            <p>To support our community, we offer:</p>
+            <ul class="goal-services-list">
+              <li>Individual mental health support and gender exploration</li>
+              <li>Peer-driven group therapy and peer support</li>
+              <li><span lang="mi">Whānau</span> support</li>
+              <li>Community and provider education</li>
+            </ul>
+
+            <p>
+              Gender Dynamix works in partnership with the spirit of
+              <span lang="mi">Te Tiriti o Waitangi</span> through
+              <span lang="mi">mana</span> enhancing practices and respect for
+              <span lang="mi">tāngata whenua</span>.
+            </p>
+            <br />
+
+            <p>
+              We incorporate the
+              <span lang="mi">Māori Te Whare Tapa Whā</span> indigenous model of
+              care into our treatment framework. Cultural support and
+              interpreters for any language are available upon request to ensure
+              every client’s needs are met and honoured.
+            </p>
+          </div>
+          <div class="content-image">
+            <img
+              src="/images/pronouns.jpg"
+              alt="Alegria style art of classroom with people with various pronouns"
+            />
+          </div>
+        </div>
+
+        <div class="content-row image-left">
+          <div class="content-image">
+            <img
+              src="/images/trans-pride-parade.jpeg"
+              alt="Two people in LGBTQ+ pride parade one with transgender pride cape"
+            />
+          </div>
+          <div class="content-text">
+            <h2>Our Values</h2>
+            <p>
+              Our work is grounded in the core values of
+              <span lang="mi">Whanaungatanga</span>,
+              <span lang="mi">Manaakitanga</span>,
+              <span lang="mi">Kaitiakitanga</span>,
+              <span lang="mi">Kotahitanga</span>, and
+              <span lang="mi">Mahitahi</span>. These principles guide our unique
+              framework of care, ensuring we foster meaningful connections,
+              exercise guardianship over our community’s wellbeing, and work
+              collectively to create safe, inclusive spaces for all.
+            </p>
+            <p class="view-graphic-hint">
+              <em
+                >Click the values graphic below to view our full framework in
+                detail.</em
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+      <!--Mission/Values/Vision Showcase Section-->
+      <section class="values-showcase">
+        <div class="values-container">
+          <img
+            src="/images/mission.webp"
+            alt="Our Mission"
+            class="preview-img"
+          />
+          <img src="/images/values.webp" alt="Our Values" class="preview-img" />
+          <img src="/images/vision.webp" alt="Our Vision" class="preview-img" />
+          <div class="sr-only">
+            <!--! This is important for screen reader accessibility-->
+            <h3>Our Mission</h3>
+            <p>
+              Our mission is to provide evidence based, best practice, community
+              oriented mental health related services to TGDNBT people and their
+              <span lang="mi">whānau</span>, responding to mild to moderate
+              mental health conditions in a manner that is culturally
+              responsive. We do this through: -Support groups led by a
+              registered clinician and gender diverse peer support specialist
+              -Individualized treatment plans -Short term clinical intervention
+              -One-on-one peer support -Liaison with medical providers
+              -Referrals -Clinical and community education -Community events
+            </p>
+            <h3>Our Values</h3>
+            <p>
+              <span lang="mi">Tūturutanga</span>- Respect: Being genuine and
+              authentic. <span lang="mi">Whanaungatanga</span>- Relationships: A
+              sense of connection and belonging. <span>Manawanui</span>-
+              Compassion: Supporting one another through challenging times,
+              celebrating one another through challenging times, celebrating one
+              another through our achievements, building perseverance and
+              resilience. <span lang="mi">Tokohanga</span>- Responsibility:
+              Making conscientious decisions, fostering accountability and
+              holistic contributions to our socio-cultural landscapes.
+              <span>Whakapapa</span>- Connections: Knowing and understanding who
+              and what shapes us.<span lang="mi">Moemoeā</span>- Inspirations:
+              Having dreams, envisioning, embodying and stewarding the future
+              and our becoming both Individually and collectively.
+              <span>Manaakitanga</span>- Care: Instilling reciprocity and
+              gratitude, welcoming and nourishing one another each day through
+              life's cycles and seasons.<span>Tiakitanga</span>- Awareness:
+              Being conscious and caring in the environments we work in,
+              extending care to peoples, places and beings we share out efforts
+              with.
+            </p>
+            <h3>Our Vision</h3>
+            <p>
+              Our vision is of a thriving and inclusive community where
+              transgender, gender diverse, non-binary and
+              <span lang="mi">takatāpui</span>(T G D N B T), Individuals are
+              fully self actualized, living comfortably, and safely in
+              accordance with their true gender identities. We envision a world
+              where their transitional needs are comprehensively met, ensuring
+              access to necessary medical, psychological, and social support
+              services. In this ideal community T G D N B T Individuals are
+              surrounded by supportive <span lang="mi">whānau</span>, friends
+              and allies - who understand, respect and celebrate their
+              identities. This support network fosters a nurturing environment,
+              empowering individuals to achieve their full potential and lead
+              fulfilling lives, free from discrimination and prejudice.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!--Image Carousel-->
+      <!--TODO: Fix this the buttons aren't in the right position-->
+      <section class="carousel-section">
+        <div class="carousel-container">
+          <div class="carousel-main">
+            <div class="carousel-track" id="carouselTrack">
+              <!--Slide 1-->
+              <div class="carousel-slide">
+                <!-- <img src="" alt=""> -->
+                <div class="carousel-placeholder">Gallery Image 1</div>
+              </div>
+
+              <!--Slide 2-->
+              <div class="carousel-slide">
+                <!-- <img src="" alt=""> -->
+                <div class="carousel-placeholder">Gallery Image 2</div>
+              </div>
+
+              <!--Slide 3-->
+              <div class="carousel-slide">
+                <!-- <img src="" alt=""> -->
+                <div class="carousel-placeholder">Gallery Image 1</div>
+              </div>
+
+              <!--Slide 4-->
+              <div class="carousel-slide">
+                <!-- <img src="" alt=""> -->
+                <div class="carousel-placeholder">Gallery Image 4</div>
+              </div>
+
+              <!--Slide 5-->
+              <div class="carousel-slide">
+                <!-- <img src="" alt=""> -->
+                <div class="carousel-placeholder">Gallery Image 5</div>
+              </div>
+            </div>
+            <!--Navigation Buttons-->
+            <button
+              class="carousel-nav-btn prev"
+              onclick="moveCarousel(-1)"
+              aria-label="Previous slide"
+            >
+              <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <button
+              class="carousel-nav-btn next"
+              onclick="moveCarousel(1)"
+              aria-label="Next slide"
+            >
+              <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="carousel-caption" id="carouselCaption">
+              <h3>Image Carousel</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--Footer Starts Here!-->
+    <div class="wave-divider">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#20173a"
+          fill-opacity="1"
+          shape-rendering="geometricPrecision"
+          d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+    <footer class="main-footer">
+      <div class="footer-section contact-info">
+        <p>Gender Dynamix of Aotearoa</p>
+        <p>Building 55, Historic Village</p>
+        <p>17th Avenue, Tauranga</p>
+        <p>Phone: <a href="tel:075482972" rel="nofollow">07 548 2972</a></p>
+        <p>
+          <a
+            href="#"
+            class="email-link"
+            data-user="referrals"
+            data-domain="gdnz.org"
+            >Email Us</a
+          >
+        </p>
+      </div>
+      <div class="footer-section links-socials">
+        <a
+          href="https://www.instagram.com/genderdynamixnz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Instagram page"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/genderdynamixnz/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit our Facebook page"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="mailto:referrals@gdnz.org" aria-label="Email Us"
+          ><i class="fa-solid fa-envelope"></i
+        ></a>
+      </div>
+      <div class="footer-legal">
+        <a
+          href="javascript:void(0)"
+          onclick="
+            openTermsModal();
+            return false;
+          "
+          >Terms & Conditions</a
+        >
+        |
+        <a href="javascript:void(0)" class="js-privacy-trigger"
+          >Privacy Policy</a
+        >
+        <p>&copy; Gender Dynamix of Aotearoa <span id="year"></span></p>
+      </div>
+    </footer>
+    <!--Lightbox for image previews-->
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" id="lightbox-img" alt="Lightbox image" />
+      <div id="lightbox-caption"></div>
+    </div>
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <!--Safe Exit Button-->
+    <a href="https://www.stuff.co.nz/" class="btn-safety-exit" id="quickExit">
+      <span class="exit-text">Exit</span>
+      <span class="esc-text">ESC</span>
+    </a>
+    <div class="privacy-banner" id="privacyBanner">
+      <div class="privacy-content">
+        <p>
+          <i class="fas fa-cookie-bite"></i>
+          We use essential cookies to ensure our website works properly.
+          <a href="javascript:void(0)">Learn more</a>
+        </p>
+        <div class="privacy-buttons">
+          <button onclick="declinePrivacy()" class="privacy-decline-btn">
+            Decline
+          </button>
+          <button onclick="acceptPrivacy()" class="privacy-accept-btn">
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
