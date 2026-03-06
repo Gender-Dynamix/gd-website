@@ -11,15 +11,15 @@ This is the website for Gender Dynamix Aotearoa.
 
 Branches use the pattern `type/description` in kebab-case. PR titles use the same type as a prefix — since we squash merge, the PR title becomes the commit message on `main`.
 
-| Type       | Purpose                              |
-| ---------- | ------------------------------------ |
-| `feature/` | New functionality                    |
-| `fix/`     | Bug fixes                            |
-| `content/` | Site content changes                 |
-| `style/`   | Visual/design changes                |
-| `docs/`    | Documentation changes                |
-| `chore/`   | Tooling, config, and dependencies    |
-| `refactor/`| Code restructuring (no behaviour change) |
+| Type        | Purpose                                  |
+| ----------- | ---------------------------------------- |
+| `feature/`  | New functionality                        |
+| `fix/`      | Bug fixes                                |
+| `content/`  | Site content changes                     |
+| `style/`    | Visual/design changes                    |
+| `docs/`     | Documentation changes                    |
+| `chore/`    | Tooling, config, and dependencies        |
+| `refactor/` | Code restructuring (no behaviour change) |
 
 Branch example: `feature/add-contact-page`
 PR title example: `feature: Add contact page`

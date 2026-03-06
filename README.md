@@ -4,7 +4,7 @@ This is the website for [Gender Dynamix Aotearoa](https://gdnz.org/), a support 
 
 Gender Dynamix provides clinical mental health care, one-on-one trans peer support, and community support groups — helping people meet their specific mental health, transitional, and community needs. The organisation also offers trainings, binder provision, video resources, and connections to affirming gear and other organisations.
 
-*Where your authentic self can thrive.*
+_Where your authentic self can thrive._
 
 ## Getting Started
 
@@ -15,7 +15,18 @@ npm install
 npm run dev
 ```
 
-Then open [http://localhost:3000/HTML/index.html](http://localhost:3000/HTML/index.html) in your browser.
+Then open [http://localhost:4321](http://localhost:4321) in your browser.
+
+### Available Scripts
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Astro dev server           |
+| `npm run build`   | Build the site for production        |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint                           |
+| `npm run format`  | Format code with Prettier            |
+| `npm run check`   | Run Astro type checking              |
 
 ## Documentation
 
