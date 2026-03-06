@@ -28,7 +28,12 @@
         <li><a href="/" data-text="Home">Home</a></li>
         <li><a href="/about" data-text="About">About</a></li>
         <li class="dropdown">
-          <a href="/services" data-text="Services">Services</a>
+          <a
+            href="/services"
+            data-text="Services"
+            aria-haspopup="true"
+            aria-expanded="false">Services</a
+          >
           <ul class="dropdown-content">
             <li>
               <a href="/services#individual-support" data-text="Individual Info"
@@ -51,7 +56,9 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="/resources">Resources</a>
+          <a href="/resources" aria-haspopup="true" aria-expanded="false"
+            >Resources</a
+          >
           <ul class="dropdown-content">
             <li>
               <a
@@ -112,6 +119,7 @@
     var hamburger = document.querySelector('.hamburger');
     var navRight = document.querySelector('.nav-right');
     var dropdowns = document.querySelectorAll('.dropdown');
+    var savedScrollY = 0;
 
     function closeMenu() {
       hamburger.classList.remove('active');
@@ -121,6 +129,8 @@
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.width = '';
+      document.body.style.top = '';
+      window.scrollTo(0, savedScrollY);
     }
 
     if (hamburger && navRight) {
@@ -133,14 +143,18 @@
         hamburger.setAttribute('aria-expanded', isExpanded);
 
         if (isExpanded) {
+          savedScrollY = window.scrollY;
           document.body.classList.add('no-scroll');
           document.body.style.position = 'fixed';
+          document.body.style.top = '-' + savedScrollY + 'px';
           document.body.style.width = '100%';
         } else {
           document.body.classList.remove('no-scroll');
           document.body.style.overflow = '';
           document.body.style.position = '';
           document.body.style.width = '';
+          document.body.style.top = '';
+          window.scrollTo(0, savedScrollY);
         }
       });
 
@@ -163,10 +177,16 @@
               e.stopPropagation();
 
               dropdowns.forEach(function (d) {
-                if (d !== dropdown) d.classList.remove('active');
+                if (d !== dropdown) {
+                  d.classList.remove('active');
+                  var otherLink = d.querySelector('a');
+                  if (otherLink)
+                    otherLink.setAttribute('aria-expanded', 'false');
+                }
               });
 
               dropdown.classList.add('active');
+              dropdownLink.setAttribute('aria-expanded', 'true');
             }
           }
         });
@@ -187,7 +207,11 @@
     document.querySelectorAll('.email-link').forEach(function (link) {
       var user = link.dataset.user;
       var domain = link.dataset.domain;
-      link.href = 'mailto:' + user + '@' + domain;
+      var email = user + '@' + domain;
+      link.href = 'mailto:' + email;
+      if (link.hasAttribute('data-show-email')) {
+        link.textContent = email;
+      }
     });
   })();
 </script>

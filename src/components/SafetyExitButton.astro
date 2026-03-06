@@ -1,5 +1,10 @@
 <!--Safe Exit Button-->
-<a href="https://www.stuff.co.nz/" class="btn-safety-exit" id="quickExit">
+<a
+  href="https://www.stuff.co.nz/"
+  class="btn-safety-exit"
+  id="quickExit"
+  aria-label="Quick exit — leave this site immediately"
+>
   <span class="exit-text">Exit</span>
   <span class="esc-text">ESC</span>
 </a>
@@ -8,6 +13,10 @@
   (function () {
     var safetyBtn = document.getElementById('quickExit');
     if (!safetyBtn) return;
+
+    safetyBtn.addEventListener('click', function () {
+      sessionStorage.clear();
+    });
 
     window.addEventListener('scroll', function () {
       if (window.scrollY > 300) {
@@ -51,11 +60,11 @@
       },
 
       handleKeydown: function (e) {
-        e.preventDefault();
         this.pressCount++;
         clearTimeout(this.timeout);
 
         if (this.pressCount === 3) {
+          e.preventDefault();
           this.trigger();
           return;
         }

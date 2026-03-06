@@ -3,10 +3,10 @@
   (function () {
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
-        // 1. Safety Tutorial Modal (Can't Escape - Must Confirm)
+        // 1. Safety Tutorial Modal (Can't Escape - Must Confirm, but ESC still counts toward triple-ESC)
         var tutorialModal = document.getElementById('safetyTutorialModal');
         if (tutorialModal && tutorialModal.classList.contains('active')) {
-          if (window.SafetyExit) window.SafetyExit.pressCount = 0;
+          if (window.SafetyExit) window.SafetyExit.handleKeydown(e);
           return;
         }
 
@@ -48,14 +48,10 @@
       }
 
       // Carousel Navigation (Non-Esc Keys)
-      if (e.key === 'ArrowLeft') {
-        var carousel = document.querySelector('.carousel-container');
-        if (carousel && window.moveCarousel) window.moveCarousel(-1);
-      }
-
-      if (e.key === 'ArrowRight') {
-        var carousel = document.querySelector('.carousel-container');
-        if (carousel && window.moveCarousel) window.moveCarousel(1);
+      var carousel = document.querySelector('.carousel-container');
+      if (carousel && window.moveCarousel) {
+        if (e.key === 'ArrowLeft') window.moveCarousel(-1);
+        if (e.key === 'ArrowRight') window.moveCarousel(1);
       }
     });
   })();

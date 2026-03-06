@@ -3,6 +3,7 @@
   id="termsModal"
   class="modal"
   aria-hidden="true"
+  aria-modal="true"
   role="dialog"
   aria-labelledby="termsModalTitle"
 >
@@ -86,7 +87,13 @@
       <p>
         For questions or concerns about these terms and conditions, please
         contact us at
-        <a href="mailto:referrals@gdnz.org">referrals@gdnz.org</a>
+        <a
+          href="#"
+          class="email-link"
+          data-user="referrals"
+          data-domain="gdnz.org"
+          data-show-email>referrals@gdnz.org</a
+        >
       </p>
     </div>
 
@@ -104,17 +111,20 @@
     const overlay = modal.querySelector('.modal-overlay');
     const closeBtn = modal.querySelector('.modal-close');
     const gotItBtn = modal.querySelector('.js-close-terms-modal');
+    var focusTrap = window.createFocusTrap(modal);
 
     function openTermsModal() {
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('no-scroll');
+      focusTrap.activate();
     }
 
     function closeTermsModal() {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('no-scroll');
+      focusTrap.deactivate();
     }
 
     overlay.addEventListener('click', closeTermsModal);

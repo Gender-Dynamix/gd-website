@@ -3,6 +3,7 @@
   id="privacyModal"
   class="modal"
   aria-hidden="true"
+  aria-modal="true"
   role="dialog"
   aria-labelledby="privacyModalTitle"
 >
@@ -91,7 +92,13 @@
       <p>
         If you have any questions regarding this privacy policy, you may contact
         us at
-        <a href="mailto:referrals@gdnz.org">referrals@gdnz.org</a>
+        <a
+          href="#"
+          class="email-link"
+          data-user="referrals"
+          data-domain="gdnz.org"
+          data-show-email>referrals@gdnz.org</a
+        >
       </p>
     </div>
 
@@ -109,17 +116,20 @@
     const overlay = modal.querySelector('.modal-overlay');
     const closeBtn = modal.querySelector('.modal-close');
     const gotItBtn = modal.querySelector('.js-close-privacy-modal');
+    var focusTrap = window.createFocusTrap(modal);
 
     function openPrivacyModal() {
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('no-scroll');
+      focusTrap.activate();
     }
 
     function closePrivacyModal() {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('no-scroll');
+      focusTrap.deactivate();
     }
 
     overlay.addEventListener('click', closePrivacyModal);
