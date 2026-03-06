@@ -258,7 +258,7 @@
 }
 
 .form-info-box li::before {
-  content: "✓";
+  content: '✓';
   position: absolute;
   left: 0;
   color: var(--primary-lavender);
@@ -313,9 +313,9 @@
   margin-bottom: 0.5rem;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"],
+.form-group input[type='text'],
+.form-group input[type='email'],
+.form-group input[type='tel'],
 .form-group textarea,
 .form-group select {
   width: 100%;
@@ -353,7 +353,7 @@
   gap: 10px;
 }
 
-.checkbox-option input[type="checkbox"] {
+.checkbox-option input[type='checkbox'] {
   width: 18px;
   height: 18px;
   accent-color: var(--primary-lavender);

@@ -9,8 +9,7 @@
         href="#"
         class="email-link"
         data-user="referrals"
-        data-domain="gdnz.org"
-        >Email Us</a
+        data-domain="gdnz.org">Email Us</a
       >
     </p>
   </div>
@@ -19,19 +18,17 @@
       href="https://www.instagram.com/genderdynamixnz/"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Visit our Instagram page"
-      ><i class="fab fa-instagram"></i
-    ></a>
+      aria-label="Visit our Instagram page"><i class="fab fa-instagram"></i></a
+    >
     <a
       href="https://www.facebook.com/genderdynamixnz/"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Visit our Facebook page"
-      ><i class="fab fa-facebook-f"></i
-    ></a>
+      aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i></a
+    >
     <a href="mailto:referrals@gdnz.org" aria-label="Email Us"
-      ><i class="fa-solid fa-envelope"></i
-    ></a>
+      ><i class="fa-solid fa-envelope"></i></a
+    >
   </div>
   <div class="footer-legal">
     <a href="#" class="js-terms-trigger">Terms & Conditions</a>
@@ -42,28 +39,30 @@
 </footer>
 
 <script is:inline>
-(function () {
-  // Copyright year
-  var yearElement = document.getElementById("year");
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
+  (function () {
+    // Copyright year
+    var yearElement = document.getElementById('year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
 
-  // Footer legal links
-  var termsLink = document.querySelector(".footer-legal .js-terms-trigger");
-  if (termsLink) {
-    termsLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      if (window.openTermsModal) window.openTermsModal();
-    });
-  }
+    // Footer legal links
+    var termsLink = document.querySelector('.footer-legal .js-terms-trigger');
+    if (termsLink) {
+      termsLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (window.openTermsModal) window.openTermsModal();
+      });
+    }
 
-  var privacyLink = document.querySelector(".footer-legal .js-privacy-trigger");
-  if (privacyLink) {
-    privacyLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      if (window.openPrivacyModal) window.openPrivacyModal();
-    });
-  }
-})();
+    var privacyLink = document.querySelector(
+      '.footer-legal .js-privacy-trigger',
+    );
+    if (privacyLink) {
+      privacyLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (window.openPrivacyModal) window.openPrivacyModal();
+      });
+    }
+  })();
 </script>

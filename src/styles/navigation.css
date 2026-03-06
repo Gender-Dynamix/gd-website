@@ -247,7 +247,7 @@ nav a:hover {
   }
 
   .dropdown > a::after {
-    content: " ▾";
+    content: ' ▾';
     font-size: 0.8em;
     margin-left: 4px;
     transition: transform 0.2s ease;
@@ -258,7 +258,7 @@ nav a:hover {
   }
 
   .dropdown-content::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;

@@ -10,12 +10,7 @@
   <div class="modal-container">
     <div class="modal-header">
       <h3 id="safetyTutorialTitle">Quick Exit Feature</h3>
-      <button
-        class="modal-close"
-        aria-label="Close Modal"
-      >
-        &times;
-      </button>
+      <button class="modal-close" aria-label="Close Modal"> &times; </button>
     </div>
     <div class="modal-body">
       <div class="safety-tutorial-icon">
@@ -39,8 +34,8 @@
           <h4>Keyboard Shortcut</h4>
           <p>
             Press the <kbd>ESC</kbd> key
-            <strong>three times quickly</strong> to immediately exit to a
-            neutral website.
+            <strong>three times quickly</strong> to immediately exit to a neutral
+            website.
           </p>
         </div>
 
@@ -50,17 +45,17 @@
           </div>
           <h4>Exit Button</h4>
           <p>
-            Click the red <strong>"EXIT"</strong> button in the bottom left
-            corner of any page.
+            Click the red <strong>"EXIT"</strong> button in the bottom left corner
+            of any page.
           </p>
         </div>
       </div>
       <div class="safety-tutorial-note">
         <i class="fas fa-info-circle"></i>
         <p>
-          <strong>Note:</strong> The Quick Exit will clear your session data
-          and redirect you to a neutral website. Your browser history may
-          still show this site unless you use a private/incognito mode.
+          <strong>Note:</strong> The Quick Exit will clear your session data and redirect
+          you to a neutral website. Your browser history may still show this site
+          unless you use a private/incognito mode.
         </p>
       </div>
     </div>
@@ -73,37 +68,37 @@
 </div>
 
 <script is:inline>
-(function () {
-  const modal = document.getElementById("safetyTutorialModal");
-  if (!modal) return;
+  (function () {
+    const modal = document.getElementById('safetyTutorialModal');
+    if (!modal) return;
 
-  const closeBtn = modal.querySelector(".modal-close");
-  const confirmBtn = document.getElementById("confirmSafetyTutorialBtn");
+    const closeBtn = modal.querySelector('.modal-close');
+    const confirmBtn = document.getElementById('confirmSafetyTutorialBtn');
 
-  function closeSafetyModal() {
-    modal.classList.remove("active");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("no-scroll");
-  }
+    function closeSafetyModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    }
 
-  function confirmSafetyTutorial() {
-    localStorage.setItem("gdnz-safety-tutorial-seen", "true");
-    closeSafetyModal();
-  }
+    function confirmSafetyTutorial() {
+      localStorage.setItem('gdnz-safety-tutorial-seen', 'true');
+      closeSafetyModal();
+    }
 
-  closeBtn.addEventListener("click", closeSafetyModal);
-  confirmBtn.addEventListener("click", confirmSafetyTutorial);
+    closeBtn.addEventListener('click', closeSafetyModal);
+    confirmBtn.addEventListener('click', confirmSafetyTutorial);
 
-  // Show tutorial on first visit after 2 seconds
-  var hasSeenTutorial = localStorage.getItem("gdnz-safety-tutorial-seen");
-  if (!hasSeenTutorial) {
-    setTimeout(function () {
-      modal.classList.add("active");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("no-scroll");
-    }, 2000);
-  }
+    // Show tutorial on first visit after 2 seconds
+    var hasSeenTutorial = localStorage.getItem('gdnz-safety-tutorial-seen');
+    if (!hasSeenTutorial) {
+      setTimeout(function () {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+      }, 2000);
+    }
 
-  window.closeSafetyModal = closeSafetyModal;
-})();
+    window.closeSafetyModal = closeSafetyModal;
+  })();
 </script>

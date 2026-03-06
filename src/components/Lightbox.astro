@@ -6,37 +6,37 @@
 </div>
 
 <script is:inline>
-(function () {
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = document.getElementById("lightbox-img");
-  var captionText = document.getElementById("lightbox-caption");
-  var previewImages = document.querySelectorAll(".preview-img");
-  var closeBtn = document.querySelector(".lightbox-close");
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    var captionText = document.getElementById('lightbox-caption');
+    var previewImages = document.querySelectorAll('.preview-img');
+    var closeBtn = document.querySelector('.lightbox-close');
 
-  if (previewImages.length > 0 && lightbox && lightboxImg) {
-    previewImages.forEach(function (img) {
-      img.addEventListener("click", function () {
-        lightbox.style.display = "block";
-        lightboxImg.src = img.src;
-        if (captionText) {
-          captionText.textContent = img.alt;
+    if (previewImages.length > 0 && lightbox && lightboxImg) {
+      previewImages.forEach(function (img) {
+        img.addEventListener('click', function () {
+          lightbox.style.display = 'block';
+          lightboxImg.src = img.src;
+          if (captionText) {
+            captionText.textContent = img.alt;
+          }
+        });
+      });
+    }
+
+    if (closeBtn && lightbox) {
+      closeBtn.addEventListener('click', function () {
+        lightbox.style.display = 'none';
+      });
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) {
+          lightbox.style.display = 'none';
         }
       });
-    });
-  }
-
-  if (closeBtn && lightbox) {
-    closeBtn.addEventListener("click", function () {
-      lightbox.style.display = "none";
-    });
-  }
-
-  if (lightbox) {
-    lightbox.addEventListener("click", function (e) {
-      if (e.target === lightbox) {
-        lightbox.style.display = "none";
-      }
-    });
-  }
-})();
+    }
+  })();
 </script>

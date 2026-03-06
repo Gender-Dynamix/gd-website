@@ -22,8 +22,8 @@
       </p>
 
       <p>
-        The website you're about to visit sells gender-affirming products
-        and may also contain items intended for adults 18 years or older.
+        The website you're about to visit sells gender-affirming products and
+        may also contain items intended for adults 18 years or older.
       </p>
 
       <p>
@@ -32,8 +32,8 @@
       </p>
 
       <p class="age-verify-note">
-        <strong>Note:</strong> If you are under 18, please browse
-        age-appropriate resources or ask a parent/guardian for guidance.
+        <strong>Note:</strong> If you are under 18, please browse age-appropriate
+        resources or ask a parent/guardian for guidance.
       </p>
     </div>
 
@@ -49,54 +49,54 @@
 </div>
 
 <script is:inline>
-(function () {
-  var pendingAgeRestrictedUrl = null;
-  var modal = document.getElementById("ageVerificationModal");
-  if (!modal) return;
+  (function () {
+    var pendingAgeRestrictedUrl = null;
+    var modal = document.getElementById('ageVerificationModal');
+    if (!modal) return;
 
-  var cancelBtn = document.getElementById("ageVerifyCancelBtn");
-  var proceedBtn = document.getElementById("ageVerifyProceedBtn");
+    var cancelBtn = document.getElementById('ageVerifyCancelBtn');
+    var proceedBtn = document.getElementById('ageVerifyProceedBtn');
 
-  function openAgeVerificationModal() {
-    modal.classList.add("active");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("no-scroll");
-  }
-
-  function closeAgeVerificationModal() {
-    modal.classList.remove("active");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("no-scroll");
-    pendingAgeRestrictedUrl = null;
-  }
-
-  // Intercept clicks on age-restricted links
-  document.addEventListener("click", function (e) {
-    var link = e.target.closest("a[data-age-restricted='true']");
-    if (!link) return;
-
-    e.preventDefault();
-
-    var isVerified = sessionStorage.getItem("gdnz-age-verified");
-    if (isVerified === "true") {
-      window.open(link.href, "_blank");
-    } else {
-      pendingAgeRestrictedUrl = link.href;
-      openAgeVerificationModal();
+    function openAgeVerificationModal() {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
     }
-  });
 
-  cancelBtn.addEventListener("click", closeAgeVerificationModal);
-
-  proceedBtn.addEventListener("click", function () {
-    sessionStorage.setItem("gdnz-age-verified", "true");
-    if (pendingAgeRestrictedUrl) {
-      window.open(pendingAgeRestrictedUrl, "_blank");
+    function closeAgeVerificationModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+      pendingAgeRestrictedUrl = null;
     }
-    closeAgeVerificationModal();
-  });
 
-  window.openAgeVerificationModal = openAgeVerificationModal;
-  window.closeAgeVerificationModal = closeAgeVerificationModal;
-})();
+    // Intercept clicks on age-restricted links
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest("a[data-age-restricted='true']");
+      if (!link) return;
+
+      e.preventDefault();
+
+      var isVerified = sessionStorage.getItem('gdnz-age-verified');
+      if (isVerified === 'true') {
+        window.open(link.href, '_blank');
+      } else {
+        pendingAgeRestrictedUrl = link.href;
+        openAgeVerificationModal();
+      }
+    });
+
+    cancelBtn.addEventListener('click', closeAgeVerificationModal);
+
+    proceedBtn.addEventListener('click', function () {
+      sessionStorage.setItem('gdnz-age-verified', 'true');
+      if (pendingAgeRestrictedUrl) {
+        window.open(pendingAgeRestrictedUrl, '_blank');
+      }
+      closeAgeVerificationModal();
+    });
+
+    window.openAgeVerificationModal = openAgeVerificationModal;
+    window.closeAgeVerificationModal = closeAgeVerificationModal;
+  })();
 </script>

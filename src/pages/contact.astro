@@ -17,9 +17,9 @@ import '../styles/contact.css';
     <div class="hero-content">
       <h1>Get in touch with us</h1>
       <p>
-        We're here to listen and support you. Reach out for services,
-        referrals, or any questions about our work with the transgender and
-        gender diverse community.
+        We're here to listen and support you. Reach out for services, referrals,
+        or any questions about our work with the transgender and gender diverse
+        community.
       </p>
     </div>
     <div class="custom-shape-divider-top">
@@ -91,8 +91,7 @@ import '../styles/contact.css';
       <div class="form-content">
         <p class="form-description">
           Have a question about our services or want to learn more about our
-          work? Send us a message and we'll get back to you as soon as
-          possible.
+          work? Send us a message and we'll get back to you as soon as possible.
         </p>
 
         <form action="" method="POST">
@@ -108,12 +107,7 @@ import '../styles/contact.css';
             </div>
             <div class="form-group">
               <label for="gi-last-name">Last Name:*</label>
-              <input
-                type="text"
-                id="gi-last-name"
-                name="last-name"
-                required
-              />
+              <input type="text" id="gi-last-name" name="last-name" required />
             </div>
           </div>
 
@@ -139,8 +133,7 @@ import '../styles/contact.css';
               id="message"
               name="message"
               placeholder="How can we help you today?"
-              required
-            ></textarea>
+              required></textarea>
           </div>
 
           <button type="submit" class="submit-btn">Send Message</button>
@@ -182,8 +175,8 @@ import '../styles/contact.css';
 
       <div class="form-content service-content">
         <p class="form-description">
-          Complete this form to refer yourself or someone else to our
-          services. All information is kept confidential.
+          Complete this form to refer yourself or someone else to our services.
+          All information is kept confidential.
         </p>
 
         <div class="form-info-box">
@@ -211,12 +204,7 @@ import '../styles/contact.css';
           <div class="form-row">
             <div class="form-group">
               <label for="first-name">First Name:*</label>
-              <input
-                type="text"
-                id="first-name"
-                name="first-name"
-                required
-              />
+              <input type="text" id="first-name" name="first-name" required />
             </div>
             <div class="form-group">
               <label for="last-name">Last Name:*</label>
@@ -284,8 +272,7 @@ import '../styles/contact.css';
             <textarea
               id="out-status"
               name="out-status"
-              placeholder="Tell us a bit about your 'out' status..."
-            ></textarea>
+              placeholder="Tell us a bit about your 'out' status..."></textarea>
           </div>
 
           <div class="form-group">
@@ -390,8 +377,7 @@ import '../styles/contact.css';
               href="#"
               class="email-link"
               data-user="referrals"
-              data-domain="gdnz.org"
-              >Email Us</a
+              data-domain="gdnz.org">Email Us</a
             >
           </p>
 
@@ -408,9 +394,8 @@ import '../styles/contact.css';
               href="https://www.facebook.com/genderdynamixnz/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
+              aria-label="Facebook"><i class="fab fa-facebook-f"></i></a
+            >
             <a href="mailto:referrals@gdnz.org" aria-label="Email">
               <i class="fas fa-envelope"></i>
             </a>
@@ -424,9 +409,9 @@ import '../styles/contact.css';
           <p><strong>08:00-16:00 Mon-Fri</strong></p>
           <p>Closed: Saturday-Sunday</p>
           <p class="hours-note">
-            We're closed on all national and public holidays. For urgent
-            matters outside our hours, please email and we'll respond as
-            soon as possible.
+            We're closed on all national and public holidays. For urgent matters
+            outside our hours, please email and we'll respond as soon as
+            possible.
           </p>
         </div>
       </div>
@@ -447,16 +432,15 @@ import '../styles/contact.css';
               style="border: 0"
               allowfullscreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
 
         <div class="detailed-map-card">
           <h4>Finding building 55</h4>
           <p>
-            We're located in Building 55 within the Historic Village. Use
-            this map to find us once you arrive:
+            We're located in Building 55 within the Historic Village. Use this
+            map to find us once you arrive:
           </p>
           <img
             src="/images/map.jpg"
@@ -464,12 +448,12 @@ import '../styles/contact.css';
           />
           <div class="map-note">
             <p>
-              <i class="fas fa-parking"></i> <strong>Parking:</strong> Free
-              parking available on Seventeenth Avenue.
+              <i class="fas fa-parking"></i>
+              <strong>Parking:</strong> Free parking available on Seventeenth Avenue.
             </p>
             <p>
-              <i class="fas fa-walking"></i> <strong>Access:</strong> Enter
-              via pedestrian walkway near main entrance.
+              <i class="fas fa-walking"></i>
+              <strong>Access:</strong> Enter via pedestrian walkway near main entrance.
             </p>
           </div>
         </div>
@@ -479,30 +463,30 @@ import '../styles/contact.css';
 </BaseLayout>
 
 <script is:inline>
-(function () {
-  function toggleAccordion(header) {
-    var content = header.nextElementSibling;
-    var icon = header.querySelector(".accordion-toggle i");
-    content.classList.toggle("collapsed");
-    if (content.classList.contains("collapsed")) {
-      icon.classList.replace("fa-arrow-up", "fa-arrow-down");
-      header
-        .querySelector(".accordion-toggle")
-        .setAttribute("aria-expanded", "false");
-    } else {
-      icon.classList.replace("fa-arrow-down", "fa-arrow-up");
-      header
-        .querySelector(".accordion-toggle")
-        .setAttribute("aria-expanded", "true");
+  (function () {
+    function toggleAccordion(header) {
+      var content = header.nextElementSibling;
+      var icon = header.querySelector('.accordion-toggle i');
+      content.classList.toggle('collapsed');
+      if (content.classList.contains('collapsed')) {
+        icon.classList.replace('fa-arrow-up', 'fa-arrow-down');
+        header
+          .querySelector('.accordion-toggle')
+          .setAttribute('aria-expanded', 'false');
+      } else {
+        icon.classList.replace('fa-arrow-down', 'fa-arrow-up');
+        header
+          .querySelector('.accordion-toggle')
+          .setAttribute('aria-expanded', 'true');
+      }
     }
-  }
 
-  var accordionHeaders = document.querySelectorAll(".js-accordion-header");
-  accordionHeaders.forEach(function (header) {
-    header.addEventListener("click", function () {
-      toggleAccordion(header);
+    var accordionHeaders = document.querySelectorAll('.js-accordion-header');
+    accordionHeaders.forEach(function (header) {
+      header.addEventListener('click', function () {
+        toggleAccordion(header);
+      });
+      header.style.cursor = 'pointer';
     });
-    header.style.cursor = "pointer";
-  });
-})();
+  })();
 </script>

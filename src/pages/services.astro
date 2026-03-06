@@ -18,11 +18,10 @@ import '../styles/services.css';
       <h1>Our Services</h1>
       <p>
         At Gender Dynamix we offer a range of comprehensive services and
-        resources tailored to the unique needs of our trans and non-binary
-        and gender diverse wh&#257;nau.<br />
-        We are committed to fostering a welcoming community where you can
-        explore, grow, and connect on your journey towards self-discovery
-        and empowerment.
+        resources tailored to the unique needs of our trans and non-binary and
+        gender diverse wh&#257;nau.<br />
+        We are committed to fostering a welcoming community where you can explore,
+        grow, and connect on your journey towards self-discovery and empowerment.
       </p>
     </div>
     <div class="custom-shape-divider-top">
@@ -80,10 +79,7 @@ import '../styles/services.css';
       <div class="service-header js-accordion-header">
         <div class="service-title-group">
           <div class="service-icon-small">
-            <img
-              src="/images/icons-01.webp"
-              alt="Individual Support Icon"
-            />
+            <img src="/images/icons-01.webp" alt="Individual Support Icon" />
           </div>
           <h2>Individual Support Services</h2>
         </div>
@@ -260,9 +256,7 @@ import '../styles/services.css';
   <section class="cta-banner">
     <div class="cta-banner-container">
       <h2>Ready To Connect?</h2>
-      <p>
-        Reach out today to learn more about our services or book a referral
-      </p>
+      <p>Reach out today to learn more about our services or book a referral</p>
       <a href="/contact" class="cta-button">Get In Touch</a>
     </div>
   </section>
@@ -287,8 +281,8 @@ import '../styles/services.css';
 
       <div class="form-content service-content">
         <p class="form-description">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit
-          amet consectetur adipiscing elit quisque faucibus.
+          Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet
+          consectetur adipiscing elit quisque faucibus.
         </p>
 
         <div class="form-info-box">
@@ -308,12 +302,7 @@ import '../styles/services.css';
         <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <div class="form-group">
             <label for="contact-name">Contact Name:*</label>
-            <input
-              type="text"
-              id="contact-name"
-              name="contact-name"
-              required
-            />
+            <input type="text" id="contact-name" name="contact-name" required />
           </div>
 
           <div class="form-group">
@@ -443,9 +432,7 @@ import '../styles/services.css';
 
           <div class="form-row">
             <div class="form-group">
-              <label for="start-date"
-                >What should training take place?*</label
-              >
+              <label for="start-date">What should training take place?*</label>
               <input
                 type="text"
                 id="start-date"
@@ -456,9 +443,7 @@ import '../styles/services.css';
             </div>
 
             <div class="form-group">
-              <label for="end-date"
-                >What should training take place?*</label
-              >
+              <label for="end-date">What should training take place?*</label>
               <input
                 type="text"
                 id="end-date"
@@ -471,10 +456,7 @@ import '../styles/services.css';
 
           <div class="form-group">
             <label for="additional-notes">Additional Notes:</label>
-            <textarea
-              id="additional-notes"
-              name="additional-notes"
-            ></textarea>
+            <textarea id="additional-notes" name="additional-notes"></textarea>
           </div>
 
           <button type="submit" class="submit-btn">Submit</button>
@@ -488,30 +470,30 @@ import '../styles/services.css';
 </BaseLayout>
 
 <script is:inline>
-(function () {
-  function toggleAccordion(header) {
-    var content = header.nextElementSibling;
-    var icon = header.querySelector(".accordion-toggle i");
-    content.classList.toggle("collapsed");
-    if (content.classList.contains("collapsed")) {
-      icon.classList.replace("fa-arrow-up", "fa-arrow-down");
-      header
-        .querySelector(".accordion-toggle")
-        .setAttribute("aria-expanded", "false");
-    } else {
-      icon.classList.replace("fa-arrow-down", "fa-arrow-up");
-      header
-        .querySelector(".accordion-toggle")
-        .setAttribute("aria-expanded", "true");
+  (function () {
+    function toggleAccordion(header) {
+      var content = header.nextElementSibling;
+      var icon = header.querySelector('.accordion-toggle i');
+      content.classList.toggle('collapsed');
+      if (content.classList.contains('collapsed')) {
+        icon.classList.replace('fa-arrow-up', 'fa-arrow-down');
+        header
+          .querySelector('.accordion-toggle')
+          .setAttribute('aria-expanded', 'false');
+      } else {
+        icon.classList.replace('fa-arrow-down', 'fa-arrow-up');
+        header
+          .querySelector('.accordion-toggle')
+          .setAttribute('aria-expanded', 'true');
+      }
     }
-  }
 
-  var accordionHeaders = document.querySelectorAll(".js-accordion-header");
-  accordionHeaders.forEach(function (header) {
-    header.addEventListener("click", function () {
-      toggleAccordion(header);
+    var accordionHeaders = document.querySelectorAll('.js-accordion-header');
+    accordionHeaders.forEach(function (header) {
+      header.addEventListener('click', function () {
+        toggleAccordion(header);
+      });
+      header.style.cursor = 'pointer';
     });
-    header.style.cursor = "pointer";
-  });
-})();
+  })();
 </script>

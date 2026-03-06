@@ -175,7 +175,7 @@
 }
 
 .kiwi-img::after {
-  content: "";
+  content: '';
   display: block;
   width: 80px;
   height: 1px;
@@ -253,7 +253,7 @@
 }
 
 .kiwi-link::after {
-  content: "→";
+  content: '→';
   font-size: 1.2rem;
   transition: transform 0.3s ease;
 }
@@ -431,7 +431,7 @@
 }
 
 .gear-links-list a::after {
-  content: "→";
+  content: '→';
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -441,7 +441,7 @@
 }
 
 .GA-link::after {
-  content: "→";
+  content: '→';
   font-size: 1.2rem;
 }
 
@@ -536,7 +536,7 @@
 }
 
 .video-link::after {
-  content: "→";
+  content: '→';
   font-size: 1.2rem;
 }
 

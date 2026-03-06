@@ -10,12 +10,7 @@
   <div class="modal-container">
     <div class="modal-header">
       <h3 id="termsModalTitle">Terms & Conditions</h3>
-      <button
-        class="modal-close"
-        aria-label="Close Modal"
-      >
-        &times;
-      </button>
+      <button class="modal-close" aria-label="Close Modal"> &times; </button>
     </div>
 
     <div class="modal-body">
@@ -24,24 +19,23 @@
       <h4>1. Acceptance of Terms</h4>
       <p>
         By accessing and using this website, you agree to comply with and be
-        bound by these terms and conditions. If you do not agree with any
-        part of these terms, please do not use our website.
+        bound by these terms and conditions. If you do not agree with any part
+        of these terms, please do not use our website.
       </p>
 
       <h4>2. User Conduct</h4>
       <p>
-        You agree to use this website for lawful purposes and in a way that
-        does not infringe on the rights of others or restrict or inhibit
-        anyone else's use and enjoyment of the website.
+        You agree to use this website for lawful purposes and in a way that does
+        not infringe on the rights of others or restrict or inhibit anyone
+        else's use and enjoyment of the website.
       </p>
 
       <h4>3. Intellectual Property</h4>
       <p>
-        All content on this website, including text, graphics, logos,
-        images, and software, is the property of Gender Dynamix of Aotearoa
-        and is protected by copyright laws. You may not reproduce,
-        distribute, or display any portion of the website without prior
-        written consent.
+        All content on this website, including text, graphics, logos, images,
+        and software, is the property of Gender Dynamix of Aotearoa and is
+        protected by copyright laws. You may not reproduce, distribute, or
+        display any portion of the website without prior written consent.
       </p>
 
       <h4>4. Privacy</h4>
@@ -54,39 +48,38 @@
       <p>
         Our website contains links to external resources that may include
         age-restricted content. Age verification may be required before
-        accessing certain external websites. Users under 18 should seek
-        parental guidance when browsing external resources.
+        accessing certain external websites. Users under 18 should seek parental
+        guidance when browsing external resources.
       </p>
 
       <h4>6. Disclaimer of Warranties</h4>
       <p>
-        Gender Dynamix of Aotearoa makes no warranties, expressed or
-        implied, regarding the accuracy, reliability, or completeness of the
-        content on this website. Your use of the website is at your own
-        risk.
+        Gender Dynamix of Aotearoa makes no warranties, expressed or implied,
+        regarding the accuracy, reliability, or completeness of the content on
+        this website. Your use of the website is at your own risk.
       </p>
 
       <h4>7. Limitation of Liability</h4>
       <p>
-        Gender Dynamix of Aotearoa shall not be liable for any direct,
-        indirect, incidental, special, or consequential damages arising out
-        of or in any way connected with the use of, or with the delay or
-        inability to use this website.
+        Gender Dynamix of Aotearoa shall not be liable for any direct, indirect,
+        incidental, special, or consequential damages arising out of or in any
+        way connected with the use of, or with the delay or inability to use
+        this website.
       </p>
 
       <h4>8. Changes to Terms</h4>
       <p>
         Gender Dynamix of Aotearoa reserves the right to update, change, or
-        replace any part of these terms and conditions at our discretion.
-        Your continued use of this website following the posting of any
-        changes constitutes acceptance of those changes.
+        replace any part of these terms and conditions at our discretion. Your
+        continued use of this website following the posting of any changes
+        constitutes acceptance of those changes.
       </p>
 
       <h4>9. Governing Law</h4>
       <p>
-        These terms and conditions are governed by and construed in
-        accordance with the laws of New Zealand. Any disputes will be
-        subject to the exclusive jurisdiction of the courts of New Zealand.
+        These terms and conditions are governed by and construed in accordance
+        with the laws of New Zealand. Any disputes will be subject to the
+        exclusive jurisdiction of the courts of New Zealand.
       </p>
 
       <h4>10. Contact Information</h4>
@@ -98,39 +91,37 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn-modal-primary js-close-terms-modal">
-        Got it
-      </button>
+      <button class="btn-modal-primary js-close-terms-modal"> Got it </button>
     </div>
   </div>
 </div>
 
 <script is:inline>
-(function () {
-  const modal = document.getElementById("termsModal");
-  if (!modal) return;
+  (function () {
+    const modal = document.getElementById('termsModal');
+    if (!modal) return;
 
-  const overlay = modal.querySelector(".modal-overlay");
-  const closeBtn = modal.querySelector(".modal-close");
-  const gotItBtn = modal.querySelector(".js-close-terms-modal");
+    const overlay = modal.querySelector('.modal-overlay');
+    const closeBtn = modal.querySelector('.modal-close');
+    const gotItBtn = modal.querySelector('.js-close-terms-modal');
 
-  function openTermsModal() {
-    modal.classList.add("active");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("no-scroll");
-  }
+    function openTermsModal() {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+    }
 
-  function closeTermsModal() {
-    modal.classList.remove("active");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("no-scroll");
-  }
+    function closeTermsModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+    }
 
-  overlay.addEventListener("click", closeTermsModal);
-  closeBtn.addEventListener("click", closeTermsModal);
-  gotItBtn.addEventListener("click", closeTermsModal);
+    overlay.addEventListener('click', closeTermsModal);
+    closeBtn.addEventListener('click', closeTermsModal);
+    gotItBtn.addEventListener('click', closeTermsModal);
 
-  window.openTermsModal = openTermsModal;
-  window.closeTermsModal = closeTermsModal;
-})();
+    window.openTermsModal = openTermsModal;
+    window.closeTermsModal = closeTermsModal;
+  })();
 </script>

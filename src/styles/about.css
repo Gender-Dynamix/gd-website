@@ -113,7 +113,7 @@
   align-items: center;
   justify-content: center;
   clip-path: path(
-    "M50 15 C35 0 0 0 0 35 C0 65 50 100 50 100 C50 100 100 65 100 35 C100 0 65 0 50 15"
+    'M50 15 C35 0 0 0 0 35 C0 65 50 100 50 100 C50 100 100 65 100 35 C100 0 65 0 50 15'
   );
   transition: transform 0.3s ease;
   position: relative;
@@ -134,7 +134,7 @@
 
 /* Pride Flag Colors for Hearts */
 .progress {
-  background-image: url("/images/progress-pride-flag.webp");
+  background-image: url('/images/progress-pride-flag.webp');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -223,7 +223,7 @@
 }
 
 .intersex::before {
-  content: "O";
+  content: 'O';
   font-size: 3.5rem;
   color: #7902aa;
   position: absolute;
@@ -259,7 +259,7 @@
 }
 
 .mvpfaff::before {
-  content: "🌺";
+  content: '🌺';
   font-size: 2.5rem;
   position: absolute;
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
@@ -318,7 +318,7 @@
 }
 
 .goal-services-list li::before {
-  content: "•";
+  content: '•';
   color: var(--primary-lavender);
   font-weight: bold;
   position: absolute;

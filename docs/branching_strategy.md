@@ -14,15 +14,15 @@ This project follows **GitHub Flow** — a simple, branch-based workflow built a
 
 Branches follow the pattern `type/description` where the description uses kebab-case.
 
-| Type       | Purpose                           | Example                        |
-| ---------- | --------------------------------- | ------------------------------ |
-| `feature/` | New functionality                 | `feature/add-contact-page`     |
-| `fix/`     | Bug fixes                         | `fix/nav-alignment`            |
-| `docs/`    | Documentation changes             | `docs/update-readme`           |
-| `content/` | Site content changes              | `content/update-office-address`|
-| `chore/`   | Tooling, config, and dependencies | `chore/setup-linting`          |
-| `style/`   | Visual/design changes only        | `style/update-colour-palette`  |
-| `refactor/`| Code restructuring (no behaviour change) | `refactor/simplify-header` |
+| Type        | Purpose                                  | Example                         |
+| ----------- | ---------------------------------------- | ------------------------------- |
+| `feature/`  | New functionality                        | `feature/add-contact-page`      |
+| `fix/`      | Bug fixes                                | `fix/nav-alignment`             |
+| `docs/`     | Documentation changes                    | `docs/update-readme`            |
+| `content/`  | Site content changes                     | `content/update-office-address` |
+| `chore/`    | Tooling, config, and dependencies        | `chore/setup-linting`           |
+| `style/`    | Visual/design changes only               | `style/update-colour-palette`   |
+| `refactor/` | Code restructuring (no behaviour change) | `refactor/simplify-header`      |
 
 ## Workflow
 
@@ -82,6 +82,7 @@ git branch -d feature/your-feature-name
 Write clear commit messages that explain **what** changed and **why**.
 
 **Format:**
+
 ```
 Short summary of the change (imperative mood, max ~72 chars)
 
@@ -90,11 +91,13 @@ for the change. Wrap at 72 characters.
 ```
 
 **Good examples:**
+
 - `Add contact page with email form`
 - `Fix header overlap on mobile viewport`
 - `Update dependencies to resolve security advisory`
 
 **Avoid:**
+
 - `WIP`, `stuff`, `fix`, `updates` — these tell the reviewer nothing
 - Overly long first lines — keep the summary concise
 

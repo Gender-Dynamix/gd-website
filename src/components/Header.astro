@@ -56,21 +56,17 @@
             <li>
               <a
                 href="/resources#kiwi-organisations"
-                data-text="Kiwi Organisations"
-                >Kiwi Organisations</a
+                data-text="Kiwi Organisations">Kiwi Organisations</a
               >
             </li>
             <li>
               <a
                 href="/resources#gender-affirming-gear"
-                data-text="Gender Affirming Gear"
-                >Gender Affirming Gear</a
+                data-text="Gender Affirming Gear">Gender Affirming Gear</a
               >
             </li>
             <li>
-              <a
-                href="/resources#video-resources"
-                data-text="Video Resources"
+              <a href="/resources#video-resources" data-text="Video Resources"
                 >Video Resources</a
               >
             </li>
@@ -88,23 +84,20 @@
             <a
               href="https://www.instagram.com/genderdynamixnz/"
               target="_blank"
-              aria-label="Instagram"
-              ><i class="fab fa-instagram"></i
-            ></a>
+              aria-label="Instagram"><i class="fab fa-instagram"></i></a
+            >
             <a
               href="https://www.facebook.com/genderdynamixnz/"
               target="_blank"
-              aria-label="Facebook"
-              ><i class="fab fa-facebook"></i
-            ></a>
+              aria-label="Facebook"><i class="fab fa-facebook"></i></a
+            >
             <a
               href="#"
               class="email-link"
               data-user="referrals"
               data-domain="gdnz.org"
-              aria-label="Email"
-              ><i class="fa-solid fa-envelope"></i
-            ></a>
+              aria-label="Email"><i class="fa-solid fa-envelope"></i></a
+            >
           </div>
         </li>
       </ul>
@@ -113,86 +106,86 @@
 </header>
 
 <script is:inline>
-(function () {
-  var hamburger = document.querySelector(".hamburger");
-  var navRight = document.querySelector(".nav-right");
-  var dropdowns = document.querySelectorAll(".dropdown");
+  (function () {
+    var hamburger = document.querySelector('.hamburger');
+    var navRight = document.querySelector('.nav-right');
+    var dropdowns = document.querySelectorAll('.dropdown');
 
-  function closeMenu() {
-    hamburger.classList.remove("active");
-    navRight.classList.remove("active");
-    hamburger.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("no-scroll");
-    document.body.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.width = "";
-  }
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navRight.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('no-scroll');
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
 
-  if (hamburger && navRight) {
-    hamburger.addEventListener("click", function (e) {
-      e.stopPropagation();
-      hamburger.classList.toggle("active");
-      navRight.classList.toggle("active");
+    if (hamburger && navRight) {
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
+        navRight.classList.toggle('active');
 
-      var isExpanded = navRight.classList.contains("active");
-      hamburger.setAttribute("aria-expanded", isExpanded);
+        var isExpanded = navRight.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isExpanded);
 
-      if (isExpanded) {
-        document.body.classList.add("no-scroll");
-        document.body.style.position = "fixed";
-        document.body.style.width = "100%";
-      } else {
-        document.body.classList.remove("no-scroll");
-        document.body.style.overflow = "";
-        document.body.style.position = "";
-        document.body.style.width = "";
-      }
-    });
-
-    document.addEventListener("click", function (e) {
-      if (!navRight.contains(e.target) && !hamburger.contains(e.target)) {
-        closeMenu();
-      }
-    });
-  }
-
-  // Handle dropdown clicks on mobile
-  if (dropdowns.length > 0) {
-    dropdowns.forEach(function (dropdown) {
-      var dropdownLink = dropdown.querySelector("a");
-
-      dropdownLink.addEventListener("click", function (e) {
-        if (window.innerWidth <= 968) {
-          if (!dropdown.classList.contains("active")) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            dropdowns.forEach(function (d) {
-              if (d !== dropdown) d.classList.remove("active");
-            });
-
-            dropdown.classList.add("active");
-          }
+        if (isExpanded) {
+          document.body.classList.add('no-scroll');
+          document.body.style.position = 'fixed';
+          document.body.style.width = '100%';
+        } else {
+          document.body.classList.remove('no-scroll');
+          document.body.style.overflow = '';
+          document.body.style.position = '';
+          document.body.style.width = '';
         }
       });
-    });
-  }
 
-  // Close menu when clicking a nav link
-  var topLevelLinks = document.querySelectorAll(
-    ".nav-right a:not(.dropdown > a)"
-  );
-  if (topLevelLinks.length > 0 && hamburger && navRight) {
-    topLevelLinks.forEach(function (link) {
-      link.addEventListener("click", closeMenu);
-    });
-  }
+      document.addEventListener('click', function (e) {
+        if (!navRight.contains(e.target) && !hamburger.contains(e.target)) {
+          closeMenu();
+        }
+      });
+    }
 
-  // Email obfuscation
-  document.querySelectorAll(".email-link").forEach(function (link) {
-    var user = link.dataset.user;
-    var domain = link.dataset.domain;
-    link.href = "mailto:" + user + "@" + domain;
-  });
-})();
+    // Handle dropdown clicks on mobile
+    if (dropdowns.length > 0) {
+      dropdowns.forEach(function (dropdown) {
+        var dropdownLink = dropdown.querySelector('a');
+
+        dropdownLink.addEventListener('click', function (e) {
+          if (window.innerWidth <= 968) {
+            if (!dropdown.classList.contains('active')) {
+              e.preventDefault();
+              e.stopPropagation();
+
+              dropdowns.forEach(function (d) {
+                if (d !== dropdown) d.classList.remove('active');
+              });
+
+              dropdown.classList.add('active');
+            }
+          }
+        });
+      });
+    }
+
+    // Close menu when clicking a nav link
+    var topLevelLinks = document.querySelectorAll(
+      '.nav-right a:not(.dropdown > a)',
+    );
+    if (topLevelLinks.length > 0 && hamburger && navRight) {
+      topLevelLinks.forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    // Email obfuscation
+    document.querySelectorAll('.email-link').forEach(function (link) {
+      var user = link.dataset.user;
+      var domain = link.dataset.domain;
+      link.href = 'mailto:' + user + '@' + domain;
+    });
+  })();
 </script>
