@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+genderdynamix/
+public/
+package-lock.json
+.playwright-cli/
