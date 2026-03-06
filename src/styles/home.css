@@ -158,6 +158,10 @@
   gap: 1rem;
 }
 
+.name-row .field-group {
+  min-width: 0;
+}
+
 .image-container {
   margin-top: 60px;
 }
