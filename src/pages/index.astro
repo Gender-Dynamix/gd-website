@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
+import '../styles/home.css';
+---
+
+<BaseLayout
+  title="Gender Dynamix Aotearoa | Individual Therapy & Gender Diverse Support Bay of Plenty"
+  description="Professional Individual therapy, group support, advocacy, and peer support for transgender, non-binary and gender diverse people in Tauranga and the wider Bay of Plenty"
+  ogTitle="Gender Dynamix Aotearoa | Individual Therapy & Community Support"
+  ogDescription="Specialist support for gender diverse individuals. Access professional therapy and a welcoming community in the Bay of Plenty"
+>
+  <section class="hero">
+    <div class="hero-bg-container">
+      <img src="/images/hero-pattern-bg.webp" alt="" class="hero-bg-img" />
+    </div>
+
+    <div class="hero-content">
+      <h1>Where your authentic self can thrive</h1>
+      <p>
+        Meeting the specific mental health, transitional, & community needs
+        of the Transgender, Nonbinary and Gender Diverse community of the
+        Bay of Plenty
+      </p>
+    </div>
+    <div class="custom-shape-divider-top">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#ad98c4"
+          fill-opacity="1"
+          d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="home-services">
+    <div class="services-container">
+      <h2>Our Services</h2>
+      <p class="services-intro">
+        We offer compassionate support tailored to the unique needs of the
+        transgender, non-binary and gender diverse community
+      </p>
+      <div class="services-grid">
+        <a href="#individual-support" class="service-card">
+          <div class="circle-icon">
+            <img src="/images/icons-01.webp" alt="Transgender Icon" />
+          </div>
+          <h3>Individual Support</h3>
+          <p>
+            We offer individualised one on one clinical mental health care.
+          </p>
+        </a>
+        <a href="#peer-support" class="service-card">
+          <div class="circle-icon">
+            <img src="/images/icons-02.webp" alt="Rainbow Icon" />
+          </div>
+          <h3>Peer Support</h3>
+          <p>We offer individualised one on one Trans peer support.</p>
+        </a>
+
+        <a href="#group-support" class="service-card">
+          <div class="circle-icon">
+            <img src="/images/icons-03.webp" alt="Group Icon" />
+          </div>
+          <h3>Group Support</h3>
+          <p>
+            We offer Trans community support through our various groups.
+          </p>
+        </a>
+
+        <a href="#training" class="service-card">
+          <div class="circle-icon">
+            <img src="/images/work_icon.svg" alt="Training Icon" />
+          </div>
+          <h3>Training</h3>
+          <p>We offer Training for organisations and schools.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <WaveDivider fill="#ad98c4" direction="up" />
+
+  <section class="home-contact">
+    <div class="contact-content">
+      <h2>Get in Touch</h2>
+      <form
+        class="home-contact-form"
+        action="https://formspree.io/f/{your-id}"
+        method="POST"
+      >
+        <div class="name-row">
+          <div class="field-group">
+            <label for="first-name"
+              >First Name <span>&#40;Required&#41;</span></label
+            >
+            <input type="text" name="first-name" id="First-Name" required />
+          </div>
+          <div class="field-group">
+            <label for="last-name"
+              >Last Name <span>&#40;Required&#41;</span></label
+            >
+            <input type="text" name="last-name" id="Last-Name" required />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="email">Email <span>&#40;Required&#41;</span></label>
+          <input type="email" name="email" id="email" required />
+        </div>
+
+        <div class="field-group">
+          <label for="subject">Subject <span>&#40;Required&#41;</span></label>
+          <input type="text" name="subject" id="subject" required />
+        </div>
+
+        <div class="field-group">
+          <label for="message">Message <span>&#40;Required&#41;</span></label>
+          <textarea name="message" id="message" rows="5"></textarea>
+        </div>
+
+        <input type="submit" value="Send" class="submit-btn" />
+        <p class="privacy-notice">
+          &#128274; All information is encrypted and confidential
+        </p>
+      </form>
+    </div>
+
+    <div class="image-container">
+      <img
+        src="/images/image-asset.webp"
+        alt="Contact illustration"
+        loading="lazy"
+      />
+    </div>
+  </section>
+</BaseLayout>

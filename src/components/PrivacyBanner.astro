@@ -1,0 +1,61 @@
+<div class="privacy-banner" id="privacyBanner">
+  <div class="privacy-content">
+    <p>
+      <i class="fas fa-cookie-bite"></i>
+      We use essential cookies to ensure our website works properly.
+      <a href="#" class="js-privacy-learn-more">Learn more</a>
+    </p>
+    <div class="privacy-buttons">
+      <button class="privacy-decline-btn" id="privacyDeclineBtn">
+        Decline
+      </button>
+      <button class="privacy-accept-btn" id="privacyAcceptBtn">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function () {
+  var banner = document.getElementById("privacyBanner");
+  if (!banner) return;
+
+  var consentStatus = localStorage.getItem("gdnz-privacy-consent");
+
+  if (!consentStatus) {
+    banner.style.visibility = "visible";
+    setTimeout(function () {
+      banner.classList.add("show");
+    }, 1000);
+  } else {
+    banner.style.visibility = "hidden";
+  }
+
+  function hidePrivacyBanner() {
+    banner.classList.remove("show");
+    setTimeout(function () {
+      banner.style.visibility = "hidden";
+    }, 400);
+  }
+
+  document.getElementById("privacyAcceptBtn").addEventListener("click", function () {
+    localStorage.setItem("gdnz-privacy-consent", "accepted");
+    hidePrivacyBanner();
+  });
+
+  document.getElementById("privacyDeclineBtn").addEventListener("click", function () {
+    localStorage.setItem("gdnz-privacy-consent", "declined");
+    hidePrivacyBanner();
+  });
+
+  var learnMoreLink = banner.querySelector(".js-privacy-learn-more");
+  if (learnMoreLink) {
+    learnMoreLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (window.openPrivacyModal) window.openPrivacyModal();
+    });
+  }
+})();
+</script>

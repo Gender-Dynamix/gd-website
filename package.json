@@ -1,10 +1,17 @@
 {
   "name": "gd-website",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "serve GenderDynamix"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "dev:old": "serve GenderDynamix"
   },
   "devDependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
+    "astro": "^5.18.0",
     "serve": "^14"
   }
 }

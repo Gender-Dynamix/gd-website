@@ -1,0 +1,61 @@
+<!-- Unified Keyboard Handler — must load after all modal scripts -->
+<script is:inline>
+(function () {
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      // 1. Safety Tutorial Modal (Can't Escape - Must Confirm)
+      var tutorialModal = document.getElementById("safetyTutorialModal");
+      if (tutorialModal && tutorialModal.classList.contains("active")) {
+        if (window.SafetyExit) window.SafetyExit.pressCount = 0;
+        return;
+      }
+
+      // 2. Close Age verification Modal
+      var ageModal = document.getElementById("ageVerificationModal");
+      if (ageModal && ageModal.classList.contains("active")) {
+        if (window.closeAgeVerificationModal) window.closeAgeVerificationModal();
+        if (window.SafetyExit) window.SafetyExit.pressCount = 0;
+        return;
+      }
+
+      // 3. Close Terms & Conditions Modal
+      var termsModal = document.getElementById("termsModal");
+      if (termsModal && termsModal.classList.contains("active")) {
+        if (window.closeTermsModal) window.closeTermsModal();
+        if (window.SafetyExit) window.SafetyExit.pressCount = 0;
+        return;
+      }
+
+      // 4. Close Privacy Modal
+      var privacyModal = document.getElementById("privacyModal");
+      if (privacyModal && privacyModal.classList.contains("active")) {
+        if (window.closePrivacyModal) window.closePrivacyModal();
+        if (window.SafetyExit) window.SafetyExit.pressCount = 0;
+        return;
+      }
+
+      // 5. Close Lightbox if open
+      var lightbox = document.getElementById("lightbox");
+      if (lightbox && lightbox.style.display === "block") {
+        lightbox.style.display = "none";
+        if (window.SafetyExit) window.SafetyExit.pressCount = 0;
+        return;
+      }
+
+      // 6. Safety exit (triple ESC)
+      if (window.SafetyExit) window.SafetyExit.handleKeydown(e);
+    }
+
+    // Carousel Navigation (Non-Esc Keys)
+    if (e.key === "ArrowLeft") {
+      var carousel = document.querySelector(".carousel-container");
+      if (carousel && window.moveCarousel) window.moveCarousel(-1);
+    }
+
+    if (e.key === "ArrowRight") {
+      var carousel = document.querySelector(".carousel-container");
+      if (carousel && window.moveCarousel) window.moveCarousel(1);
+    }
+  });
+})();
+</script>

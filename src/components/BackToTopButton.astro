@@ -1,0 +1,26 @@
+<!--Back to top button-->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script is:inline>
+(function () {
+  var backToTopButton = document.getElementById("backToTop");
+  if (!backToTopButton) return;
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add("show");
+    } else {
+      backToTopButton.classList.remove("show");
+    }
+  });
+
+  backToTopButton.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+})();
+</script>

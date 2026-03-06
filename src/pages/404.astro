@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Gender Dynamix Aotearoa"
+  description="Gender Dynamix Aotearoa: Services for the Transgender, Nonbinary and Gender Diverse People of Tauranga and the wider Bay of Plenty"
+>
+  <section class="error-section">
+    <div class="error-content">
+      <div class="error-code">404</div>
+      <h1>Oops! Page Not Found</h1>
+      <p>
+        The page you are looking for might have been removed or is
+        temporarily unavailable.
+      </p>
+      <a href="/" class="home-btn">Return to Home</a>
+    </div>
+  </section>
+
+  <style>
+    .error-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 5%;
+      background-color: var(--secondary-white);
+    }
+
+    .error-code {
+      font-size: clamp(5rem, 15vw, 8rem);
+      font-weight: 800;
+      color: var(--primary-lavender);
+      margin-bottom: 1rem;
+    }
+
+    .home-btn {
+      background-color: var(--primary-lavender);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    .home-btn:hover {
+      background: var(--purple);
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,143 @@
+<!--Privacy Modal-->
+<div
+  id="privacyModal"
+  class="modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-labelledby="privacyModalTitle"
+>
+  <div class="modal-overlay"></div>
+  <div class="modal-container">
+    <div class="modal-header">
+      <h3 id="privacyModalTitle">Privacy Policy</h3>
+      <button
+        class="modal-close"
+        aria-label="Close Modal"
+      >
+        &times;
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <p><em>Last Updated: March 2026</em></p>
+
+      <h4>1. Information We Collect</h4>
+      <p>
+        We may collect information such as your name, gender identity, and
+        email address when you voluntarily provide it for referrals or
+        contact forms.
+      </p>
+
+      <h4>2. How We Use Your Information</h4>
+      <p>
+        We use the collected information only for the purpose for which it
+        was provided – for communication or referrals.
+      </p>
+
+      <h4>3. Third-Party Services</h4>
+      <p>
+        We do not share your information with third parties unless required
+        for website functionality (e.g., hosting providers, form processing
+        services like Formspree). We do not sell, trade, or otherwise
+        transfer your personally identifiable information to outside
+        parties.
+      </p>
+
+      <h4>4. Cookies</h4>
+      <p><strong>Essential Cookies Only</strong></p>
+      <p>
+        Gender Dynamix Aotearoa uses strictly necessary cookies to ensure
+        our website functions correctly. These help with:
+      </p>
+      <ul>
+        <li>
+          <strong>Security:</strong> Preventing CSRF attacks on our referral
+          forms
+        </li>
+        <li>
+          <strong>Performance:</strong> Ensuring the site loads quickly for
+          our users
+        </li>
+        <li>
+          <strong>Preferences:</strong> Remembering if you've seen our
+          privacy banner and age verification status
+        </li>
+      </ul>
+      <p>
+        You may choose to disable cookies through your browser settings.
+        However, this may affect certain functionality of our website.
+      </p>
+      <p>
+        Under the <em>NZ Privacy Act 2020</em>, we do not use tracking or
+        advertising cookies. Your data remains your own.
+      </p>
+
+      <h4>5. Security</h4>
+      <p>
+        We take reasonable measures to protect your personal information.
+        However, no method of transmission over the internet or electronic
+        storage is 100% secure.
+      </p>
+
+      <h4>6. Links to Other Websites</h4>
+      <p>
+        Our website contains links to other websites, including external
+        resources for gender-affirming products. We are not responsible for
+        the privacy practices of these external sites. Some linked websites
+        may contain age-restricted content.
+      </p>
+
+      <h4>7. Your Consent</h4>
+      <p>By using our website, you consent to our privacy policy.</p>
+
+      <h4>8. Changes to this Privacy Policy</h4>
+      <p>
+        Any changes to the privacy policy will be reflected on this page.
+        Check this page regularly for updates.
+      </p>
+
+      <h4>9. Contact Us</h4>
+      <p>
+        If you have any questions regarding this privacy policy, you may
+        contact us at
+        <a href="mailto:referrals@gdnz.org">referrals@gdnz.org</a>
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-modal-primary js-close-privacy-modal">
+        Got it
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function () {
+  const modal = document.getElementById("privacyModal");
+  if (!modal) return;
+
+  const overlay = modal.querySelector(".modal-overlay");
+  const closeBtn = modal.querySelector(".modal-close");
+  const gotItBtn = modal.querySelector(".js-close-privacy-modal");
+
+  function openPrivacyModal() {
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
+  }
+
+  function closePrivacyModal() {
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+  }
+
+  overlay.addEventListener("click", closePrivacyModal);
+  closeBtn.addEventListener("click", closePrivacyModal);
+  gotItBtn.addEventListener("click", closePrivacyModal);
+
+  window.openPrivacyModal = openPrivacyModal;
+  window.closePrivacyModal = closePrivacyModal;
+})();
+</script>

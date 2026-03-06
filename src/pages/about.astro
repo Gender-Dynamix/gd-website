@@ -1,0 +1,481 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Lightbox from '../components/Lightbox.astro';
+import '../styles/about.css';
+---
+
+<BaseLayout
+  title="About Us | Gender Dynamix"
+  description="Discover the mission and values of Gender Dynamix Aotearoa. We are dedicated to supporting transgender, nonbinary, and gender diverse people across the Bay of Plenty"
+  ogTitle="About Us | Our Values & Community Commitment"
+  ogDescription="Empowering gender diverse voices in Aotearoa. Learn about our dedication to advocacy and Individual, group, and peer support"
+>
+  <section class="hero">
+    <div class="hero-bg-container">
+      <img src="/images/hero-pattern-bg.webp" alt="" class="hero-bg-img" />
+    </div>
+    <div class="hero-content">
+      <h1>About Us</h1>
+      <p>
+        Gender Dynamix is a clinical and social organisation meeting the
+        specific mental health service needs of the transgender, gender
+        diverse, nonbinary, and <span lang="mi">takatāpui</span> community
+        in the Bay of Plenty through our unique framework of care.
+      </p>
+    </div>
+    <div class="custom-shape-divider-top">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+      >
+        <path
+          fill="#ad98c4"
+          fill-opacity="0.99"
+          d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
+        ></path>
+      </svg>
+    </div>
+  </section>
+
+  <section class="identity-marquee-section">
+    <div class="marquee-header-container">
+      <h2 class="marquee-text">Celebrating Our Diverse Community</h2>
+      <button
+        id="marqueePauseBtn"
+        class="marquee-toggle-btn"
+        aria-label="Pause Animation"
+      >
+        <i class="fas fa-pause"></i>
+      </button>
+    </div>
+    <div
+      class="marquee-container"
+      id="marquee-container"
+      aria-hidden="true"
+    >
+      <div class="marquee-track">
+        <!-- 3x duplicate for seamless loop -->
+        {[...Array(3)].map(() => (
+          <Fragment>
+            <div class="identity-item">
+              <div class="heart-icon progress"></div>
+              <span class="identity-label">Progress</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon transgender"></div>
+              <span class="identity-label">Transgender</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon nonbinary"></div>
+              <span class="identity-label">Non Binary</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon genderfluid"></div>
+              <span class="identity-label">Genderfluid</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon agender"></div>
+              <span class="identity-label">Agender</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon genderqueer"></div>
+              <span class="identity-label">Genderqueer</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon intersex"></div>
+              <span class="identity-label">Intersex</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon takatapui"></div>
+              <span class="identity-label" lang="mi">Takatāpui</span>
+            </div>
+            <div class="identity-item">
+              <div class="heart-icon mvpfaff"></div>
+              <span class="identity-label">MVPFAFF</span>
+            </div>
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-wave-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#ad98c4"
+        fill-opacity="0.99"
+        shape-rendering="geometricPrecision"
+        d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+      ></path>
+    </svg>
+  </div>
+
+  <section class="about-content">
+    <div class="content-row image-right">
+      <div class="content-text">
+        <h2>About Gender Dynamix</h2>
+        <p>
+          Gender Dynamix is a clinical and social organisation meeting the
+          specific mental health service needs of the transgender, gender
+          diverse, nonbinary, and
+          <span lang="mi"> takatāpui </span>community in the Bay of Plenty
+          through our unique framework of care.
+        </p>
+      </div>
+      <div class="content-image">
+        <img
+          src="/images/trans-maori-art.png"
+          alt="Trans woman (Whakawāhine) wearing a pounamu necklace and trans pride earring artwork"
+          lang="mi"
+        />
+      </div>
+    </div>
+
+    <div class="content-row image-left">
+      <div class="content-image">
+        <img
+          src="/images/community.jpg"
+          alt="Group of people with hands in the center"
+        />
+      </div>
+      <div class="content-text">
+        <h2>Who We Are</h2>
+        <p>
+          We are a <strong>Charitable Trust</strong> supporting Trans people
+          (Transgender, Nonbinary, Trans-Intersex,
+          <span lang="mi">Irawhiti</span>,
+          <abbr
+            title="Mahu, Vakasalewalewa, Palopa, Fa'afafine, Akava'ine, Fakafifine, and Fakaleiti"
+            >MVPFAFF</abbr
+          >, and more). Our staff includes providers with
+          <strong>lived experience</strong>. Gender Dynamix respects and
+          works in partnership with the spirit of
+          <span lang="mi">Te Tiriti o Waitangi</span> through
+          <span lang="mi">mana</span> enhancing practices.
+        </p>
+        <div class="sr-only">
+          Detailed list of communities supported: Transgender, Nonbinary,
+          Trans-Intersex,
+          <span lang="mi">Irawhiti</span>, and the Pacific identities of
+          <span lang="haw">Māhū</span>,
+          <span lang="fj">Vakasalewalewa</span>,
+          <span lang="tpi">Palopa</span>, <span lang="sm">Fa'afafine</span>,
+          <span lang="mi">Akava'ine</span>,
+          <span lang="to">Fakafifine</span>, and
+          <span lang="to">Fakaleiti</span>.
+        </div>
+      </div>
+    </div>
+
+    <div class="content-row image-right">
+      <div class="content-text">
+        <h2>Our Goal</h2>
+
+        <p>
+          We are a charitable trust supporting Trans people (Transgender,
+          Nonbinary, Trans-Intersex, <span lang="mi">Irawhiti</span>,
+          MVPFAFF, and more). Our staff includes providers with lived
+          experience, ensuring our care is authentic and peer-driven.
+        </p>
+        <br />
+
+        <p>To support our community, we offer:</p>
+        <ul class="goal-services-list">
+          <li>Individual mental health support and gender exploration</li>
+          <li>Peer-driven group therapy and peer support</li>
+          <li><span lang="mi">Whānau</span> support</li>
+          <li>Community and provider education</li>
+        </ul>
+
+        <p>
+          Gender Dynamix works in partnership with the spirit of
+          <span lang="mi">Te Tiriti o Waitangi</span> through
+          <span lang="mi">mana</span> enhancing practices and respect for
+          <span lang="mi">tāngata whenua</span>.
+        </p>
+        <br />
+
+        <p>
+          We incorporate the
+          <span lang="mi">Māori Te Whare Tapa Whā</span> indigenous model of
+          care into our treatment framework. Cultural support and
+          interpreters for any language are available upon request to ensure
+          every client's needs are met and honoured.
+        </p>
+      </div>
+      <div class="content-image">
+        <img
+          src="/images/pronouns.jpg"
+          alt="Alegria style art of classroom with people with various pronouns"
+        />
+      </div>
+    </div>
+
+    <div class="content-row image-left">
+      <div class="content-image">
+        <img
+          src="/images/trans-pride-parade.jpeg"
+          alt="Two people in LGBTQ+ pride parade one with transgender pride cape"
+        />
+      </div>
+      <div class="content-text">
+        <h2>Our Values</h2>
+        <p>
+          Our work is grounded in the core values of
+          <span lang="mi">Whanaungatanga</span>,
+          <span lang="mi">Manaakitanga</span>,
+          <span lang="mi">Kaitiakitanga</span>,
+          <span lang="mi">Kotahitanga</span>, and
+          <span lang="mi">Mahitahi</span>. These principles guide our unique
+          framework of care, ensuring we foster meaningful connections,
+          exercise guardianship over our community's wellbeing, and work
+          collectively to create safe, inclusive spaces for all.
+        </p>
+        <p class="view-graphic-hint">
+          <em
+            >Click the values graphic below to view our full framework in
+            detail.</em
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!--Mission/Values/Vision Showcase Section-->
+  <section class="values-showcase">
+    <div class="values-container">
+      <img
+        src="/images/mission.webp"
+        alt="Our Mission"
+        class="preview-img"
+      />
+      <img src="/images/values.webp" alt="Our Values" class="preview-img" />
+      <img src="/images/vision.webp" alt="Our Vision" class="preview-img" />
+      <div class="sr-only">
+        <h3>Our Mission</h3>
+        <p>
+          Our mission is to provide evidence based, best practice, community
+          oriented mental health related services to TGDNBT people and their
+          <span lang="mi">whānau</span>, responding to mild to moderate
+          mental health conditions in a manner that is culturally
+          responsive. We do this through: -Support groups led by a
+          registered clinician and gender diverse peer support specialist
+          -Individualized treatment plans -Short term clinical intervention
+          -One-on-one peer support -Liaison with medical providers
+          -Referrals -Clinical and community education -Community events
+        </p>
+        <h3>Our Values</h3>
+        <p>
+          <span lang="mi">Tūturutanga</span>- Respect: Being genuine and
+          authentic. <span lang="mi">Whanaungatanga</span>- Relationships: A
+          sense of connection and belonging. <span>Manawanui</span>-
+          Compassion: Supporting one another through challenging times,
+          celebrating one another through challenging times, celebrating one
+          another through our achievements, building perseverance and
+          resilience. <span lang="mi">Tokohanga</span>- Responsibility:
+          Making conscientious decisions, fostering accountability and
+          holistic contributions to our socio-cultural landscapes.
+          <span>Whakapapa</span>- Connections: Knowing and understanding who
+          and what shapes us.<span lang="mi">Moemoeā</span>- Inspirations:
+          Having dreams, envisioning, embodying and stewarding the future
+          and our becoming both Individually and collectively.
+          <span>Manaakitanga</span>- Care: Instilling reciprocity and
+          gratitude, welcoming and nourishing one another each day through
+          life's cycles and seasons.<span>Tiakitanga</span>- Awareness:
+          Being conscious and caring in the environments we work in,
+          extending care to peoples, places and beings we share out efforts
+          with.
+        </p>
+        <h3>Our Vision</h3>
+        <p>
+          Our vision is of a thriving and inclusive community where
+          transgender, gender diverse, non-binary and
+          <span lang="mi">takatāpui</span>(T G D N B T), Individuals are
+          fully self actualized, living comfortably, and safely in
+          accordance with their true gender identities. We envision a world
+          where their transitional needs are comprehensively met, ensuring
+          access to necessary medical, psychological, and social support
+          services. In this ideal community T G D N B T Individuals are
+          surrounded by supportive <span lang="mi">whānau</span>, friends
+          and allies - who understand, respect and celebrate their
+          identities. This support network fosters a nurturing environment,
+          empowering individuals to achieve their full potential and lead
+          fulfilling lives, free from discrimination and prejudice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!--Image Carousel-->
+  <section class="carousel-section">
+    <div class="carousel-container">
+      <div class="carousel-main">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide">
+            <div class="carousel-placeholder">Gallery Image 1</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-placeholder">Gallery Image 2</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-placeholder">Gallery Image 3</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-placeholder">Gallery Image 4</div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-placeholder">Gallery Image 5</div>
+          </div>
+        </div>
+        <!--Navigation Buttons-->
+        <button
+          class="carousel-nav-btn prev"
+          id="carouselPrevBtn"
+          aria-label="Previous slide"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <button
+          class="carousel-nav-btn next"
+          id="carouselNextBtn"
+          aria-label="Next slide"
+        >
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="carousel-caption" id="carouselCaption">
+          <h3>Image Carousel</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Lightbox slot="after-footer" />
+</BaseLayout>
+
+<script is:inline>
+(function () {
+  // Marquee play/pause
+  var marqueeTrack = document.querySelector(".marquee-track");
+  var pauseBtn = document.getElementById("marqueePauseBtn");
+
+  if (pauseBtn && marqueeTrack) {
+    pauseBtn.addEventListener("click", function () {
+      var isPaused = marqueeTrack.classList.toggle("paused");
+      var icon = pauseBtn.querySelector("i");
+      if (isPaused) {
+        icon.className = "fas fa-play";
+        pauseBtn.setAttribute("aria-label", "Play Animation");
+      } else {
+        icon.className = "fas fa-pause";
+        pauseBtn.setAttribute("aria-label", "Pause Animation");
+      }
+    });
+  }
+
+  // Carousel
+  var slides = document.querySelectorAll(".carousel-slide");
+  var carouselContainer = document.querySelector(".carousel-container");
+
+  if (slides.length > 0) {
+    var currentSlide = 0;
+    var totalSlides = slides.length;
+
+    var captions = [
+      { title: "Community Gathering 2024", description: "Celebrating our community with pride and joy" },
+      { title: "Support Workshop", description: "Providing education and resources to our community" },
+      { title: "Pride Celebration", description: "Standing together in solidarity and celebration" },
+      { title: "Our Team", description: "Dedicated to supporting and empowering our community" },
+      { title: "Youth Support Program", description: "Creating safe spaces for young people to thrive" },
+    ];
+
+    function updateCarousel() {
+      var track = document.getElementById("carouselTrack");
+      var captionElement = document.getElementById("carouselCaption");
+
+      if (track) {
+        track.style.transform = "translateX(-" + currentSlide * 100 + "%)";
+      }
+
+      var indicators = document.querySelectorAll(".carousel-indicator");
+      if (indicators.length > 0) {
+        indicators.forEach(function (indicator, index) {
+          if (index === currentSlide) {
+            indicator.classList.add("active");
+          } else {
+            indicator.classList.remove("active");
+          }
+        });
+      }
+
+      if (captionElement && captions[currentSlide]) {
+        captionElement.innerHTML =
+          "<h3>" + captions[currentSlide].title + "</h3>" +
+          "<p>" + captions[currentSlide].description + "</p>";
+      }
+    }
+
+    function moveCarousel(direction) {
+      currentSlide += direction;
+      if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+      } else if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+      }
+      updateCarousel();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+
+    // Navigation buttons
+    var prevBtn = document.getElementById("carouselPrevBtn");
+    var nextBtn = document.getElementById("carouselNextBtn");
+    if (prevBtn) prevBtn.addEventListener("click", function () { moveCarousel(-1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { moveCarousel(1); });
+
+    // Autoplay
+    var autoplayInterval = setInterval(function () {
+      moveCarousel(1);
+    }, 5000);
+
+    window.addEventListener("beforeunload", function () {
+      clearInterval(autoplayInterval);
+    });
+
+    // Pause on hover
+    if (carouselContainer) {
+      carouselContainer.addEventListener("mouseenter", function () {
+        clearInterval(autoplayInterval);
+      });
+
+      carouselContainer.addEventListener("mouseleave", function () {
+        autoplayInterval = setInterval(function () {
+          moveCarousel(1);
+        }, 5000);
+      });
+
+      // Touch/swipe support
+      var touchStartX = 0;
+      var touchEndX = 0;
+
+      carouselContainer.addEventListener("touchstart", function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      carouselContainer.addEventListener("touchend", function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) moveCarousel(1);
+        if (touchEndX > touchStartX + 50) moveCarousel(-1);
+      });
+    }
+
+    // Expose globally for keyboard handler
+    window.moveCarousel = moveCarousel;
+    window.goToSlide = goToSlide;
+  }
+})();
+</script>
