@@ -20,7 +20,7 @@
 .hero-content p {
   margin-top: 1rem;
   line-height: 1.6;
-  font-size: clamp(1.4rem, 2vw, 1.1rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
 }
 
 /*SVG Wave*/

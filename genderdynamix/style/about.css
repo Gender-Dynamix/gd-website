@@ -118,8 +118,7 @@
   transition: transform 0.3s ease;
   position: relative;
   /* Leak fix */
-  transform: scale(1.02);
-  transform: translateZ(0);
+  transform: scale(1.02) translateZ(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   filter: drop-shadow(0 0 0.5px rgba(0, 0, 0, 0.1));
@@ -135,9 +134,9 @@
 
 /* Pride Flag Colors for Hearts */
 .progress {
-  background-image: url("/Images/progress-pride-flag.webp");
+  background-image: url("/images/progress-pride-flag.webp");
   background-size: cover;
-  background-position: no-repeat;
+  background-repeat: no-repeat;
 }
 
 .transgender {
@@ -232,7 +231,7 @@
 
 .takatapui {
   color: white;
-  background-image: url(/Images/tino-rangatiratanga-flag.png);
+  background-image: url(/images/tino-rangatiratanga-flag.png);
   background-size: cover;
   background-position: 15% center;
   background-repeat: no-repeat;
@@ -308,7 +307,7 @@
 .goal-services-list {
   list-style: none;
   padding: 0;
-  margin: 1m 0;
+  margin: 1em 0;
 }
 
 .goal-services-list li {

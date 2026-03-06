@@ -184,7 +184,7 @@ nav a:hover {
     flex-direction: column;
     gap: 0;
     padding: 2rem 0;
-    transition: right 0.3s ease;
+    transition: transform 0.3s ease;
     box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
     visibility: hidden;

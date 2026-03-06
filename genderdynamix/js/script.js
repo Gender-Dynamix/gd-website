@@ -22,6 +22,7 @@ if (hamburger && navRight) {
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
     } else {
+      document.body.classList.remove("no-scroll");
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.width = "";
@@ -36,6 +37,7 @@ if (hamburger && navRight) {
       hamburger.setAttribute("aria-expanded", "false");
 
       // Re-enable scrolling
+      document.body.classList.remove("no-scroll");
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.width = "";
@@ -77,6 +79,7 @@ if (topLevelLinks.length > 0 && hamburger && navRight) {
       hamburger.setAttribute("aria-expanded", "false");
 
       // Re-enable scrolling
+      document.body.classList.remove("no-scroll");
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.width = "";
@@ -286,7 +289,10 @@ function cancelAgeRestricted() {
 //===========================================
 // COPYRIGHT YEAR
 //===========================================
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearElement = document.getElementById("year");
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear();
+}
 
 //===========================================
 // ACCORDION
@@ -315,22 +321,24 @@ function toggleAccordion(header) {
 
 const backToTopButton = document.getElementById("backToTop");
 
-//Show/hide button based on scroll position
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    backToTopButton.classList.add("show");
-  } else {
-    backToTopButton.classList.remove("show");
-  }
-});
-
-// Smooth Scrolling to top when clicked
-backToTopButton.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+if (backToTopButton) {
+  //Show/hide button based on scroll position
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add("show");
+    } else {
+      backToTopButton.classList.remove("show");
+    }
   });
-});
+
+  // Smooth Scrolling to top when clicked
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
 
 //===========================================
 // SAFETY EXIT
@@ -420,7 +428,7 @@ if (previewImages.length > 0 && lightbox && lightboxImg) {
       lightbox.style.display = "block";
       lightboxImg.src = img.src;
       if (captionText) {
-        captionText.innerHTML = img.alt;
+        captionText.textContent = img.alt;
       }
     });
   });
