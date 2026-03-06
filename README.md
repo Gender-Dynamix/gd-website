@@ -15,7 +15,18 @@ npm install
 npm run dev
 ```
 
-Then open [http://localhost:3000/HTML/index.html](http://localhost:3000/HTML/index.html) in your browser.
+Then open [http://localhost:4321](http://localhost:4321) in your browser.
+
+### Available Scripts
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Astro dev server           |
+| `npm run build`   | Build the site for production        |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint                           |
+| `npm run format`  | Format code with Prettier            |
+| `npm run check`   | Run Astro type checking              |
 
 ## Documentation
 

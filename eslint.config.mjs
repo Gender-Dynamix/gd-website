@@ -10,7 +10,6 @@ export default [
       'dist/',
       '.astro/',
       '.wrangler/',
-      'genderdynamix/',
       'public/',
       '.playwright-cli/',
     ],
