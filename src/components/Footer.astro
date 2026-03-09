@@ -1,3 +1,7 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
 <footer class="main-footer">
   <div class="footer-section contact-info">
     <p>Gender Dynamix of Aotearoa</p>
@@ -26,26 +30,24 @@
       rel="noopener noreferrer"
       aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i></a
     >
-    <a href="mailto:referrals@gdnz.org" aria-label="Email Us"
-      ><i class="fa-solid fa-envelope"></i></a
+    <a
+      href="#"
+      class="email-link"
+      data-user="referrals"
+      data-domain="gdnz.org"
+      aria-label="Email Us"><i class="fa-solid fa-envelope"></i></a
     >
   </div>
   <div class="footer-legal">
     <a href="#" class="js-terms-trigger">Terms & Conditions</a>
     |
     <a href="#" class="js-privacy-trigger">Privacy Policy</a>
-    <p>&copy; Gender Dynamix of Aotearoa <span id="year"></span></p>
+    <p>&copy; Gender Dynamix of Aotearoa {currentYear}</p>
   </div>
 </footer>
 
 <script is:inline>
   (function () {
-    // Copyright year
-    var yearElement = document.getElementById('year');
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear();
-    }
-
     // Footer legal links
     var termsLink = document.querySelector('.footer-legal .js-terms-trigger');
     if (termsLink) {

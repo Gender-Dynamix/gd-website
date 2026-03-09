@@ -1,0 +1,53 @@
+<!-- Focus Trap — provides createFocusTrap(modal) for modal dialogs -->
+<script is:inline>
+  window.createFocusTrap = function (modal) {
+    var previouslyFocusedElement = null;
+    var focusableSelector =
+      'a[href], button:not([disabled]), textarea, input:not([type="hidden"]), select, [tabindex]:not([tabindex="-1"])';
+
+    function getFocusableElements() {
+      return Array.prototype.slice.call(
+        modal.querySelectorAll(focusableSelector),
+      );
+    }
+
+    function handleKeydown(e) {
+      if (e.key !== 'Tab') return;
+
+      var focusable = getFocusableElements();
+      if (focusable.length === 0) return;
+
+      var firstFocusable = focusable[0];
+      var lastFocusable = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable.focus();
+        }
+      }
+    }
+
+    return {
+      activate: function () {
+        previouslyFocusedElement = document.activeElement;
+        modal.addEventListener('keydown', handleKeydown);
+        var focusable = getFocusableElements();
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        }
+      },
+      deactivate: function () {
+        modal.removeEventListener('keydown', handleKeydown);
+        if (previouslyFocusedElement && previouslyFocusedElement.focus) {
+          previouslyFocusedElement.focus();
+        }
+      },
+    };
+  };
+</script>

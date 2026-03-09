@@ -3,6 +3,7 @@
   id="safetyTutorialModal"
   class="modal"
   aria-hidden="true"
+  aria-modal="true"
   role="dialog"
   aria-labelledby="safetyTutorialTitle"
 >
@@ -74,11 +75,13 @@
 
     const closeBtn = modal.querySelector('.modal-close');
     const confirmBtn = document.getElementById('confirmSafetyTutorialBtn');
+    var focusTrap = window.createFocusTrap(modal);
 
     function closeSafetyModal() {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('no-scroll');
+      focusTrap.deactivate();
     }
 
     function confirmSafetyTutorial() {
@@ -96,6 +99,7 @@
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('no-scroll');
+        focusTrap.activate();
       }, 2000);
     }
 

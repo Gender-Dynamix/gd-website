@@ -3,6 +3,7 @@
   id="ageVerificationModal"
   class="modal"
   aria-hidden="true"
+  aria-modal="true"
   role="dialog"
   aria-labelledby="ageVerifyTitle"
 >
@@ -56,17 +57,20 @@
 
     var cancelBtn = document.getElementById('ageVerifyCancelBtn');
     var proceedBtn = document.getElementById('ageVerifyProceedBtn');
+    var focusTrap = window.createFocusTrap(modal);
 
     function openAgeVerificationModal() {
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('no-scroll');
+      focusTrap.activate();
     }
 
     function closeAgeVerificationModal() {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('no-scroll');
+      focusTrap.deactivate();
       pendingAgeRestrictedUrl = null;
     }
 
