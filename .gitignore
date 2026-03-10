@@ -4,3 +4,5 @@ dist/
 .astro/
 .wrangler/
 /.playwright-cli
+.env*
+!.env.example
