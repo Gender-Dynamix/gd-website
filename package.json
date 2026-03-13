@@ -18,6 +18,9 @@
     "*.{astro,js,ts,css,json,md}": "prettier --write",
     "*.{astro,js,ts}": "eslint --fix"
   },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0"
+  },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/cloudflare": "^12.6.12",
@@ -31,8 +34,5 @@
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@astrojs/sitemap": "^3.7.0"
   }
 }

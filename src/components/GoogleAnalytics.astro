@@ -1,0 +1,52 @@
+---
+//TODO: Replace with actual measurement ID from team
+const GA_MEASUREMENT_ID =
+  import.meta.env.PUBLIC_GA_MEASUREMENT_ID || 'G-PLACEHOLDER';
+---
+
+<script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+  function initGA() {
+    const consent = localStorage.getItem('gdnz-privacy-consent');
+
+    if (consent === 'accepted') {
+      // Prevent double-loading
+      if (window.gaInitialized) return;
+      window.gaInitialized = true;
+
+      // Initialize dataLayer
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+
+      // Add the GA script tag asynchronously
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+      document.head.appendChild(script);
+    }
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGA);
+  } else {
+    initGA();
+  }
+
+  // Listen for privacy consent change (same tab)
+  window.addEventListener('privacy-consent-changed', (e) => {
+    if (e.detail.consent === 'accepted') {
+      initGA();
+    }
+  });
+
+  // Listen for storage changes (other tabs)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'gdnz-privacy-consent' && e.newValue === 'accepted') {
+      initGA();
+    }
+  });
+</script>

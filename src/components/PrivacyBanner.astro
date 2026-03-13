@@ -42,6 +42,13 @@
       .addEventListener('click', function () {
         localStorage.setItem('gdnz-privacy-consent', 'accepted');
         hidePrivacyBanner();
+
+        // Dispatch custom event so GA can listen for it
+        window.dispatchEvent(
+          new CustomEvent('privacy-consent-changed', {
+            detail: { consent: 'accepted' },
+          }),
+        );
       });
 
     document
