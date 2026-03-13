@@ -1,10 +1,35 @@
 {
   "name": "gd-website",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "serve GenderDynamix"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{astro,js,ts,css,json,md}\"",
+    "format:check": "prettier --check \"**/*.{astro,js,ts,css,json,md}\"",
+    "check": "astro check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{astro,js,ts,css,json,md}": "prettier --write",
+    "*.{astro,js,ts}": "eslint --fix"
   },
   "devDependencies": {
-    "serve": "^14"
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/cloudflare": "^12.6.12",
+    "@typescript-eslint/parser": "^8.56.1",
+    "astro": "^5.18.0",
+    "eslint": "^9.39.3",
+    "eslint-plugin-astro": "^1.6.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.2",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   }
 }

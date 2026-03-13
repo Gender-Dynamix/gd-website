@@ -1,0 +1,474 @@
+/*Impact Section */
+.impact-section {
+  background: var(--primary-lavender);
+  padding: 4rem 2rem;
+}
+
+.content-row {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.content-text {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.content-text h2 {
+  font-size: 2.2rem;
+  color: var(--purple);
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+}
+
+.content-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.content-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow:
+    12px 12px 0 rgba(32, 23, 58, 0.15),
+    12px 12px 0 0 rgba(32, 23, 58, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.content-image img:hover {
+  transform: translateY(-5px);
+}
+
+.image-left {
+  grid-template-columns: 1fr 1fr;
+}
+
+.image-right {
+  grid-template-columns: 1fr 1fr;
+}
+
+.image-right .content-image {
+  order: 2;
+}
+
+.image-right .content-text {
+  order: 1;
+}
+
+/*Services Impact */
+.services-impact {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.service-impact-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.service-impact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.service-impact-icon {
+  font-size: 3rem;
+  color: var(--primary-lavender);
+  margin-bottom: 1rem;
+}
+
+.service-support-header {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 0.5rem;
+}
+
+.service-support-desc {
+  font-size: 0.95rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Donation CTA Section */
+.donation-cta-section {
+  background: var(--secondary-white);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.givealittle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1.5rem 3rem;
+  border-radius: 50px;
+  text-decoration: none;
+  margin: 2rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+
+.givealittle-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.5);
+}
+
+.givealittle-btn i {
+  font-size: 1.8rem;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.givealittle-btn:focus {
+  outline: 3px solid var(--purple);
+  outline-offset: 3px;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.donation-features {
+  margin-top: 2rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.feature i {
+  color: #4a8123;
+  font-size: 1.3rem;
+}
+
+/* Alternative giving section */
+.alternative-giving {
+  background: var(--primary-lavender);
+  padding: 4rem 2rem;
+}
+
+.alternative-giving .content-image img {
+  height: 100%;
+  min-height: 550px;
+  max-height: 700px;
+  object-fit: cover;
+}
+
+.bank-details-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.bank-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.bank-detail:last-child {
+  border-bottom: none;
+}
+
+.bank-detail strong {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.bank-detail span {
+  color: #555;
+}
+
+.alternative-options {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.alt-option-icon i {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(173, 152, 196, 0.1);
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.office-address {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: #f5f3f0;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-lavender);
+}
+
+.alternative-options h3 {
+  color: var(--purple);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.alternative-options p {
+  margin-bottom: 0.5rem;
+}
+
+/* Sponsors Section */
+.sponsors-section {
+  background-color: var(--primary-lavender);
+  padding: 4rem 2rem;
+}
+
+.sponsors-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sponsors-container h2 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.sponsors-intro {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sponsor-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sponsor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.sponsor-card img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.become-sponsor {
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  margin-top: 3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.become-sponsor h3 {
+  color: var(--purple);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.become-sponsor p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.become-sponsor a {
+  color: var(--primary-lavender);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--primary-lavender);
+  transition: color 0.3s ease;
+}
+
+.become-sponsor a:hover {
+  color: var(--purple);
+}
+
+@media (max-width: 768px) {
+  .content-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .image-right .content-image,
+  .image-left .content-image {
+    order: 1;
+  }
+
+  .image-right .content-text,
+  .image-left .content-text {
+    order: 2;
+  }
+
+  .content-image img {
+    height: 300px;
+    min-width: unset;
+    box-shadow: 8px 8px 0 rgba(32, 23, 58, 0.15);
+  }
+
+  .services-impact {
+    grid-template-columns: 1fr;
+  }
+
+  .donation-cta-section {
+    padding: 2rem 1rem;
+  }
+
+  .givealittle-btn {
+    font-size: 1.2rem;
+    padding: 1.2rem 2rem;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .givealittle-btn i {
+    font-size: 1.8rem;
+  }
+
+  .feature {
+    font-size: 1rem;
+  }
+
+  .donation-features {
+    margin-top: 1.5rem;
+  }
+
+  .alternative-giving {
+    padding: 3rem 1rem;
+  }
+
+  .alternative-giving .content-image img {
+    min-height: 300px;
+    max-height: 400px;
+  }
+
+  .bank-details-card {
+    padding: 1.5rem;
+  }
+
+  .bank-detail {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+  }
+
+  .alternative-options {
+    padding: 1.5rem;
+  }
+
+  .office-address {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .sponsors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .become-sponsor {
+    padding: 2rem;
+  }
+
+  .become-sponsor h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .services-impact {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+
+  .content-row {
+    gap: 2rem;
+  }
+
+  .content-image img {
+    height: 350px;
+  }
+
+  .alternative-giving .content-image img {
+    min-height: 400px;
+    max-height: 500px;
+  }
+
+  .givealittle-btn {
+    font-size: 1.3rem;
+    padding: 1.3rem 2.5rem;
+  }
+
+  .sponsors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .content-text {
+    padding: 2.5rem;
+  }
+
+  .bank-detail {
+    display: flex;
+    justify-content: space-between;
+  }
+}

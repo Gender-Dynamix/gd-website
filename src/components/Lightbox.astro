@@ -1,0 +1,43 @@
+<!--Lightbox for image previews-->
+<div id="lightbox" class="lightbox">
+  <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+  <img class="lightbox-content" id="lightbox-img" alt="Enlarged view" />
+  <div id="lightbox-caption"></div>
+</div>
+
+<script is:inline>
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    var captionText = document.getElementById('lightbox-caption');
+    var previewImages = document.querySelectorAll('.preview-img');
+    var closeBtn = document.querySelector('.lightbox-close');
+
+    if (previewImages.length > 0 && lightbox && lightboxImg) {
+      previewImages.forEach(function (img) {
+        img.addEventListener('click', function () {
+          lightbox.style.display = 'block';
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          if (captionText) {
+            captionText.textContent = img.alt;
+          }
+        });
+      });
+    }
+
+    if (closeBtn && lightbox) {
+      closeBtn.addEventListener('click', function () {
+        lightbox.style.display = 'none';
+      });
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) {
+          lightbox.style.display = 'none';
+        }
+      });
+    }
+  })();
+</script>

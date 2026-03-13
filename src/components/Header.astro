@@ -1,0 +1,217 @@
+<header>
+  <nav class="nav-menu" id="nav-menu">
+    <a href="/">
+      <picture>
+        <source media="(max-width: 768px)" srcset="/images/favicon.ico" />
+        <img
+          src="/images/gd-logolong.webp"
+          alt="Gender Dynamix Logo"
+          class="logo"
+        />
+      </picture>
+    </a>
+
+    <!-- Hamburger button -->
+    <button
+      class="hamburger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="nav-menu-content"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-right" id="nav-menu-content">
+      <ul>
+        <li><a href="/" data-text="Home">Home</a></li>
+        <li><a href="/about" data-text="About">About</a></li>
+        <li class="dropdown">
+          <a
+            href="/services"
+            data-text="Services"
+            aria-haspopup="true"
+            aria-expanded="false">Services</a
+          >
+          <ul class="dropdown-content">
+            <li>
+              <a href="/services#individual-support" data-text="Individual Info"
+                >Individual Info</a
+              >
+            </li>
+            <li>
+              <a href="/services#peer-support" data-text="Peer Support Info"
+                >Peer Support Info</a
+              >
+            </li>
+            <li>
+              <a href="/services#group-support" data-text="Group Info"
+                >Group Info</a
+              >
+            </li>
+            <li>
+              <a href="/services#training" data-text="Training">Training</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/resources" aria-haspopup="true" aria-expanded="false"
+            >Resources</a
+          >
+          <ul class="dropdown-content">
+            <li>
+              <a
+                href="/resources#kiwi-organisations"
+                data-text="Kiwi Organisations">Kiwi Organisations</a
+              >
+            </li>
+            <li>
+              <a
+                href="/resources#gender-affirming-gear"
+                data-text="Gender Affirming Gear">Gender Affirming Gear</a
+              >
+            </li>
+            <li>
+              <a href="/resources#video-resources" data-text="Video Resources"
+                >Video Resources</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/contact" data-text="Contact">Contact</a>
+        </li>
+        <li>
+          <a href="/donate" class="btn-donate" data-text="Donate">Donate</a>
+        </li>
+
+        <li class="social-wrapper">
+          <div class="nav-socials">
+            <a
+              href="https://www.instagram.com/genderdynamixnz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"><i class="fab fa-instagram"></i></a
+            >
+            <a
+              href="https://www.facebook.com/genderdynamixnz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"><i class="fab fa-facebook"></i></a
+            >
+            <a
+              href="#"
+              class="email-link"
+              data-user="referrals"
+              data-domain="gdnz.org"
+              aria-label="Email"><i class="fa-solid fa-envelope"></i></a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  (function () {
+    var hamburger = document.querySelector('.hamburger');
+    var navRight = document.querySelector('.nav-right');
+    var dropdowns = document.querySelectorAll('.dropdown');
+    var savedScrollY = 0;
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navRight.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('no-scroll');
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      window.scrollTo(0, savedScrollY);
+    }
+
+    if (hamburger && navRight) {
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        hamburger.classList.toggle('active');
+        navRight.classList.toggle('active');
+
+        var isExpanded = navRight.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isExpanded);
+
+        if (isExpanded) {
+          savedScrollY = window.scrollY;
+          document.body.classList.add('no-scroll');
+          document.body.style.position = 'fixed';
+          document.body.style.top = '-' + savedScrollY + 'px';
+          document.body.style.width = '100%';
+        } else {
+          document.body.classList.remove('no-scroll');
+          document.body.style.overflow = '';
+          document.body.style.position = '';
+          document.body.style.width = '';
+          document.body.style.top = '';
+          window.scrollTo(0, savedScrollY);
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!navRight.contains(e.target) && !hamburger.contains(e.target)) {
+          closeMenu();
+        }
+      });
+    }
+
+    // Handle dropdown clicks on mobile
+    if (dropdowns.length > 0) {
+      dropdowns.forEach(function (dropdown) {
+        var dropdownLink = dropdown.querySelector('a');
+
+        dropdownLink.addEventListener('click', function (e) {
+          if (window.innerWidth <= 968) {
+            if (!dropdown.classList.contains('active')) {
+              e.preventDefault();
+              e.stopPropagation();
+
+              dropdowns.forEach(function (d) {
+                if (d !== dropdown) {
+                  d.classList.remove('active');
+                  var otherLink = d.querySelector('a');
+                  if (otherLink)
+                    otherLink.setAttribute('aria-expanded', 'false');
+                }
+              });
+
+              dropdown.classList.add('active');
+              dropdownLink.setAttribute('aria-expanded', 'true');
+            }
+          }
+        });
+      });
+    }
+
+    // Close menu when clicking a nav link
+    var topLevelLinks = document.querySelectorAll(
+      '.nav-right a:not(.dropdown > a)',
+    );
+    if (topLevelLinks.length > 0 && hamburger && navRight) {
+      topLevelLinks.forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+
+    // Email obfuscation
+    document.querySelectorAll('.email-link').forEach(function (link) {
+      var user = link.dataset.user;
+      var domain = link.dataset.domain;
+      var email = user + '@' + domain;
+      link.href = 'mailto:' + email;
+      if (link.hasAttribute('data-show-email')) {
+        link.textContent = email;
+      }
+    });
+  })();
+</script>
