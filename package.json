@@ -21,6 +21,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/sitemap": "^3.7.0",
     "@typescript-eslint/parser": "^8.56.1",
     "astro": "^5.18.0",
     "eslint": "^9.39.3",
@@ -31,8 +32,5 @@
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@astrojs/sitemap": "^3.7.0"
   }
 }

@@ -6,3 +6,4 @@ dist/
 /.playwright-cli
 .env*
 !.env.example
+/.claude

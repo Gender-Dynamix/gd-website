@@ -1,5 +1,4 @@
 ---
-import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PrivacyModal from '../components/PrivacyModal.astro';
@@ -64,9 +63,6 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
-    <!--Google Analytics -->
-    <GoogleAnalytics />
   </head>
   <body>
     <FocusTrap />
