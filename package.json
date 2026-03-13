@@ -18,6 +18,9 @@
     "*.{astro,js,ts,css,json,md}": "prettier --write",
     "*.{astro,js,ts}": "eslint --fix"
   },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0"
+  },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/cloudflare": "^12.6.12",

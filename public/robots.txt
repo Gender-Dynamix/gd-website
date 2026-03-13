@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gdnz.org/sitemap-index.xml
