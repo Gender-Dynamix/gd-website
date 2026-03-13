@@ -10,6 +10,7 @@ import PrivacyBanner from '../components/PrivacyBanner.astro';
 import KeyboardHandler from '../components/KeyboardHandler.astro';
 import FocusTrap from '../components/FocusTrap.astro';
 import WaveDivider from '../components/WaveDivider.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
 
 import '../styles/base.css';
 import '../styles/navigation.css';
@@ -85,6 +86,7 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
     <BackToTopButton />
     <SafetyExitButton />
     <PrivacyBanner />
+    <GoogleAnalytics />
     <KeyboardHandler />
   </body>
 </html>
