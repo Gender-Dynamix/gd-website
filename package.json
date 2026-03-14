@@ -12,7 +12,6 @@
     "format": "prettier --write \"**/*.{astro,js,ts,css,json,md}\"",
     "format:check": "prettier --check \"**/*.{astro,js,ts,css,json,md}\"",
     "check": "astro check",
-    "dev:wrangler": "wrangler pages dev ./dist",
     "prepare": "husky"
   },
   "lint-staged": {

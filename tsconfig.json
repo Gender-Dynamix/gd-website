@@ -1,6 +1,3 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "types": ["@cloudflare/workers-types"]
-  }
+  "extends": "astro/tsconfigs/strict"
 }

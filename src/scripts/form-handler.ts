@@ -1,23 +1,4 @@
-interface FormResponse {
-  success: boolean;
-  errors?: string[];
-}
-
-function getFormFields(form: HTMLFormElement): Record<string, string> {
-  const formData = new FormData(form);
-  const fields: Record<string, string> = {};
-
-  for (const [key, value] of formData.entries()) {
-    if (typeof value !== 'string') continue;
-    if (fields[key]) {
-      fields[key] += `, ${value}`;
-    } else {
-      fields[key] = value;
-    }
-  }
-
-  return fields;
-}
+import { actions, isInputError } from 'astro:actions';
 
 function showFeedback(
   feedbackElement: HTMLElement,
@@ -89,27 +70,26 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
   }
 
   try {
-    const fields = getFormFields(form);
+    const formData = new FormData(form);
+    const { error } = await actions.submitForm(formData);
 
-    const response = await fetch('/api/form', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(fields),
-    });
-
-    const result: FormResponse = await response.json();
-
-    if (result.success) {
+    if (!error) {
       replaceFormWithSuccess(form);
     } else if (feedbackElement) {
-      if (result.errors && result.errors.length > 0) {
-        showFieldErrors(feedbackElement, result.errors);
+      if (isInputError(error)) {
+        const fieldErrors = Object.values(error.fields).flat();
+        showFieldErrors(feedbackElement, fieldErrors);
       } else {
-        showFeedback(
-          feedbackElement,
-          'Something went wrong. Please try again.',
-          false,
-        );
+        const errorMessages = error.message.split('\n').filter(Boolean);
+        if (errorMessages.length > 1) {
+          showFieldErrors(feedbackElement, errorMessages);
+        } else {
+          showFeedback(
+            feedbackElement,
+            error.message || 'Something went wrong. Please try again.',
+            false,
+          );
+        }
       }
       feedbackElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }

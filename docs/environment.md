@@ -1,32 +1,23 @@
 # Environment Variables
 
-This project uses two separate sets of environment variables, each read by different tools at different stages.
-
-## Overview
-
-| Category   | Read by         | Config file | Cloudflare setting                |
-| ---------- | --------------- | ----------- | --------------------------------- |
-| Build-time | Astro templates | `.env`      | Environment Variables (plaintext) |
-| Runtime    | Pages Functions | `.dev.vars` | Environment Variables (encrypted) |
-
-**Build-time** variables are embedded into the HTML/JS output during `astro build`. They are prefixed with `PUBLIC_` and accessible via `import.meta.env`. The `astro:env` schema in `astro.config.mjs` validates these at build time.
-
-**Runtime** variables are available only inside Pages Functions (the `functions/` directory). They are accessed via the `context.env` object and are never exposed to the browser.
+All environment variables are managed in a single `.env` file. Astro's `env.schema` in `astro.config.mjs` validates them at build time.
 
 ## Variable Reference
 
-| Variable                    | Type                  | Used by                        | Where to set |
-| --------------------------- | --------------------- | ------------------------------ | ------------ |
-| `PUBLIC_GA_MEASUREMENT_ID`  | Build-time (optional) | `GoogleAnalytics.astro`        | `.env`       |
-| `PUBLIC_TURNSTILE_SITE_KEY` | Build-time (required) | Contact/services forms         | `.env`       |
-| `RESEND_API_KEY`            | Runtime (secret)      | `functions/api/submit-form.ts` | `.dev.vars`  |
-| `TURNSTILE_SECRET_KEY`      | Runtime (secret)      | `functions/api/submit-form.ts` | `.dev.vars`  |
-| `FORM_RECIPIENT_EMAIL`      | Runtime               | `functions/api/submit-form.ts` | `.dev.vars`  |
-| `FORM_SENDER_EMAIL`         | Runtime               | `functions/api/submit-form.ts` | `.dev.vars`  |
+| Variable                    | Type                  | Used by                 |
+| --------------------------- | --------------------- | ----------------------- |
+| `PUBLIC_GA_MEASUREMENT_ID`  | Build-time (optional) | `GoogleAnalytics.astro` |
+| `PUBLIC_TURNSTILE_SITE_KEY` | Build-time (required) | Contact/services forms  |
+| `RESEND_API_KEY`            | Runtime (secret)      | `src/actions/index.ts`  |
+| `TURNSTILE_SECRET_KEY`      | Runtime (secret)      | `src/actions/index.ts`  |
+| `FORM_RECIPIENT_EMAIL`      | Runtime (secret)      | `src/actions/index.ts`  |
+| `FORM_SENDER_EMAIL`         | Runtime (secret)      | `src/actions/index.ts`  |
+
+`PUBLIC_` variables are embedded into the HTML/JS output during `astro build` and accessible via `import.meta.env`.
+
+Runtime variables are available only in server-side code (Astro Actions). They are imported from `astro:env/server` and are never exposed to the browser.
 
 ## Local Development
-
-### Build-time setup
 
 ```bash
 cp .env.example .env
@@ -38,36 +29,27 @@ Edit `.env` and fill in your values. For local development, you can use the Clou
 | --------------------------- | --------------------------------------------------------------------------------- |
 | `PUBLIC_TURNSTILE_SITE_KEY` | `1x00000000000000000000AA` (always passes)                                        |
 | `PUBLIC_GA_MEASUREMENT_ID`  | Leave as `G-XXXXXXXXXX` or omit entirely — the GA component falls back gracefully |
+| `TURNSTILE_SECRET_KEY`      | `1x0000000000000000000000000000000AA` (always passes)                             |
+| `FORM_SENDER_EMAIL`         | `onboarding@resend.dev` (Resend test sender)                                      |
+| `FORM_RECIPIENT_EMAIL`      | `delivered@resend.dev` (simulates successful delivery)                            |
+
+Resend provides test addresses that work without domain verification:
+
+| Address                 | Simulates           |
+| ----------------------- | ------------------- |
+| `delivered@resend.dev`  | Successful delivery |
+| `bounced@resend.dev`    | Rejected email      |
+| `complained@resend.dev` | Spam complaint      |
+
+These addresses support `+` labels (e.g. `delivered+contact-form@resend.dev`) for distinguishing form types in the Resend dashboard. Emails sent to test addresses won't arrive in a real inbox but will appear under **Emails** in the Resend dashboard.
+
+You will still need a real `RESEND_API_KEY` — create one at [resend.com](https://resend.com) under **API Keys** with **Sending access** permission.
 
 Then start the dev server:
 
 ```bash
 npm run dev
 ```
-
-### Runtime setup (form submission testing)
-
-```bash
-cp .dev.vars.example .dev.vars
-```
-
-Edit `.dev.vars` and fill in your values. For the Turnstile secret, use the matching test key:
-
-| Key                    | Test value                                            |
-| ---------------------- | ----------------------------------------------------- |
-| `TURNSTILE_SECRET_KEY` | `1x0000000000000000000000000000000AA` (always passes) |
-
-Then build and run with Wrangler:
-
-```bash
-npm run build
-npm run dev:wrangler
-```
-
-### Which dev server to use
-
-- **`npm run dev`** (Astro dev server) — use for pages, components, and styles. Faster hot reload, but Pages Functions are not available.
-- **`npm run dev:wrangler`** (Wrangler) — use when testing form submissions. Requires a fresh `npm run build` before each run.
 
 ## Production (Cloudflare Pages)
 
