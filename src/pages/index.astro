@@ -87,9 +87,14 @@ import '../styles/home.css';
       <h2>Get in Touch</h2>
       <form
         class="home-contact-form"
-        action="https://formspree.io/f/{your-id}"
+        action="/api/form"
         method="POST"
+        data-form-type="home-contact"
       >
+        <input type="hidden" name="form-type" value="home-contact" />
+        <div class="visually-hidden" aria-hidden="true">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </div>
         <div class="name-row">
           <div class="field-group">
             <label for="first-name"
@@ -120,6 +125,12 @@ import '../styles/home.css';
           <textarea name="message" id="message" rows="5" required></textarea>
         </div>
 
+        <div
+          class="cf-turnstile"
+          data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+        >
+        </div>
+        <div class="form-feedback" aria-live="polite"></div>
         <input type="submit" value="Send" class="submit-btn" />
         <p class="privacy-notice">
           &#128274; All information is encrypted and confidential
@@ -135,4 +146,5 @@ import '../styles/home.css';
       />
     </div>
   </section>
+  <script src="../scripts/form-handler.ts"></script>
 </BaseLayout>

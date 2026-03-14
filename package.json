@@ -12,6 +12,7 @@
     "format": "prettier --write \"**/*.{astro,js,ts,css,json,md}\"",
     "format:check": "prettier --check \"**/*.{astro,js,ts,css,json,md}\"",
     "check": "astro check",
+    "dev:wrangler": "wrangler pages dev ./dist",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
+    "@cloudflare/workers-types": "^4.20250312.0",
     "@astrojs/cloudflare": "^12.6.12",
     "@typescript-eslint/parser": "^8.56.1",
     "astro": "^5.18.0",

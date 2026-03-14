@@ -94,7 +94,16 @@ import '../styles/contact.css';
           work? Send us a message and we'll get back to you as soon as possible.
         </p>
 
-        <form action="" method="POST">
+        <form action="/api/form" method="POST" data-form-type="general-inquiry">
+          <input type="hidden" name="form-type" value="general-inquiry" />
+          <div class="visually-hidden" aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
           <div class="form-row">
             <div class="form-group">
               <label for="gi-first-name">First Name:*</label>
@@ -136,6 +145,12 @@ import '../styles/contact.css';
               required></textarea>
           </div>
 
+          <div
+            class="cf-turnstile"
+            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+          >
+          </div>
+          <div class="form-feedback" aria-live="polite"></div>
           <button type="submit" class="submit-btn">Send Message</button>
           <p class="privacy-notice">
             &#128274; Your message is sent via a secure connection
@@ -190,7 +205,16 @@ import '../styles/contact.css';
 
         <h3>Referral Information</h3>
         <!-- TODO: Replace this with Finger-Ink Form Embed -->
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form action="/api/form" method="POST" data-form-type="referral">
+          <input type="hidden" name="form-type" value="referral" />
+          <div class="visually-hidden" aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
           <div class="form-group">
             <label for="referral-type">Referral Type:*</label>
             <select id="referral-type" name="referral-type" required>
@@ -335,6 +359,12 @@ import '../styles/contact.css';
             ></textarea>
           </div>
 
+          <div
+            class="cf-turnstile"
+            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+          >
+          </div>
+          <div class="form-feedback" aria-live="polite"></div>
           <button type="submit" class="submit-btn">Submit Referral</button>
           <p class="privacy-notice">
             &#128274; All information is encrypted and confidential
@@ -468,6 +498,7 @@ import '../styles/contact.css';
       </div>
     </div>
   </section>
+  <script src="../scripts/form-handler.ts"></script>
 </BaseLayout>
 
 <script is:inline>
