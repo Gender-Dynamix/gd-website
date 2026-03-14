@@ -8,6 +8,7 @@ This is the website for Gender Dynamix Aotearoa.
 - [Branching Strategy](docs/branching_strategy.md) — GitHub Flow workflow, branch naming, and commit conventions
 - [Environment Variables](docs/environment.md) — build-time and runtime env var setup for local dev and production
 - [Local Development](docs/local-development.md) — getting started, dev servers, project structure, and tooling
+- [Prepare to Go Live](docs/prepare-to-go-live.md) — production launch checklist
 
 ## Branching and Commit Conventions
 
