@@ -12,6 +12,7 @@ export default [
       '.wrangler/',
       'public/',
       '.playwright-cli/',
+      '.claude/',
     ],
   },
   {

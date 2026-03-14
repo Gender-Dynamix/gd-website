@@ -30,5 +30,8 @@ Then open [http://localhost:4321](http://localhost:4321) in your browser.
 
 ## Documentation
 
+- [Local Development](docs/local-development.md) — getting started, dev servers, project structure, and tooling
+- [Environment Variables](docs/environment.md) — build-time and runtime env var setup for local dev and production
+- [Prepare to Go Live](docs/prepare-to-go-live.md) — production launch checklist
 - [Project Standards](docs/standards.md) — strategy, communication, quality, planning, and automation standards
 - [Branching Strategy](docs/branching_strategy.md) — GitHub Flow workflow, branch naming, and commit conventions
