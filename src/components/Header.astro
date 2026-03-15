@@ -159,7 +159,11 @@
       });
 
       document.addEventListener('click', function (e) {
-        if (!navRight.contains(e.target) && !hamburger.contains(e.target)) {
+        if (
+          navRight.classList.contains('active') &&
+          !navRight.contains(e.target) &&
+          !hamburger.contains(e.target)
+        ) {
           closeMenu();
         }
       });

@@ -299,7 +299,16 @@ import '../styles/services.css';
           Book a Training Session<br />Organisations/Schools
         </p>
         <!-- TODO: Replace this with Finger-Ink Form -->
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form data-form-type="training">
+          <input type="hidden" name="form-type" value="training" />
+          <div class="visually-hidden" aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
           <div class="form-group">
             <label for="contact-name">Contact Name:*</label>
             <input type="text" id="contact-name" name="contact-name" required />
@@ -459,6 +468,12 @@ import '../styles/services.css';
             <textarea id="additional-notes" name="additional-notes"></textarea>
           </div>
 
+          <div
+            class="cf-turnstile"
+            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+          >
+          </div>
+          <div class="form-feedback" aria-live="polite"></div>
           <button type="submit" class="submit-btn">Submit</button>
           <p class="privacy-notice">
             &#128274; All information is encrypted and confidential
@@ -467,6 +482,7 @@ import '../styles/services.css';
       </div>
     </div>
   </section>
+  <script src="../scripts/form-handler.ts"></script>
 </BaseLayout>
 
 <script is:inline>
