@@ -77,7 +77,9 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
       replaceFormWithSuccess(form);
     } else if (feedbackElement) {
       if (isInputError(error)) {
-        const fieldErrors = Object.values(error.fields).flat();
+        const fieldErrors = Object.values(error.fields)
+          .flat()
+          .filter((message): message is string => message !== undefined);
         showFieldErrors(feedbackElement, fieldErrors);
       } else {
         const errorMessages = error.message.split('\n').filter(Boolean);
