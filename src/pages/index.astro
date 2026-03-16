@@ -95,35 +95,82 @@ import '../styles/home.css';
             <label for="first-name"
               >First Name <span>&#40;Required&#41;</span></label
             >
-            <input type="text" name="first-name" id="first-name" required />
+            <input
+              type="text"
+              name="first-name"
+              id="first-name"
+              required
+              aria-describedby="first-name-error"
+            />
+            <span id="first-name-error" class="validation-message"
+              >Please enter your first name</span
+            >
           </div>
           <div class="field-group">
             <label for="last-name"
               >Last Name <span>&#40;Required&#41;</span></label
             >
-            <input type="text" name="last-name" id="last-name" required />
+            <input
+              type="text"
+              name="last-name"
+              id="last-name"
+              required
+              aria-describedby="last-name-error"
+            />
+            <span id="last-name-error" class="validation-message"
+              >Please enter your last name</span
+            >
           </div>
         </div>
 
         <div class="field-group">
           <label for="email">Email <span>&#40;Required&#41;</span></label>
-          <input type="email" name="email" id="email" required />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            required
+            aria-describedby="email-address-error"
+          />
+          <span id="email-address-error" class="validation-message"
+            >Please enter a valid email address.</span
+          >
         </div>
 
         <div class="field-group">
           <label for="subject">Subject <span>&#40;Required&#41;</span></label>
-          <input type="text" name="subject" id="subject" required />
+          <input
+            type="text"
+            name="subject"
+            id="subject"
+            required
+            aria-describedby="subject-error"
+          />
+          <span id="subject-error" class="validation-message"
+            >Please enter a subject title.</span
+          >
         </div>
 
         <div class="field-group">
           <label for="message">Message <span>&#40;Required&#41;</span></label>
-          <textarea name="message" id="message" rows="5" required></textarea>
+          <textarea
+            name="message"
+            id="message"
+            rows="5"
+            required
+            aria-describedby="message-error"></textarea>
+          <span id="message-error" class="validation-message"
+            >Please tell us a bit about your inquiry.</span
+          >
         </div>
-
-        <div
-          class="cf-turnstile"
-          data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-        >
+        <div id="turnstile-wrapper" class="turnstile-container">
+          <div
+            class="cf-turnstile"
+            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+            data-callback="onTurnstileSuccess"
+            data-theme="light"
+          >
+          </div>
         </div>
         <div class="form-feedback" aria-live="polite"></div>
         <input type="submit" value="Send" class="submit-btn" />

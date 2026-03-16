@@ -1,4 +1,39 @@
 import { actions, isInputError } from 'astro:actions';
+import { isValid } from 'astro:schema';
+//Human readable field names
+const FIELD_LABELS: Record<string, string> = {
+  'first-name': 'First name',
+  'last-name': 'Last name',
+  'identified-name': 'Identified name',
+  'preferred-name': 'Preferred name',
+  email: 'Email address',
+  phone: 'Phone number',
+  'contact-phone': 'Contact phone',
+  'contact-name': 'Contact name',
+  subject: 'Subject',
+  message: 'Message',
+  'referral-type': 'Referral type',
+  address: 'Address',
+  city: 'City',
+  suburb: 'Suburb',
+  'area-code': 'Area code',
+  'referral-source': 'How you heard about us',
+  services: 'Services',
+  'training-hours': 'Training hours',
+  'start-date': 'Start date',
+  'end-date': 'End date',
+  'other-topic-details': 'Other details',
+};
+
+function humanizeFieldName(fieldName: string): string {
+  return (
+    FIELD_LABELS[fieldName] ||
+    fieldName
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  );
+}
 
 function showFeedback(
   feedbackElement: HTMLElement,
@@ -19,7 +54,23 @@ function showFieldErrors(feedbackElement: HTMLElement, errors: string[]): void {
 
   for (const error of errors) {
     const listItem = document.createElement('li');
-    listItem.textContent = error;
+
+    // Transform technical errors into friendly messages
+    let friendlyError = error;
+
+    // Handle "field is required" errors
+    const requiredMatch = error.match(/^([a-z-]+) is required$/i);
+    if (requiredMatch) {
+      const fieldName = humanizeFieldName(requiredMatch[1]);
+      friendlyError = `Please enter your ${fieldName.toLowerCase()}`;
+    }
+
+    // Handle email validation
+    if (error.includes('valid email')) {
+      friendlyError = 'Please enter a valid email address';
+    }
+
+    listItem.textContent = friendlyError;
     errorList.appendChild(listItem);
   }
 
@@ -63,6 +114,49 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
 
   if (feedbackElement) {
     feedbackElement.innerHTML = '';
+  }
+
+  const otherCheckbox = form.querySelector('#item-other') as HTMLInputElement;
+  const otherDetails = form.querySelector(
+    '[name="other-topic-details"]',
+  ) as HTMLInputElement;
+
+  if (otherCheckbox?.checked && !otherDetails?.value.trim()) {
+    if (feedbackElement) {
+      showFeedback(
+        feedbackElement,
+        "Please specify your requirements in the 'Other' field.",
+        false,
+      );
+      otherDetails.focus();
+      return;
+    }
+  }
+
+  const servicesError = document.getElementById('rf-services-error');
+  const serviceCheckboxes = form.querySelectorAll('input[name="services"]');
+  const isAnyServiceChecked =
+    form.querySelectorAll('input[name="services"]:checked').length > 0;
+
+  if (servicesError) {
+    if (!isAnyServiceChecked) {
+      if (feedbackElement) {
+        showFeedback(
+          feedbackElement,
+          "Please select at least one service you're interested in",
+          false,
+        );
+      }
+      servicesError.classList.add('is-visible');
+      serviceCheckboxes.forEach((cb) =>
+        cb.setAttribute('aria-invalid', 'true'),
+      );
+
+      if (submitButton) setSubmitState(submitButton, false, originalButtonText);
+      return;
+    } else {
+      servicesError.classList.remove('is-visible');
+    }
   }
 
   if (submitButton) {

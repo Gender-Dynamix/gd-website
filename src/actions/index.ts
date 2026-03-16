@@ -16,7 +16,6 @@ const REQUIRED_FIELDS: Record<FormType, string[]> = {
     'referral-type',
     'first-name',
     'last-name',
-    'preferred-name',
     'email',
     'phone',
     'address',
@@ -35,6 +34,26 @@ const REQUIRED_FIELDS: Record<FormType, string[]> = {
   ],
 };
 
+const FIELD_LABELS: Record<string, string> = {
+  'first-name': 'first name',
+  'last-name': 'last name',
+  email: 'email address',
+  phone: 'phone number',
+  subject: 'subject',
+  message: 'message',
+  'referral-type': 'referral type',
+  address: 'address',
+  city: 'city',
+  suburb: 'suburb',
+  'area-code': 'area code',
+  'referral-source': 'how you heard about us',
+  'contact-name': 'contact name',
+  'contact-phone': 'contact phone',
+  'training-hours': 'training hours',
+  'start-date': 'start date',
+  'end-date': 'end date',
+};
+
 const VALID_FORM_TYPES = new Set<string>(Object.keys(REQUIRED_FIELDS));
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -48,7 +67,8 @@ function validateFields(
 
   for (const field of requiredFields) {
     if (!fields[field]?.trim()) {
-      errors.push(`${field} is required`);
+      const friendlyName = FIELD_LABELS[field] || field;
+      errors.push(`Please enter your ${friendlyName}`); // ← Changed
     }
   }
 

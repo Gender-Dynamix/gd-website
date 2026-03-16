@@ -68,6 +68,35 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
       src="https://challenges.cloudflare.com/turnstile/v0/api.js"
       async
       defer></script>
+
+    <script is:inline>
+      // 2. The Callback Function
+      window.onTurnstileSuccess = function (token) {
+        // Find all possible turnstile containers and hide them
+        const wrappers = document.querySelectorAll(
+          '.turnstile-container, #turnstile-wrapper',
+        );
+        wrappers.forEach((w) => w.classList.add('hidden-success'));
+
+        // Enable ALL submit buttons on the page
+        const buttons = document.querySelectorAll(
+          '.submit-btn, input[type="submit"]',
+        );
+        buttons.forEach((btn) => {
+          btn.disabled = false;
+        });
+      };
+
+      // 3. Initialize: Disable buttons until Turnstile passes
+      document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll(
+          '.submit-btn, input[type="submit"]',
+        );
+        buttons.forEach((btn) => {
+          btn.disabled = true;
+        });
+      });
+    </script>
   </head>
   <body>
     <FocusTrap />

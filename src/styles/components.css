@@ -586,6 +586,58 @@ textarea {
     transform 0.2s ease;
 }
 
+/* --- Cloudflare Turnstile --- */
+/* Base state: Visible */
+.turnstile-container {
+  max-height: 100px;
+  opacity: 1;
+  overflow: hidden;
+  transition:
+    max-height 0.5s ease,
+    opacity 0.3s ease,
+    margin 0.5s ease;
+  margin-top: 20px;
+}
+
+/* Validated state: Hidden */
+.turnstile-container.hidden-success {
+  display: none;
+}
+
+/* Optional: Keep the Submit button disabled until validated */
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+/* --- Form Validation UI --- */
+.form-group :is(input, textarea, select):user-invalid {
+  border-color: #e11d48 !important;
+  background-color: #fff1f2 !important;
+  outline-color: #e11d48 !important;
+}
+
+.validation-message {
+  font-size: 0.875rem;
+  color: #e11d48;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.validation-message.is-visible {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #e11d48 !important;
+  margin-top: 0.75rem !important;
+  font-weight: 500 !important;
+}
+
+.form-group :is(input, textarea, select):user-invalid ~ .validation-message {
+  display: block;
+}
+
 /* Mobile Responsive*/
 @media (max-width: 768px) {
   .hero {
