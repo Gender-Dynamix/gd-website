@@ -112,6 +112,7 @@ function textToBase64Url(text: string): string {
 
 function pemToArrayBuffer(pem: string): ArrayBuffer {
   const base64 = pem
+    .replace(/\\n/g, '\n')
     .replace(/-----BEGIN PRIVATE KEY-----/g, '')
     .replace(/-----END PRIVATE KEY-----/g, '')
     .replace(/\s/g, '');
@@ -316,11 +317,11 @@ async function ensureSheet(formType: FormType): Promise<void> {
   }
 
   const currentHeaders = await getHeaderRow(formType);
-  const headersMatch =
-    currentHeaders.length === expectedHeaders.length &&
-    expectedHeaders.every((header, index) => currentHeaders[index] === header);
+  const expectedHeadersPresent = expectedHeaders.every(
+    (header, index) => currentHeaders[index] === header,
+  );
 
-  if (!headersMatch) {
+  if (!expectedHeadersPresent) {
     await setHeaderRow(formType, expectedHeaders);
   }
 }
