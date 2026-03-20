@@ -142,6 +142,18 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
 
   try {
     const formData = new FormData(form);
+
+    // Consolidate multi-value checkbox fields into comma-separated strings
+    // so they survive zod's passthrough (which flattens duplicate keys)
+    const multiValueFields = ['services', 'training-topics'];
+    for (const fieldName of multiValueFields) {
+      const values = formData.getAll(fieldName);
+      if (values.length > 0) {
+        formData.delete(fieldName);
+        formData.set(fieldName, values.join(', '));
+      }
+    }
+
     const { error } = await actions.submitForm(formData);
 
     if (!error) {

@@ -133,18 +133,6 @@ export const server = {
         });
       }
 
-      // Join multi-value checkbox fields into comma-separated strings
-      const multiValueFields = ['services', 'training-topics'];
-      for (const fieldName of multiValueFields) {
-        if (fields[fieldName]) {
-          fields[fieldName] = String(fields[fieldName])
-            .split(',')
-            .map((value) => value.trim())
-            .filter(Boolean)
-            .join(', ');
-        }
-      }
-
       // Submit to Google Sheets
       try {
         await appendFormSubmission(formType as FormType, fields);

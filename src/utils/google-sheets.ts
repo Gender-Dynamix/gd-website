@@ -76,7 +76,7 @@ const FIELD_TO_HEADER: Record<string, string> = {
   'area-code': 'Area Code',
   'referral-source': 'Referral Source',
   'identified-name': 'Identified Name',
-  nhi: 'NHI',
+  NHI: 'NHI',
   'out-status': 'Out Status',
   services: 'Services',
   'additional-info': 'Additional Info',
