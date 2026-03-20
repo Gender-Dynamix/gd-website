@@ -343,6 +343,7 @@ import '../styles/services.css';
               id="contact-phone"
               name="contact-phone"
               required
+              aria-describedby="phone-error"
             />
             <span id="phone-error" class="validation-message"
               >Please provide a contact number to coordinate logistics for the
@@ -469,7 +470,12 @@ import '../styles/services.css';
             <label for="training-hours"
               >How long should training take place?*</label
             >
-            <select id="training-hours" name="training-hours" required>
+            <select
+              id="training-hours"
+              name="training-hours"
+              required
+              aria-describedby="hour-select-error"
+            >
               <option value="" disabled selected
                 >Please select a duration</option
               >
@@ -522,7 +528,7 @@ import '../styles/services.css';
             <textarea id="additional-notes" name="additional-notes"></textarea>
           </div>
 
-          <div id="turnstile-wrapper" class="turnstile-container">
+          <div class="turnstile-container">
             <div
               class="cf-turnstile"
               data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}

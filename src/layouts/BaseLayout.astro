@@ -72,17 +72,24 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
     <script is:inline>
       // 2. The Callback Function
       window.onTurnstileSuccess = function (token) {
-        // Find all possible turnstile containers and hide them
-        const wrappers = document.querySelectorAll(
-          '.turnstile-container, #turnstile-wrapper',
+        // Find the Turnstile input that received this token
+        var responseInput = document.querySelector(
+          'input[name="cf-turnstile-response"][value="' + token + '"]',
         );
-        wrappers.forEach((w) => w.classList.add('hidden-success'));
+        var form = responseInput ? responseInput.closest('form') : null;
+        var scope = form || document;
 
-        // Enable ALL submit buttons on the page
-        const buttons = document.querySelectorAll(
+        // Hide turnstile container within the resolved scope
+        var wrappers = scope.querySelectorAll('.turnstile-container');
+        wrappers.forEach(function (w) {
+          w.classList.add('hidden-success');
+        });
+
+        // Enable submit buttons within the resolved scope
+        var buttons = scope.querySelectorAll(
           '.submit-btn, input[type="submit"]',
         );
-        buttons.forEach((btn) => {
+        buttons.forEach(function (btn) {
           btn.disabled = false;
         });
       };

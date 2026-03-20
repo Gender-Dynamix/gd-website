@@ -614,7 +614,8 @@ textarea {
 }
 
 /* --- Form Validation UI --- */
-.form-group :is(input, textarea, select):user-invalid {
+.form-group :is(input, textarea, select):user-invalid,
+.field-group :is(input, textarea, select):user-invalid {
   border-color: #e11d48 !important;
   background-color: #fff1f2 !important;
   outline-color: #e11d48 !important;
@@ -636,7 +637,8 @@ textarea {
   font-weight: 500 !important;
 }
 
-.form-group :is(input, textarea, select):user-invalid ~ .validation-message {
+.form-group :is(input, textarea, select):user-invalid ~ .validation-message,
+.field-group :is(input, textarea, select):user-invalid ~ .validation-message {
   display: block;
 }
 

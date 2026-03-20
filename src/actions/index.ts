@@ -49,7 +49,7 @@ function validateFields(
   for (const field of requiredFields) {
     if (!fields[field]?.trim()) {
       const friendlyName = FIELD_LABELS[field] || field;
-      errors.push(`Please enter your ${friendlyName}`);
+      errors.push(`Please enter ${friendlyName}`);
     }
   }
 
@@ -70,7 +70,7 @@ function buildEmailSubject(
     case 'general-inquiry':
       return `General Inquiry: ${fields['subject'] || 'No subject'}`;
     case 'referral':
-      return `New Referral: ${fields['preferred-name'] || 'Unknown'} (${fields['referral-type'] || 'Unknown'})`;
+      return `New Referral: ${fields['identified-name'] || fields['first-name'] || 'Unknown'} (${fields['referral-type'] || 'Unknown'})`;
     case 'training':
       return `Training Inquiry: ${fields['contact-name'] || 'Unknown'}`;
   }

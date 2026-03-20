@@ -179,7 +179,7 @@ import '../styles/contact.css';
             >
           </div>
 
-          <div id="turnstile-wrapper" class="turnstile-container">
+          <div class="turnstile-container">
             <div
               class="cf-turnstile"
               data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
@@ -259,7 +259,7 @@ import '../styles/contact.css';
               id="referral-type"
               name="referral-type"
               required
-              aria-describedby="referral-type-error"
+              aria-describedby="rf-referral-error"
             >
               <option value="">Select...</option>
               <option value="self">Self Referral</option>
@@ -332,7 +332,13 @@ import '../styles/contact.css';
 
           <div class="form-group">
             <label for="phone">Phone Number:*</label>
-            <input type="tel" id="phone" name="phone" required />
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              aria-describedby="rf-phone-error"
+            />
             <span id="rf-phone-error" class="validation-message"
               >A contact number is required to coordinate the initial intake.</span
             >
@@ -498,7 +504,7 @@ import '../styles/contact.css';
             ></textarea>
           </div>
 
-          <div id="turnstile-wrapper" class="turnstile-container">
+          <div class="turnstile-container">
             <div
               class="cf-turnstile"
               data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}

@@ -38,7 +38,7 @@ function showFieldErrors(feedbackElement: HTMLElement, errors: string[]): void {
     const requiredMatch = error.match(/^([a-z-]+) is required$/i);
     if (requiredMatch) {
       const fieldName = humanizeFieldName(requiredMatch[1]);
-      friendlyError = `Please enter your ${fieldName.toLowerCase()}`;
+      friendlyError = `Please enter ${fieldName.toLowerCase()}`;
     }
 
     // Handle email validation
@@ -104,7 +104,7 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
         "Please specify your requirements in the 'Other' field.",
         false,
       );
-      otherDetails.focus();
+      if (otherDetails) otherDetails.focus();
       return;
     }
   }
@@ -132,6 +132,7 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
       return;
     } else {
       servicesError.classList.remove('is-visible');
+      serviceCheckboxes.forEach((cb) => cb.removeAttribute('aria-invalid'));
     }
   }
 
