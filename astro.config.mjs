@@ -18,19 +18,19 @@ export default defineConfig({
         context: 'client',
         access: 'public',
       }),
-      RESEND_API_KEY: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
       TURNSTILE_SECRET_KEY: envField.string({
         context: 'server',
         access: 'secret',
       }),
-      FORM_RECIPIENT_EMAIL: envField.string({
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: envField.string({
         context: 'server',
         access: 'secret',
       }),
-      FORM_SENDER_EMAIL: envField.string({
+      GOOGLE_PRIVATE_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      GOOGLE_SPREADSHEET_ID: envField.string({
         context: 'server',
         access: 'secret',
       }),
