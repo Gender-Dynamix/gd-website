@@ -109,7 +109,7 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
     }
   }
 
-  const servicesError = document.getElementById('rf-services-error');
+  const servicesError = form.querySelector('#rf-services-error');
   const serviceCheckboxes = form.querySelectorAll('input[name="services"]');
   const isAnyServiceChecked =
     form.querySelectorAll('input[name="services"]:checked').length > 0;
