@@ -447,9 +447,10 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
   padding: 0 5%;
+  width: 100%;
 }
 
 .contact-item {
@@ -819,9 +820,15 @@
   .contact-info-container {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 40px;
     width: 100%;
-    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .location-card {
+    margin-bottom: 20px;
+    width: 100%;
+    min-height: auto;
   }
 
   .contact-item {

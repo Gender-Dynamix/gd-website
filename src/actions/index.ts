@@ -6,6 +6,7 @@ import {
   FORM_RECIPIENT_EMAIL,
   FORM_SENDER_EMAIL,
 } from 'astro:env/server';
+import { FIELD_LABELS } from '../scripts/field-labels';
 
 type FormType = 'home-contact' | 'general-inquiry' | 'referral' | 'training';
 
@@ -16,7 +17,6 @@ const REQUIRED_FIELDS: Record<FormType, string[]> = {
     'referral-type',
     'first-name',
     'last-name',
-    'preferred-name',
     'email',
     'phone',
     'address',
@@ -48,7 +48,8 @@ function validateFields(
 
   for (const field of requiredFields) {
     if (!fields[field]?.trim()) {
-      errors.push(`${field} is required`);
+      const friendlyName = FIELD_LABELS[field] || field;
+      errors.push(`Please enter ${friendlyName}`);
     }
   }
 
@@ -69,7 +70,7 @@ function buildEmailSubject(
     case 'general-inquiry':
       return `General Inquiry: ${fields['subject'] || 'No subject'}`;
     case 'referral':
-      return `New Referral: ${fields['preferred-name'] || 'Unknown'} (${fields['referral-type'] || 'Unknown'})`;
+      return `New Referral: ${fields['identified-name'] || fields['first-name'] || 'Unknown'} (${fields['referral-type'] || 'Unknown'})`;
     case 'training':
       return `Training Inquiry: ${fields['contact-name'] || 'Unknown'}`;
   }

@@ -94,7 +94,7 @@ import '../styles/contact.css';
           work? Send us a message and we'll get back to you as soon as possible.
         </p>
 
-        <form data-form-type="general-inquiry">
+        <form data-form-type="general-inquiry" novalidate>
           <input type="hidden" name="form-type" value="general-inquiry" />
           <div class="visually-hidden" aria-hidden="true">
             <input
@@ -112,28 +112,58 @@ import '../styles/contact.css';
                 id="gi-first-name"
                 name="first-name"
                 required
+                aria-describedby="gi-fname-error"
               />
+              <span id="gi-fname-error" class="validation-message"
+                >Please provide a first name so we know who we're speaking with.</span
+              >
             </div>
             <div class="form-group">
               <label for="gi-last-name">Last Name:*</label>
-              <input type="text" id="gi-last-name" name="last-name" required />
+              <input
+                type="text"
+                id="gi-last-name"
+                name="last-name"
+                required
+                aria-describedby="gi-lname-error"
+              />
+              <span id="gi-lname-error" class="validation-message"
+                >Please provide a last name to help us organize our records.</span
+              >
             </div>
           </div>
 
           <div class="form-group">
             <label for="gi-email">Email:*</label>
-            <input type="email" id="gi-email" name="email" required />
+            <input
+              type="email"
+              id="gi-email"
+              name="email"
+              required
+              aria-describedby="gi-email-error"
+            />
+            <span id="gi-email-error" class="validation-message"
+              >Please enter a valid email so we can send a reply</span
+            >
           </div>
 
           <div class="form-group">
             <label for="subject">Subject:*</label>
-            <select id="subject" name="subject" required>
+            <select
+              id="subject"
+              name="subject"
+              required
+              aria-describedby="gi-subject-error"
+            >
               <option value="">Select a topic...</option>
               <option value="general">General Question</option>
               <option value="training">Professional Training</option>
               <option value="events">Events & Groups</option>
               <option value="other">Other</option>
             </select>
+            <span id="gi-subject-error" class="validation-message"
+              >Please select a topic so the right person can get back to you.</span
+            >
           </div>
 
           <div class="form-group">
@@ -142,14 +172,23 @@ import '../styles/contact.css';
               id="message"
               name="message"
               placeholder="How can we help you today?"
-              required></textarea>
+              required
+              aria-describedby="gi-msg-error"></textarea>
+            <span id="gi-msg-error" class="validation-message"
+              >Please let us know how we can help you today.</span
+            >
           </div>
 
-          <div
-            class="cf-turnstile"
-            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-          >
+          <div class="turnstile-container">
+            <div
+              class="cf-turnstile"
+              data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+              data-callback="onTurnstileSuccess"
+              data-theme="light"
+            >
+            </div>
           </div>
+
           <div class="form-feedback" aria-live="polite"></div>
           <button type="submit" class="submit-btn">Send Message</button>
           <p class="privacy-notice">
@@ -204,8 +243,7 @@ import '../styles/contact.css';
         </div>
 
         <h3>Referral Information</h3>
-        <!-- TODO: Replace this with Finger-Ink Form Embed -->
-        <form data-form-type="referral">
+        <form data-form-type="referral" novalidate>
           <input type="hidden" name="form-type" value="referral" />
           <div class="visually-hidden" aria-hidden="true">
             <input
@@ -217,63 +255,149 @@ import '../styles/contact.css';
           </div>
           <div class="form-group">
             <label for="referral-type">Referral Type:*</label>
-            <select id="referral-type" name="referral-type" required>
+            <select
+              id="referral-type"
+              name="referral-type"
+              required
+              aria-describedby="rf-referral-error"
+            >
               <option value="">Select...</option>
               <option value="self">Self Referral</option>
               <option value="other">Referring Someone Else</option>
             </select>
+            <span id="rf-referral-error" class="validation-message"
+              >Please tell us if this referral is for you or someone else.</span
+            >
           </div>
 
           <h4>Legal Full Name</h4>
           <div class="form-row">
             <div class="form-group">
               <label for="first-name">First Name:*</label>
-              <input type="text" id="first-name" name="first-name" required />
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                required
+                aria-describedby="rf-fname-legal-error"
+              />
+              <span id="rf-fname-legal-error" class="validation-message"
+                >Legal names are needed for our official records and NHI.</span
+              >
             </div>
             <div class="form-group">
               <label for="last-name">Last Name:*</label>
-              <input type="text" id="last-name" name="last-name" required />
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                required
+                aria-describedby="rf-lname-legal-error"
+              />
+              <span id="rf-lname-legal-error" class="validation-message"
+                >Legal names are needed for our official records and NHI.</span
+              >
             </div>
           </div>
 
           <div class="form-group">
-            <label for="preferred-name">Preferred Name:*</label>
+            <label for="identified-name">Identified Name:</label>
             <input
               type="text"
-              id="preferred-name"
-              name="preferred-name"
-              required
+              id="identified-name"
+              name="identified-name"
+              aria-describedby="rf-id-name"
+              placeholder="e.g. A name that fits you better"
             />
+            <span id="rf-id-name" class="validation-message"
+              >If the person has a name that fits them better than their legal
+              name, please enter it here.</span
+            >
           </div>
 
           <div class="form-group">
             <label for="referral-email">Email:*</label>
-            <input type="email" id="referral-email" name="email" required />
+            <input
+              type="email"
+              id="referral-email"
+              name="email"
+              required
+              aria-describedby="rf-email-error"
+            />
+            <span id="rf-email-error" class="validation-message"
+              >Please provide a secure email address for follow-up
+              correspondence.</span
+            >
           </div>
 
           <div class="form-group">
             <label for="phone">Phone Number:*</label>
-            <input type="tel" id="phone" name="phone" required />
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              aria-describedby="rf-phone-error"
+            />
+            <span id="rf-phone-error" class="validation-message"
+              >A contact number is required to coordinate the initial intake.</span
+            >
           </div>
 
           <div class="form-group">
             <label for="address">Address:*</label>
-            <input type="text" id="address" name="address" required />
+            <input
+              type="text"
+              id="address"
+              name="address"
+              required
+              aria-describedby="rf-address-error"
+            />
+            <span id="rf-address-error" class="validation-message"
+              >Please enter the physical address.</span
+            >
           </div>
 
           <div class="form-group">
             <label for="city">City/Town:*</label>
-            <input type="text" id="city" name="city" required />
+            <input
+              type="text"
+              id="city"
+              name="city"
+              required
+              aria-describedby="rf-city-error"
+            />
+            <span id="rf-city-error" class="validation-message"
+              >Please enter the city or town.</span
+            >
           </div>
 
           <div class="form-group">
             <label for="suburb">Suburb:*</label>
-            <input type="text" id="suburb" name="suburb" required />
+            <input
+              type="text"
+              id="suburb"
+              name="suburb"
+              required
+              aria-describedby="rf-suburb-error"
+            />
+            <span id="rf-suburb-error" class="validation-message"
+              >Please enter the suburb.</span
+            >
           </div>
 
           <div class="form-group">
             <label for="area-code">Area Code:*</label>
-            <input type="text" id="area-code" name="area-code" required />
+            <input
+              type="text"
+              id="area-code"
+              name="area-code"
+              required
+              aria-describedby="rf-postcode-error"
+            />
+            <span id="rf-postcode-error" class="validation-message"
+              >Please enter the postcode</span
+            >
           </div>
 
           <div class="form-group">
@@ -283,12 +407,25 @@ import '../styles/contact.css';
               id="referral-source"
               name="referral-source"
               required
+              aria-describedby="rf-referral-source-error"
             />
+            <span id="rf-referral-source-error" class="validation-message"
+              >Please specify who is making this referral</span
+            >
           </div>
 
           <div class="form-group">
             <label for="NHI">NHI:</label>
-            <input type="text" id="NHI" name="NHI" />
+            <input
+              type="text"
+              id="NHI"
+              name="NHI"
+              aria-describedby="rf-nhi-error"
+            />
+            <span id="rf-nhi-error" class="validation-message"
+              >National Health Index number (found on prescriptions or clinical
+              letters).</span
+            >
           </div>
 
           <div class="form-group">
@@ -308,6 +445,7 @@ import '../styles/contact.css';
                   id="mental-health"
                   name="services"
                   value="Mental Health Support"
+                  aria-describedby="rf-services-error"
                 />
                 <label for="mental-health">Mental Health Support</label>
               </div>
@@ -317,6 +455,7 @@ import '../styles/contact.css';
                   id="gender-exploration"
                   name="services"
                   value="Gender Exploration"
+                  aria-describedby="rf-services-error"
                 />
                 <label for="gender-exploration">Gender Exploration</label>
               </div>
@@ -326,6 +465,7 @@ import '../styles/contact.css';
                   id="peer-support"
                   name="services"
                   value="Peer Support"
+                  aria-describedby="rf-services-error"
                 />
                 <label for="peer-support">Peer Support</label>
               </div>
@@ -335,6 +475,7 @@ import '../styles/contact.css';
                   id="group-therapy"
                   name="services"
                   value="Group Therapy"
+                  aria-describedby="rf-services-error"
                 />
                 <label for="group-therapy">Group Therapy</label>
               </div>
@@ -344,9 +485,13 @@ import '../styles/contact.css';
                   id="whanau-support"
                   name="services"
                   value="Whānau Support"
+                  aria-describedby="rf-services-error"
                 />
                 <label for="whanau-support">Wh&#257;nau Support</label>
               </div>
+              <span id="rf-services-error" class="validation-message"
+                >Please select at least one service you're interested in.</span
+              >
             </div>
           </div>
 
@@ -359,10 +504,14 @@ import '../styles/contact.css';
             ></textarea>
           </div>
 
-          <div
-            class="cf-turnstile"
-            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-          >
+          <div class="turnstile-container">
+            <div
+              class="cf-turnstile"
+              data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+              data-callback="onTurnstileSuccess"
+              data-theme="light"
+            >
+            </div>
           </div>
           <div class="form-feedback" aria-live="polite"></div>
           <button type="submit" class="submit-btn">Submit Referral</button>

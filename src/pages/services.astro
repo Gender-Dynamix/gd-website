@@ -298,8 +298,7 @@ import '../styles/services.css';
         <p class="form-subtitle">
           Book a Training Session<br />Organisations/Schools
         </p>
-        <!-- TODO: Replace this with Finger-Ink Form -->
-        <form data-form-type="training">
+        <form data-form-type="training" novalidate>
           <input type="hidden" name="form-type" value="training" />
           <div class="visually-hidden" aria-hidden="true">
             <input
@@ -311,12 +310,30 @@ import '../styles/services.css';
           </div>
           <div class="form-group">
             <label for="contact-name">Contact Name:*</label>
-            <input type="text" id="contact-name" name="contact-name" required />
+            <input
+              type="text"
+              id="contact-name"
+              name="contact-name"
+              required
+              aria-describedby="name-error"
+            />
+            <span id="name-error" class="validation-message"
+              >Please enter the name of the primary contact for this training.</span
+            >
           </div>
 
           <div class="form-group">
             <label for="email">Email:*</label>
-            <input type="email" id="email" name="email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              aria-describedby="email-error"
+            />
+            <span id="email-error" class="validation-message"
+              >Please enter a valid email address for training correspondence.</span
+            >
           </div>
 
           <div class="form-group">
@@ -326,11 +343,16 @@ import '../styles/services.css';
               id="contact-phone"
               name="contact-phone"
               required
+              aria-describedby="phone-error"
             />
+            <span id="phone-error" class="validation-message"
+              >Please provide a contact number to coordinate logistics for the
+              session.</span
+            >
           </div>
 
           <div class="form-group">
-            <label>What would you like covered in training?*</label>
+            <label>What would you like covered in training?</label>
             <div class="checkbox-group">
               <div class="checkbox-option">
                 <input
@@ -422,6 +444,25 @@ import '../styles/services.css';
                 />
                 <label for="item10">Item 10</label>
               </div>
+              <div class="checkbox-option other-option-wrapper">
+                <input
+                  type="checkbox"
+                  name="training-topics"
+                  id="item-other"
+                  value="Other"
+                  class="other-checkbox"
+                />
+                <label for="item-other">Other (Please specify)</label>
+
+                <div class="conditional-field">
+                  <input
+                    type="text"
+                    name="other-topic-details"
+                    placeholder="Tell us what you'd like to cover..."
+                    aria-label="Specific Training Topics"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -429,7 +470,15 @@ import '../styles/services.css';
             <label for="training-hours"
               >How long should training take place?*</label
             >
-            <select id="training-hours" name="training-hours" required>
+            <select
+              id="training-hours"
+              name="training-hours"
+              required
+              aria-describedby="hour-select-error"
+            >
+              <option value="" disabled selected
+                >Please select a duration</option
+              >
               <option value="30-min">30 Minutes</option>
               <option value="1-hour">1 Hour</option>
               <option value="2-hours">2 Hours</option>
@@ -437,6 +486,9 @@ import '../styles/services.css';
               <option value="half-day">Half Day</option>
               <option value="full-day">Full Day</option>
             </select>
+            <span id="hour-select-error" class="validation-message"
+              >Please choose a preferred duration for the training session.</span
+            >
           </div>
 
           <div class="form-row">
@@ -448,7 +500,11 @@ import '../styles/services.css';
                 name="start-date"
                 placeholder="DD/MM/YYYY"
                 required
+                aria-describedby="start-date-error"
               />
+              <span id="start-date-error" class="validation-message"
+                >Please provide a start date in DD/MM/YYYY format.</span
+              >
             </div>
 
             <div class="form-group">
@@ -459,7 +515,11 @@ import '../styles/services.css';
                 name="end-date"
                 placeholder="DD/MM/YYYY"
                 required
+                aria-describedby="end-date-error"
               />
+              <span id="end-date-error" class="validation-message"
+                >Please provide an end date in DD/MM/YYYY format.</span
+              >
             </div>
           </div>
 
@@ -468,10 +528,14 @@ import '../styles/services.css';
             <textarea id="additional-notes" name="additional-notes"></textarea>
           </div>
 
-          <div
-            class="cf-turnstile"
-            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-          >
+          <div class="turnstile-container">
+            <div
+              class="cf-turnstile"
+              data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+              data-callback="onTurnstileSuccess"
+              data-theme="light"
+            >
+            </div>
           </div>
           <div class="form-feedback" aria-live="polite"></div>
           <button type="submit" class="submit-btn">Submit</button>
