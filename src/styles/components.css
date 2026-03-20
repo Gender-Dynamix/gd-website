@@ -601,7 +601,9 @@ textarea {
 
 /* Validated state: Hidden */
 .turnstile-container.hidden-success {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
 }
 
 /* Optional: Keep the Submit button disabled until validated */

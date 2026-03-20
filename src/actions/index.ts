@@ -6,6 +6,7 @@ import {
   FORM_RECIPIENT_EMAIL,
   FORM_SENDER_EMAIL,
 } from 'astro:env/server';
+import { FIELD_LABELS } from '../scripts/field-labels';
 
 type FormType = 'home-contact' | 'general-inquiry' | 'referral' | 'training';
 
@@ -34,26 +35,6 @@ const REQUIRED_FIELDS: Record<FormType, string[]> = {
   ],
 };
 
-const FIELD_LABELS: Record<string, string> = {
-  'first-name': 'first name',
-  'last-name': 'last name',
-  email: 'email address',
-  phone: 'phone number',
-  subject: 'subject',
-  message: 'message',
-  'referral-type': 'referral type',
-  address: 'address',
-  city: 'city',
-  suburb: 'suburb',
-  'area-code': 'area code',
-  'referral-source': 'how you heard about us',
-  'contact-name': 'contact name',
-  'contact-phone': 'contact phone',
-  'training-hours': 'training hours',
-  'start-date': 'start date',
-  'end-date': 'end date',
-};
-
 const VALID_FORM_TYPES = new Set<string>(Object.keys(REQUIRED_FIELDS));
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -68,7 +49,7 @@ function validateFields(
   for (const field of requiredFields) {
     if (!fields[field]?.trim()) {
       const friendlyName = FIELD_LABELS[field] || field;
-      errors.push(`Please enter your ${friendlyName}`); // ← Changed
+      errors.push(`Please enter your ${friendlyName}`);
     }
   }
 

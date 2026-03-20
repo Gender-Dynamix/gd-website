@@ -1,29 +1,5 @@
 import { actions, isInputError } from 'astro:actions';
-import { isValid } from 'astro:schema';
-//Human readable field names
-const FIELD_LABELS: Record<string, string> = {
-  'first-name': 'First name',
-  'last-name': 'Last name',
-  'identified-name': 'Identified name',
-  'preferred-name': 'Preferred name',
-  email: 'Email address',
-  phone: 'Phone number',
-  'contact-phone': 'Contact phone',
-  'contact-name': 'Contact name',
-  subject: 'Subject',
-  message: 'Message',
-  'referral-type': 'Referral type',
-  address: 'Address',
-  city: 'City',
-  suburb: 'Suburb',
-  'area-code': 'Area code',
-  'referral-source': 'How you heard about us',
-  services: 'Services',
-  'training-hours': 'Training hours',
-  'start-date': 'Start date',
-  'end-date': 'End date',
-  'other-topic-details': 'Other details',
-};
+import { FIELD_LABELS } from './field-labels';
 
 function humanizeFieldName(fieldName: string): string {
   return (
