@@ -214,6 +214,7 @@ async function fetchWithRetry(
     if (response.ok) return response;
 
     if (response.status === 401) {
+      await response.body?.cancel();
       invalidateTokenCache();
       const freshToken = await getAccessToken();
       const retryHeaders = new Headers(options.headers);
@@ -239,6 +240,7 @@ async function fetchWithRetry(
       );
     }
 
+    await response.body?.cancel();
     const delayMs = BASE_DELAY_MS * Math.pow(2, attempt) + Math.random() * 500;
     await new Promise((resolve) => setTimeout(resolve, delayMs));
   }
@@ -347,7 +349,13 @@ async function ensureSheet(formType: FormType): Promise<void> {
   );
 
   if (!sheetExists) {
-    await createSheet(formType);
+    try {
+      await createSheet(formType);
+    } catch (error) {
+      const isAlreadyExists =
+        error instanceof Error && error.message.includes('already exists');
+      if (!isAlreadyExists) throw error;
+    }
     await setHeaderRow(formType, expectedHeaders);
     verifiedSheets.set(formType, Date.now());
     return;
@@ -382,5 +390,11 @@ export async function appendFormSubmission(
     return fieldName ? (fields[fieldName] ?? '') : '';
   });
 
-  await appendRow(formType, rowValues);
+  try {
+    await appendRow(formType, rowValues);
+  } catch {
+    verifiedSheets.delete(formType);
+    await ensureSheet(formType);
+    await appendRow(formType, rowValues);
+  }
 }
