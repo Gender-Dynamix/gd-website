@@ -4,7 +4,11 @@ import {
   GOOGLE_SPREADSHEET_ID,
 } from 'astro:env/server';
 
-type FormType = 'home-contact' | 'general-inquiry' | 'referral' | 'training';
+export type FormType =
+  | 'home-contact'
+  | 'general-inquiry'
+  | 'referral'
+  | 'training';
 
 const SHEETS_API_BASE = 'https://sheets.googleapis.com/v4/spreadsheets';
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
@@ -89,6 +93,10 @@ const FIELD_TO_HEADER: Record<string, string> = {
   'other-topic-details': 'Other Topic Details',
   'additional-notes': 'Additional Notes',
 };
+
+const HEADER_TO_FIELD: Record<string, string> = Object.fromEntries(
+  Object.entries(FIELD_TO_HEADER).map(([field, header]) => [header, field]),
+);
 
 // --- JWT Auth ---
 
@@ -192,6 +200,10 @@ async function getAccessToken(): Promise<string> {
 
 // --- Retry Logic ---
 
+function invalidateTokenCache(): void {
+  cachedToken = null;
+}
+
 async function fetchWithRetry(
   url: string,
   options: RequestInit,
@@ -200,6 +212,22 @@ async function fetchWithRetry(
     const response = await fetch(url, options);
 
     if (response.ok) return response;
+
+    if (response.status === 401) {
+      invalidateTokenCache();
+      const freshToken = await getAccessToken();
+      const retryHeaders = new Headers(options.headers);
+      retryHeaders.set('Authorization', `Bearer ${freshToken}`);
+      const retryResponse = await fetch(url, {
+        ...options,
+        headers: retryHeaders,
+      });
+      if (retryResponse.ok) return retryResponse;
+      const errorBody = await retryResponse.text();
+      throw new Error(
+        `Google Sheets API error (${retryResponse.status}): ${errorBody}`,
+      );
+    }
 
     const isRetryable = response.status === 429 || response.status >= 500;
     const isLastAttempt = attempt === MAX_RETRIES - 1;
@@ -303,7 +331,15 @@ async function appendRow(sheetTitle: string, values: string[]): Promise<void> {
 
 // --- Sheet Validation ---
 
+const SHEET_CACHE_TTL_MS = 5 * 60 * 1000;
+const verifiedSheets = new Map<FormType, number>();
+
 async function ensureSheet(formType: FormType): Promise<void> {
+  const cachedAt = verifiedSheets.get(formType);
+  if (cachedAt && Date.now() - cachedAt < SHEET_CACHE_TTL_MS) {
+    return;
+  }
+
   const expectedHeaders = SHEET_HEADERS[formType];
   const metadata = await getSpreadsheetMetadata();
   const sheetExists = metadata.sheets.some(
@@ -313,6 +349,7 @@ async function ensureSheet(formType: FormType): Promise<void> {
   if (!sheetExists) {
     await createSheet(formType);
     await setHeaderRow(formType, expectedHeaders);
+    verifiedSheets.set(formType, Date.now());
     return;
   }
 
@@ -324,6 +361,8 @@ async function ensureSheet(formType: FormType): Promise<void> {
   if (!expectedHeadersPresent) {
     await setHeaderRow(formType, expectedHeaders);
   }
+
+  verifiedSheets.set(formType, Date.now());
 }
 
 // --- Public API ---
@@ -339,14 +378,8 @@ export async function appendFormSubmission(
 
   const rowValues = expectedHeaders.map((header) => {
     if (header === 'Timestamp') return timestamp;
-
-    for (const [fieldName, headerName] of Object.entries(FIELD_TO_HEADER)) {
-      if (headerName === header) {
-        return fields[fieldName] ?? '';
-      }
-    }
-
-    return '';
+    const fieldName = HEADER_TO_FIELD[header];
+    return fieldName ? (fields[fieldName] ?? '') : '';
   });
 
   await appendRow(formType, rowValues);

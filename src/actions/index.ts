@@ -2,9 +2,7 @@ import { ActionError, defineAction } from 'astro:actions';
 import { z } from 'astro:schema';
 import { TURNSTILE_SECRET_KEY } from 'astro:env/server';
 import { FIELD_LABELS } from '../scripts/field-labels';
-import { appendFormSubmission } from '../utils/google-sheets';
-
-type FormType = 'home-contact' | 'general-inquiry' | 'referral' | 'training';
+import { appendFormSubmission, type FormType } from '../utils/google-sheets';
 
 const REQUIRED_FIELDS: Record<FormType, string[]> = {
   'home-contact': ['first-name', 'last-name', 'email', 'subject', 'message'],
@@ -136,7 +134,8 @@ export const server = {
       // Submit to Google Sheets
       try {
         await appendFormSubmission(formType as FormType, fields);
-      } catch {
+      } catch (error) {
+        console.error('Google Sheets submission failed:', error);
         throw new ActionError({
           code: 'INTERNAL_SERVER_ERROR',
           message:
