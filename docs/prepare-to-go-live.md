@@ -22,19 +22,9 @@ The Turnstile widget must be configured to accept requests from the production d
 
 Keep the existing domains (`gd-website-acc.pages.dev`, `localhost`) so that preview and local development continue to work.
 
-## 3. Resend — Verify Sending Domain
+## 3. Google Sheets — Service Account Access
 
-Resend needs to be able to send email from your domain. If you haven't already done this during initial setup:
-
-1. Log in to [resend.com](https://resend.com) and go to **Domains**
-2. Add `gdnz.org` (or whichever domain `FORM_SENDER_EMAIL` uses)
-3. Resend will provide DNS records to add:
-   - **SPF** — authorises Resend to send on your behalf
-   - **DKIM** — signs outgoing emails for authenticity
-4. Add these records in Cloudflare DNS
-5. Wait for Resend to verify the domain (can take up to 72 hours, usually much faster)
-
-Once verified, the `FORM_SENDER_EMAIL` address (e.g. `forms@gdnz.org`) will be accepted by recipient mail servers without being flagged as spam.
+Form submissions are written to a Google Spreadsheet. Follow the [Google Sheets setup](environment.md#google-sheets-form-submissions) in the environment docs if not already done, then ensure the service account has **Editor** access to the production spreadsheet.
 
 ## 4. Environment Variables — Production
 
@@ -42,14 +32,14 @@ Set all environment variables for the **Production** environment in Cloudflare P
 
 In the dashboard: **Workers & Pages > gd-website > Settings > Environment Variables**
 
-| Variable                    | Value                                                | Encrypt? |
-| --------------------------- | ---------------------------------------------------- | -------- |
-| `PUBLIC_GA_MEASUREMENT_ID`  | Your GA4 measurement ID                              | No       |
-| `PUBLIC_TURNSTILE_SITE_KEY` | Site key from Turnstile widget                       | No       |
-| `RESEND_API_KEY`            | API key from Resend                                  | Yes      |
-| `TURNSTILE_SECRET_KEY`      | Secret key from Turnstile widget                     | Yes      |
-| `FORM_RECIPIENT_EMAIL`      | `info@gdnz.org` (or preferred inbox)                 | No       |
-| `FORM_SENDER_EMAIL`         | `forms@gdnz.org` (must match Resend verified domain) | No       |
+| Variable                       | Value                                    | Encrypt? |
+| ------------------------------ | ---------------------------------------- | -------- |
+| `PUBLIC_GA_MEASUREMENT_ID`     | Your GA4 measurement ID                  | No       |
+| `PUBLIC_TURNSTILE_SITE_KEY`    | Site key from Turnstile widget           | No       |
+| `TURNSTILE_SECRET_KEY`         | Secret key from Turnstile widget         | Yes      |
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Service account `client_email`           | Yes      |
+| `GOOGLE_PRIVATE_KEY`           | Service account `private_key` (full PEM) | Yes      |
+| `GOOGLE_SPREADSHEET_ID`        | Spreadsheet ID from URL                  | Yes      |
 
 ## 5. Google Analytics
 
@@ -74,5 +64,5 @@ Restrict preview deployments so only the team can access them, while keeping the
    - [ ] SSL certificate is active (padlock icon in browser)
    - [ ] Google Analytics is tracking (check GA4 Realtime report)
    - [ ] Turnstile widget appears on contact and services forms
-   - [ ] Submit a test form and confirm the email arrives at the recipient address
+   - [ ] Submit a test form and confirm it appears in the Google Spreadsheet
    - [ ] Preview deployments are restricted (visit a `*.pages.dev` preview URL in an incognito window — should prompt for authentication)
