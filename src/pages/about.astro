@@ -302,46 +302,34 @@ import '../styles/about.css';
     </div>
   </section>
 
-  <!--Image Carousel-->
-  <section class="carousel-section">
-    <div class="carousel-container">
-      <div class="carousel-main">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-slide">
-            <div class="carousel-placeholder">Gallery Image 1</div>
-          </div>
-          <div class="carousel-slide">
-            <div class="carousel-placeholder">Gallery Image 2</div>
-          </div>
-          <div class="carousel-slide">
-            <div class="carousel-placeholder">Gallery Image 3</div>
-          </div>
-          <div class="carousel-slide">
-            <div class="carousel-placeholder">Gallery Image 4</div>
-          </div>
-          <div class="carousel-slide">
-            <div class="carousel-placeholder">Gallery Image 5</div>
-          </div>
-        </div>
-        <!--Navigation Buttons-->
-        <button
-          class="carousel-nav-btn prev"
-          id="carouselPrevBtn"
-          aria-label="Previous slide"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
+  <!--Social Media Section-->
+  <section class="discover-us">
+    <div class="social-container">
+      <h2>Discover Us</h2>
+      <p>Stay connected and follow our journey on social media.</p>
 
-        <button
-          class="carousel-nav-btn next"
-          id="carouselNextBtn"
-          aria-label="Next slide"
+      <div class="social-grid">
+        <a
+          href="https://www.facebook.com/genderdynamixnz/"
+          class="social-btn facebook"
+          target="_blank"
         >
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="carousel-caption" id="carouselCaption">
-          <h3>Image Carousel</h3>
-        </div>
+          <div class="social-icon">
+            <i class="fa-brands fa-facebook"></i>
+          </div>
+          <span>Facebook</span>
+        </a>
+
+        <a
+          href="https://www.instagram.com/genderdynamixnz/"
+          class="social-btn instagram"
+          target="_blank"
+        >
+          <div class="social-icon">
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+          <span>Instagram</span>
+        </a>
       </div>
     </div>
   </section>
@@ -368,134 +356,5 @@ import '../styles/about.css';
         }
       });
     }
-
-    // Carousel
-    var slides = document.querySelectorAll('.carousel-slide');
-    var carouselContainer = document.querySelector('.carousel-container');
-
-    if (slides.length > 0) {
-      var currentSlide = 0;
-      var totalSlides = slides.length;
-
-      var captions = [
-        {
-          title: 'Community Gathering 2024',
-          description: 'Celebrating our community with pride and joy',
-        },
-        {
-          title: 'Support Workshop',
-          description: 'Providing education and resources to our community',
-        },
-        {
-          title: 'Pride Celebration',
-          description: 'Standing together in solidarity and celebration',
-        },
-        {
-          title: 'Our Team',
-          description: 'Dedicated to supporting and empowering our community',
-        },
-        {
-          title: 'Youth Support Program',
-          description: 'Creating safe spaces for young people to thrive',
-        },
-      ];
-
-      function updateCarousel() {
-        var track = document.getElementById('carouselTrack');
-        var captionElement = document.getElementById('carouselCaption');
-
-        if (track) {
-          track.style.transform = 'translateX(-' + currentSlide * 100 + '%)';
-        }
-
-        var indicators = document.querySelectorAll('.carousel-indicator');
-        if (indicators.length > 0) {
-          indicators.forEach(function (indicator, index) {
-            if (index === currentSlide) {
-              indicator.classList.add('active');
-            } else {
-              indicator.classList.remove('active');
-            }
-          });
-        }
-
-        if (captionElement && captions[currentSlide]) {
-          captionElement.innerHTML =
-            '<h3>' +
-            captions[currentSlide].title +
-            '</h3>' +
-            '<p>' +
-            captions[currentSlide].description +
-            '</p>';
-        }
-      }
-
-      function moveCarousel(direction) {
-        currentSlide += direction;
-        if (currentSlide < 0) {
-          currentSlide = totalSlides - 1;
-        } else if (currentSlide >= totalSlides) {
-          currentSlide = 0;
-        }
-        updateCarousel();
-      }
-
-      function goToSlide(index) {
-        currentSlide = index;
-        updateCarousel();
-      }
-
-      // Navigation buttons
-      var prevBtn = document.getElementById('carouselPrevBtn');
-      var nextBtn = document.getElementById('carouselNextBtn');
-      if (prevBtn)
-        prevBtn.addEventListener('click', function () {
-          moveCarousel(-1);
-        });
-      if (nextBtn)
-        nextBtn.addEventListener('click', function () {
-          moveCarousel(1);
-        });
-
-      // Autoplay
-      var autoplayInterval = setInterval(function () {
-        moveCarousel(1);
-      }, 5000);
-
-      window.addEventListener('beforeunload', function () {
-        clearInterval(autoplayInterval);
-      });
-
-      // Pause on hover
-      if (carouselContainer) {
-        carouselContainer.addEventListener('mouseenter', function () {
-          clearInterval(autoplayInterval);
-        });
-
-        carouselContainer.addEventListener('mouseleave', function () {
-          autoplayInterval = setInterval(function () {
-            moveCarousel(1);
-          }, 5000);
-        });
-
-        // Touch/swipe support
-        var touchStartX = 0;
-        var touchEndX = 0;
-
-        carouselContainer.addEventListener('touchstart', function (e) {
-          touchStartX = e.changedTouches[0].screenX;
-        });
-
-        carouselContainer.addEventListener('touchend', function (e) {
-          touchEndX = e.changedTouches[0].screenX;
-          if (touchEndX < touchStartX - 50) moveCarousel(1);
-          if (touchEndX > touchStartX + 50) moveCarousel(-1);
-        });
-      }
-
-      // Expose globally for keyboard handler
-      window.moveCarousel = moveCarousel;
-      window.goToSlide = goToSlide;
-    }
-  })();
+  });
 </script>

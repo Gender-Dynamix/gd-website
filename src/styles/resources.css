@@ -71,6 +71,12 @@
   object-fit: contain;
 }
 
+.nav-icon i {
+  color: #74668f;
+  object-fit: contain;
+  font-size: 1.5rem;
+}
+
 .quick-nav-btn h3 {
   font-size: 1.2rem;
   font-weight: 600;
@@ -660,6 +666,356 @@
   gap: 1rem;
   justify-content: center;
 }
+/* Featured PDF Resource Library Section */
+.featured-resource-section {
+  padding: 60px 5% 40px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-lavender) 0%,
+    var(--purple) 100%
+  );
+}
+
+.featured-resource-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-resource-card {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 50px;
+  background: white;
+  border-radius: 24px;
+  padding: 50px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(173, 152, 196, 0.15);
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.featured-resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.featured-left {
+  position: relative;
+  height: 450px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.featured-cover-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.12));
+}
+.featured-badge-label {
+  background-color: var(--primary-lavender);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.featured-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Keeps everything left-aligned */
+}
+
+.featured-content h2 {
+  font-size: 2.2rem;
+  color: var(--purple);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  max-width: 90%; /* Prevents text from hitting the edge */
+}
+
+.featured-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.featured-meta {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.featured-meta i {
+  color: #74668f;
+}
+
+.featured-meta span {
+  display: flex;
+  align-items: center; /* This centers the icon and text */
+  gap: 10px;
+  font-weight: 500;
+  color: #666;
+}
+
+/* The Button */
+.featured-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 35px;
+  background-color: var(--primary-lavender);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.featured-download-btn:hover {
+  background-color: var(--purple);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(173, 152, 196, 0.3);
+}
+
+/* PDF Resource Library Section */
+.resource-section {
+  padding: 80px 5% 60px;
+  background-color: var(--secondary-white);
+}
+
+.resource-section-heading {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.heading-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.heading-with-icon i {
+  font-size: 2rem;
+  color: var(--purple);
+}
+
+.resource-section-heading h2 {
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
+  font-weight: 600;
+  margin: 0;
+  color: var(--purple);
+}
+
+.resourcelib-section-heading p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  opacity: 0.8;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: var(--purple);
+}
+
+.resource-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* PDF card grid */
+.pdf-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.pdf-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pdf-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(173, 152, 196, 0.25);
+  border-color: var(--primary-lavender);
+}
+
+.pdf-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 25px;
+  text-align: center;
+}
+
+.pdf-content h3 {
+  font-size: 1.3rem;
+  color: var(--dark-purple);
+  margin-bottom: 0.625rem;
+  font-weight: 600;
+  line-height: 1.3;
+  min-height: 50px;
+}
+
+.pdf-content p {
+  flex-grow: 1;
+  font-size: 1rem;
+  color: var(--dark-purple);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  min-height: 48px;
+}
+
+.pdf-thumbnail {
+  position: relative;
+  height: 220px;
+  background-color: #fcfaff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.pdf-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top;
+}
+
+.pdf-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.pdf-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: auto;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #666;
+  padding: 12px;
+  background-color: var(--secondary-white);
+  border-radius: 8px;
+}
+
+.pdf-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pdf-meta i {
+  color: #3d2957;
+  font-size: 0.9rem;
+}
+
+.pdf-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: #3d2957;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.pdf-download-btn:hover {
+  background-color: var(--purple);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(43, 15, 70, 0.3);
+}
+
+.pdf-download-btn i {
+  font-size: 0.9rem;
+}
+
+/* The Fallback Style */
+.pdf-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-lavender);
+}
+
+.pdf-placeholder i {
+  font-size: 3.5rem;
+  opacity: 0.6;
+}
+
+.pdf-placeholder span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.pdf-icon-large {
+  color: white;
+  font-size: 4rem;
+  opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+.pdf-card:hover .pdf-icon-large {
+  transform: scale(1.1);
+}
+
+.pdf-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--purple);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pdf-content {
+  padding: 30px;
+}
+
+.pdf-content h3 {
+  font-size: 1.3rem;
+  color: var(--purple);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  min-height: 50px;
+}
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
@@ -732,8 +1088,56 @@
   .age-verify-footer .btn-modal-secondary {
     width: 100%;
   }
-}
+  .featured-resource-card {
+    grid-template-columns: 1fr;
+    padding: 30px;
+    gap: 30px;
+  }
 
+  .featured-left {
+    height: 300px;
+  }
+
+  .resource-section {
+    padding: 40px 5%;
+  }
+
+  .heading-with-icon {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .heading-with-icon i {
+    font-size: 1.5rem;
+  }
+
+  .pdf-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pdf-thumbnail {
+    height: 150px;
+  }
+
+  .pdf-icon-large {
+    font-size: 3rem;
+  }
+
+  .pdf-content {
+    padding: 25px;
+  }
+
+  .pdf-content h3 {
+    font-size: 1.2rem;
+    min-height: auto;
+  }
+
+  .pdf-content p {
+    min-height: auto;
+  }
+}
+/* TODO: Fix Tablet View for PDF Resource Library */
 @media (min-width: 769px) and (max-width: 1024px) {
   .quick-nav-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -775,5 +1179,41 @@
 
   .affiliate-body {
     padding: 35px;
+  }
+  .featured-resource-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 25px;
+    padding: 40px;
+  }
+
+  .featured-content {
+    align-items: center;
+  }
+
+  .featured-meta {
+    justify-content: center;
+    margin: 15px 0 25px;
+  }
+
+  .featured-download-btn {
+    margin: 0 auto;
+    width: fit-content;
+    min-width: 250px;
+  }
+  .featured-left,
+  .featured-tags {
+    align-items: center;
+    justify-content: center;
+  }
+  .pdf-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .pdf-content h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
   }
 }

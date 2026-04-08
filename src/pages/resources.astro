@@ -3,6 +3,118 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import AgeVerificationModal from '../components/AgeVerificationModal.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import '../styles/resources.css';
+
+//Define the PDF Data
+const providerPdfs = [
+  {
+    title: 'Standards of Care 8',
+    desc: 'WPATH international protocols for gender affirming health.',
+    file: 'Standards of Care 8.pdf',
+    image: '/images/pdf-thumbnails/Standards of Care 8_Thumbnail.jpg',
+    date: '2022',
+    size: '14.4 MB',
+  },
+  {
+    title: 'Primary Care GAHT Guidelines',
+    desc: 'Aotearoa New Zealand Guidelines for commencing GAHT for adults in primary care.',
+    file: 'Primary Care GAHT Guidelines.pdf',
+    image: '/images/pdf-thumbnails/Primary Care GAHT Guidelines_Thumbnail.jpg',
+    date: '2025',
+    size: '1.83 MB',
+  },
+];
+
+const featuredResource = {
+  title: 'Guidelines for Gender Affirming Healthcare in Aotearoa',
+  desc: 'Latest Aotearoa clinical updates from Health NZ / Te Whatu Ora.',
+  file: 'Gender-Affirming-Healthcare_GAHC_2025_February-final.pdf',
+  image:
+    '/images/pdf-thumbnails/Gender-Affirming-Healthcare_GAHC_2025_Thumbnail.jpg',
+  date: '2025',
+  size: '18.4 MB',
+  badge: 'New 2025',
+};
+
+const whanauPdfs = [
+  {
+    title: 'Te Whare Takatāpui',
+    desc: 'Celebrating trans tamariki within a Māori framework',
+    file: 'Kerekere, E. (2025). Te Whare Takatapui_ Celebrating Trans Tamariki. Wellington_ Tiwhanawhana Trust and Celebrating Trans Lives Project.pdf',
+    image:
+      '/images/pdf-thumbnails/Kerekere, E. (2025). Te Whare Takatapui_Thumbnail.jpg',
+    date: '2025',
+    size: '19 MB',
+  },
+  {
+    title: 'Part of the Whānau',
+    desc: 'Foundational support for Māori families and takatāpui.',
+    file: 'Takatapui-part-of-the-whanau-3-ed.pdf',
+    image:
+      '/images/pdf-thumbnails/Takatapui-part-of-the-whanau-3-ed_Thumbnail.jpg',
+    date: '2021',
+    size: '2.80 MB',
+  },
+  {
+    title: 'Whānau Journeys',
+    desc: 'Stories and guidance for families of takatāpui youth.',
+    file: 'Growing_Up_Takatāpui_Whānau_Journeys_Web_Version.pdf',
+    image:
+      '/images/pdf-thumbnails/Growing_Up_Takatāpui_Whānau_Journeys_Thumbnail.jpg',
+    date: '2023',
+    size: '18.5 MB',
+  },
+];
+
+const communityPdfs = [
+  {
+    title: 'Trans 101 Glossary',
+    desc: 'Simplified terminology from Gender Minorities Aotearoa.',
+    file: 'Trans 101 Glossary Simplified, Gender Minorities.pdf',
+    image:
+      '/images/pdf-thumbnails/Trans 101 Glossary Simplified, Gender Minorities_Thumbnail.jpg',
+    date: '2023',
+    size: '1.42 MB',
+  },
+  {
+    title: 'Storm Clouds & Rainbows',
+    desc: 'A resource for parents of transgender children in NZ',
+    file: 'Storm Clouds and Rainbows, For Parents.pdf',
+    image:
+      '/images/pdf-thumbnails/Storm Clouds and Rainbows, For Parents_Thumbnail.jpg',
+    date: '2024',
+    size: '4.56 MB',
+  },
+  {
+    title: 'Supporting Rainbow People',
+    desc: 'Practical guide for mental health support in Aotearoa.',
+    file: 'Supporting Aotearoa’s Rainbow People - English Version.pdf',
+    image:
+      '/images/pdf-thumbnails/Supporting Aotearoa’s Rainbow People - Thumbnail.jpg',
+    date: '2023',
+    size: '8.04 MB',
+  },
+];
+
+const sections = [
+  {
+    id: 'provider-resources',
+    title: 'Provider Resources',
+    icon: 'fa-file-medical',
+    data: providerPdfs,
+  },
+  {
+    id: 'whanau-resources',
+    title: 'Whānau & Takatāpui',
+    icon: 'fa-users',
+    data: whanauPdfs,
+  },
+  {
+    id: 'community-resources',
+    title: 'Community Education',
+    icon: 'fa-book-open',
+    data: communityPdfs,
+  },
+];
 ---
 
 <BaseLayout
@@ -60,9 +172,15 @@ import '../styles/resources.css';
         </a>
         <a href="#video-resources" class="quick-nav-btn">
           <div class="nav-icon">
-            <img src="/images/icons-03.webp" alt="Video resources" />
+            <i class="fa-solid fa-circle-play"></i>
           </div>
-          <h3>Video Resources</h3>
+          <h3>Video Gallery</h3>
+        </a>
+        <a href="#downloads" class="quick-nav-btn">
+          <div class="nav-icon">
+            <i class="fa-solid fa-book-medical"></i>
+          </div>
+          <h3>Resource Library</h3>
         </a>
       </div>
     </div>
@@ -364,6 +482,13 @@ import '../styles/resources.css';
         <ul class="gear-links-list">
           <li>
             <a
+              href="https://transcendgarments.com/"
+              target="_blank"
+              rel="noopener noreferrer">Transcend Gender Affirming Garments</a
+            >
+          </li>
+          <li>
+            <a
               href="https://www.transshape.co.nz/"
               target="_blank"
               rel="noopener noreferrer">TransShape</a
@@ -374,6 +499,13 @@ import '../styles/resources.css';
               href="https://www.bindme.co.nz/"
               target="_blank"
               rel="noopener noreferrer">BindMe</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://sockdrawerheroes.com/"
+              target="_blank"
+              rel="noopener noreferrer">Sock Drawer Heroes</a
             >
           </li>
           <li>
@@ -393,13 +525,6 @@ import '../styles/resources.css';
               href="https://www.tomscout.com/en-nz"
               target="_blank"
               rel="noopener noreferrer">TomboyX</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://sockdrawerheroes.com/"
-              target="_blank"
-              rel="noopener noreferrer">Sock Drawer Heroes</a
             >
           </li>
           <li>
@@ -480,13 +605,6 @@ import '../styles/resources.css';
               rel="noopener noreferrer">Spectrum Outfitters</a
             >
           </li>
-          <li>
-            <a
-              href="https://transcendgarments.com/"
-              target="_blank"
-              rel="noopener noreferrer">Transcend Gender Affirming Garments</a
-            >
-          </li>
         </ul>
       </div>
 
@@ -494,6 +612,20 @@ import '../styles/resources.css';
       <div class="gear-category-card pink">
         <h3>Swimwear</h3>
         <ul class="gear-links-list">
+          <li>
+            <a
+              href="https://emroce.com/"
+              target="_blank"
+              rel="noopner noreferrer">Emroce</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://outplay.co.nz/"
+              target="_blank"
+              rel="noopener noreferrer">Outplay</a
+            >
+          </li>
           <li>
             <a
               href="https://rubyshines.com/"
@@ -538,13 +670,6 @@ import '../styles/resources.css';
           </li>
           <li>
             <a
-              href="https://outplay.co.nz/"
-              target="_blank"
-              rel="noopener noreferrer">Outplay</a
-            >
-          </li>
-          <li>
-            <a
               href="https://tomboyx.com"
               target="_blank"
               rel="noopener noreferrer">TomboyX</a
@@ -559,16 +684,16 @@ import '../styles/resources.css';
         <ul class="gear-links-list">
           <li>
             <a
-              href="https://rodeoh.com/"
+              href="https://sockdrawerheroes.com/"
               target="_blank"
-              rel="noopener noreferrer">Rodeoh</a
+              rel="noopener noreferrer">Sock Drawer Heroes</a
             >
           </li>
           <li>
             <a
-              href="https://sockdrawerheroes.com/"
+              href="https://rodeoh.com/"
               target="_blank"
-              rel="noopener noreferrer">Sock Drawer Heroes</a
+              rel="noopener noreferrer">Rodeoh</a
             >
           </li>
           <li>
@@ -645,16 +770,16 @@ import '../styles/resources.css';
         <ul class="gear-links-list">
           <li>
             <a
-              href="https://www.etsy.com/nz/shop/LeoLines"
+              href="https://sockdrawerheroes.com/"
               target="_blank"
-              rel="noopener noreferrer">Leo Lines (Etsy)</a
+              rel="noopener noreferrer">Sock Drawer Heroes</a
             >
           </li>
           <li>
             <a
-              href="https://sockdrawerheroes.com/"
+              href="https://www.etsy.com/nz/shop/LeoLines"
               target="_blank"
-              rel="noopener noreferrer">Sock Drawer Heroes</a
+              rel="noopener noreferrer">Leo Lines (Etsy)</a
             >
           </li>
           <li>
@@ -720,7 +845,7 @@ import '../styles/resources.css';
 
   <section class="video-resources" id="video-resources">
     <div class="section-heading">
-      <h2>Video Resources</h2>
+      <h2>Video Gallery</h2>
       <p>
         Educational videos to support your journey and expand your understanding
       </p>
@@ -809,4 +934,119 @@ import '../styles/resources.css';
       </div>
     </div>
   </section>
+  <!-- Featured Resource Highlight -->
+  <div class="section-heading" id="downloads">
+    <h2>Resource Library</h2>
+    <p>
+      Essential clinical guidelines, whānau support documents, and community
+      education resources available for download. Supporting informed healthcare
+      and empowered identities across New Zealand.
+    </p>
+  </div>
+  <section class="featured-resource-section">
+    <div class="featured-resource-container">
+      <div class="featured-resource-card">
+        <div class="featured-left">
+          {
+            featuredResource.image ? (
+              <img
+                src={featuredResource.image}
+                alt={featuredResource.title}
+                class="featured-cover-img"
+              />
+            ) : (
+              <div class="pdf-placeholder featured-placeholder">
+                <i class="fas fa-file-pdf pdf-icon-large" />
+              </div>
+            )
+          }
+        </div>
+
+        <div class="featured-content">
+          <div class="featured-badge-label">{featuredResource.badge}</div>
+          <h2>{featuredResource.title}</h2>
+          <p>{featuredResource.desc}</p>
+
+          <div class="featured-meta">
+            <span><i class="fas fa-file-pdf"></i> PDF</span>
+            <span><i class="fas fa-hdd"></i> {featuredResource.size}</span>
+          </div>
+
+          <a
+            href={`/pdfs/${featuredResource.file}`}
+            class="featured-download-btn"
+            download
+          >
+            Download Resource <i class="fa-solid fa-download"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Resource Sections (Dynamic) -->
+  {
+    sections.map((section) => (
+      <section id={section.id} class="resource-section">
+        <div class="resource-section-heading">
+          <div class="heading-with-icon">
+            <i class={`fas ${section.icon}`} />
+            <h2>{section.title}</h2>
+          </div>
+          <p>
+            {section.id === 'provider-resources' &&
+              'Clinical guidelines and protocols for healthcare professionals'}
+            {section.id === 'whanau-resources' &&
+              'Resources for Māori whānau and takatāpui communities'}
+            {section.id === 'community-resources' &&
+              'Educational materials for community members and allies'}
+          </p>
+        </div>
+
+        <div class="resource-container">
+          <div class="pdf-cards-grid">
+            {section.data.map((pdf) => (
+              <div class="pdf-card">
+                <div class="pdf-thumbnail">
+                  {pdf.image ? (
+                    <img
+                      src={pdf.image}
+                      alt={pdf.title}
+                      class="pdf-cover-img"
+                    />
+                  ) : (
+                    <div class="pdf-icon-large">
+                      <i class="fas fa-file-pdf" />
+                    </div>
+                  )}
+                  <div class="pdf-badge">{pdf.date}</div>
+                </div>
+
+                <div class="pdf-content">
+                  <h3>{pdf.title}</h3>
+                  <p>{pdf.desc}</p>
+                  <div class="pdf-meta">
+                    <span>
+                      <i class="fas fa-file-pdf" />
+                      PDF
+                    </span>
+                    <span>
+                      <i class="fas fa-hdd" />
+                      {pdf.size}
+                    </span>
+                  </div>
+                  <a
+                    href={`/pdfs/${pdf.file}`}
+                    class="pdf-download-btn"
+                    download
+                  >
+                    Download PDF <i class="fa-solid fa-download" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
 </BaseLayout>
