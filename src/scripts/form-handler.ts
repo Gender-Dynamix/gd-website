@@ -1,6 +1,38 @@
 import { actions, isInputError } from 'astro:actions';
 import { FIELD_LABELS } from './field-labels';
 
+(window as any).onGISuccess = function () {
+  const btn = document.getElementById('gi-submit-btn') as HTMLButtonElement;
+  // Find the container for the GI form to hide it
+  const container = document.querySelector('#gi-form .turnstile-container');
+
+  if (btn) {
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  }
+  if (container) {
+    container.classList.add('hidden-success');
+  }
+};
+
+(window as any).onReferralSuccess = function () {
+  const btn = document.getElementById(
+    'referral-submit-btn',
+  ) as HTMLButtonElement;
+  // Find the container for the Referral form to hide it
+  const container = document.querySelector(
+    '#referral-form .turnstile-container',
+  );
+
+  if (btn) {
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  }
+  if (container) {
+    container.classList.add('hidden-success');
+  }
+};
+
 function humanizeFieldName(fieldName: string): string {
   return (
     FIELD_LABELS[fieldName] ||

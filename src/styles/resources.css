@@ -908,6 +908,10 @@
   transition: transform 0.3s ease;
 }
 
+.pdf-card:hover .pdf-cover-img {
+  transform: scale(1.1); /* 10% zoom */
+}
+
 .pdf-meta {
   display: flex;
   gap: 1rem;
@@ -961,11 +965,11 @@
 
 /* The Fallback Style */
 .pdf-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: var(--primary-lavender);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: transparent;
+  padding: 0;
 }
 
 .pdf-placeholder i {
@@ -981,14 +985,23 @@
 }
 
 .pdf-icon-large {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
   color: white;
-  font-size: 4rem;
+  border-radius: 8px;
   opacity: 0.9;
-  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
 }
 
-.pdf-card:hover .pdf-icon-large {
-  transform: scale(1.1);
+.pdf-icon-large i {
+  font-size: 5rem; /* Increase size so it doesn't look 'lost' in the box */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .pdf-badge {
@@ -1137,7 +1150,8 @@
     min-height: auto;
   }
 }
-/* TODO: Fix Tablet View for PDF Resource Library */
+
+/* Portrait Tablet View*/
 @media (min-width: 769px) and (max-width: 1024px) {
   .quick-nav-grid {
     grid-template-columns: repeat(2, 1fr);

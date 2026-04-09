@@ -92,7 +92,7 @@ export const server = {
       }
 
       // Honeypot check — if filled, silently succeed
-      if (fields['website']?.trim()) {
+      if (fields['website'] && fields['website'].trim().length > 0) {
         return { success: true };
       }
 

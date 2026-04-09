@@ -447,7 +447,7 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   padding: 0 5%;
   width: 100%;
@@ -552,7 +552,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  grid-column: 1/-1;
+  grid-column: 1 / -1;
   background: white;
   border-radius: 12px;
   padding: 25px;

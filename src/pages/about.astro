@@ -336,25 +336,24 @@ import '../styles/about.css';
 
   <Lightbox slot="after-footer" />
 </BaseLayout>
-
 <script is:inline>
-  (function () {
-    // Marquee play/pause
-    var marqueeTrack = document.querySelector('.marquee-track');
-    var pauseBtn = document.getElementById('marqueePauseBtn');
+  const marqueeTrack = document.querySelector('.marquee-track');
+  const pauseBtn = document.getElementById('marqueePauseBtn');
 
-    if (pauseBtn && marqueeTrack) {
-      pauseBtn.addEventListener('click', function () {
-        var isPaused = marqueeTrack.classList.toggle('paused');
-        var icon = pauseBtn.querySelector('i');
-        if (isPaused) {
-          icon.className = 'fas fa-play';
-          pauseBtn.setAttribute('aria-label', 'Play Animation');
-        } else {
-          icon.className = 'fas fa-pause';
-          pauseBtn.setAttribute('aria-label', 'Pause Animation');
-        }
-      });
-    }
-  });
+  if (pauseBtn && marqueeTrack) {
+    pauseBtn.addEventListener('click', function () {
+      const isPaused = marqueeTrack.classList.toggle('paused');
+      const icon = pauseBtn.querySelector('i');
+
+      pauseBtn.setAttribute('aria-pressed', isPaused);
+
+      if (isPaused) {
+        icon.className = 'fas fa-play';
+        pauseBtn.setAttribute('aria-label', 'Play Animation');
+      } else {
+        icon.className = 'fas fa-pause';
+        pauseBtn.setAttribute('aria-label', 'Pause Animation');
+      }
+    });
+  }
 </script>

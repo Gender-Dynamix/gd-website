@@ -604,6 +604,7 @@ textarea {
   max-height: 0;
   opacity: 0;
   margin-top: 0;
+  pointer-events: none;
 }
 
 /* Optional: Keep the Submit button disabled until validated */
