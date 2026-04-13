@@ -15,19 +15,30 @@ import { FIELD_LABELS } from './field-labels';
   }
 };
 
-(window as any).onReferralSuccess = function () {
+// 1. Tell TypeScript that window has this specific property
+declare global {
+  interface Window {
+    onReferralSuccess: () => void;
+  }
+}
+
+window.onReferralSuccess = function () {
+  // 2. Cast to the specific element type or null
   const btn = document.getElementById(
     'referral-submit-btn',
-  ) as HTMLButtonElement;
-  // Find the container for the Referral form to hide it
+  ) as HTMLButtonElement | null;
+
+  // 3. Use HTMLElement for the container so .style or .classList are accessible
   const container = document.querySelector(
     '#referral-form .turnstile-container',
-  );
+  ) as HTMLElement | null;
 
+  // 4. Use "Safe Guards" - only run logic if the elements actually exist in the DOM
   if (btn) {
     btn.disabled = false;
     btn.style.opacity = '1';
   }
+
   if (container) {
     container.classList.add('hidden-success');
   }

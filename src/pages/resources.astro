@@ -4,115 +4,125 @@ import AgeVerificationModal from '../components/AgeVerificationModal.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import '../styles/resources.css';
 
-//Define the PDF Data
-const providerPdfs = [
+//Kiwi Organisations - Grouped by Category
+const orgSections = [
   {
-    title: 'Standards of Care 8',
-    desc: 'WPATH international protocols for gender affirming health.',
-    file: 'Standards of Care 8.pdf',
-    image: '/images/pdf-thumbnails/Standards of Care 8_Thumbnail.jpg',
-    date: '2022',
-    size: '14.4 MB',
+    id: 'healthcare-orgs',
+    title: 'Healthcare & Medical',
+    icon: 'fa-hospital',
+    description:
+      'Clinical guidelines, gender-affirming care providers, and health organisations across Aotearoa',
+    accent: 'blue',
+    orgs: [
+      {
+        name: 'Health New Zealand — Te Whatu Ora',
+        desc: 'Gender affirming care and support services from the national health authority',
+        logo: '/images/organisation-logos/healthnz-logo-v2.svg',
+        logoClass: 'logo-light-bg',
+        url: 'https://info.health.nz/conditions-treatments/mental-health/gender-affirming-care/',
+        tag: 'Health Authority',
+      },
+      {
+        name: 'PATHA',
+        desc: 'The Professional Association for Transgender Health Aotearoa — an interdisciplinary organisation promoting the health, wellbeing and rights of transgender people.',
+        logo: '/images/organisation-logos/patha-logo.png',
+        url: 'https://patha.nz/',
+        tag: 'Professional Association',
+      },
+      {
+        name: 'WPATH',
+        desc: 'The World Professional Association for Transgender Health publishes the international Standards of Care for transgender healthcare',
+        logo: '/images/organisation-logos/wpath_logo_words-1.png',
+        url: 'https://wpath.org/',
+        tag: 'International Health Body',
+      },
+    ],
   },
   {
-    title: 'Primary Care GAHT Guidelines',
-    desc: 'Aotearoa New Zealand Guidelines for commencing GAHT for adults in primary care.',
-    file: 'Primary Care GAHT Guidelines.pdf',
-    image: '/images/pdf-thumbnails/Primary Care GAHT Guidelines_Thumbnail.jpg',
-    date: '2025',
-    size: '1.83 MB',
-  },
-];
-
-const featuredResource = {
-  title: 'Guidelines for Gender Affirming Healthcare in Aotearoa',
-  desc: 'Latest Aotearoa clinical updates from Health NZ / Te Whatu Ora.',
-  file: 'Gender-Affirming-Healthcare_GAHC_2025_February-final.pdf',
-  image:
-    '/images/pdf-thumbnails/Gender-Affirming-Healthcare_GAHC_2025_Thumbnail.jpg',
-  date: '2025',
-  size: '18.4 MB',
-  badge: 'New 2025',
-};
-
-const whanauPdfs = [
-  {
-    title: 'Te Whare Takatāpui',
-    desc: 'Celebrating trans tamariki within a Māori framework',
-    file: 'Kerekere, E. (2025). Te Whare Takatapui_ Celebrating Trans Tamariki. Wellington_ Tiwhanawhana Trust and Celebrating Trans Lives Project.pdf',
-    image:
-      '/images/pdf-thumbnails/Kerekere, E. (2025). Te Whare Takatapui_Thumbnail.jpg',
-    date: '2025',
-    size: '19 MB',
-  },
-  {
-    title: 'Part of the Whānau',
-    desc: 'Foundational support for Māori families and takatāpui.',
-    file: 'Takatapui-part-of-the-whanau-3-ed.pdf',
-    image:
-      '/images/pdf-thumbnails/Takatapui-part-of-the-whanau-3-ed_Thumbnail.jpg',
-    date: '2021',
-    size: '2.80 MB',
+    id: 'mental-health-orgs',
+    title: 'Mental Health & Support',
+    icon: 'fa-heart',
+    description:
+      'Rainbow-affirming counselling, peer support, and mental health services',
+    accent: 'pink',
+    orgs: [
+      {
+        name: 'Outline Aotearoa',
+        desc: 'Nationwide rainbow support, counselling, and trans and non-binary peer support service.',
+        logo: '/images/organisation-logos/outlineaotearoa.jpg',
+        url: 'https://outline.org.nz/',
+        tag: 'Support Service',
+      },
+      {
+        name: 'Mental Health Foundation of New Zealand',
+        desc: 'Resources on mental health and wellbeing for all New Zealanders',
+        logo: '/images/organisation-logos/mhf.svg',
+        url: 'https://mentalhealth.org.nz/',
+        tag: 'Foundation',
+      },
+      {
+        name: 'Rainbow Mental Health',
+        desc: 'A guide and resource hub for mental health professionals and providers supporting rainbow communities in Aotearoa',
+        logo: '/images/organisation-logos/rmh-logo.webp',
+        url: 'http://rainbowmentalhealth.nz/',
+        tag: 'Clinical Resource',
+      },
+      {
+        name: 'Rainbow Youth',
+        desc: 'An organisation that supports gender-diverse and rainbow young people across New Zealand',
+        logo: '/images/organisation-logos/ry-logo.png',
+        url: 'https://ry.org.nz/',
+        tag: 'Youth Support',
+      },
+    ],
   },
   {
-    title: 'Whānau Journeys',
-    desc: 'Stories and guidance for families of takatāpui youth.',
-    file: 'Growing_Up_Takatāpui_Whānau_Journeys_Web_Version.pdf',
-    image:
-      '/images/pdf-thumbnails/Growing_Up_Takatāpui_Whānau_Journeys_Thumbnail.jpg',
-    date: '2023',
-    size: '18.5 MB',
-  },
-];
-
-const communityPdfs = [
-  {
-    title: 'Trans 101 Glossary',
-    desc: 'Simplified terminology from Gender Minorities Aotearoa.',
-    file: 'Trans 101 Glossary Simplified, Gender Minorities.pdf',
-    image:
-      '/images/pdf-thumbnails/Trans 101 Glossary Simplified, Gender Minorities_Thumbnail.jpg',
-    date: '2023',
-    size: '1.42 MB',
-  },
-  {
-    title: 'Storm Clouds & Rainbows',
-    desc: 'A resource for parents of transgender children in NZ',
-    file: 'Storm Clouds and Rainbows, For Parents.pdf',
-    image:
-      '/images/pdf-thumbnails/Storm Clouds and Rainbows, For Parents_Thumbnail.jpg',
-    date: '2024',
-    size: '4.56 MB',
+    id: 'education-orgs',
+    title: 'Education & Schools',
+    icon: 'fa-graduation-cap',
+    description:
+      'Resources for educators, schools and young people in Aotearoa.',
+    accent: 'green',
+    orgs: [
+      {
+        name: 'InsideOUT Kōaro',
+        desc: 'A national charity making Aotearoa safer for all rainbow and takatāpui people — providing resources, workshops, consulting, advocacy and support',
+        logo: '/images/organisation-logos/insideout-logo-transparent-550.png',
+        url: 'https://insideout.org.nz/',
+        tag: 'Rainbow Education',
+      },
+      {
+        name: 'Inclusive Education (TKI)',
+        desc: 'How New Zealand schools support trans and other rainbow students — a government resource for educators',
+        logo: '/images/organisation-logos/tki-logo.jpg',
+        url: 'https://inclusive.tki.org.nz/',
+        tag: 'Government Resource',
+      },
+    ],
   },
   {
-    title: 'Supporting Rainbow People',
-    desc: 'Practical guide for mental health support in Aotearoa.',
-    file: 'Supporting Aotearoa’s Rainbow People - English Version.pdf',
-    image:
-      '/images/pdf-thumbnails/Supporting Aotearoa’s Rainbow People - Thumbnail.jpg',
-    date: '2023',
-    size: '8.04 MB',
-  },
-];
-
-const sections = [
-  {
-    id: 'provider-resources',
-    title: 'Provider Resources',
-    icon: 'fa-file-medical',
-    data: providerPdfs,
-  },
-  {
-    id: 'whanau-resources',
-    title: 'Whānau & Takatāpui',
+    id: 'community-orgs',
+    title: 'Community & Research',
     icon: 'fa-users',
-    data: whanauPdfs,
-  },
-  {
-    id: 'community-resources',
-    title: 'Community Education',
-    icon: 'fa-book-open',
-    data: communityPdfs,
+    description:
+      'Peer-led organisations, community information hubs, and research initiatives',
+    accent: 'purple',
+    orgs: [
+      {
+        name: 'Gender Minorities Aotearoa',
+        desc: 'A peer-led organisation providing a national service and information database for gender minorities across Aotearoa',
+        logo: '/images/organisation-logos/gma-logo.png',
+        url: 'https://genderminorities.com/',
+        tag: 'Community Organisation',
+      },
+      {
+        name: 'Counting Ourselves',
+        desc: 'An anonymous health survey designed by and for trans and non-binary people living in Aotearoa New Zealand',
+        logo: '/images/organisation-logos/counting-ourselves_logo-web-original.png',
+        url: 'https://countingourselves.nz/',
+        tag: 'Research & Data',
+      },
+    ],
   },
 ];
 ---
@@ -176,12 +186,6 @@ const sections = [
           </div>
           <h3>Video Gallery</h3>
         </a>
-        <a href="#downloads" class="quick-nav-btn">
-          <div class="nav-icon">
-            <i class="fa-solid fa-book-medical"></i>
-          </div>
-          <h3>Resource Library</h3>
-        </a>
       </div>
     </div>
   </section>
@@ -192,263 +196,81 @@ const sections = [
     <div class="section-heading">
       <h2>Kiwi Organisations</h2>
       <p>
-        Connect with transgender and gender diverse organizations across
+        Connect with transgender and gender diverse organisations across
         Aotearoa New Zealand
       </p>
     </div>
 
-    <div class="kiwi-cards-container">
-      <!-- Card 1 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/outlineaotearoa.jpg"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">Mental Health & Support Organisation</span
-          >
-          <h3>Outline Aotearoa</h3>
-          <p>
-            Nationwide rainbow support, counselling, and trans and nonbinary
-            peer support service.
-          </p>
-          <a href="https://outline.org.nz/" class="kiwi-link">Visit Website!</a>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img logo-light-bg">
-          <img
-            src="/images/organisation-logos/mhf.svg"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">Mental Health & Support Organisation</span
-          >
-          <h3>Mental Health Foundation of New Zealand</h3>
-          <p>Resources on mental health and wellbeing.</p>
-          <a href="https://mentalhealth.org.nz/" class="kiwi-link"
-            >Visit Website!</a
-          >
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/insideout-logo-transparent-550.png"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">Mental Health & Support Organisation</span
-          >
-          <h3>InsideOUT</h3>
-          <p>
-            InsideOUT K&#333;aro is a national charity working to make Aotearoa
-            safer for all rainbow and takat&#257;pui people. We provide
-            resources, workshops, consulting, advocacy and support for anything
-            concerning rainbow (LGBTQIA+) communities.
-          </p>
-          <a href="https://insideout.org.nz/" class="kiwi-link"
-            >Visit Website!</a
-          >
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/tki-logo.jpg"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category"
-            >Gender Diverse Education Organisation</span
-          >
-          <h3>Inclusive Education</h3>
-          <p>
-            How New Zealand schools support trans and other rainbow students.
-          </p>
-          <a href="https://inclusive.tki.org.nz/" class="kiwi-link"
-            >Visit Website!</a
-          >
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/patha-logo.png"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">Gender Diverse Health Organisation</span>
-          <h3>PATHA</h3>
-          <p>
-            The Professional Association for Transgender Health Aotearoa is an
-            interdisciplinary professional organisation working to promote the
-            health, wellbeing and rights of transgender people.
-          </p>
-          <a href="https://patha.nz/" class="kiwi-link">Visit Website!</a>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/ry-logo.png"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">Mental Health & Support Organisation</span
-          >
-          <h3>Rainbow Youth</h3>
-          <p>
-            An organisation that supports gender-diverse young people in New
-            Zealand.
-          </p>
-          <a href="https://ry.org.nz/" class="kiwi-link">Visit Website!</a>
-        </div>
-      </div>
-
-      <!-- Card 7 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/rmh-logo.webp"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">Gender Diverse Health Organisation</span>
-          <h3>Rainbow Mental Health</h3>
-          <p>
-            This guide is for anyone who provides mental health support in
-            Aotearoa, including counsellors, psychologists, psychiatrists,
-            psychotherapists, tohunga (M&#257;ori healers), social workers,
-            mental health nurses, and GPs.
-          </p>
-          <a href="http://rainbowmentalhealth.nz/" class="kiwi-link"
-            >Visit Website!</a
-          >
-        </div>
-      </div>
-
-      <!-- Card 8 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/counting-ourselves_logo-web-original.png"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category"
-            >Gender Diverse Informational Organisation</span
-          >
-          <h3>Counting Ourselves</h3>
-          <p>
-            Counting Ourselves is an anonymous health survey designed by and for
-            trans and non-binary people living in Aotearoa New Zealand.
-          </p>
-          <a href="https://countingourselves.nz/" class="kiwi-link"
-            >Visit Website!</a
-          >
-        </div>
-      </div>
-
-      <!-- Card 9 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/gma-logo.png"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category"
-            >Gender Diverse Informational Organisation</span
-          >
-          <h3>Gender Minorities Aotearoa</h3>
-          <p>
-            A peer-led organisation that provides a national service and
-            information database.
-          </p>
-          <a href="https://genderminorities.com/" class="kiwi-link"
-            >Visit Website!</a
-          >
-        </div>
-      </div>
-
-      <!-- Card 10 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img logo-light-bg">
-          <img
-            src="/images/organisation-logos/healthnz-logo-v2.svg"
-            alt="Kiwi Organisation"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">Gender Diverse Health Organisation</span>
-          <h3>Health New Zealand</h3>
-          <p>Gender affirming care and support services.</p>
-          <a
-            href="https://info.health.nz/conditions-treatments/mental-health/gender-affirming-care/"
-            class="kiwi-link">Visit Website!</a
-          >
-        </div>
-      </div>
-
-      <!-- Card 11 -->
-      <div class="kiwi-card">
-        <div class="kiwi-img">
-          <img
-            src="/images/organisation-logos/wpath_logo_words-1.png"
-            alt="WPATH logo"
-          />
-        </div>
-        <div class="kiwi-body">
-          <span class="kiwi-category">
-            Worldwide Gender Diverse Health Organisation</span
-          >
-          <h3>WPATH</h3>
-          <p>
-            Standards of Care for Transgender Healthcare [mental health &
-            medical]
-          </p>
-          <a href="https://wpath.org/" class="kiwi-link">Visit Website!</a>
-        </div>
-      </div>
+    <!--Secondary Navigation for Organisation Resources -->
+    <div class="org-subnav">
+      {
+        orgSections.map((s) => (
+          <a href={`#${s.id}`} class={`org-subnav-pill accent-${s.accent}`}>
+            <i class={`fas ${s.icon}`} />
+            {s.title}
+          </a>
+        ))
+      }
     </div>
   </section>
 
-  <section class="affiliate-section">
-    <div class="section-heading affiliate-heading">
+  <!--Dynamic org category sections -->
+  {
+    orgSections.map((section) => (
+      <section id={section.id} class={`org-section accent-${section.accent}`}>
+        <div class="org-section-heading">
+          <div class="heading-with-icon">
+            <i class={`fas ${section.icon}`} />
+            <h2>{section.title}</h2>
+          </div>
+          <p>{section.description}</p>
+        </div>
+
+        <div class="org-container">
+          <div class="org-cards-grid">
+            {section.orgs.map((org) => (
+              <div class="kiwi-card">
+                <div
+                  class={`kiwi-img ${org.logoClass ? `${org.logoClass}` : ''}`}
+                >
+                  <img src={org.logo} alt={org.name} />
+                </div>
+                <div class="kiwi-body">
+                  <span class="kiwi-category">{org.tag}</span>
+                  <h3>{org.name}</h3>
+                  <p>{org.desc}</p>
+                  <a
+                    href={org.url}
+                    class="kiwi-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit Website
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="partner-feature">
+    <div class="section-heading partner-heading">
       <h2>Featured Partner - Transcend Garments</h2>
       <p>Our trusted partner for high-quality gender affirming gear</p>
     </div>
 
-    <div class="affiliate-card">
-      <div class="affiliate-img">
+    <div class="resource-highlight-card">
+      <div class="resource-img">
         <img
           src="/images/organisation-logos/transcendgarments.png"
-          alt="affiliate Organisation"
+          alt="Transcend Garments Logo"
         />
       </div>
-      <div class="affiliate-body">
-        <span class="affiliate-category">Featured Partner</span>
+      <div class="resource-body">
+        <span class="resource-label">Featured Partner</span>
         <h3>Transcend Garments</h3>
         <p>
           Transcend is a small New Zealand-based business, dedicated to creating
@@ -459,7 +281,7 @@ const sections = [
           new, accessible products tailored to their needs. As a brand, we aim
           to push the boundaries of what gender-affirming clothing can be.
         </p>
-        <a href="https://transcendgarments.com/" class="affiliate-link"
+        <a href="https://transcendgarments.com/" class="resource-btn"
           >Visit Website!</a
         >
       </div>
@@ -484,130 +306,73 @@ const sections = [
             <a
               href="https://transcendgarments.com/"
               target="_blank"
-              rel="noopener noreferrer">Transcend Gender Affirming Garments</a
+              rel="noopener noreferrer"
             >
+              <strong>Transcend Gender Affirming Garments (NZ)</strong>
+            </a>
           </li>
           <li>
             <a
               href="https://www.transshape.co.nz/"
               target="_blank"
-              rel="noopener noreferrer">TransShape</a
-            >
+              rel="noopener noreferrer">TransShape (NZ)</a>
           </li>
           <li>
             <a
               href="https://www.bindme.co.nz/"
               target="_blank"
-              rel="noopener noreferrer">BindMe</a
-            >
+              rel="noopener noreferrer">BindMe (NZ)</a>
           </li>
+
           <li>
             <a
               href="https://sockdrawerheroes.com/"
               target="_blank"
-              rel="noopener noreferrer">Sock Drawer Heroes</a
-            >
-          </li>
-          <li>
-            <a href="https://gc2b.co/" target="_blank" rel="noopener noreferrer"
-              >GC2B</a
-            >
+              rel="noopener noreferrer">Sock Drawer Heroes (AU)</a>
           </li>
           <li>
             <a
-              href="https://transtape.life/"
+              href="https://tuckandbind.com/"
               target="_blank"
-              rel="noopener noreferrer">TransTape</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.tomscout.com/en-nz"
-              target="_blank"
-              rel="noopener noreferrer">TomboyX</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.underworks.com/"
-              target="_blank"
-              rel="noopener noreferrer">Underworks</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://paxsies.com/"
-              target="_blank"
-              rel="noopener noreferrer">Paxsies</a
-            >
+              rel="noopener noreferrer">Tuck & Bind (AU)</a>
           </li>
           <li>
             <a
               href="https://amorsensory.com/en-nz"
               target="_blank"
-              rel="noopener noreferrer">Amor Sensory</a
-            >
+              rel="noopener noreferrer">Amor Sensory (AU - Sensory Friendly)</a>
+          </li>
+
+          <li>
+            <a href="https://gc2b.co/" target="_blank" rel="noopener noreferrer"
+              >GC2B</a>
           </li>
           <li>
             <a
-              href="https://origamicustoms.com/"
+              href="https://transtape.life/"
               target="_blank"
-              rel="noopener noreferrer">Origami Customs</a
-            >
+              rel="noopener noreferrer">TransTape</a>
           </li>
           <li>
             <a
-              href="https://www.t-kingdom.com/"
+              href="https://tomboyx.com/"
               target="_blank"
-              rel="noopener noreferrer">T-Kingdom</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://shapeshifters.co/"
-              target="_blank"
-              rel="noopener noreferrer">Shapeshifters</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://gynecomastiasolutions.co.uk/"
-              target="_blank"
-              rel="noopener noreferrer">Gynecomastia Solutions</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://peecockproducts.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-age-restricted="true">Peecock Products (18+)</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://transguysupply.com/"
-              target="_blank"
-              rel="noopener noreferrer">Trans Guy Supply</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.ftmessentials.com/"
-              target="_blank"
-              rel="noopener noreferrer">FTM Essentials</a
-            >
+              rel="noopener noreferrer">TomboyX</a>
           </li>
           <li>
             <a
               href="https://spectrumoutfitters.co.uk/"
               target="_blank"
-              rel="noopener noreferrer">Spectrum Outfitters</a
-            >
+              rel="noopener noreferrer">Spectrum Outfitters</a>
+          </li>
+          <li>
+            <a
+              href="https://www.underworks.com/"
+              target="_blank"
+              rel="noopener noreferrer">Underworks</a>
           </li>
         </ul>
       </div>
-
       <!-- Swimwear Category -->
       <div class="gear-category-card pink">
         <h3>Swimwear</h3>
@@ -616,14 +381,37 @@ const sections = [
             <a
               href="https://emroce.com/"
               target="_blank"
-              rel="noopner noreferrer">Emroce</a
+              rel="noopener noreferrer">Emroce (NZ Made)</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://www.transformtranswear.com.au/collections/swim-binders"
+              target="_blank"
+              rel="noopener noreferrer">Transform Transwear (AU)</a
             >
           </li>
           <li>
             <a
-              href="https://outplay.co.nz/"
+              href="https://unitycoveswim.com/"
               target="_blank"
-              rel="noopener noreferrer">Outplay</a
+              rel="noopener noreferrer">Unity Cove (AU)</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://sockdrawerheroes.com/collections/swimwear"
+              target="_blank"
+              rel="noopener noreferrer">Sock Drawer Heroes (AU)</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://tomboyx.com/collections/swim"
+              target="_blank"
+              rel="noopener noreferrer">TomboyX</a
             >
           </li>
           <li>
@@ -642,13 +430,6 @@ const sections = [
           </li>
           <li>
             <a
-              href="https://chromat.co/"
-              target="_blank"
-              rel="noopener noreferrer">Chromat</a
-            >
-          </li>
-          <li>
-            <a
               href="https://origamicustoms.com/"
               target="_blank"
               rel="noopener noreferrer">Origami Customs</a
@@ -656,114 +437,59 @@ const sections = [
           </li>
           <li>
             <a
-              href="https://tuckandbind.com"
+              href="https://tuckandbind.com/collections/transgender-swimwear"
               target="_blank"
               rel="noopener noreferrer">Tuck & Bind</a
             >
           </li>
-          <li>
-            <a
-              href="https://unitycoveswim.com/"
-              target="_blank"
-              rel="noopener noreferrer">Unity Cove</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://tomboyx.com"
-              target="_blank"
-              rel="noopener noreferrer">TomboyX</a
-            >
-          </li>
         </ul>
       </div>
-
-      <!-- Packers Category -->
+      <!-- Packers/STP Category -->
       <div class="gear-category-card green">
         <h3>Packers/STP</h3>
         <ul class="gear-links-list">
           <li>
             <a
+              href="https://www.bindme.co.nz/collections/all"
+              target="_blank"
+              rel="noopener noreferrer">BindMe (NZ Stockist)</a>
+          </li>
+
+          <li>
+            <a
               href="https://sockdrawerheroes.com/"
               target="_blank"
-              rel="noopener noreferrer">Sock Drawer Heroes</a
-            >
+              rel="noopener noreferrer">Sock Drawer Heroes (AU)</a>
           </li>
+
           <li>
             <a
-              href="https://rodeoh.com/"
+              href="https://transguysupply.com/"
               target="_blank"
-              rel="noopener noreferrer">Rodeoh</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://paxsies.com/"
-              target="_blank"
-              rel="noopener noreferrer">Paxsies</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://origamicustoms.com/"
-              target="_blank"
-              rel="noopener noreferrer">Origami Customs</a
-            >
+              rel="noopener noreferrer">Trans Guy Supply</a>
           </li>
           <li>
             <a
               href="https://peecockproducts.com/"
               target="_blank"
               rel="noopener noreferrer"
-              data-age-restricted="true">Peecock Products (18+)</a
-            >
+              data-age-restricted="true">Peecock Products (18+)</a>
           </li>
           <li>
             <a
-              href="https://bananaprosthetics.com/en#"
+              href="https://bananaprosthetics.com/en"
               target="_blank"
               rel="noopener noreferrer"
-              data-age-restricted="true">Banana Prosthetics (18+)</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://transguysupply.com/"
-              target="_blank"
-              rel="noopener noreferrer">Trans Guy Supply</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.ftmessentials.com/"
-              target="_blank"
-              rel="noopener noreferrer">FTM Essentials</a
-            >
+              data-age-restricted="true">Banana Prosthetics (18+)</a>
           </li>
           <li>
             <a
               href="https://www.etsy.com/nz/shop/BulletBriefs"
               target="_blank"
-              rel="noopener noreferrer">Bullet Briefs (Etsy)</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.mypackftm.com/shop"
-              target="_blank"
-              rel="noopener noreferrer">My Pack FTM</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://tuckandbind.com"
-              target="_blank"
-              rel="noopener noreferrer">Tuck & Bind</a
-            >
+              rel="noopener noreferrer">Bullet Briefs (Etsy)</a>
           </li>
         </ul>
       </div>
-
       <!-- Gaffs Category -->
       <div class="gear-category-card purple">
         <h3>Gaffs</h3>
@@ -772,71 +498,38 @@ const sections = [
             <a
               href="https://sockdrawerheroes.com/"
               target="_blank"
-              rel="noopener noreferrer">Sock Drawer Heroes</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.etsy.com/nz/shop/LeoLines"
-              target="_blank"
-              rel="noopener noreferrer">Leo Lines (Etsy)</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://paxsies.com/"
-              target="_blank"
-              rel="noopener noreferrer">Paxsies</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://origamicustoms.com/"
-              target="_blank"
-              rel="noopener noreferrer">Origami Customs</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.carmenliulingerie.co.uk/"
-              target="_blank"
-              rel="noopener noreferrer">Carmen Liu Lingerie</a
-            >
+              rel="noopener noreferrer">Sock Drawer Heroes (AU)</a>
           </li>
           <li>
             <a
               href="https://tuckandbind.com"
               target="_blank"
-              rel="noopener noreferrer">Tuck & Bind</a
-            >
+              rel="noopener noreferrer">Tuck & Bind (AU)</a>
           </li>
+
           <li>
             <a
-              href="https://zhebykarynelizabeth.com/shop/"
+              href="https://www.etsy.com/nz/shop/LeoLines"
               target="_blank"
-              rel="noopener noreferrer">Zhe By Karyn Elizabeth</a
-            >
+              rel="noopener noreferrer">Leo Lines (Etsy)</a>
           </li>
           <li>
             <a
               href="https://unclockable.com/"
               target="_blank"
-              rel="noopener noreferrer">Unclockable</a
-            >
+              rel="noopener noreferrer">Unclockable (Tucking Tape)</a>
           </li>
           <li>
             <a
-              href="https://www.ftmessentials.com/"
+              href="https://origamicustoms.com/"
               target="_blank"
-              rel="noopener noreferrer">FTM Essentials</a
-            >
+              rel="noopener noreferrer">Origami Customs</a>
           </li>
           <li>
             <a
               href="https://enfemmestyle.com"
               target="_blank"
-              rel="noopener noreferrer">Enfemme</a
-            >
+              rel="noopener noreferrer">Enfemme</a>
           </li>
         </ul>
       </div>
@@ -934,119 +627,4 @@ const sections = [
       </div>
     </div>
   </section>
-  <!-- Featured Resource Highlight -->
-  <div class="section-heading" id="downloads">
-    <h2>Resource Library</h2>
-    <p>
-      Essential clinical guidelines, whānau support documents, and community
-      education resources available for download. Supporting informed healthcare
-      and empowered identities across New Zealand.
-    </p>
-  </div>
-  <section class="featured-resource-section">
-    <div class="featured-resource-container">
-      <div class="featured-resource-card">
-        <div class="featured-left">
-          {
-            featuredResource.image ? (
-              <img
-                src={featuredResource.image}
-                alt={featuredResource.title}
-                class="featured-cover-img"
-              />
-            ) : (
-              <div class="pdf-placeholder featured-placeholder">
-                <i class="fas fa-file-pdf pdf-icon-large" />
-              </div>
-            )
-          }
-        </div>
-
-        <div class="featured-content">
-          <div class="featured-badge-label">{featuredResource.badge}</div>
-          <h2>{featuredResource.title}</h2>
-          <p>{featuredResource.desc}</p>
-
-          <div class="featured-meta">
-            <span><i class="fas fa-file-pdf"></i> PDF</span>
-            <span><i class="fas fa-hdd"></i> {featuredResource.size}</span>
-          </div>
-
-          <a
-            href={`/pdfs/${featuredResource.file}`}
-            class="featured-download-btn"
-            download
-          >
-            Download Resource <i class="fa-solid fa-download"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Resource Sections (Dynamic) -->
-  {
-    sections.map((section) => (
-      <section id={section.id} class="resource-section">
-        <div class="resource-section-heading">
-          <div class="heading-with-icon">
-            <i class={`fas ${section.icon}`} />
-            <h2>{section.title}</h2>
-          </div>
-          <p>
-            {section.id === 'provider-resources' &&
-              'Clinical guidelines and protocols for healthcare professionals'}
-            {section.id === 'whanau-resources' &&
-              'Resources for Māori whānau and takatāpui communities'}
-            {section.id === 'community-resources' &&
-              'Educational materials for community members and allies'}
-          </p>
-        </div>
-
-        <div class="resource-container">
-          <div class="pdf-cards-grid">
-            {section.data.map((pdf) => (
-              <div class="pdf-card">
-                <div class="pdf-thumbnail">
-                  {pdf.image ? (
-                    <img
-                      src={pdf.image}
-                      alt={pdf.title}
-                      class="pdf-cover-img"
-                    />
-                  ) : (
-                    <div class="pdf-icon-large">
-                      <i class="fas fa-file-pdf" />
-                    </div>
-                  )}
-                  <div class="pdf-badge">{pdf.date}</div>
-                </div>
-
-                <div class="pdf-content">
-                  <h3>{pdf.title}</h3>
-                  <p>{pdf.desc}</p>
-                  <div class="pdf-meta">
-                    <span>
-                      <i class="fas fa-file-pdf" />
-                      PDF
-                    </span>
-                    <span>
-                      <i class="fas fa-hdd" />
-                      {pdf.size}
-                    </span>
-                  </div>
-                  <a
-                    href={`/pdfs/${pdf.file}`}
-                    class="pdf-download-btn"
-                    download
-                  >
-                    Download PDF <i class="fa-solid fa-download" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    ))
-  }
 </BaseLayout>
