@@ -12,7 +12,10 @@
     "format": "prettier --write \"**/*.{astro,js,ts,css,json,md}\"",
     "format:check": "prettier --check \"**/*.{astro,js,ts,css,json,md}\"",
     "check": "astro check",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "lint-staged": {
     "*.{astro,js,ts,css,json,md}": "prettier --write",
@@ -26,6 +29,7 @@
     "@astrojs/cloudflare": "^12.6.12",
     "@cloudflare/workers-types": "^4.20250312.0",
     "@typescript-eslint/parser": "^8.56.1",
+    "@vitest/coverage-v8": "^3.0.0",
     "astro": "^5.18.0",
     "eslint": "^9.39.3",
     "eslint-plugin-astro": "^1.6.0",
@@ -34,6 +38,8 @@
     "lint-staged": "^16.3.2",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^3.0.0",
+    "zod": "^3.23.0"
   }
 }
