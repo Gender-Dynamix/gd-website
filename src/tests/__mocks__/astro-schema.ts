@@ -5,3 +5,4 @@
 // This also means z.object(), z.string() etc. all behave normally in tests.
 
 import { z } from 'zod';
+export { z };

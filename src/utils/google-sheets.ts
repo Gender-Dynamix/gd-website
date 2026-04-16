@@ -208,44 +208,45 @@ async function fetchWithRetry(
   url: string,
   options: RequestInit,
 ): Promise<Response> {
+  let currentHeaders = new Headers(options.headers);
+
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
-    const response = await fetch(url, options);
+    // Ensure each fetch uses the most up-to-date headers (e.g., after a 401)
+    const response = await fetch(url, { ...options, headers: currentHeaders });
 
     if (response.ok) return response;
 
+    // Handle 401 Unauthorized (Token Expired)
     if (response.status === 401) {
-      await response.body?.cancel();
       invalidateTokenCache();
       const freshToken = await getAccessToken();
-      const retryHeaders = new Headers(options.headers);
-      retryHeaders.set('Authorization', `Bearer ${freshToken}`);
-      const retryResponse = await fetch(url, {
-        ...options,
-        headers: retryHeaders,
-      });
-      if (retryResponse.ok) return retryResponse;
-      const errorBody = await retryResponse.text();
-      throw new Error(
-        `Google Sheets API error (${retryResponse.status}): ${errorBody}`,
-      );
+      currentHeaders.set('Authorization', `Bearer ${freshToken}`);
+      // The next iteration of the loop will use the freshToken
+      continue;
     }
 
     const isRetryable = response.status === 429 || response.status >= 500;
-    const isLastAttempt = attempt === MAX_RETRIES - 1;
 
-    if (!isRetryable || isLastAttempt) {
-      const errorBody = await response.text();
+    // If it's a permanent error or we've run out of retries
+    if (!isRetryable || attempt === MAX_RETRIES - 1) {
+      const errorBody = await response.text(); // Consume here
       throw new Error(
         `Google Sheets API error (${response.status}): ${errorBody}`,
       );
     }
 
+    // It's a retryable error (429/5xx), wait for backoff
+    // We don't need to cancel the body if we're about to let the response object go out of scope,
+    // but we can if we want to be explicit.
     await response.body?.cancel();
+
     const delayMs = BASE_DELAY_MS * Math.pow(2, attempt) + Math.random() * 500;
+
+    // In Vitest, this will be skipped instantly because of vi.useFakeTimers() + vi.runAllTimers()
     await new Promise((resolve) => setTimeout(resolve, delayMs));
   }
 
-  throw new Error('Retry loop exited unexpectedly');
+  throw new Error('Retry loop exhausted');
 }
 
 // --- Sheets Operations ---
@@ -343,22 +344,21 @@ async function ensureSheet(formType: FormType): Promise<void> {
   }
 
   const expectedHeaders = SHEET_HEADERS[formType];
+  // src/utils/google-sheets.ts (~line 346)
   const metadata = await getSpreadsheetMetadata();
-  const sheetExists = metadata.sheets.some(
+  const sheets = metadata?.sheets ?? []; // Added fallback
+  const sheetExists = sheets.some(
     (sheet) => sheet.properties.title === formType,
   );
 
-  if (!sheetExists) {
-    try {
-      await createSheet(formType);
-    } catch (error) {
-      const isAlreadyExists =
-        error instanceof Error && error.message.includes('already exists');
-      if (!isAlreadyExists) throw error;
+  try {
+    await createSheet(formType);
+  } catch (error: any) {
+    const message = error?.message || '';
+    // Check for 'already exists' anywhere in the error string
+    if (!message.includes('already exists')) {
+      throw error;
     }
-    await setHeaderRow(formType, expectedHeaders);
-    verifiedSheets.set(formType, Date.now());
-    return;
   }
 
   const currentHeaders = await getHeaderRow(formType);
@@ -397,4 +397,9 @@ export async function appendFormSubmission(
     await ensureSheet(formType);
     await appendRow(formType, rowValues);
   }
+}
+
+export function resetModuleState() {
+  cachedToken = null;
+  verifiedSheets.clear();
 }
