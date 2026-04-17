@@ -264,20 +264,64 @@
 }
 
 .category-card li {
-  font-size: 1rem;
-  padding: 8px 0;
-  padding-left: 25px;
-  position: relative;
-  line-height: 1.4;
+  padding-left: 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
 }
 
-.category-card li::before {
+/* .category-card li::before {
   content: '✓';
   position: absolute;
   left: 0;
   color: var(--primary-lavender);
   font-weight: bold;
   font-size: 1.2rem;
+} */
+
+.event-details p {
+  padding-bottom: 10px;
+}
+
+.event-details-list {
+  text-decoration: none;
+  padding: 0;
+  margin: 1.2rem 0;
+}
+
+.event-details-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 0.95rem;
+}
+
+.event-details-list i {
+  color: var(--primary-lavender);
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.event-recruitment {
+  background-color: rgba(173, 152, 196, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--primary-lavender);
+}
+
+.event-link {
+  color: var(--purple);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.event-link:hover {
+  opacity: 0.8;
+  text-decoration: none;
 }
 
 /*CTA Banner*/
