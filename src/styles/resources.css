@@ -71,6 +71,12 @@
   object-fit: contain;
 }
 
+.nav-icon i {
+  color: #74668f;
+  object-fit: contain;
+  font-size: 1.5rem;
+}
+
 .quick-nav-btn h3 {
   font-size: 1.2rem;
   font-weight: 600;
@@ -127,14 +133,6 @@
   line-height: 1.6;
 }
 
-.affiliate-heading h2,
-.affiliate-heading p {
-  color: white;
-}
-
-.affiliate-heading p {
-  opacity: 0.95;
-}
 /* Kiwi Organisations */
 .kiwi-organisations {
   padding: 80px 5% 60px;
@@ -224,13 +222,13 @@
 
 .kiwi-body h3 {
   font-size: 1.3rem;
-  color: var(--dark-purple);
+  color: var(--purple);
   margin-bottom: 1rem;
 }
 
 .kiwi-body p {
   font-size: 1rem;
-  color: var(--dark-purple);
+  color: var(--purple);
   opacity: 0.8;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -258,27 +256,163 @@
   transition: transform 0.3s ease;
 }
 
+.heading-with-icon {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.heading-with-icon i {
+  font-size: 1.5rem;
+}
+
+.org-section.accent-blue .heading-with-icon i {
+  color: #3a6ea8;
+}
+.org-section.accent-pink .heading-with-icon i {
+  color: #b04060;
+}
+.org-section.accent-green .heading-with-icon i {
+  color: #2e7a4f;
+}
+.org-section.accent-purple .heading-with-icon i {
+  color: var(--primary-lavender);
+}
+
+/* Org Sub-Nav pills */
+.org-subnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+
+.org-subnav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.org-subnav-pill i {
+  font-size: 0.9rem;
+}
+
+.org-subnav-pill.accent-blue {
+  background-color: rgba(168, 199, 231, 0.2);
+  color: #3a6ea8;
+  border-color: #a8c7e7;
+}
+.org-subnav-pill.accent-blue:hover {
+  background-color: #a8c7e7;
+  color: white;
+}
+
+.org-subnav-pill.accent-pink {
+  background-color: rgba(244, 194, 212, 0.2);
+  color: #b04060;
+  border-color: #f4c2d4;
+}
+
+.org-subnav-pill.accent-pink:hover {
+  background-color: #f4c2d4;
+  color: #6b1f35;
+}
+
+.org-subnav-pill.accent-green {
+  background-color: rgba(196, 231, 212, 0.2);
+  color: #2e7a4f;
+  border-color: #c4e7d4;
+}
+
+.org-subnav-pill.accent-green:hover {
+  background-color: #c4e7d4;
+  color: #1a4d30;
+}
+
+.org-subnav-pill.accent-purple {
+  background-color: rgba(173, 152, 196, 0.15);
+  color: var(--purple);
+  border-color: var(--primary-lavender);
+}
+
+.org-subnav-pill.accent-purple:hover {
+  background-color: var(--primary-lavender);
+  color: white;
+}
+
+/* org category sections */
+.org-section {
+  padding: 80px 5% 60px;
+  background-color: var(--secondary-white);
+}
+
+.org-section:nth-child(even) {
+  background-color: white;
+}
+
+.org-section-heading {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.org-section-heading h2 {
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
+  font-weight: 600;
+  margin: 0;
+  color: var(--purple);
+}
+
+.org-section-heading p {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  opacity: 0.75;
+  max-width: 680px;
+  margin: 0.8rem auto 0;
+  line-height: 1.6;
+  color: var(--purple);
+}
+
+.org-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.org-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
 /* Affiliate Section */
-.affiliate-section {
+.partner-heading h2,
+.partner-heading p {
+  color: white;
+}
+
+.partner-heading p {
+  opacity: 0.95;
+}
+
+.partner-feature {
   padding: 80px 5% 60px;
   background: linear-gradient(135deg, #b89fd1 0%, #8b6ba8 50%, #3d2957 100%);
   margin-top: 100px;
   margin-bottom: 100px;
 }
 
-.affiliate-heading h2,
-.affiliate-heading p {
-  color: white;
-}
-
-.affiliate-heading p {
-  opacity: 0.95;
-}
-
-.affiliate-card {
+.resource-highlight-card {
   max-width: 1200px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #b89fd1 0%, #8b6ba8 50%, #3d2957 100%);
+  background: linear-gradient(135deg, #a689c4 0%, #7a5a99 50%, #2d1d42 100%);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -286,12 +420,12 @@
   color: white;
 }
 
-.affiliate-card:hover {
+.resource-highlight-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
-.affiliate-img {
+.resource-img {
   width: 100%;
   height: 200px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -300,18 +434,18 @@
   justify-content: center;
 }
 
-.affiliate-img img {
+.resource-img img {
   max-width: 140px;
   max-height: 140px;
   object-fit: contain;
   border-radius: 20px;
 }
 
-.affiliate-body {
+.resource-body {
   padding: 30px;
 }
 
-.affiliate-category {
+.resource-label {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
@@ -322,13 +456,13 @@
   margin-bottom: 1rem;
 }
 
-.affiliate-body h3 {
+.resource-body h3 {
   font-size: 1.8rem;
   color: white;
   margin-bottom: 1rem;
 }
 
-.affiliate-body p {
+.resource-body p {
   font-size: 1rem;
   color: white;
   opacity: 0.95;
@@ -336,11 +470,11 @@
   margin-bottom: 1.5rem;
 }
 
-.affiliate-link {
+.resource-btn {
   display: inline-block;
   padding: 12px 30px;
   background-color: white;
-  color: var(--purple);
+  color: #3d2957; /* Replace var(--purple) if not defined, or keep var */
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
@@ -348,13 +482,13 @@
   transition: all 0.3s ease;
 }
 
-.affiliate-link:hover {
+.resource-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   background-color: rgba(255, 255, 255, 0.95);
 }
 
-/*Gender Affirming Gear Section*/
+/* Gender Affirming Gear Section */
 .gear-categories-grid {
   max-width: 1200px;
   margin: 0 auto;
@@ -395,7 +529,7 @@
 
 .gear-category-card h3 {
   font-size: 1.4rem;
-  color: var(--dark-purple);
+  color: var(--purple);
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
@@ -507,13 +641,13 @@
 
 .video-body h3 {
   font-size: 1.5rem;
-  color: var(--dark-purple);
+  color: var(--purple);
   margin-bottom: 1rem;
 }
 
 .video-body p {
   font-size: 1rem;
-  color: var(--dark-purple);
+  color: var(--purple);
   opacity: 0.8;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -569,7 +703,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   background-color: #000;
-  border-radius: 20px 20px 0 0; /* Match your card corners */
+  border-radius: 20px 20px 0 0;
   overflow: hidden;
 }
 
@@ -597,14 +731,14 @@
 
 .embed-info h4 {
   font-size: 1.8rem;
-  color: var(--dark-purple);
+  color: var(--purple);
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
 .embed-info p {
   font-size: 1.05rem;
-  color: var(--dark-purple);
+  color: var(--purple);
   opacity: 0.8;
   line-height: 1.6;
   margin-bottom: 1rem;
@@ -663,9 +797,19 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .kiwi-cards-container {
+  .kiwi-cards-container,
+  .org-cards-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .org-subnav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .org-section {
+    padding: 40px 5%;
   }
 
   .kiwi-organisations,
@@ -675,14 +819,14 @@
   }
 
   .kiwi-body,
-  .affiliate-body,
+  .resource-body,
   .GA-body,
   .Video-body {
     padding: 25px;
   }
 
   .kiwi-img,
-  .affiliate-img,
+  .resource-img,
   .GA-img,
   .Video-img {
     height: 150px;
@@ -695,7 +839,7 @@
     max-height: 100px;
   }
 
-  .affiliate-img img {
+  .resource-img img {
     max-width: 120px;
     max-height: 120px;
   }
@@ -732,15 +876,29 @@
   .age-verify-footer .btn-modal-secondary {
     width: 100%;
   }
+
+  .resource-section {
+    padding: 40px 5%;
+  }
+  .heading-with-icon {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .heading-with-icon i {
+    font-size: 1.5rem;
+  }
 }
 
+/* Portrait Tablet View*/
 @media (min-width: 769px) and (max-width: 1024px) {
   .quick-nav-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
   }
 
-  .kiwi-cards-container {
+  .kiwi-cards-container,
+  .org-cards-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
   }
@@ -769,11 +927,11 @@
     gap: 25px;
   }
 
-  .affiliate-section {
+  .resource-section {
     padding: 60px 5%;
   }
 
-  .affiliate-body {
+  .resource-body {
     padding: 35px;
   }
 }

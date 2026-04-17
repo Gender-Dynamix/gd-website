@@ -94,7 +94,7 @@ import '../styles/contact.css';
           work? Send us a message and we'll get back to you as soon as possible.
         </p>
 
-        <form data-form-type="general-inquiry" novalidate>
+        <form data-form-type="general-inquiry" novalidate id="gi-form">
           <input type="hidden" name="form-type" value="general-inquiry" />
           <div class="visually-hidden" aria-hidden="true">
             <input
@@ -183,14 +183,16 @@ import '../styles/contact.css';
             <div
               class="cf-turnstile"
               data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-              data-callback="onTurnstileSuccess"
+              data-callback="onGISuccess"
               data-theme="light"
             >
             </div>
           </div>
 
           <div class="form-feedback" aria-live="polite"></div>
-          <button type="submit" class="submit-btn">Send Message</button>
+          <button type="submit" id="gi-submit-btn" class="submit-btn"
+            >Send Message</button
+          >
           <p class="privacy-notice">
             &#128274; Your message is sent via a secure connection
           </p>
@@ -243,7 +245,7 @@ import '../styles/contact.css';
         </div>
 
         <h3>Referral Information</h3>
-        <form data-form-type="referral" novalidate>
+        <form data-form-type="referral" novalidate id="referral-form">
           <input type="hidden" name="form-type" value="referral" />
           <div class="visually-hidden" aria-hidden="true">
             <input
@@ -508,13 +510,15 @@ import '../styles/contact.css';
             <div
               class="cf-turnstile"
               data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-              data-callback="onTurnstileSuccess"
+              data-callback="onReferralSuccess"
               data-theme="light"
             >
             </div>
           </div>
           <div class="form-feedback" aria-live="polite"></div>
-          <button type="submit" class="submit-btn">Submit Referral</button>
+          <button type="submit" id="referral-submit-btn" class="submit-btn"
+            >Submit Referral</button
+          >
           <p class="privacy-notice">
             &#128274; All information is encrypted and confidential
           </p>
