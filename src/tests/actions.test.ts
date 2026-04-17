@@ -74,7 +74,6 @@ vi.mock('astro:env/server', () => ({
 
 beforeEach(() => {
   vi.clearAllMocks();
-  vi.resetModules();
 });
 
 // ─── Honeypot ─────────────────────────────────────────────────────────────────
@@ -100,15 +99,12 @@ describe('honeypot spam detection', () => {
   });
 
   it('treats a whitespace-only honeypot as spam', async () => {
-    // fields['website']?.trim() is truthy for non-empty strings but
-    // '   '.trim() === '' which is falsy — so whitespace is NOT caught.
-    // This test documents the actual behaviour so a future change is noticed.
-    mockTurnstile(true);
     const result = await submitForm(
       { ...validHomeContact, website: '   ' },
       fakeContext,
     );
     expect(result).toEqual({ success: true });
+    expect(appendFormSubmission).not.toHaveBeenCalled();
   });
 });
 

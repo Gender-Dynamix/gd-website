@@ -1,5 +1,16 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { appendFormSubmission, resetModuleState } from '../utils/google-sheets';
+import { SHEET_HEADERS, type FormType } from '../utils/google-sheets';
+
+// ─── appendFormSubmission import (reset per-test for fresh module state) ───────
+//
+// vi.resetModules() in beforeEach discards the module registry so each test
+// starts with cachedToken = null and verifiedSheets empty — without needing
+// a test-only reset export in the production module.
+
+let appendFormSubmission!: (
+  formType: FormType,
+  fields: Record<string, string>,
+) => Promise<void>;
 
 // ─── Response helpers ─────────────────────────────────────────────────────────
 
@@ -27,65 +38,21 @@ const tokenResponse = (): Response =>
   mockResponse({ access_token: 'test-access-token', expires_in: 3600 });
 const sheetsOk = (): Response => mockResponse({});
 
-// ─── Header constants ─────────────────────────────────────────────────────────
-
-const CONTACT_HEADERS = [
-  'Timestamp',
-  'First Name',
-  'Last Name',
-  'Email',
-  'Subject',
-  'Message',
-];
-
-const REFERRAL_HEADERS = [
-  'Timestamp',
-  'Referral Type',
-  'First Name',
-  'Last Name',
-  'Email',
-  'Phone',
-  'Address',
-  'City',
-  'Suburb',
-  'Area Code',
-  'Referral Source',
-  'Identified Name',
-  'NHI',
-  'Out Status',
-  'Services',
-  'Additional Info',
-];
-
-const TRAINING_HEADERS = [
-  'Timestamp',
-  'Contact Name',
-  'Email',
-  'Contact Phone',
-  'Training Hours',
-  'Start Date',
-  'End Date',
-  'Training Topics',
-  'Other Topic Details',
-  'Additional Notes',
-];
-
 // ─── Mock sequence helpers ────────────────────────────────────────────────────
 
 /**
- * Queues exactly the right responses for one full cold-start cycle where
- * the headers on disk already match (no setHeaderRow needed):
- *   token → metadata → batchUpdate(ok) → getHeaderRow(match) → appendRow
+ * Queues the responses for one full cold-start cycle where the sheet does not
+ * yet exist (the normal first-run case):
+ *   token → emptyMetadata → batchUpdate(ok) → getHeaderRow(match) → appendRow
  */
 function mockFullCycle(
   fetchMock: ReturnType<typeof vi.mocked<typeof fetch>>,
-  sheetTitle: string,
   headers: string[],
 ): void {
   fetchMock
     .mockResolvedValueOnce(tokenResponse()) // #1
-    .mockResolvedValueOnce(metadataWith(sheetTitle)) // #2
-    .mockResolvedValueOnce(sheetsOk()) // #3 batchUpdate
+    .mockResolvedValueOnce(emptyMetadata()) // #2 sheet doesn't exist yet
+    .mockResolvedValueOnce(sheetsOk()) // #3 batchUpdate (createSheet)
     .mockResolvedValueOnce(mockResponse({ values: [headers] })) // #4 getHeaderRow
     .mockResolvedValueOnce(sheetsOk()); // #5 appendRow
 }
@@ -147,7 +114,7 @@ const trainingFields = {
 
 // ─── Global setup / teardown ──────────────────────────────────────────────────
 
-beforeEach(() => {
+beforeEach(async () => {
   vi.useFakeTimers();
   vi.setSystemTime(new Date('2025-01-01T00:00:00Z'));
   vi.stubGlobal('fetch', vi.fn());
@@ -157,7 +124,8 @@ beforeEach(() => {
       sign: vi.fn().mockResolvedValue(new Uint8Array(8).buffer),
     },
   });
-  resetModuleState();
+  vi.resetModules();
+  ({ appendFormSubmission } = await import('../utils/google-sheets'));
 });
 
 afterEach(() => {
@@ -171,7 +139,7 @@ afterEach(() => {
 describe('token caching', () => {
   it('fetches a new token on the first request', async () => {
     const fetchMock = vi.mocked(fetch);
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     const firstCall = fetchMock.mock.calls[0];
@@ -181,7 +149,7 @@ describe('token caching', () => {
 
   it('reuses the cached token within its expiry window', async () => {
     const fetchMock = vi.mocked(fetch);
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
     const callsAfterFirst = fetchMock.mock.calls.length;
 
@@ -201,14 +169,14 @@ describe('token caching', () => {
 
   it('re-fetches a token after it expires', async () => {
     const fetchMock = vi.mocked(fetch);
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     // Advance past token expiry (3600s − 60s buffer = 3540s)
     vi.advanceTimersByTime(3541 * 1000);
 
     // Both token and sheet caches are now stale — full cold-start again
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     const tokenCallCount = fetchMock.mock.calls.filter((c) =>
@@ -222,17 +190,17 @@ describe('token caching', () => {
 
 describe('fetchWithRetry — 401 token refresh', () => {
   it('invalidates the token cache and retries on 401', async () => {
-    // New fetchWithRetry: 401 → invalidate + refresh + continue loop (not one-shot)
-    // The refreshed token is used for the next iteration's fetch.
     const fetchMock = vi.mocked(fetch);
     fetchMock
       .mockResolvedValueOnce(tokenResponse()) // #1 initial token
       .mockResolvedValueOnce(textResponse('Unauthorized', 401)) // #2 metadata → 401
       .mockResolvedValueOnce(tokenResponse()) // #3 token refresh
-      .mockResolvedValueOnce(metadataWith('home-contact')) // #4 metadata retry ok
-      .mockResolvedValueOnce(sheetsOk()) // #5 batchUpdate
-      .mockResolvedValueOnce(mockResponse({ values: [CONTACT_HEADERS] })) // #6 getHeaderRow
-      .mockResolvedValueOnce(sheetsOk()); // #7 appendRow
+      .mockResolvedValueOnce(metadataWith('home-contact')) // #4 metadata retry ok, sheet exists
+      // no batchUpdate — sheet already exists
+      .mockResolvedValueOnce(
+        mockResponse({ values: [SHEET_HEADERS['home-contact']] }),
+      ) // #5 getHeaderRow
+      .mockResolvedValueOnce(sheetsOk()); // #6 appendRow
 
     await expect(
       appendFormSubmission('home-contact', homeContactFields),
@@ -266,11 +234,13 @@ describe('fetchWithRetry — exponential backoff', () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock
       .mockResolvedValueOnce(tokenResponse())
-      .mockResolvedValueOnce(textResponse('Too Many Requests', 429)) // attempt 0
-      .mockResolvedValueOnce(metadataWith('home-contact')) // attempt 1 ok
-      .mockResolvedValueOnce(sheetsOk())
-      .mockResolvedValueOnce(mockResponse({ values: [CONTACT_HEADERS] }))
-      .mockResolvedValueOnce(sheetsOk());
+      .mockResolvedValueOnce(textResponse('Too Many Requests', 429)) // metadata attempt 0
+      .mockResolvedValueOnce(metadataWith('home-contact')) // metadata attempt 1 ok, sheet exists
+      // no batchUpdate — sheet already exists
+      .mockResolvedValueOnce(
+        mockResponse({ values: [SHEET_HEADERS['home-contact']] }),
+      )
+      .mockResolvedValueOnce(sheetsOk()); // appendRow
 
     await expect(
       appendFormSubmission('home-contact', homeContactFields),
@@ -282,11 +252,13 @@ describe('fetchWithRetry — exponential backoff', () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock
       .mockResolvedValueOnce(tokenResponse())
-      .mockResolvedValueOnce(textResponse('Internal Server Error', 500)) // attempt 0
-      .mockResolvedValueOnce(metadataWith('home-contact')) // attempt 1 ok
-      .mockResolvedValueOnce(sheetsOk())
-      .mockResolvedValueOnce(mockResponse({ values: [CONTACT_HEADERS] }))
-      .mockResolvedValueOnce(sheetsOk());
+      .mockResolvedValueOnce(textResponse('Internal Server Error', 500)) // metadata attempt 0
+      .mockResolvedValueOnce(metadataWith('home-contact')) // metadata attempt 1 ok, sheet exists
+      // no batchUpdate — sheet already exists
+      .mockResolvedValueOnce(
+        mockResponse({ values: [SHEET_HEADERS['home-contact']] }),
+      )
+      .mockResolvedValueOnce(sheetsOk()); // appendRow
 
     await expect(
       appendFormSubmission('home-contact', homeContactFields),
@@ -322,9 +294,9 @@ describe('fetchWithRetry — exponential backoff', () => {
 // ─── ensureSheet — sheet creation ────────────────────────────────────────────
 
 describe('ensureSheet — sheet creation', () => {
-  it('calls createSheet (batchUpdate) on every cache miss', async () => {
+  it('calls createSheet (batchUpdate) when the sheet does not exist', async () => {
     const fetchMock = vi.mocked(fetch);
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     const batchUpdateCalls = fetchMock.mock.calls.filter((c) =>
@@ -337,9 +309,29 @@ describe('ensureSheet — sheet creation', () => {
     expect(body.requests[0].addSheet.properties.title).toBe('home-contact');
   });
 
+  it('skips createSheet when the sheet already exists in metadata', async () => {
+    const fetchMock = vi.mocked(fetch);
+    fetchMock
+      .mockResolvedValueOnce(tokenResponse())
+      .mockResolvedValueOnce(metadataWith('home-contact')) // sheet exists
+      // no batchUpdate
+      .mockResolvedValueOnce(
+        mockResponse({ values: [SHEET_HEADERS['home-contact']] }),
+      )
+      .mockResolvedValueOnce(sheetsOk()); // appendRow
+
+    await appendFormSubmission('home-contact', homeContactFields);
+
+    const batchUpdateCalls = fetchMock.mock.calls.filter((c) =>
+      (c[0] as string).includes('batchUpdate'),
+    );
+    expect(batchUpdateCalls).toHaveLength(0);
+  });
+
   it('swallows "already exists" from createSheet and continues (race condition)', async () => {
     // Correct sequence (token cached after #1, no extra token fetches):
-    //   #1 token  →  #2 metadata  →  #3 batchUpdate→400 (swallowed)
+    //   #1 token  →  #2 emptyMetadata (sheet not found yet)
+    //   →  #3 batchUpdate→400 (swallowed, race condition)
     //   →  #4 getHeaderRow (headers match)  →  #5 appendRow
     const fetchMock = vi.mocked(fetch);
     fetchMock
@@ -352,7 +344,9 @@ describe('ensureSheet — sheet creation', () => {
           400,
         ),
       )
-      .mockResolvedValueOnce(mockResponse({ values: [CONTACT_HEADERS] })) // #4 headers match
+      .mockResolvedValueOnce(
+        mockResponse({ values: [SHEET_HEADERS['home-contact']] }),
+      ) // #4 headers match
       .mockResolvedValueOnce(sheetsOk()); // #5 appendRow
 
     await expect(
@@ -362,11 +356,10 @@ describe('ensureSheet — sheet creation', () => {
 
   it('rethrows createSheet errors that are not "already exists"', async () => {
     skipDelays();
-    // Use 3× 429 to exhaust MAX_RETRIES — this is definitely not "already exists"
     const fetchMock = vi.mocked(fetch);
     fetchMock
       .mockResolvedValueOnce(tokenResponse()) // #1
-      .mockResolvedValueOnce(metadataWith('home-contact')) // #2
+      .mockResolvedValueOnce(emptyMetadata()) // #2 sheet doesn't exist → createSheet attempted
       .mockResolvedValueOnce(textResponse('Quota', 429)) // #3 attempt 0
       .mockResolvedValueOnce(textResponse('Quota', 429)) // attempt 1
       .mockResolvedValueOnce(textResponse('Quota', 429)); // attempt 2 → throws
@@ -382,7 +375,7 @@ describe('ensureSheet — sheet creation', () => {
 describe('ensureSheet — header validation', () => {
   it('does NOT call setHeaderRow when headers already match', async () => {
     const fetchMock = vi.mocked(fetch);
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     const putCalls = fetchMock.mock.calls.filter(
@@ -392,13 +385,12 @@ describe('ensureSheet — header validation', () => {
   });
 
   it('calls setHeaderRow when the existing headers are out of date', async () => {
-    // token → metadata → batchUpdate(ok) → getHeaderRow(WRONG) →
-    // setHeaderRow(PUT) → appendRow
+    // Sheet exists in metadata → skip createSheet → getHeaderRow returns stale headers
+    // → setHeaderRow called → appendRow
     const fetchMock = vi.mocked(fetch);
     fetchMock
       .mockResolvedValueOnce(tokenResponse())
-      .mockResolvedValueOnce(metadataWith('home-contact'))
-      .mockResolvedValueOnce(sheetsOk()) // batchUpdate
+      .mockResolvedValueOnce(metadataWith('home-contact')) // sheet exists, skip createSheet
       .mockResolvedValueOnce(mockResponse({ values: [['OldCol', 'Bad']] })) // wrong headers
       .mockResolvedValueOnce(sheetsOk()) // setHeaderRow PUT
       .mockResolvedValueOnce(sheetsOk()); // appendRow
@@ -410,12 +402,12 @@ describe('ensureSheet — header validation', () => {
     );
     expect(putCall).toBeDefined();
     const body = JSON.parse((putCall![1] as RequestInit).body as string);
-    expect(body.values[0]).toEqual(CONTACT_HEADERS);
+    expect(body.values[0]).toEqual(SHEET_HEADERS['home-contact']);
   });
 
   it('skips all verification when the sheet cache is still fresh', async () => {
     const fetchMock = vi.mocked(fetch);
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
     const callsAfterFirst = fetchMock.mock.calls.length;
 
@@ -431,13 +423,13 @@ describe('ensureSheet — header validation', () => {
   it('re-verifies the sheet after the 5-minute cache TTL expires', async () => {
     const fetchMock = vi.mocked(fetch);
 
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     // Expire the sheet cache (5 min + 1 ms)
     vi.advanceTimersByTime(5 * 60 * 1000 + 1);
 
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     const metadataCalls = fetchMock.mock.calls.filter((c) =>
@@ -452,7 +444,7 @@ describe('ensureSheet — header validation', () => {
 describe('appendFormSubmission — row building', () => {
   it('puts an ISO timestamp in the first column', async () => {
     const fetchMock = vi.mocked(fetch);
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     const row: string[] = JSON.parse(
@@ -464,7 +456,7 @@ describe('appendFormSubmission — row building', () => {
   describe('home-contact', () => {
     it('maps all fields to correct column positions', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
       await appendFormSubmission('home-contact', homeContactFields);
 
       const row: string[] = JSON.parse(
@@ -472,7 +464,7 @@ describe('appendFormSubmission — row building', () => {
       ).values[0];
 
       // Timestamp | First Name | Last Name | Email | Subject | Message
-      expect(row).toHaveLength(CONTACT_HEADERS.length);
+      expect(row).toHaveLength(SHEET_HEADERS['home-contact'].length);
       expect(row[1]).toBe('Jane');
       expect(row[2]).toBe('Doe');
       expect(row[3]).toBe('jane@example.com');
@@ -482,7 +474,7 @@ describe('appendFormSubmission — row building', () => {
 
     it('writes empty string for a missing optional field', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
       await appendFormSubmission('home-contact', {
         'first-name': 'Bob',
         'last-name': 'Jones',
@@ -501,14 +493,14 @@ describe('appendFormSubmission — row building', () => {
   describe('general-inquiry', () => {
     it('maps fields correctly (same schema as home-contact)', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'general-inquiry', CONTACT_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS['general-inquiry']);
       await appendFormSubmission('general-inquiry', generalInquiryFields);
 
       const row: string[] = JSON.parse(
         (fetchMock.mock.calls.at(-1)![1] as RequestInit).body as string,
       ).values[0];
 
-      expect(row).toHaveLength(CONTACT_HEADERS.length);
+      expect(row).toHaveLength(SHEET_HEADERS['general-inquiry'].length);
       expect(row[1]).toBe('Alice');
       expect(row[2]).toBe('Wong');
       expect(row[3]).toBe('alice@example.com');
@@ -520,18 +512,18 @@ describe('appendFormSubmission — row building', () => {
   describe('referral', () => {
     it('builds the correct number of columns (16)', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'referral', REFERRAL_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS.referral);
       await appendFormSubmission('referral', referralFields);
 
       const row: string[] = JSON.parse(
         (fetchMock.mock.calls.at(-1)![1] as RequestInit).body as string,
       ).values[0];
-      expect(row).toHaveLength(16);
+      expect(row).toHaveLength(SHEET_HEADERS.referral.length);
     });
 
     it('maps standard fields to the correct positions', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'referral', REFERRAL_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS.referral);
       await appendFormSubmission('referral', referralFields);
 
       const row: string[] = JSON.parse(
@@ -551,7 +543,7 @@ describe('appendFormSubmission — row building', () => {
 
     it('maps Identified Name, NHI, and Services correctly', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'referral', REFERRAL_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS.referral);
       await appendFormSubmission('referral', {
         ...referralFields,
         'identified-name': 'Bobbie',
@@ -569,7 +561,7 @@ describe('appendFormSubmission — row building', () => {
 
     it('writes empty strings for missing optional referral fields', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'referral', REFERRAL_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS.referral);
       await appendFormSubmission('referral', {
         'first-name': 'Minimal',
         'last-name': 'Entry',
@@ -589,18 +581,18 @@ describe('appendFormSubmission — row building', () => {
   describe('training', () => {
     it('builds the correct number of columns (10)', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'training', TRAINING_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS.training);
       await appendFormSubmission('training', trainingFields);
 
       const row: string[] = JSON.parse(
         (fetchMock.mock.calls.at(-1)![1] as RequestInit).body as string,
       ).values[0];
-      expect(row).toHaveLength(10);
+      expect(row).toHaveLength(SHEET_HEADERS.training.length);
     });
 
     it('maps all training fields to the correct positions', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'training', TRAINING_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS.training);
       await appendFormSubmission('training', trainingFields);
 
       const row: string[] = JSON.parse(
@@ -619,7 +611,7 @@ describe('appendFormSubmission — row building', () => {
 
     it('writes empty strings for missing optional training fields', async () => {
       const fetchMock = vi.mocked(fetch);
-      mockFullCycle(fetchMock, 'training', TRAINING_HEADERS);
+      mockFullCycle(fetchMock, SHEET_HEADERS.training);
       await appendFormSubmission('training', {
         'contact-name': 'Dave',
         email: 'dave@example.com',
@@ -647,24 +639,19 @@ describe('appendFormSubmission — cache invalidation on appendRow failure', () 
     const fetchMock = vi.mocked(fetch);
 
     // Warm up the cache
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     // appendRow fails (404, not retryable) → cache deleted →
-    // ensureSheet re-runs (token still cached) → appendRow retried ok
-    //
-    // Retry path sequence (no token fetch — token still valid):
-    //   #1 appendRow → 404 (throws)
-    //   #2 metadata (ensureSheet re-run)
-    //   #3 batchUpdate (createSheet)
-    //   #4 getHeaderRow
-    //   #5 appendRow → ok
+    // ensureSheet re-runs (token still cached) → sheet now exists in metadata
+    // → skip createSheet → getHeaderRow → appendRow retried ok
     fetchMock
-      .mockResolvedValueOnce(textResponse('Not Found', 404)) // #1 fails
-      .mockResolvedValueOnce(metadataWith('home-contact')) // #2
-      .mockResolvedValueOnce(sheetsOk()) // #3
-      .mockResolvedValueOnce(mockResponse({ values: [CONTACT_HEADERS] })) // #4
-      .mockResolvedValueOnce(sheetsOk()); // #5 retry ok
+      .mockResolvedValueOnce(textResponse('Not Found', 404)) // #1 appendRow fails
+      .mockResolvedValueOnce(metadataWith('home-contact')) // #2 sheet exists
+      .mockResolvedValueOnce(
+        mockResponse({ values: [SHEET_HEADERS['home-contact']] }),
+      ) // #3 getHeaderRow
+      .mockResolvedValueOnce(sheetsOk()); // #4 appendRow retry ok
 
     await expect(
       appendFormSubmission('home-contact', homeContactFields),
@@ -682,19 +669,21 @@ describe('appendFormSubmission — cache invalidation on appendRow failure', () 
     const fetchMock = vi.mocked(fetch);
 
     // Warm up
-    mockFullCycle(fetchMock, 'home-contact', CONTACT_HEADERS);
+    mockFullCycle(fetchMock, SHEET_HEADERS['home-contact']);
     await appendFormSubmission('home-contact', homeContactFields);
 
     // appendRow fails (3× 500 exhausts retries) → cache deleted →
-    // ensureSheet re-runs → retry appendRow also fails (3× 500)
+    // ensureSheet re-runs (sheet exists in metadata, token still cached) →
+    // retry appendRow also fails (3× 500)
     fetchMock
       .mockResolvedValueOnce(textResponse('Error', 500)) // appendRow attempt 0
       .mockResolvedValueOnce(textResponse('Error', 500)) // attempt 1
       .mockResolvedValueOnce(textResponse('Error', 500)) // attempt 2 → throws
-      // catch block: cache cleared, ensureSheet retried (token still cached)
-      .mockResolvedValueOnce(metadataWith('home-contact'))
-      .mockResolvedValueOnce(sheetsOk()) // batchUpdate
-      .mockResolvedValueOnce(mockResponse({ values: [CONTACT_HEADERS] })) // getHeaderRow
+      // catch block: cache cleared, ensureSheet retried
+      .mockResolvedValueOnce(metadataWith('home-contact')) // sheet exists, skip batchUpdate
+      .mockResolvedValueOnce(
+        mockResponse({ values: [SHEET_HEADERS['home-contact']] }),
+      ) // getHeaderRow
       // retry appendRow — also fails
       .mockResolvedValueOnce(textResponse('Error', 500))
       .mockResolvedValueOnce(textResponse('Error', 500))

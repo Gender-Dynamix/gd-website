@@ -17,7 +17,7 @@ const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 1000;
 
-const SHEET_HEADERS: Record<FormType, string[]> = {
+export const SHEET_HEADERS: Record<FormType, string[]> = {
   'home-contact': [
     'Timestamp',
     'First Name',
@@ -351,13 +351,15 @@ async function ensureSheet(formType: FormType): Promise<void> {
     (sheet) => sheet.properties.title === formType,
   );
 
-  try {
-    await createSheet(formType);
-  } catch (error: any) {
-    const message = error?.message || '';
-    // Check for 'already exists' anywhere in the error string
-    if (!message.includes('already exists')) {
-      throw error;
+  if (!sheetExists) {
+    try {
+      await createSheet(formType);
+    } catch (error: any) {
+      const message = error?.message || '';
+      // Swallow "already exists" — a concurrent request may have created it first
+      if (!message.includes('already exists')) {
+        throw error;
+      }
     }
   }
 
@@ -397,9 +399,4 @@ export async function appendFormSubmission(
     await ensureSheet(formType);
     await appendRow(formType, rowValues);
   }
-}
-
-export function resetModuleState() {
-  cachedToken = null;
-  verifiedSheets.clear();
 }
