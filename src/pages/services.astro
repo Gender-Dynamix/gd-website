@@ -214,36 +214,136 @@ import '../styles/services.css';
 
       <div class="service-content">
         <p class="service-description">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor amet
-          consectetur adipiscing elit quisque faucibus.
+          Our support groups provide a safe, welcoming space for transgender and
+          gender-diverse people to connect, share experiences, and support one
+          another. All groups are free to attend.
         </p>
 
+        <!--Tauranga Groups -->
+        <div class="group-location-section">
+          <h3 class="group-location-heading">
+            <i class="fa-solid fa-location-dot"></i>
+            Tauranga
+          </h3>
+        </div>
+
         <div class="service-categories">
-          <div class="category-card">
-            <h3>Mental Health Care:</h3>
-            <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+          <div class="category-card group-card group-coming-soon">
+            <div class="event-details">
+              <p><strong>PLACEHOLDER</strong></p>
+              <p>PLACEHOLDER</p>
+              <ul>
+                <li>
+                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                  <span>PLACEHOLDER</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!--Whakatane Groups -->
+        <div class="group-location-section">
+          <h3 class="group-location-heading">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            Whakat&#257;ne
+          </h3>
+        </div>
+
+        <div class="service-categories">
+          <!-- Teen Group -->
+          <div class="category-card group-card">
+            <div class="group-card-header">
+              <h4 class="group-card-title">Teen Group</h4>
+              <span
+                class="js-upcoming-date group-next-badge"
+                data-rule="1-Tuesday"></span>
+            </div>
+            <p class="group-card-desc">
+              A dedicated space for gender-diverse rangatahi to connect and be
+              themselves.
+            </p>
+            <ul class="event-details-list">
+              <li>
+                <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                <span
+                  ><strong>Regular:</strong> First Tuesday of each month</span
+                >
+              </li>
+              <li>
+                <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                <span
+                  ><strong>School Holidays:</strong> Tuesdays during term breaks</span
+                >
+              </li>
+              <li>
+                <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                <span><strong>Time:</strong> 5:00pm — 6:30pm</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span><strong>Venue:</strong> Art House, Whakatāne</span>
+              </li>
             </ul>
           </div>
 
-          <div class="category-card">
-            <h3>Transition Support:</h3>
-            <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+          <!-- Adult Group -->
+          <div class="category-card group-card">
+            <div class="group-card-header">
+              <h4 class="group-card-title">Adult Group</h4>
+              <span
+                class="js-upcoming-date group-next-badge"
+                data-rule="1-Friday"></span>
+            </div>
+            <p class="group-card-desc">
+              A welcoming peer support group for gender-diverse adults.
+            </p>
+            <ul class="event-details-list">
+              <li>
+                <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                <span><strong>When:</strong> First Friday of each month</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                <span><strong>Time:</strong> 6:00pm — 7:30pm</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span><strong>Venue:</strong> Art House, Whakatāne</span>
+              </li>
             </ul>
           </div>
 
-          <div class="category-card">
-            <h3>Ongoing Care:</h3>
-            <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
-            </ul>
+          <!--Online Adult Group -->
+          <div class="category-card group-card">
+            <div class="group-card-header">
+              <h4 class="group-card-title">Online Adult Group</h4>
+              <span
+                class="js-upcoming-date group-next-badge"
+                data-rule="L-Wednesday"></span>
+            </div>
+            <div class="event-details">
+              <p class="group-card-desc">
+                Join us from anywhere in Aotearoa — our online group is open to
+                all gender-diverse adults.
+              </p>
+              <ul class="event-details-list">
+                <li>
+                  <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                  <span
+                    ><strong>When:</strong> Last Wednesday of each month</span
+                  >
+                </li>
+                <li>
+                  <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                  <span><strong>Time:</strong> 6:00pm — 7:30pm</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-laptop" aria-hidden="true"></i>
+                  <span><strong>Format:</strong> Online</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -307,7 +407,7 @@ import '../styles/services.css';
               <ul class="event-details-list">
                 <li>
                   <i class="fa-solid fa-calendar" aria-hidden="true"></i>
-                  <span><strong>Tuesdays:</strong> 4:00pm – 6:30PM</span>
+                  <span><strong>Tuesdays:</strong> 4:00pm – 6:30pm</span>
                 </li>
                 <li>
                   <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
@@ -634,6 +734,7 @@ import '../styles/services.css';
 </BaseLayout>
 
 <script is:inline>
+  // Accordian Toggle Logic
   (function () {
     function toggleAccordion(header) {
       var content = header.nextElementSibling;
@@ -660,4 +761,62 @@ import '../styles/services.css';
       header.style.cursor = 'pointer';
     });
   })();
+
+  // Event Date Calculations
+  function initUpcomingDates() {
+    const dayNames = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
+
+    document.querySelectorAll('.js-upcoming-date').forEach((el) => {
+      const rule = el.dataset.rule;
+      if (!rule) return;
+
+      const [occurrence, dayName] = rule.split('-');
+      const targetDay = dayNames.indexOf(dayName);
+      const now = new Date();
+
+      let meetingDate = calculateMeeting(
+        now.getFullYear(),
+        now.getMonth(),
+        occurrence,
+        targetDay,
+      );
+
+      if (meetingDate < now.setHours(0, 0, 0, 0)) {
+        meetingDate = calculateMeeting(
+          now.getFullYear(),
+          now.getMonth() + 1,
+          occurrence,
+          targetDay,
+        );
+      }
+
+      el.textContent = `— Next: ${meetingDate.toLocaleDateString('en-NZ', { day: 'numeric', month: 'short' })}`;
+      el.style.fontWeight = 'bold';
+      el.style.visibility = 'visible';
+    });
+
+    function calculateMeeting(year, month, occ, dayIdx) {
+      if (occ === 'L') {
+        let d = new Date(year, month + 1, 0);
+        while (d.getDay() !== dayIdx) d.setDate(d.getDate() - 1);
+        return d;
+      } else {
+        let d = new Date(year, month, 1);
+        while (d.getDay() !== dayIdx) d.setDate(d.getDate() + 1);
+        d.setDate(d.getDate() + (parseInt(occ) - 1) * 7);
+        return d;
+      }
+    }
+  }
+
+  initUpcomingDates();
+  document.addEventListener('astro:after-swap', initUpcomingDates);
 </script>
