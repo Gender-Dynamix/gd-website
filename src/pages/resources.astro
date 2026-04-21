@@ -4,6 +4,25 @@ import AgeVerificationModal from '../components/AgeVerificationModal.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import '../styles/resources.css';
 
+// Helper to wrap common Māori words found in your data
+const wrapMaori = (text: string) => {
+  const words = [
+    'Aotearoa',
+    'Takatāpui',
+    'Kōaro',
+    'Te Whatu Ora',
+    'Whakawāhine',
+  ];
+  let formatted = text;
+
+  words.forEach((word) => {
+    const regex = new RegExp(`(${word})`, 'g');
+    formatted = formatted.replace(regex, '<span lang="mi">$1</span>');
+  });
+
+  return formatted;
+};
+
 //Kiwi Organisations - Grouped by Category
 const orgSections = [
   {
@@ -16,6 +35,7 @@ const orgSections = [
     orgs: [
       {
         name: 'Health New Zealand — Te Whatu Ora',
+        nameMi: 'Te Whatu Ora',
         desc: 'Gender affirming care and support services from the national health authority',
         logo: '/images/organisation-logos/healthnz-logo-v2.svg',
         logoClass: 'logo-light-bg',
@@ -144,9 +164,9 @@ const orgSections = [
       <h1>Resources</h1>
       <p>
         Your guide to essential support and resources. Connect with transgender
-        and gender diverse organisations throughout Aotearoa, explore trusted
-        suppliers of gender affirming gear, and discover educational videos to
-        support your journey of self-discovery and empowerment.
+        and gender diverse organisations throughout <span>Aotearoa,</span> explore
+        trusted suppliers of gender affirming gear, and discover educational videos
+        to support your journey of self-discovery and empowerment.
       </p>
     </div>
     <div class="custom-shape-divider-top">
@@ -169,19 +189,19 @@ const orgSections = [
       <h2>Jump to Section</h2>
       <div class="quick-nav-grid">
         <a href="#kiwi-organisations" class="quick-nav-btn">
-          <div class="nav-icon">
-            <img src="/images/kiwi.svg" alt="Kiwi Organisations" />
+          <div class="nav-icon" aria-hidden="true">
+            <img src="/images/kiwi.svg" alt="" />
           </div>
           <h3>Kiwi Organisations</h3>
         </a>
         <a href="#gender-affirming-gear" class="quick-nav-btn">
-          <div class="nav-icon">
-            <img src="/images/icons-01.webp" alt="Gender Affirming Gear" />
+          <div class="nav-icon" aria-hidden="true">
+            <img src="/images/icons-01.webp" alt="" />
           </div>
           <h3>Gender Affirming Gear</h3>
         </a>
         <a href="#video-resources" class="quick-nav-btn">
-          <div class="nav-icon">
+          <div class="nav-icon" aria-hidden="true">
             <i class="fa-solid fa-circle-play"></i>
           </div>
           <h3>Video Gallery</h3>
@@ -197,7 +217,7 @@ const orgSections = [
       <h2>Kiwi Organisations</h2>
       <p>
         Connect with transgender and gender diverse organisations across
-        Aotearoa New Zealand
+        <span lang="mi">Aotearoa</span> New Zealand
       </p>
     </div>
 
@@ -206,7 +226,7 @@ const orgSections = [
       {
         orgSections.map((s) => (
           <a href={`#${s.id}`} class={`org-subnav-pill accent-${s.accent}`}>
-            <i class={`fas ${s.icon}`} />
+            <i class={`fas ${s.icon}`} aria-hidden="true" />
             {s.title}
           </a>
         ))
@@ -220,7 +240,7 @@ const orgSections = [
       <section id={section.id} class={`org-section accent-${section.accent}`}>
         <div class="org-section-heading">
           <div class="heading-with-icon">
-            <i class={`fas ${section.icon}`} />
+            <i class={`fas ${section.icon}`} aria-hidden="true" />
             <h2>{section.title}</h2>
           </div>
           <p>{section.description}</p>
@@ -230,20 +250,26 @@ const orgSections = [
           <div class="org-cards-grid">
             {section.orgs.map((org) => (
               <div class="kiwi-card">
-                <div
-                  class={`kiwi-img ${org.logoClass ? `${org.logoClass}` : ''}`}
-                >
-                  <img src={org.logo} alt={org.name} />
+                <div class={`kiwi-img ${org.logoClass || ''}`}>
+                  {/* Hiding the logo because the name is in the H3 right below.
+                  This prevents the screen reader from saying the name twice.
+                */}
+                  <img src={org.logo} alt="" aria-hidden="true" />
                 </div>
+
                 <div class="kiwi-body">
                   <span class="kiwi-category">{org.tag}</span>
-                  <h3>{org.name}</h3>
-                  <p>{org.desc}</p>
+
+                  {/* Using set:html to render the <span> tags from our helper */}
+                  <h3 set:html={wrapMaori(org.name)} />
+                  <p set:html={wrapMaori(org.desc)} />
+
                   <a
                     href={org.url}
                     class="kiwi-link"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit ${org.name} website`}
                   >
                     Visit Website
                   </a>
@@ -568,7 +594,7 @@ const orgSections = [
 
     <div class="video-cards-container">
       <div class="video-card">
-        <div class="video-img">
+        <div class="video-img" aria-hidden="true">
           <img
             src="/images/organisation-logos/insideout-logo-transparent-550.png"
             alt="Video Resource"
@@ -592,7 +618,7 @@ const orgSections = [
       </div>
 
       <div class="video-card">
-        <div class="video-img">
+        <div class="video-img" aria-hidden="true">
           <img
             src="/images/organisation-logos/healthify.webp"
             alt="Video Resource"
@@ -626,7 +652,7 @@ const orgSections = [
         <div class="embed-container">
           <iframe
             src="https://www.youtube-nocookie.com/embed?listType=playlist&list=PL4lyxUW1_5XPUDoDD6HGWNZWYhe8O_FXA"
-            title="YouTube video player"
+            title="Te Ao Takatāpui Video Series"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowfullscreen
           >
@@ -634,16 +660,17 @@ const orgSections = [
         </div>
         <div class="embed-info">
           <span class="video-badge">Video Series</span>
-          <h4>Te Ao Takat&#257;pui</h4>
+          <h4 lang="mi">Te Ao Takatāpui</h4>
           <p>
-            A beautiful documentary series by InsideOUT K&#333;aro that shares
-            the stories of Takat&#257;pui (M&#257;ori Rainbow) community
-            members.
+            A beautiful documentary series by InsideOUT
+            <span lang="mi">Kōaro</span> that shares the stories of <span
+              lang="mi">Takatāpui</span
+            > (<span lang="mi">Māori</span> Rainbow) community members.
           </p>
           <p class="video-meta">
-            <i class="fas fa-info-circle"></i>
+            <i class="fas fa-info-circle" aria-hidden="true"></i>
             Recommended for: Understanding the intersection of culture, indigeneity,
-            and gender identity in Aotearoa.
+            and gender identity in <span lang="mi">Aotearoa</span>.
           </p>
         </div>
       </div>

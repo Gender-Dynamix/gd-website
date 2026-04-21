@@ -44,31 +44,31 @@ import '../styles/services.css';
       <h2>Jump to Section</h2>
       <div class="quick-nav-grid">
         <a href="#clinical-support" class="quick-nav-btn">
-          <div class="nav-icon">
+          <div class="nav-icon" aria-hidden="true">
             <img src="/images/icons-01.webp" alt="Clinical Support" />
           </div>
           <h3>Clinical Support</h3>
         </a>
         <a href="#peer-support" class="quick-nav-btn">
-          <div class="nav-icon">
+          <div class="nav-icon" aria-hidden="true">
             <img src="/images/icons-02.webp" alt="Peer Support" />
           </div>
           <h3>Peer Support</h3>
         </a>
         <a href="#group-support" class="quick-nav-btn">
-          <div class="nav-icon">
+          <div class="nav-icon" aria-hidden="true">
             <img src="/images/icons-03.webp" alt="Group Support" />
           </div>
           <h3>Group Support</h3>
         </a>
         <a href="#additional-support" class="quick-nav-btn">
-          <div class="nav-icon">
+          <div class="nav-icon" aria-hidden="true">
             <i class="fa-solid fa-plus"></i>
           </div>
           <h3>Additional Services</h3>
         </a>
         <a href="#training" class="quick-nav-btn">
-          <div class="nav-icon">
+          <div class="nav-icon" aria-hidden="true">
             <img src="/images/work_icon.svg" alt="Training" />
           </div>
           <h3>Training</h3>
@@ -84,7 +84,7 @@ import '../styles/services.css';
     <div class="service-detail-container">
       <div class="service-header js-accordion-header">
         <div class="service-title-group">
-          <div class="service-icon-small">
+          <div class="service-icon-small" aria-hidden="true">
             <img src="/images/icons-01.webp" alt="Clinical Support Icon" />
           </div>
           <h2>Clinical Support Services</h2>
@@ -94,7 +94,7 @@ import '../styles/services.css';
           aria-label="Toggle section"
           aria-expanded="true"
         >
-          <i class="fas fa-arrow-up"></i>
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
         </button>
       </div>
 
@@ -198,7 +198,7 @@ import '../styles/services.css';
     <div class="service-detail-container">
       <div class="service-header js-accordion-header">
         <div class="service-title-group">
-          <div class="service-icon-small">
+          <div class="service-icon-small" aria-hidden="true">
             <img src="/images/icons-03.webp" alt="Group Support Icon" />
           </div>
           <h2>Group Support Services</h2>
@@ -208,7 +208,7 @@ import '../styles/services.css';
           aria-label="Toggle section"
           aria-expanded="true"
         >
-          <i class="fas fa-arrow-up"></i>
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
         </button>
       </div>
 
@@ -222,7 +222,7 @@ import '../styles/services.css';
         <!--Tauranga Groups -->
         <div class="group-location-section">
           <h3 class="group-location-heading">
-            <i class="fa-solid fa-location-dot"></i>
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
             Tauranga
           </h3>
         </div>
@@ -355,7 +355,7 @@ import '../styles/services.css';
     <div class="service-detail-container">
       <div class="service-header js-accordion-header">
         <div class="service-title-group">
-          <div class="service-icon-small">
+          <div class="service-icon-small" aria-hidden="true">
             <div class="icon-circle-bg">
               <i class="fa-solid fa-plus"></i>
             </div>
@@ -367,7 +367,7 @@ import '../styles/services.css';
           aria-label="Toggle section"
           aria-expanded="true"
         >
-          <i class="fas fa-arrow-up"></i>
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
         </button>
       </div>
 
@@ -450,16 +450,17 @@ import '../styles/services.css';
     <div class="form-card-container">
       <div class="form-card-header js-accordion-header">
         <div class="form-title-group">
-          <div class="form-icon">
+          <div class="form-icon" aria-hidden="true">
             <img src="/images/work_icon.svg" alt="Training Icon" />
           </div>
           <h2>Training</h2>
         </div>
         <button
           class="form-collapse-btn accordion-toggle"
-          aria-label="Toggle form"
+          aria-label="Toggle Training form"
+          aria-controls="trainingFormContainer"
         >
-          <i class="fas fa-arrow-up"></i>
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
         </button>
       </div>
 

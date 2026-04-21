@@ -266,14 +266,14 @@
 
 .sponsors-container h2 {
   font-size: 2.5rem;
-  color: white;
+  color: var(--purple);
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
 .sponsors-intro {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--purple);
   margin-bottom: 3rem;
   max-width: 800px;
   margin-left: auto;
@@ -330,7 +330,7 @@
 }
 
 .become-sponsor a {
-  color: var(--primary-lavender);
+  color: var(--purple);
   font-weight: 600;
   text-decoration: none;
   border-bottom: 2px solid var(--primary-lavender);
