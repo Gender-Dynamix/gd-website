@@ -80,7 +80,7 @@ textarea {
 }
 
 .submit-btn {
-  background: var(--url-purple);
+  background: var(--primary-lavender);
   color: #fff;
   border: none;
   padding: 12px 40px;
@@ -573,7 +573,6 @@ textarea {
 .btn-safety-exit .esc-text {
   font-weight: 500;
   font-size: 0.65rem;
-  opacity: 0.9;
 }
 
 .btn-safety-exit.at-footer {

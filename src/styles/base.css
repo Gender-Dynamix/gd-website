@@ -10,15 +10,14 @@
 
 /* Color Variables */
 :root {
-  --primary-lavender: #ad98c4;
+  --primary-lavender: #8869a9;
   --url-purple: #bb86fc;
   --purple: #20173a;
   --primary-font: #2d2d2d;
-  --secondary-blue: #6bb6c0;
   --secondary-white: #f8f5f2;
-  --trans-blue: #5bcefa;
-  --trans-pink: #f5a9b8;
-  --trans-white: #ffffff;
+  --wave-top-color: #8869a9;
+  --wave-footer-color: #20173a;
+  --url-purple-inverse: #d1b3ff;
 }
 
 /* Global Styles */
@@ -109,3 +108,354 @@ header {
 .form-submission-success p {
   color: var(--primary-font);
 }
+
+/* ------------ High contrast overrides ------------ */
+
+[data-high-contrast] {
+  /* Replace the soft palette with high-contrast equivalents */
+  --primary-lavender: #5c3d8f;
+  --url-purple: #4a2880;
+  --purple: #0f0a1e;
+  --primary-font: #121212;
+  --secondary-white: #f0ecf8;
+  --wave-top-color: #5c3d8f;
+  --wave-footer-color: #0f0a1e;
+  --url-purple-inverse: #eaddff;
+}
+
+/* Nav: ensure toggle is visible against the white nav bar */
+[data-high-contrast] .btn-contrast-toggle {
+  color: var(--primary-font);
+  border-color: var(--primary-lavender);
+}
+
+[data-high-contrast] .btn-contrast-toggle[aria-pressed='true'] {
+  background: var(--primary-lavender);
+  color: white;
+  border-color: var(--primary-lavender);
+}
+/* Nav links */
+[data-high-contrast] nav a:hover {
+  color: var(--primary-lavender);
+}
+
+/* Dropdown backgrounds */
+[data-high-contrast] .dropdown-content {
+  background-color: var(--secondary-white);
+  border: 1px solid var(--primary-lavender);
+}
+
+[data-high-contrast] .dropdown-content li a:hover {
+  background-color: var(--primary-lavender);
+  color: white;
+}
+
+/* Focus rings */
+[data-high-contrast] *:focus-visible {
+  outline: 3px solid var(--primary-lavender);
+  outline-offset: 2px;
+}
+
+[data-high-contrast] .service-header,
+[data-high-contrast] .form-card-header,
+[data-high-contrast] .contact-header {
+  border-bottom-color: var(--primary-lavender);
+}
+
+[data-high-contrast] .category-card {
+  border-color: var(--primary-lavender);
+}
+
+[data-high-contrast] .contact-nav-btn {
+  color: white;
+  background-color: #392c4e;
+}
+
+[data-high-contrast] .event-details-list i {
+  color: var(--primary-lavender);
+}
+
+/* Form Inputs */
+[data-high-contrast] .form-group input,
+[data-high-contrast] .form-group textarea,
+[data-high-contrast] .form-group select {
+  border-color: #888;
+  color: var(--primary-font);
+}
+
+[data-high-contrast] .form-group input:focus,
+[data-high-contrast] .form-group textarea:focus,
+[data-high-contrast] .form-group select:focus {
+  border-color: var(--primary-lavender);
+  box-shadow: 0 0 0 3px rgba(92, 61, 143, 0.25);
+}
+[data-high-contrast] .home-contact-form label span {
+  color: #b30000;
+  font-weight: 700;
+}
+
+[data-high-contrast] .validation-message {
+  color: #b30000;
+}
+
+/* Quick Navigation */
+[data-high-contrast] .quick-nav-btn {
+  background-color: #4d3d69;
+  color: white;
+}
+
+[data-high-contrast] .service-card {
+  background-color: #392c4e;
+  color: white;
+}
+
+[data-high-contrast] .service-card:hover {
+  background-color: #271e35;
+  color: white;
+}
+/* Kiwi Card category badge */
+[data-high-contrast] .kiwi-category {
+  background-color: var(--primary-lavender);
+}
+
+/* Org section heading icon colours in HC mode */
+[data-high-contrast] .org-section.accent-blue .heading-with-icon i {
+  color: #003d7a;
+}
+[data-high-contrast] .org-section.accent-pink .heading-with-icon i {
+  color: #800020;
+}
+[data-high-contrast] .org-section.accent-green .heading-with-icon i {
+  color: #004d26;
+}
+[data-high-contrast] .org-section.accent-purple .heading-with-icon i {
+  color: #4a2880;
+}
+
+/* Group next badge */
+[data-high-contrast] .group-next-badge {
+  background-color: var(--purple);
+}
+
+/* Org subnav Pills */
+[data-high-contrast] .org-subnav-pill {
+  background-color: #ffffff; /* Force opaque background */
+  border-width: 2px; /* Thicker borders for HC */
+}
+
+[data-high-contrast] .org-subnav-pill.accent-blue {
+  color: #003d7a;
+  border-color: #003d7a;
+}
+[data-high-contrast] .org-subnav-pill.accent-pink {
+  color: #800020;
+  border-color: #800020;
+}
+[data-high-contrast] .org-subnav-pill.accent-green {
+  color: #004d26;
+  border-color: #004d26;
+}
+[data-high-contrast] .org-subnav-pill.accent-purple {
+  color: #4a2880;
+  border-color: #4a2880;
+}
+
+[data-high-contrast] .org-subnav-pill.accent-blue:hover {
+  background-color: #003d7a;
+  color: #ffffff;
+}
+[data-high-contrast] .org-subnav-pill.accent-pink:hover {
+  background-color: #800020;
+  color: #ffffff;
+}
+[data-high-contrast] .org-subnav-pill.accent-green:hover {
+  background-color: #004d26;
+  color: #ffffff;
+}
+[data-high-contrast] .org-subnav-pill.accent-purple:hover {
+  background-color: #4a2880;
+  color: #ffffff;
+}
+
+[data-high-contrast] .gear-category-card.blue {
+  border-top-color: #003d7a;
+}
+[data-high-contrast] .gear-category-card.pink {
+  border-top-color: #800020;
+}
+[data-high-contrast] .gear-category-card.green {
+  border-top-color: #004d26;
+}
+[data-high-contrast] .gear-category-card.purple {
+  border-top-color: #4a2880;
+}
+/* Featured Partner */
+[data-high-contrast] .partner-feature {
+  background: #f8f6fb;
+}
+
+[data-high-contrast] .partner-heading h2,
+[data-high-contrast] .partner-heading p {
+  color: #000000;
+  opacity: 1;
+}
+
+[data-high-contrast] .resource-highlight-card {
+  background: #ffffff;
+  border: 3px solid #4a2880;
+  box-shadow: none;
+  color: #000000;
+}
+
+[data-high-contrast] .resource-img {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #4a2880;
+}
+
+[data-high-contrast] .resource-label {
+  background-color: #4a2880;
+  color: #ffffff;
+  opacity: 1;
+}
+
+[data-high-contrast] .resource-body h3,
+[data-high-contrast] .resource-body p {
+  color: #000000;
+  opacity: 1;
+}
+
+[data-high-contrast] .resource-btn {
+  background-color: #4a2880;
+  color: #ffffff;
+  border: 2px solid #000000;
+}
+
+[data-high-contrast] .resource-btn:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Video Meta */
+[data-high-contrast] .video-meta {
+  background-color: #f3effb;
+  border: 2px solid #4a2880;
+  color: #21005d;
+  opacity: 1;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+[data-high-contrast] .video-meta i {
+  color: #4a2880;
+  font-weight: 900;
+}
+
+[data-high-contrast] .video-meta span,
+[data-high-contrast] .video-meta p {
+  color: #21005d;
+  font-weight: 500;
+}
+
+/* Gear category card top borders */
+[data-high-contrast] .gear-links-list a {
+  color: var(--url-purple);
+}
+
+[data-high-contrast] .gear-links-list a:hover {
+  color: var(--primary-lavender);
+}
+
+/* Social Buttons on Abt Pg */
+[data-high-contrast] .social-btn {
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+[data-high-contrast] .social-btn.facebook {
+  background: #003d7a;
+  border: 2px solid #ffffff;
+}
+
+[data-high-contrast] .social-btn.instagram {
+  background: #800020;
+  border: 2px solid #ffffff;
+}
+
+[data-high-contrast] .social-btn span {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+[data-high-contrast] .btn-donate {
+  color: var(--primary-lavender);
+  font-weight: 700;
+}
+
+[data-high-contrast] a {
+  color: var(--url-purple);
+}
+
+[data-high-contrast] .event-link {
+  color: var(--url-purple);
+}
+
+/* Accordian Toggle Buttons */
+[data-high-contrast] .accordian-toggle,
+[data-high-contrast] .form-collapse-btn {
+  background-color: var(--primary-lavender);
+}
+
+/* Privacy banner */
+[data-high-contrast] .privacy-banner {
+  background: linear-gradient(
+    135deg,
+    var(--purple) 0%,
+    var(--primary-lavender) 100%
+  );
+}
+
+/* Donate page service desc + Givealittle Btn*/
+[data-high-contrast] .service-support-desc {
+  color: var(--primary-font);
+}
+
+[data-high-contrast] .givealittle-btn {
+  background-color: #4e26c1;
+  color: white;
+}
+
+/* Back-to-top and Safety Exit */
+[data-high-contrast] .back-to-top {
+  background-color: var(--primary-lavender);
+}
+
+[data-high-contrast] .btn-safety-exit {
+  background-color: #721c24;
+  color: white;
+}
+
+/* CTA Banners */
+[data-high-contrast] .cta-banner {
+  background-color: linear-gradient(
+    135deg,
+    var(--primary-lavender) 0%,
+    var(--purple 100%)
+  );
+}
+
+/* Infobox left corner */
+[data-high-contrast] .form-info-box {
+  border-left-color: var(--primary-lavender);
+}
+
+/* Bullet tick colour in form-info box */
+[data-high-contrast] .form-info-box li::before {
+  color: var(--primary-lavender);
+}
+
+/* Group location heading border */
+[data-high-contrast] .group-location-heading {
+  color: var(--primary-lavender);
+}
+
+/* ------------ High contrast overrides END------------ */

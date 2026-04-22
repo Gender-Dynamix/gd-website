@@ -1,6 +1,6 @@
 /* Quick Navigation Buttons Section */
 .quick-nav-services {
-  color: var(--trans-white);
+  color: #ffffff;
   background-color: var(--primary-lavender);
   padding: 60px 5% 80px;
   min-height: 300px;
@@ -17,7 +17,7 @@
   font-size: clamp(1.8rem, 3.5vw, 2.2rem);
   font-weight: 600;
   margin-bottom: 2rem;
-  color: var(--trans-white);
+  color: #ffffff;
 }
 
 .quick-nav-grid {
@@ -33,7 +33,7 @@
   flex: 1 1 220px;
   max-width: 280px;
   text-decoration: none;
-  color: var(--trans-white);
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +60,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: var(--trans-white);
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,7 +349,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: white;
-  background-color: var(--primary-lavender);
+  background-color: var(--purple);
   padding: 3px 10px;
   border-radius: 50px;
   line-height: 1.6;
@@ -410,7 +410,7 @@
   );
   padding: 40px 5%;
   text-align: center;
-  color: var(--trans-white);
+  color: #ffffff;
 }
 
 .cta-banner-container {
@@ -433,18 +433,18 @@
   display: inline-block;
   padding: 14px 40px;
   background-color: transparent;
-  color: var(--trans-white);
+  color: #ffffff;
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 600;
-  border: 2px solid var(--trans-white);
+  border: 2px solid #ffffff;
   border-radius: 50px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .cta-button:hover {
-  background-color: var(--trans-white);
+  background-color: #ffffff;
   color: var(--purple);
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -535,7 +535,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--trans-white);
+  color: #ffffff;
   font-weight: 600;
   font-size: 1.3rem;
   cursor: pointer;
@@ -620,6 +620,20 @@
   margin-bottom: 0.5rem;
 }
 
+.group-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--purple);
+  margin-bottom: 0.5rem;
+}
+
+fieldset.checkbox-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0; /* Fixes a known flexbox/grid bug in some browsers */
+}
+
 .form-group input[type='text'],
 .form-group input[type='email'],
 .form-group input[type='tel'],
@@ -630,7 +644,7 @@
   font-size: 1rem;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  background-color: var(--trans-white);
+  background-color: #ffffff;
   transition: all 0.3s ease;
   font-family: inherit;
 }
@@ -706,7 +720,7 @@
   margin: 2rem auto 0;
   padding: 14px 30px;
   background-color: var(--primary-lavender);
-  color: var(--trans-white);
+  color: #ffffff;
   border: none;
   border-radius: 50px;
   font-size: 1.1rem;

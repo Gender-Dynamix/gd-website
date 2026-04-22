@@ -1,6 +1,13 @@
 ---
 const currentYear = new Date().getFullYear();
+import WaveDivider from './WaveDivider.astro';
 ---
+
+<WaveDivider
+  direction="down"
+  fillVar="--wave-footer-color"
+  className="wave-divider"
+/>
 
 <footer class="main-footer">
   <div class="footer-section contact-info">

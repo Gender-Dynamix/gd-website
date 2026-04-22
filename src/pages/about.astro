@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Lightbox from '../components/Lightbox.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 import '../styles/about.css';
 ---
 
@@ -23,19 +24,11 @@ import '../styles/about.css';
         through our unique framework of care.
       </p>
     </div>
-    <div class="custom-shape-divider-top">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-        preserveAspectRatio="none"
-      >
-        <path
-          fill="#ad98c4"
-          fill-opacity="0.99"
-          d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </div>
+    <WaveDivider
+      direction="down"
+      fillVar="--wave-top-color"
+      className="custom-shape-divider-top"
+    />
   </section>
 
   <section class="identity-marquee-section">
@@ -100,16 +93,11 @@ import '../styles/about.css';
     </div>
   </section>
 
-  <div class="marquee-wave-bottom">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path
-        fill="#ad98c4"
-        fill-opacity="0.99"
-        shape-rendering="geometricPrecision"
-        d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-      ></path>
-    </svg>
-  </div>
+  <WaveDivider
+    direction="up"
+    fillVar="--wave-top-color"
+    className="marquee-wave-bottom"
+  />
 
   <section class="about-content">
     <div class="content-row image-right">
