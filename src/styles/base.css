@@ -443,6 +443,10 @@ header {
   );
 }
 
+[data-high-contrast] .cta-button {
+  color: white;
+}
+
 /* Infobox left corner */
 [data-high-contrast] .form-info-box {
   border-left-color: var(--primary-lavender);

@@ -16,7 +16,7 @@
     if (previewImages.length > 0 && lightbox && lightboxImg) {
       previewImages.forEach(function (img) {
         img.addEventListener('click', function () {
-          lightbox.style.display = 'block';
+          lightbox.style.display = 'flex';
           lightboxImg.src = img.src;
           lightboxImg.alt = img.alt;
           if (captionText) {
