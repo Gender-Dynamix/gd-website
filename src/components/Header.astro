@@ -280,8 +280,10 @@
         );
       }
     });
+  })();
 
-    // Email obfuscation
+  // Email obfuscation — runs after full DOM is parsed so footer links are included
+  document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.email-link').forEach(function (link) {
       var user = link.dataset.user;
       var domain = link.dataset.domain;
@@ -291,5 +293,5 @@
         link.textContent = email;
       }
     });
-  })();
+  });
 </script>
