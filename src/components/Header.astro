@@ -57,6 +57,11 @@
               >
             </li>
             <li>
+              <a href="/services#faq" data-text="FaQ"
+                >Frequently Asked Questions</a
+              >
+            </li>
+            <li>
               <a href="/services#training" data-text="Training">Training</a>
             </li>
           </ul>
@@ -91,6 +96,18 @@
         <li>
           <a href="/donate" class="btn-donate" data-text="Donate">Donate</a>
         </li>
+        <!--High Contrast Toggle -->
+        <li class="contrast-toggle-wrapper">
+          <button
+            class="btn-contrast-toggle"
+            id="contrast-toggle"
+            aria-label="Toggle high contrast mode"
+            aria-pressed="false"
+            title="Toggle high contrast"
+          >
+            <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+          </button>
+        </li>
 
         <li class="social-wrapper">
           <div class="nav-socials">
@@ -98,20 +115,23 @@
               href="https://www.instagram.com/genderdynamixnz/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram"><i class="fab fa-instagram"></i></a
+              aria-label="Instagram"
+              ><i class="fab fa-instagram" aria-hidden="true"></i></a
             >
             <a
               href="https://www.facebook.com/genderdynamixnz/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook"><i class="fab fa-facebook"></i></a
+              aria-label="Facebook"
+              ><i class="fab fa-facebook" aria-hidden="true"></i></a
             >
             <a
               href="#"
               class="email-link"
               data-user="referrals"
               data-domain="gdnz.org"
-              aria-label="Email"><i class="fa-solid fa-envelope"></i></a
+              aria-label="Email"
+              ><i class="fa-solid fa-envelope" aria-hidden="true"></i></a
             >
           </div>
         </li>
@@ -119,7 +139,16 @@
     </div>
   </nav>
 </header>
-
+<script is:inline>
+  //High Contrast: apply before first paint to avoid flash
+  (function () {
+    try {
+      if (localStorage.getItem('gd-high-contrast') === '1') {
+        document.documentElement.setAttribute('data-high-contrast', '');
+      }
+    } catch (e) {}
+  })();
+</script>
 <script is:inline>
   (function () {
     var hamburger = document.querySelector('.hamburger');
@@ -212,6 +241,45 @@
         link.addEventListener('click', closeMenu);
       });
     }
+
+    // Contrast Toggle
+    var contrastBtn = document.getElementById('contrast-toggle');
+    if (contrastBtn) {
+      // Reflect current state on load
+      var isHC = document.documentElement.hasAttribute('data-high-contrast');
+      contrastBtn.setAttribute('aria-pressed', isHC ? 'true' : 'false');
+
+      contrastBtn.addEventListener('click', function () {
+        var active =
+          document.documentElement.hasAttribute('data-high-contrast');
+        if (active) {
+          document.documentElement.removeAttribute('data-high-contrast');
+          contrastBtn.setAttribute('aria-pressed', 'false');
+          try {
+            localStorage.setItem('gd-high-contrast', '0');
+          } catch (e) {}
+        } else {
+          document.documentElement.setAttribute('data-high-contrast', '');
+          contrastBtn.setAttribute('aria-pressed', 'true');
+          try {
+            localStorage.setItem('gd-high-contrast', '1');
+          } catch (e) {}
+        }
+      });
+    }
+
+    //Re-sync button state after Astro view transitions
+    document.addEventListener('astro:after-swap', function () {
+      var btn = document.getElementById('contrast-toggle');
+      if (btn) {
+        btn.setAttribute(
+          'aria-pressed',
+          document.documentElement.hasAttribute('data-high-contrast')
+            ? 'true'
+            : 'false',
+        );
+      }
+    });
 
     // Email obfuscation
     document.querySelectorAll('.email-link').forEach(function (link) {

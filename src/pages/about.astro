@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Lightbox from '../components/Lightbox.astro';
+import WaveDivider from '../components/WaveDivider.astro';
 import '../styles/about.css';
 ---
 
@@ -23,19 +24,11 @@ import '../styles/about.css';
         through our unique framework of care.
       </p>
     </div>
-    <div class="custom-shape-divider-top">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-        preserveAspectRatio="none"
-      >
-        <path
-          fill="#ad98c4"
-          fill-opacity="0.99"
-          d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </div>
+    <WaveDivider
+      direction="down"
+      fillVar="--wave-top-color"
+      className="custom-shape-divider-top"
+    />
   </section>
 
   <section class="identity-marquee-section">
@@ -100,16 +93,11 @@ import '../styles/about.css';
     </div>
   </section>
 
-  <div class="marquee-wave-bottom">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path
-        fill="#ad98c4"
-        fill-opacity="0.99"
-        shape-rendering="geometricPrecision"
-        d="M0,128L60,112C120,96,240,64,360,74.7C480,85,600,139,720,170.7C840,203,960,213,1080,208C1200,203,1320,181,1380,170.7L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
-      ></path>
-    </svg>
-  </div>
+  <WaveDivider
+    direction="up"
+    fillVar="--wave-top-color"
+    className="marquee-wave-bottom"
+  />
 
   <section class="about-content">
     <div class="content-row image-right">
@@ -264,23 +252,23 @@ import '../styles/about.css';
         <p>
           <span lang="mi">Tūturutanga</span>- Respect: Being genuine and
           authentic. <span lang="mi">Whanaungatanga</span>- Relationships: A
-          sense of connection and belonging. <span>Manawanui</span>- Compassion:
-          Supporting one another through challenging times, celebrating one
-          another through challenging times, celebrating one another through our
-          achievements, building perseverance and resilience. <span lang="mi"
-            >Tokohanga</span
-          >- Responsibility: Making conscientious decisions, fostering
-          accountability and holistic contributions to our socio-cultural
-          landscapes.
-          <span>Whakapapa</span>- Connections: Knowing and understanding who and
-          what shapes us.<span lang="mi">Moemoeā</span>- Inspirations: Having
-          dreams, envisioning, embodying and stewarding the future and our
-          becoming both Individually and collectively.
-          <span>Manaakitanga</span>- Care: Instilling reciprocity and gratitude,
-          welcoming and nourishing one another each day through life's cycles
-          and seasons.<span>Tiakitanga</span>- Awareness: Being conscious and
-          caring in the environments we work in, extending care to peoples,
-          places and beings we share out efforts with.
+          sense of connection and belonging. <span lang="mi">Manawanui</span>-
+          Compassion: Supporting one another through challenging times,
+          celebrating one another through challenging times, celebrating one
+          another through our achievements, building perseverance and
+          resilience. <span lang="mi">Tokohanga</span>- Responsibility: Making
+          conscientious decisions, fostering accountability and holistic
+          contributions to our socio-cultural landscapes.
+          <span lang="mi">Whakapapa</span>- Connections: Knowing and
+          understanding who and what shapes us.<span lang="mi">Moemoeā</span>-
+          Inspirations: Having dreams, envisioning, embodying and stewarding the
+          future and our becoming both Individually and collectively.
+          <span lang="mi">Manaakitanga</span>- Care: Instilling reciprocity and
+          gratitude, welcoming and nourishing one another each day through
+          life's cycles and seasons.<span lang="mi">Tiakitanga</span>-
+          Awareness: Being conscious and caring in the environments we work in,
+          extending care to peoples, places and beings we share out efforts
+          with.
         </p>
         <h3>Our Vision</h3>
         <p>

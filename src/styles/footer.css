@@ -1,7 +1,7 @@
 /* Footer */
 .main-footer {
   background-color: var(--purple);
-  color: var(--trans-white);
+  color: #ffffff;
   padding: 1rem 10%;
   font-size: 0.9rem;
   display: grid;
@@ -21,7 +21,7 @@
 }
 
 .footer-section a {
-  color: var(--url-purple);
+  color: var(--url-purple-inverse);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -73,7 +73,7 @@
 }
 
 .footer-legal a {
-  color: var(--url-purple);
+  color: var(--url-purple-inverse);
   text-decoration: underline;
   margin: 0 5px;
 }

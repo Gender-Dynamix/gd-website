@@ -1,6 +1,6 @@
 /* Quick Navigation Buttons Section */
 .quick-nav-services {
-  color: var(--trans-white);
+  color: #ffffff;
   background-color: var(--primary-lavender);
   padding: 60px 5% 80px;
   min-height: 300px;
@@ -17,7 +17,7 @@
   font-size: clamp(1.8rem, 3.5vw, 2.2rem);
   font-weight: 600;
   margin-bottom: 2rem;
-  color: var(--trans-white);
+  color: #ffffff;
 }
 
 .quick-nav-grid {
@@ -33,7 +33,7 @@
   flex: 1 1 220px;
   max-width: 280px;
   text-decoration: none;
-  color: var(--trans-white);
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +60,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: var(--trans-white);
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,18 +204,14 @@
 }
 
 .service-content {
-  max-height: 1500px;
+  max-height: 9999px;
   overflow: hidden;
   transition:
-    max-height 0.3s ease,
+    max-height 0.5s ease,
     opacity 0.3s ease,
     padding 0.3s ease;
   opacity: 1;
   padding-top: 2rem;
-}
-
-#training .service-content {
-  max-height: 4000px;
 }
 
 .service-content.collapsed {
@@ -241,7 +237,7 @@
   background-color: var(--secondary-white);
   border: 3px solid var(--primary-lavender);
   border-radius: 16px;
-  padding: 25px;
+  padding: 28px 28px 24px;
   transition: all 0.3s ease;
 }
 
@@ -264,20 +260,104 @@
 }
 
 .category-card li {
-  padding-left: 0;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  padding-left: 1.4rem;
+  position: relative;
+  display: block;
+  line-height: 1.55;
+  margin-bottom: 0.65rem;
 }
 
-/* .category-card li::before {
-  content: '✓';
+.category-card li:last-child {
+  margin-bottom: 0;
+}
+
+.category-card li::before {
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--primary-lavender);
   font-weight: bold;
-  font-size: 1.2rem;
-} */
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+/* Group location sub-sections */
+.group-location-section {
+  margin-bottom: 2.5rem;
+}
+
+.group-location-section:last-child {
+  margin-bottom: 0;
+}
+
+.group-location-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+  font-weight: 600;
+  color: var(--purple);
+  margin-bottom: 1.25rem;
+  margin-top: 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid rgba(173, 152, 196, 0.35);
+}
+
+.group-location-heading i {
+  color: var(--primary-lavender);
+  font-size: 1rem;
+}
+
+.group-coming-soon {
+  opacity: 0.75;
+  border-style: dashed;
+  margin-bottom: 20px;
+}
+/* Group Cards */
+.group-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.group-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.group-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.group-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--purple);
+  opacity: 0.8;
+  margin: 0 0 1rem 0;
+}
+
+.group-next-badge {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  background-color: var(--purple);
+  padding: 3px 10px;
+  border-radius: 50px;
+  line-height: 1.6;
+  visibility: hidden;
+}
 
 /* Group location sub-sections */
 .group-location-section {
@@ -367,6 +447,15 @@
 }
 
 .event-details-list li {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.event-details-list li::before {
+  display: none;
+}
+
+.event-details-list li {
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -384,6 +473,7 @@
 .event-recruitment {
   background-color: rgba(173, 152, 196, 0.1);
   padding: 10px;
+  margin-top: 1rem;
   border-radius: 8px;
   font-size: 0.9rem;
   border-left: 3px solid var(--primary-lavender);
@@ -410,7 +500,7 @@
   );
   padding: 40px 5%;
   text-align: center;
-  color: var(--trans-white);
+  color: #ffffff;
 }
 
 .cta-banner-container {
@@ -433,18 +523,18 @@
   display: inline-block;
   padding: 14px 40px;
   background-color: transparent;
-  color: var(--trans-white);
+  color: #ffffff;
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 600;
-  border: 2px solid var(--trans-white);
+  border: 2px solid #ffffff;
   border-radius: 50px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .cta-button:hover {
-  background-color: var(--trans-white);
+  background-color: #ffffff;
   color: var(--purple);
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -535,7 +625,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--trans-white);
+  color: #ffffff;
   font-weight: 600;
   font-size: 1.3rem;
   cursor: pointer;
@@ -620,6 +710,20 @@
   margin-bottom: 0.5rem;
 }
 
+.group-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--purple);
+  margin-bottom: 0.5rem;
+}
+
+fieldset.checkbox-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
 .form-group input[type='text'],
 .form-group input[type='email'],
 .form-group input[type='tel'],
@@ -630,7 +734,7 @@
   font-size: 1rem;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  background-color: var(--trans-white);
+  background-color: #ffffff;
   transition: all 0.3s ease;
   font-family: inherit;
 }
@@ -706,7 +810,7 @@
   margin: 2rem auto 0;
   padding: 14px 30px;
   background-color: var(--primary-lavender);
-  color: var(--trans-white);
+  color: #ffffff;
   border: none;
   border-radius: 50px;
   font-size: 1.1rem;
@@ -718,6 +822,91 @@
   background-color: var(--purple);
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(173, 152, 196, 0.3);
+}
+
+.field-note {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #555;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-left: 3px solid var(--primary-lavender);
+  border-radius: 4px;
+}
+
+.field-note i {
+  margin-right: 6px;
+  color: var(--primary-lavender);
+}
+
+/* FAQ Specific Layout */
+#faq .service-categories {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* Row 1: cards 1–3 each take 2 of 6 columns */
+#faq .service-categories .category-card:nth-child(1),
+#faq .service-categories .category-card:nth-child(2),
+#faq .service-categories .category-card:nth-child(3) {
+  grid-column: span 2;
+}
+
+/* Row 2: cards 4–5 each take 3 of 6 columns (50/50 split) */
+#faq .service-categories .category-card:nth-child(4),
+#faq .service-categories .category-card:nth-child(5) {
+  grid-column: span 3;
+}
+
+/* Row 3: card 6 spans full width */
+#faq .service-categories .category-card:nth-child(6) {
+  grid-column: 1 / -1;
+}
+
+.faq-lower-questions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.faq-lower-questions .category-card {
+  flex: 1;
+  height: auto;
+}
+
+#faq .category-card {
+  height: auto;
+}
+
+#faq .category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+#faq .category-card h3 {
+  color: var(--purple);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+#faq .category-card p {
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
+}
+
+#faq .field-note {
+  margin-top: 1.5rem;
+}
+
+.category-card.wide-card {
+  grid-column: 1 / -1;
 }
 
 .privacy-notice {
@@ -896,6 +1085,23 @@
     max-width: 300px;
     padding: 16px 30px;
   }
+
+  #faq .service-categories {
+    grid-template-columns: 1fr;
+  }
+
+  #faq .fa-map-location-dot {
+    display: none;
+  }
+
+  #faq .service-categories .category-card:nth-child(1),
+  #faq .service-categories .category-card:nth-child(2),
+  #faq .service-categories .category-card:nth-child(3),
+  #faq .service-categories .category-card:nth-child(4),
+  #faq .service-categories .category-card:nth-child(5),
+  #faq .service-categories .category-card:nth-child(6) {
+    grid-column: span 1;
+  }
 }
 
 @media (min-width: 796px) and (max-width: 1024px) {
@@ -911,6 +1117,10 @@
   .service-categories {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  .service-categories .category-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .service-detail-container {
@@ -933,5 +1143,38 @@
 
   .checkbox-group {
     gap: 12px;
+  }
+
+  #faq .category-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  /* Reset to 2-col at tablet, override all desktop span rules */
+  #faq .service-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #faq .service-categories .category-card:nth-child(1),
+  #faq .service-categories .category-card:nth-child(2),
+  #faq .service-categories .category-card:nth-child(3),
+  #faq .service-categories .category-card:nth-child(4),
+  #faq .service-categories .category-card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  /* Last odd card spans full width */
+  #faq .service-categories .category-card:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+
+  /* Fix the internal 'squish' by increasing padding and adjusting text */
+  .category-card {
+    padding: 2rem !important; /* Force a bit more internal space */
+  }
+
+  .category-card p {
+    line-height: 1.6;
+    font-size: 1rem; /* Slightly smaller font helps text wrap better in narrow columns */
   }
 }

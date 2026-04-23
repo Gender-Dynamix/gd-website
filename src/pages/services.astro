@@ -19,24 +19,16 @@ import '../styles/services.css';
       <p>
         At Gender Dynamix we offer a range of comprehensive services and
         resources tailored to the unique needs of our trans and non-binary and
-        gender diverse wh&#257;nau.<br />
+        gender diverse <span lang="mi">whānau</span>.<br />
         We are committed to fostering a welcoming community where you can explore,
         grow, and connect on your journey towards self-discovery and empowerment.
       </p>
     </div>
-    <div class="custom-shape-divider-top">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 320"
-        preserveAspectRatio="none"
-      >
-        <path
-          fill="#ad98c4"
-          fill-opacity="1"
-          d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,165.3C840,139,960,117,1080,117.3C1200,117,1320,139,1380,149.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </div>
+    <WaveDivider
+      direction="down"
+      fillVar="--wave-top-color"
+      className="custom-shape-divider-top"
+    />
   </section>
 
   <section class="quick-nav-services">
@@ -67,6 +59,12 @@ import '../styles/services.css';
           </div>
           <h3>Additional Services</h3>
         </a>
+        <a href="#faq" class="quick-nav-btn">
+          <div class="nav-icon" aria-hidden="true">
+            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+          </div>
+          <h3>FAQ</h3>
+        </a>
         <a href="#training" class="quick-nav-btn">
           <div class="nav-icon" aria-hidden="true">
             <img src="/images/work_icon.svg" alt="Training" />
@@ -77,7 +75,7 @@ import '../styles/services.css';
     </div>
   </section>
 
-  <WaveDivider fill="#ad98c4" direction="up" />
+  <WaveDivider direction="up" />
 
   <!--Clinical Support-->
   <section class="service-detail" id="clinical-support">
@@ -100,35 +98,60 @@ import '../styles/services.css';
 
       <div class="service-content">
         <p class="service-description">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor amet
-          consectetur adipiscing elit quisque faucibus.
+          People see mental health professionals for many different reasons. Our
+          clinicians work with you to discuss your needs and create a
+          personalised support plan — covering transitional needs as well as
+          general mental health concerns such as low mood, anxiety, or social
+          isolation. We understand that many people are neurodivergent; please
+          let us know of any sensory needs so we can make you as comfortable as
+          possible.
         </p>
 
         <div class="service-categories">
           <div class="category-card">
-            <h3>Mental Health Care:</h3>
+            <h3>First Appointment:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>Meet with a clinician to discuss your needs</li>
+              <li>You can bring a support person with you</li>
+              <li>Together you will create a personalised support plan</li>
+              <li>Sensory needs are accommodated — just let us know</li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3>Transition Support:</h3>
+            <h3>Ongoing Clinical Support:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>Regular one-hour appointments with your clinician</li>
+              <li>Sessions focus on goals in your support plan</li>
+              <li>
+                Support tailored to wellbeing, relationships, gender identity,
+                transition, and dysphoria
+              </li>
+              <li>
+                Family/<span lang="mi">whānau</span> may be included with your consent
+                when needed
+              </li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3>Ongoing Care:</h3>
+            <h3>WPATH Assessment:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>
+                A questionnaire is sent before your appointment — please add as
+                much detail as possible
+              </li>
+              <li>
+                The clinician will ask about your life, history, mental health,
+                transition, and support systems
+              </li>
+              <li>
+                A draft letter is sent to you for review before finalisation
+              </li>
+              <li>
+                Your finalised letter is then presented to your doctor and/or
+                surgeon
+              </li>
             </ul>
           </div>
         </div>
@@ -151,41 +174,72 @@ import '../styles/services.css';
           aria-label="Toggle section"
           aria-expanded="true"
         >
-          <i class="fas fa-arrow-up"></i>
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
         </button>
       </div>
 
       <div class="service-content">
         <p class="service-description">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor amet
-          consectetur adipiscing elit quisque faucibus.
+          Our peer support workers all have lived experience with transition.
+          Using the Intentional Peer Support model, they are here to answer your
+          questions about local pathways and our services, and to walk alongside
+          you on your journey.
         </p>
 
         <div class="service-categories">
           <div class="category-card">
-            <h3>Peer to Peer:</h3>
+            <h3>First Appointment:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>
+                Meet your peer support person and ask any questions about local
+                pathways and our services
+              </li>
+              <li>
+                Your wellbeing is explored across four dimensions: physical,
+                mental & emotional, family & community, and spiritual
+              </li>
+              <li>
+                Your next appointment is scheduled before you leave (or you'll
+                be emailed within the week)
+              </li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3>Transition Support:</h3>
+            <h3>Ongoing Peer Support:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>Weekly, fortnightly, or monthly one-hour appointments</li>
+              <li>
+                Work towards realistic goals around transition, socialisation,
+                or mental health
+              </li>
+              <li>
+                Your provider can accompany you to doctors, WINZ, Justice of the
+                Peace, and other appointments
+              </li>
+              <li>
+                Peer support workers can guide you through the legal transition
+                process
+              </li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3>Ongoing Care:</h3>
+            <h3>Train in Intentional Peer Support:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>
+                Interested in becoming a Peer Support Worker? Take our funded
+                Intentional Peer Support course
+              </li>
+              <li>
+                A 40-hour, in-person course running over five weeks covering all
+                IPS basics
+              </li>
+              <li>
+                After completing the course, work towards an NCEA Level 4
+                Certificate in Health and Wellbeing within your first two years
+                of employment
+              </li>
             </ul>
           </div>
         </div>
@@ -216,7 +270,12 @@ import '../styles/services.css';
         <p class="service-description">
           Our support groups provide a safe, welcoming space for transgender and
           gender-diverse people to connect, share experiences, and support one
-          another. All groups are free to attend.
+          another. All groups are free to attend. When attending any group, we
+          ask that you are respectful and welcoming of others: put your phone
+          away or on silent, avoid talking over others, arrive on time, and
+          maintain the privacy of fellow attendees. Not everyone who attends our
+          groups is out — please be mindful of this if you see another attendee
+          in public.
         </p>
 
         <!--Tauranga Groups -->
@@ -228,17 +287,63 @@ import '../styles/services.css';
         </div>
 
         <div class="service-categories">
-          <div class="category-card group-card group-coming-soon">
-            <div class="event-details">
-              <p><strong>PLACEHOLDER</strong></p>
-              <p>PLACEHOLDER</p>
-              <ul>
-                <li>
-                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                  <span>PLACEHOLDER</span>
-                </li>
-              </ul>
+          <!-- Teen Group -->
+          <div class="category-card group-card">
+            <div class="group-card-header">
+              <h4 class="group-card-title">Teen Group</h4>
+              <!-- <span class="js-upcoming-date group-next-badge" data-rule="1-Tuesday"></span> -->
             </div>
+            <p class="group-card-desc">
+              Open to teens aged 13–18. Caregivers are welcome to meet staff
+              before the group starts and stay for check-in. The group begins
+              with a round of check-ins, followed by mindfulness and activities
+              including board games and crafts at Turning Point Trust.
+            </p>
+            <ul class="event-details-list">
+              <li>
+                <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                <span><strong>When:</strong> Thursdays</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                <span><strong>Time:</strong> 4:30pm — 6:30pm</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span
+                  ><strong>Venue:</strong> Building 55, Historic Village, 17th Ave</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Adult Group -->
+          <div class="category-card group-card">
+            <div class="group-card-header">
+              <h4 class="group-card-title">Adult Group</h4>
+              <!-- <span class="js-upcoming-date group-next-badge" data-rule="1-Friday"></span> -->
+            </div>
+            <p class="group-card-desc">
+              A welcoming peer support group for gender-diverse adults. Open
+              discussion on topics suggested by attendees with a brief
+              mindfulness exercise.
+            </p>
+            <ul class="event-details-list">
+              <li>
+                <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                <span><strong>When:</strong> Mondays</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                <span><strong>Time:</strong> 5:30pm — 7:30pm</span>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span
+                  ><strong>Venue:</strong> Building 55, Historic Village, 17th Ave</span
+                >
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -246,7 +351,7 @@ import '../styles/services.css';
         <div class="group-location-section">
           <h3 class="group-location-heading">
             <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-            Whakat&#257;ne
+            <span lang="mi">Whakatāne</span>
           </h3>
         </div>
 
@@ -260,8 +365,9 @@ import '../styles/services.css';
                 data-rule="1-Tuesday"></span>
             </div>
             <p class="group-card-desc">
-              A dedicated space for gender-diverse rangatahi to connect and be
-              themselves.
+              Open to teens aged 13–18. Caregivers are welcome to meet staff
+              before the group starts. Includes check-ins, mindfulness, and
+              social activities.
             </p>
             <ul class="event-details-list">
               <li>
@@ -282,7 +388,11 @@ import '../styles/services.css';
               </li>
               <li>
                 <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                <span><strong>Venue:</strong> Art House, Whakatāne</span>
+                <span
+                  ><strong>Venue:</strong> Art House, <span lang="mi"
+                    >Whakatāne</span
+                  ></span
+                >
               </li>
             </ul>
           </div>
@@ -296,7 +406,9 @@ import '../styles/services.css';
                 data-rule="1-Friday"></span>
             </div>
             <p class="group-card-desc">
-              A welcoming peer support group for gender-diverse adults.
+              Open to people aged 18+. The group begins with check-ins, a
+              mindfulness exercise, then open peer discussion. Tea and coffee
+              provided.
             </p>
             <ul class="event-details-list">
               <li>
@@ -309,23 +421,31 @@ import '../styles/services.css';
               </li>
               <li>
                 <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                <span><strong>Venue:</strong> Art House, Whakatāne</span>
+                <span
+                  ><strong>Venue:</strong> Art House, <span lang="mi"
+                    >Whakatāne</span
+                  ></span
+                >
               </li>
             </ul>
           </div>
-
-          <!--Online Adult Group -->
-          <div class="category-card group-card">
-            <div class="group-card-header">
-              <h4 class="group-card-title">Online Adult Group</h4>
-              <span
-                class="js-upcoming-date group-next-badge"
-                data-rule="L-Wednesday"></span>
-            </div>
-            <div class="event-details">
+        </div>
+        <div class="group-location-section">
+          <h3 class="group-location-heading">
+            <i class="fa-solid fa-house-laptop" aria-hidden="true"></i>
+            Online
+          </h3>
+          <div class="service-categories">
+            <div class="category-card group-card">
+              <div class="group-card-header">
+                <h4 class="group-card-title">Online Adult Group</h4>
+                <span
+                  class="js-upcoming-date group-next-badge"
+                  data-rule="L-Wednesday"></span>
+              </div>
               <p class="group-card-desc">
-                Join us from anywhere in Aotearoa — our online group is open to
-                all gender-diverse adults.
+                Join us from anywhere in <span lang="mi">Aotearoa</span> — our online
+                group is open to all gender-diverse adults.
               </p>
               <ul class="event-details-list">
                 <li>
@@ -357,7 +477,7 @@ import '../styles/services.css';
         <div class="service-title-group">
           <div class="service-icon-small" aria-hidden="true">
             <div class="icon-circle-bg">
-              <i class="fa-solid fa-plus"></i>
+              <i class="fa-solid fa-plus" aria-hidden="true"></i>
             </div>
           </div>
           <h2>Additional Support Services</h2>
@@ -373,34 +493,87 @@ import '../styles/services.css';
 
       <div class="service-content">
         <p class="service-description">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor amet
-          consectetur adipiscing elit quisque faucibus.
+          Alongside our core services, we offer a range of additional support to
+          help you on your journey. All services are free unless otherwise
+          stated.
         </p>
 
         <div class="service-categories">
           <div class="category-card">
-            <h3>Paediatric Clinic:</h3>
+            <h3>Adult Hormones & Sexual Health:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>
+                Sexual Health will contact you with your appointment time —
+                notify them immediately if you cannot attend
+              </li>
+              <li>
+                Your first appointment is an information consultation; hormones
+                are not prescribed at this stage
+              </li>
+              <li>
+                The doctor will ask about your health history, living situation,
+                transition, identity, and embodiment goals
+              </li>
+              <li>
+                Your next appointment will be in three months; a blood test may
+                be required before then
+              </li>
+              <br />
+              <li>
+                <strong>Transfem only:</strong> If you're considering fertility preservation,
+                let us know before your first appointment.
+              </li>
             </ul>
           </div>
 
           <div class="category-card">
             <h3>IPL/Hair Removal:</h3>
             <ul>
-              <li>Item 1</li>
-              <li>Item 2</li>
-              <li>Item 3</li>
+              <li>
+                A handheld, self-use IPL hair removal device is available for
+                active clients
+              </li>
+              <li>
+                Consent form and instructional video completion required before
+                use
+              </li>
+              <li>A 24-hour test patch is mandatory to ensure skin safety</li>
             </ul>
           </div>
 
           <div class="category-card">
-            <h3>Events:</h3>
+            <h3>Paediatric Clinic:</h3>
+            <ul>
+              <li>
+                A paediatric referral can be made at any time with consent from
+                your legal guardian
+              </li>
+              <li>
+                First appointment is one hour; follow-ups are 30 minutes every
+                three months
+              </li>
+              <li>You will not receive medication at your first appointment</li>
+              <li>
+                Please give notice for cancellations as this is a once-monthly
+                clinic
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="group-location-section">
+          <h3 class="group-location-heading">
+            <i class="fa-solid fa-star" aria-hidden="true"></i>
+            Events & Social Groups
+          </h3>
+        </div>
+
+        <div class="service-categories">
+          <div class="category-card group-card">
+            <div class="group-card-header">
+              <h4 class="group-card-title">Dungeons & Dragons</h4>
+            </div>
             <div class="event-details">
-              <p><strong>Dungeons & Dragons</strong></p>
-              <p>
+              <p class="group-card-desc">
                 A fun, social way for gender-diverse people to make friends and
                 build community.
               </p>
@@ -437,6 +610,108 @@ import '../styles/services.css';
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section class="service-detail" id="faq">
+    <div class="service-detail-container">
+      <div class="service-header js-accordian-header">
+        <div class="service-title-group">
+          <div class="service-icon-small">
+            <div class="icon-circle-bg">
+              <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <button
+          class="accordion-toggle"
+          aria-label="Toggle section"
+          aria-expanded="true"
+        >
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="service-content">
+        <div class="service-categories">
+          <!-- Question 1 -->
+          <div class="category-card">
+            <h3>How long will I have to wait to start hormones?</h3>
+            <p>
+              Everyone's timeline is different. For adults in the public system,
+              the process could take several months and is dependent on your
+              current situation.
+            </p>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="category-card">
+            <h3>What is a peer support worker?</h3>
+            <p>
+              Peer support workers all have lived experience with transition.
+              They are not clinicians — they use Intentional Peer Support model
+              and must complete an NCEA Level 4 qualification or higher within
+              their first two years of employment at Gender Dynamix.
+            </p>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="category-card">
+            <h3>Do I need to RSVP to come to a group?</h3>
+            <p>
+              No. You are welcome to come to any group that fits your age range,
+              provided that you can uphold our group expectations. If you have
+              any questions about a group, please contact us and have a read
+              through the information on our website.
+            </p>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="category-card">
+            <h3>How much are appointments?</h3>
+            <p>
+              All our services are completely free. We are funded through <span
+                lang="mi">Te Whatu Ora</span
+              >, Health New Zealand.
+            </p>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="category-card">
+            <h3>Is there support for family/<span lang="mi">whānau</span></h3>
+            <p>
+              We are happy to see parents and/or families for one-off individual
+              sessions.
+            </p>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="category-card wide-card">
+            <h3>
+              <i
+                class="fa-solid fa-map-location-dot"
+                style="margin-right: 8px;"
+                aria-hidden="true"></i> Where is the office located?
+            </h3>
+            <p>
+              Our office is situated near the back of <strong
+                >The Historic Village</strong
+              > (bottom of 17th Ave). When you enter The Village, walk straight down
+              the main pedestrian street. Cross the asphalt street at the end of the
+              cobblestones and look for our flags — we are next to the chapel. A large
+              map is available just inside the entrance, or check the maps at the
+              bottom of our
+              <a href="/contact" class="event-link">Contact page</a>.
+            </p>
+          </div>
+        </div>
+
+        <p class="field-note">
+          Please <a href="/contact">call or email us</a> if you have any other questions.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-banner">
     <div class="cta-banner-container">
       <h2>Ready To Connect?</h2>
@@ -466,23 +741,30 @@ import '../styles/services.css';
 
       <div class="form-content service-content">
         <p class="form-description">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet
-          consectetur adipiscing elit quisque faucibus.
+          We provide trainings on a range of topics related to the transgender
+          community, and the experiences and healthcare needs of transgender
+          people, to organisations and businesses around the Bay of Plenty.
         </p>
 
         <div class="form-info-box">
           <h3>What We Offer</h3>
           <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
+            <li>
+              Training tailored to your organisation's needs and prior knowledge
+            </li>
+            <li>
+              Available to medical, mental health, school, university, social
+              service, government, and other organisations
+            </li>
+            <li>Flexible duration: from 30 minutes to a full day</li>
+            <li>
+              Delivered at your location (Bay of Plenty) or by arrangement
+            </li>
           </ul>
         </div>
 
         <h3>Interested in Training?</h3>
-        <p class="form-subtitle">
-          Book a Training Session<br />Organisations/Schools
-        </p>
+        <p class="form-subtitle">Book a Training Session</p>
         <form data-form-type="training" novalidate>
           <input type="hidden" name="form-type" value="training" />
           <div class="visually-hidden" aria-hidden="true">
@@ -536,99 +818,179 @@ import '../styles/services.css';
             >
           </div>
 
+          <div class="form-row">
+            <div class="form-group">
+              <label for="org-name">Organisation Name:*</label>
+              <input
+                type="text"
+                id="org-name"
+                name="org-name"
+                placeholder="e.g., Tauranga Hospital or Greenview High"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="org-type">Type of Organisation:*</label>
+              <select id="org-type" name="org-type" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="medical">Medical / Health Clinic</option>
+                <option value="mental-health">Mental Health Service</option>
+                <option value="school">Primary / Secondary School</option>
+                <option value="university"
+                  >University / Tertiary Education</option
+                >
+                <option value="social-service">Social Service Provider</option>
+                <option value="government">Government Department</option>
+                <option value="corporate">Business / Corporate</option>
+                <option value="other">Other (Please specify below)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" id="other-org-group">
+            <label for="org-type-other">If 'Other', please specify:</label>
+            <input
+              type="text"
+              id="org-type-other"
+              name="org-type-other"
+              placeholder="e.g., Community Sports Club"
+            />
+          </div>
+
           <div class="form-group">
-            <label>What would you like covered in training?</label>
-            <div class="checkbox-group">
+            <label for="location"
+              >Preferred Training Location / Physical Address:*</label
+            >
+            <input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="e.g., 123 Cameron Road, Tauranga"
+              required
+            />
+            <p class="field-note">
+              <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+              <strong>Note:</strong> If your organisation is located outside of the
+              <strong>Bay of Plenty</strong>, please contact us to discuss
+              travel arrangements.
+            </p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="attendee-count">Expected Number of Attendees:*</label>
+              <input
+                type="number"
+                id="attendee-count"
+                name="attendee-count"
+                min="1"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="confidence-level"
+                >Current Staff Confidence (1-10):</label
+              >
+              <select id="confidence-level" name="confidence-level">
+                <option value="" disabled selected>Select level</option>
+                <option value="1-3">Low (1-3)</option>
+                <option value="4-6">Moderate (4-4)</option>
+                <option value="7-10">High (7-10)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="prior-knowledge"
+              >Briefly describe any prior knowledge or training on this topic:</label
+            >
+            <textarea id="prior-knowledge" name="prior-knowledge" rows="2"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="training-reason"
+              >Reason for seeking training (e.g., policy update, staff
+              request):*</label
+            >
+            <textarea
+              id="training-reason"
+              name="training-reason"
+              required
+              rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <fieldset class="checkbox-group">
+              <legend class="group-label"
+                >What would you like covered in training?</legend
+              >
+
+              {
+                [
+                  {
+                    label: 'Gender Diversity Foundations (Trans 101)',
+                    value: 'Foundations',
+                  },
+                  {
+                    label: 'Clinical Best Practices & Cultural Safety',
+                    value: 'Clinical',
+                  },
+                  {
+                    label: 'Understanding Gender Affirming Care Pathways',
+                    value: 'Care-Pathways',
+                  },
+                  {
+                    label: 'Building Trans-Inclusive Workplaces',
+                    value: 'Workplace-Inclusion',
+                  },
+                  {
+                    label: 'Creating Affirming Schools & Classrooms',
+                    value: 'School-Inclusion',
+                  },
+                  {
+                    label: 'Trans Joy, Wellness & Healthy Intimacy',
+                    value: 'Wellness-Joy',
+                  },
+                ].map((topic, index) => (
+                  <div class="checkbox-option">
+                    <input
+                      type="checkbox"
+                      id={`topic-${index}`}
+                      name="training-topics"
+                      value={topic.value}
+                    />
+                    <label for={`topic-${index}`}>{topic.label}</label>
+                  </div>
+                ))
+              }
+
               <div class="checkbox-option">
                 <input
                   type="checkbox"
-                  id="item1"
+                  id="topic-takatapui"
                   name="training-topics"
-                  value="Item 1"
+                  value="LGBTQIA-Takatapui"
                 />
-                <label for="item1">Item 1</label>
+                <label for="topic-takatapui"
+                  >Supporting <span lang="mi">Takatāpui</span> &amp; LGBTQIA+ Identities</label
+                >
               </div>
+
               <div class="checkbox-option">
                 <input
                   type="checkbox"
-                  id="item2"
+                  id="topic-legal"
                   name="training-topics"
-                  value="Item 2"
+                  value="Legal-NZ"
                 />
-                <label for="item2">Item 2</label>
+                <label for="topic-legal"
+                  >Legal Transition Processes in <span lang="mi">Aotearoa</span
+                  ></label
+                >
               </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item3"
-                  name="training-topics"
-                  value="Item 3"
-                />
-                <label for="item3">Item 3</label>
-              </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item4"
-                  name="training-topics"
-                  value="Item 4"
-                />
-                <label for="item4">Item 4</label>
-              </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item5"
-                  name="training-topics"
-                  value="Item 5"
-                />
-                <label for="item5">Item 5</label>
-              </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item6"
-                  name="training-topics"
-                  value="Item 6"
-                />
-                <label for="item6">Item 6</label>
-              </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item7"
-                  name="training-topics"
-                  value="Item 7"
-                />
-                <label for="item7">Item 7</label>
-              </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item8"
-                  name="training-topics"
-                  value="Item 8"
-                />
-                <label for="item8">Item 8</label>
-              </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item9"
-                  name="training-topics"
-                  value="Item 9"
-                />
-                <label for="item9">Item 9</label>
-              </div>
-              <div class="checkbox-option">
-                <input
-                  type="checkbox"
-                  id="item10"
-                  name="training-topics"
-                  value="Item 10"
-                />
-                <label for="item10">Item 10</label>
-              </div>
+
               <div class="checkbox-option other-option-wrapper">
                 <input
                   type="checkbox"
@@ -638,17 +1000,15 @@ import '../styles/services.css';
                   class="other-checkbox"
                 />
                 <label for="item-other">Other (Please specify)</label>
-
                 <div class="conditional-field">
                   <input
                     type="text"
                     name="other-topic-details"
                     placeholder="Tell us what you'd like to cover..."
-                    aria-label="Specific Training Topics"
                   />
                 </div>
               </div>
-            </div>
+            </fieldset>
           </div>
 
           <div class="form-group">

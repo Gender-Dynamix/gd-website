@@ -270,6 +270,7 @@
   font-weight: 600;
   color: white;
   text-align: center;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* Content Section */
@@ -482,48 +483,60 @@
 
 /* Lightbox */
 .lightbox {
-  display: none;
+  display: none; /* JS toggles this to flex */
   position: fixed;
-  z-index: 2000;
-  padding-top: 50px;
+  z-index: 9999;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.95);
+
+  /* The Fix: Force everything to the center */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.lightbox[style*='display: block'] {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .lightbox-content {
-  margin: auto;
-  display: block;
   max-width: 90%;
-  max-height: 80vh;
+  max-height: 75vh; /* Leave room for the caption below */
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-radius: 8px;
+  margin: 0; /* Remove auto margins */
+  border-radius: 4px;
 }
 
 .lightbox-close {
   position: absolute;
-  top: 20px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
+  top: 30px;
+  right: 30px;
+  font-size: 45px;
+  color: white;
   background: none;
   border: none;
-  padding: 0;
+  cursor: pointer;
+  z-index: 10001;
+  line-height: 0.5; /* Tighten the hit area */
 }
 
 #lightbox-caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
+  margin: 20px 0 0 0; /* Only top margin for spacing from image */
+  width: 100%;
+  max-width: 800px;
   text-align: center;
-  color: #ccc;
-  padding: 10px 0;
+  color: #ffffff;
+  font-size: 1.1rem;
 }
 /* Screen reader accessible */
 .sr-only {
@@ -608,5 +621,14 @@
 
   .heart {
     font-size: 2.5rem;
+  }
+
+  .lightbox-close {
+    top: 15px;
+    right: 15px;
+    font-size: 40px;
+  }
+  .lightbox-content {
+    max-height: 65vh; /* Give more room for caption on small screens */
   }
 }

@@ -1,10 +1,17 @@
 ---
 const currentYear = new Date().getFullYear();
+import WaveDivider from './WaveDivider.astro';
 ---
+
+<WaveDivider
+  direction="down"
+  fillVar="--wave-footer-color"
+  className="wave-divider"
+/>
 
 <footer class="main-footer">
   <div class="footer-section contact-info">
-    <p>Gender Dynamix of Aotearoa</p>
+    <p>Gender Dynamix of <span lang="mi">Aotearoa</span></p>
     <p>Building 55, Historic Village</p>
     <p>17th Avenue, Tauranga</p>
     <p>Phone: <a href="tel:075482972" rel="nofollow">07 548 2972</a></p>
@@ -22,27 +29,33 @@ const currentYear = new Date().getFullYear();
       href="https://www.instagram.com/genderdynamixnz/"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Visit our Instagram page"><i class="fab fa-instagram"></i></a
+      aria-label="Visit our Instagram page"
+      ><i class="fab fa-instagram" aria-hidden="true"></i></a
     >
     <a
       href="https://www.facebook.com/genderdynamixnz/"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Visit our Facebook page"><i class="fab fa-facebook-f"></i></a
+      aria-label="Visit our Facebook page"
+      ><i class="fab fa-facebook-f" aria-hidden="true"></i></a
     >
     <a
       href="#"
       class="email-link"
       data-user="referrals"
       data-domain="gdnz.org"
-      aria-label="Email Us"><i class="fa-solid fa-envelope"></i></a
+      aria-label="Email Us"
+      ><i class="fa-solid fa-envelope" aria-hidden="true"></i></a
     >
   </div>
   <div class="footer-legal">
     <a href="#" class="js-terms-trigger">Terms & Conditions</a>
     |
     <a href="#" class="js-privacy-trigger">Privacy Policy</a>
-    <p>&copy; Gender Dynamix of Aotearoa {currentYear}</p>
+    <p>
+      &copy; Gender Dynamix of <span lang="mi">Aotearoa</span>
+      {currentYear}
+    </p>
   </div>
 </footer>
 

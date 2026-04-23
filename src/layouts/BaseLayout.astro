@@ -64,6 +64,7 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <script
       is:inline
       src="https://challenges.cloudflare.com/turnstile/v0/api.js"
@@ -119,7 +120,6 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
       <slot />
     </main>
 
-    <WaveDivider fill="#20173a" direction="down" />
     <Footer />
 
     <slot name="after-footer" />

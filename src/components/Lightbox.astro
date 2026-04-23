@@ -1,5 +1,5 @@
 <!--Lightbox for image previews-->
-<div id="lightbox" class="lightbox">
+<div id="lightbox" class="lightbox" aria-hidden="true">
   <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
   <img class="lightbox-content" id="lightbox-img" alt="Enlarged view" />
   <div id="lightbox-caption"></div>
@@ -16,7 +16,7 @@
     if (previewImages.length > 0 && lightbox && lightboxImg) {
       previewImages.forEach(function (img) {
         img.addEventListener('click', function () {
-          lightbox.style.display = 'block';
+          lightbox.style.display = 'flex';
           lightboxImg.src = img.src;
           lightboxImg.alt = img.alt;
           if (captionText) {
