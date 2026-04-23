@@ -266,7 +266,7 @@
 
 .sponsors-container h2 {
   font-size: 2.5rem;
-  color: white;
+  color: var(--purple);
   margin-bottom: 1rem;
   font-weight: 700;
 }
