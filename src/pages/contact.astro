@@ -83,6 +83,7 @@ import '../styles/contact.css';
           class="form-collapse-btn accordion-toggle"
           aria-label="Toggle form"
           aria-expanded="true"
+          aria-controls="generalInquiryFormContainer"
         >
           <i class="fas fa-arrow-up"></i>
         </button>
@@ -224,8 +225,9 @@ import '../styles/contact.css';
           class="form-collapse-btn accordion-toggle"
           aria-label="Toggle form"
           aria-expanded="true"
+          aria-controls="referralFormContainer"
         >
-          <i class="fas fa-arrow-up"></i>
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
         </button>
       </div>
 
@@ -489,7 +491,9 @@ import '../styles/contact.css';
                   value="Whānau Support"
                   aria-describedby="rf-services-error"
                 />
-                <label for="whanau-support">Wh&#257;nau Support</label>
+                <label for="whanau-support"
+                  ><span lang="mi">Whānau</span>Support</label
+                >
               </div>
               <span id="rf-services-error" class="validation-message"
                 >Please select at least one service you're interested in.</span
@@ -515,7 +519,7 @@ import '../styles/contact.css';
             >
             </div>
           </div>
-          <div class="form-feedback" aria-live="polite"></div>
+          <div class="form-feedback" aria-live="assertive"></div>
           <button type="submit" id="referral-submit-btn" class="submit-btn"
             >Submit Referral</button
           >
@@ -527,10 +531,10 @@ import '../styles/contact.css';
     </div>
   </section>
 
-  <div class="logo-divider">
+  <div class="logo-divider" aria-hidden="true">
     <div class="divider-line"></div>
     <div class="divider-logo">
-      <img src="/images/favicon.ico" alt="Gender Dynamix" />
+      <img src="/images/favicon.ico" alt="" />
     </div>
     <div class="divider-line"></div>
   </div>
@@ -541,21 +545,22 @@ import '../styles/contact.css';
         <h3>Contact Info</h3>
         <div class="info-content">
           <p class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
             <span>
-              <strong>Gender Dynamix of Aotearoa</strong><br />
+              <strong>Gender Dynamix of <span lang="mi">Aotearoa</span></strong
+              ><br />
               Building 55, Historic Village <br />
               17th, Avenue, Tauranga
             </span>
           </p>
 
           <p class="contact-item">
-            <i class="fas fa-phone"></i>
+            <i class="fas fa-phone" aria-hidden="true"></i>
             <a href="tel:075482972">07 548 2972</a>
           </p>
 
           <p class="contact-item">
-            <i class="fas fa-envelope"></i>
+            <i class="fas fa-envelope" aria-hidden="true"></i>
             <a
               href="#"
               class="email-link"
@@ -571,13 +576,14 @@ import '../styles/contact.css';
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
-              <i class="fab fa-instagram"></i>
+              <i class="fab fa-instagram" aria-hidden="true"></i>
             </a>
             <a
               href="https://www.facebook.com/genderdynamixnz/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook"><i class="fab fa-facebook-f"></i></a
+              aria-label="Facebook"
+              ><i class="fab fa-facebook-f" aria-hidden="true"></i></a
             >
             <a
               href="#"
@@ -586,7 +592,7 @@ import '../styles/contact.css';
               data-domain="gdnz.org"
               aria-label="Email"
             >
-              <i class="fas fa-envelope"></i>
+              <i class="fas fa-envelope" aria-hidden="true"></i>
             </a>
           </div>
         </div>
@@ -608,7 +614,7 @@ import '../styles/contact.css';
       <div class="location-card">
         <div class="location-header">
           <div class="location-icon">
-            <i class="fas fa-map-marker-alt"></i>
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
           </div>
           <h3>Location</h3>
         </div>
@@ -639,11 +645,11 @@ import '../styles/contact.css';
           />
           <div class="map-note">
             <p>
-              <i class="fas fa-parking"></i>
+              <i class="fas fa-parking" aria-hidden="true"></i>
               <strong>Parking:</strong> Free parking available on Seventeenth Avenue.
             </p>
             <p>
-              <i class="fas fa-walking"></i>
+              <i class="fas fa-walking" aria-hidden="true"></i>
               <strong>Access:</strong> Enter via pedestrian walkway near main entrance.
             </p>
           </div>
