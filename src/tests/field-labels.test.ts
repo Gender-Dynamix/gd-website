@@ -26,6 +26,7 @@ const REQUIRED_FIELDS_FROM_INDEX = [
   'training-hours',
   'start-date',
   'end-date',
+  'date-of-birth',
 ] as const;
 
 describe('FIELD_LABELS', () => {
@@ -84,6 +85,7 @@ describe('FIELD_LABELS', () => {
       ['end-date', 'an end date'],
       ['other-topic-details', 'other details'],
       ['identified-name', 'identified name'],
+      ['date-of-birth', 'a date of birth'],
     ];
 
     for (const [field, expectedLabel] of knownMappings) {

@@ -27,4 +27,5 @@ export const FIELD_LABELS: Record<string, string> = {
   'start-date': 'a start date',
   'end-date': 'an end date',
   'other-topic-details': 'other details',
+  'date-of-birth': 'a date of birth',
 };

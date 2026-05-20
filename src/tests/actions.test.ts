@@ -150,6 +150,7 @@ describe('form-type validation', () => {
         suburb: 'CBD',
         'area-code': '1010',
         'referral-source': 'GP',
+        'date-of-birth': '15/06/1990',
       },
       {
         'form-type': 'training',

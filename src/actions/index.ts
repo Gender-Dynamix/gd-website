@@ -18,6 +18,7 @@ const REQUIRED_FIELDS: Record<FormType, string[]> = {
     'suburb',
     'area-code',
     'referral-source',
+    'date-of-birth',
   ],
   training: [
     'contact-name',
@@ -38,6 +39,26 @@ const VALID_FORM_TYPES = new Set<string>(Object.keys(REQUIRED_FIELDS));
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Accepts DD/MM/YYYY, DD-MM-YYYY, or DD.MM.YYYY
+const DOB_PATTERN = /^(\d{2})[\/\-\.](\d{2})[\/\-\.](\d{4})$/;
+
+function isValidDate(day: number, month: number, year: number): boolean {
+  const date = new Date(year, month - 1, day);
+  const today = new Date();
+  // Math.sign avoids < > operators which Astro's language server misreads as JSX.
+  // sign of (today - date): 1 or 0 means not future, -1 means future.
+  const isNotFuture = Math.sign(today.getTime() - date.getTime()) !== -1;
+  // year - 1900 will be 0 or positive for valid years; Math.max clamps negatives.
+  const isValidYear = Math.max(year - 1900, 0) === year - 1900;
+  return (
+    date.getFullYear() === year &&
+    date.getMonth() === month - 1 &&
+    date.getDate() === day &&
+    isValidYear &&
+    isNotFuture
+  );
+}
+
 function validateFields(
   formType: FormType,
   fields: Record<string, string>,
@@ -54,6 +75,18 @@ function validateFields(
 
   if (fields['email'] && !EMAIL_PATTERN.test(fields['email'])) {
     errors.push('Please enter a valid email address');
+  }
+
+  if (fields['date-of-birth']) {
+    const match = fields['date-of-birth'].match(DOB_PATTERN);
+    if (!match) {
+      errors.push('Please enter date of birth in DD/MM/YYYY format');
+    } else {
+      const [, dd, mm, yyyy] = match;
+      if (!isValidDate(Number(dd), Number(mm), Number(yyyy))) {
+        errors.push('Please enter a valid date of birth');
+      }
+    }
   }
 
   return errors;
