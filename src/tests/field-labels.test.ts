@@ -26,7 +26,6 @@ const REQUIRED_FIELDS_FROM_INDEX = [
   'training-hours',
   'start-date',
   'end-date',
-  'date-of-birth',
 ] as const;
 
 describe('FIELD_LABELS', () => {

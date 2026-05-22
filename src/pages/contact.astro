@@ -433,6 +433,8 @@ import '../styles/contact.css';
               required
               placeholder="DD/MM/YYYY"
               inputmode="numeric"
+              autocomplete="bday"
+              pattern="\d{2}[\/\-\.]\d{2}[\/\-\.]\d{4}"
               aria-describedby="rf-dob-error"
             />
             <span id="rf-dob-error" class="validation-message"

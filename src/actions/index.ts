@@ -18,7 +18,6 @@ const REQUIRED_FIELDS: Record<FormType, string[]> = {
     'suburb',
     'area-code',
     'referral-source',
-    'date-of-birth',
   ],
   training: [
     'contact-name',
@@ -39,8 +38,8 @@ const VALID_FORM_TYPES = new Set<string>(Object.keys(REQUIRED_FIELDS));
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Accepts DD/MM/YYYY, DD-MM-YYYY, or DD.MM.YYYY
-const DOB_PATTERN = /^(\d{2})[\/\-\.](\d{2})[\/\-\.](\d{4})$/;
+// Accepts DD/MM/YYYY, DD-MM-YYYY, or DD.MM.YYYY; separator must be consistent throughout
+const DOB_PATTERN = /^(\d{2})([\/\-\.])(\d{2})\2(\d{4})$/;
 
 function isValidDate(day: number, month: number, year: number): boolean {
   const date = new Date(year, month - 1, day);
@@ -77,12 +76,13 @@ function validateFields(
     errors.push('Please enter a valid email address');
   }
 
-  if (fields['date-of-birth']) {
-    const match = fields['date-of-birth'].match(DOB_PATTERN);
+  if (formType === 'referral') {
+    const dobValue = fields['date-of-birth']?.trim();
+    const match = dobValue?.match(DOB_PATTERN);
     if (!match) {
       errors.push('Please enter date of birth in DD/MM/YYYY format');
     } else {
-      const [, dd, mm, yyyy] = match;
+      const [, dd, , mm, yyyy] = match;
       if (!isValidDate(Number(dd), Number(mm), Number(yyyy))) {
         errors.push('Please enter a valid date of birth');
       }
