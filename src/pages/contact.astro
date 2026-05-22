@@ -425,6 +425,24 @@ import '../styles/contact.css';
           </div>
 
           <div class="form-group">
+            <label for="date-of-birth">Date of Birth:*</label>
+            <input
+              type="text"
+              id="date-of-birth"
+              name="date-of-birth"
+              required
+              placeholder="DD/MM/YYYY"
+              inputmode="numeric"
+              autocomplete="bday"
+              aria-describedby="rf-dob-error"
+            />
+            <span id="rf-dob-error" class="validation-message"
+              >Date of birth is required for NHI verification. Please use
+              DD/MM/YYYY format.</span
+            >
+          </div>
+
+          <div class="form-group">
             <label for="out-status">Out Status:</label>
             <textarea
               id="out-status"

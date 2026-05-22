@@ -84,6 +84,7 @@ describe('FIELD_LABELS', () => {
       ['end-date', 'an end date'],
       ['other-topic-details', 'other details'],
       ['identified-name', 'identified name'],
+      ['date-of-birth', 'a date of birth'],
     ];
 
     for (const [field, expectedLabel] of knownMappings) {

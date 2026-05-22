@@ -1,6 +1,53 @@
 import { actions, isInputError } from 'astro:actions';
 import { FIELD_LABELS } from './field-labels';
 
+const DOB_PATTERN = /^(\d{2})([\/\-\.])(\d{2})\2(\d{4})$/;
+
+function validateDobField(
+  input: HTMLInputElement,
+  errorEl: HTMLElement,
+): boolean {
+  const value = input.value.trim();
+  let errorMessage = '';
+
+  if (!value) {
+    errorMessage =
+      'Date of birth is required for NHI verification. Please use DD/MM/YYYY format.';
+  } else {
+    const match = value.match(DOB_PATTERN);
+    if (!match) {
+      errorMessage = 'Please enter date of birth in DD/MM/YYYY format';
+    } else {
+      const [, dd, , mm, yyyy] = match;
+      const day = Number(dd);
+      const month = Number(mm);
+      const year = Number(yyyy);
+      const date = new Date(year, month - 1, day);
+      const today = new Date();
+      const isCalendarValid =
+        date.getFullYear() === year &&
+        date.getMonth() === month - 1 &&
+        date.getDate() === day &&
+        year >= 1900 &&
+        date.getTime() <= today.getTime();
+      if (!isCalendarValid) {
+        errorMessage = 'Please enter a valid date of birth';
+      }
+    }
+  }
+
+  if (errorMessage) {
+    errorEl.textContent = errorMessage;
+    errorEl.classList.add('is-visible');
+    input.setAttribute('aria-invalid', 'true');
+    return false;
+  }
+
+  errorEl.classList.remove('is-visible');
+  input.removeAttribute('aria-invalid');
+  return true;
+}
+
 (window as any).onGISuccess = function () {
   const btn = document.getElementById('gi-submit-btn') as HTMLButtonElement;
   // Find the container for the GI form to hide it
@@ -179,6 +226,15 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
     }
   }
 
+  const dobInput = form.querySelector(
+    '#date-of-birth',
+  ) as HTMLInputElement | null;
+  const dobError = form.querySelector('#rf-dob-error') as HTMLElement | null;
+  if (dobInput && dobError && !validateDobField(dobInput, dobError)) {
+    dobInput.focus();
+    return;
+  }
+
   if (submitButton) {
     setSubmitState(submitButton, true, originalButtonText);
   }
@@ -236,6 +292,27 @@ async function handleFormSubmit(event: SubmitEvent): Promise<void> {
   }
 }
 
+function initDobValidation(): void {
+  const dobInput = document.getElementById(
+    'date-of-birth',
+  ) as HTMLInputElement | null;
+  const dobError = document.getElementById(
+    'rf-dob-error',
+  ) as HTMLElement | null;
+
+  if (!dobInput || !dobError) return;
+
+  dobInput.addEventListener('blur', () => {
+    validateDobField(dobInput, dobError);
+  });
+
+  dobInput.addEventListener('input', () => {
+    if (dobInput.getAttribute('aria-invalid') === 'true') {
+      validateDobField(dobInput, dobError);
+    }
+  });
+}
+
 function initFormHandlers(): void {
   const forms = document.querySelectorAll<HTMLFormElement>(
     'form[data-form-type]',
@@ -244,6 +321,8 @@ function initFormHandlers(): void {
   for (const form of forms) {
     form.addEventListener('submit', handleFormSubmit);
   }
+
+  initDobValidation();
 }
 
 document.addEventListener('DOMContentLoaded', initFormHandlers);

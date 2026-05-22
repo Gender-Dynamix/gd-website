@@ -37,6 +37,23 @@ const submitForm = (server.submitForm as unknown as { handler: SubmitHandler })
 /** Minimal Astro action context */
 const fakeContext = { clientAddress: '127.0.0.1' };
 
+/** A happy-path referral payload */
+const validReferralBase = {
+  'form-type': 'referral',
+  'cf-turnstile-response': 'tok',
+  'referral-type': 'Self',
+  'first-name': 'A',
+  'last-name': 'B',
+  email: 'a@b.com',
+  phone: '021000000',
+  address: '1 St',
+  city: 'Auckland',
+  suburb: 'CBD',
+  'area-code': '1010',
+  'referral-source': 'GP',
+  'date-of-birth': '15/06/1990',
+};
+
 /** A happy-path home-contact payload */
 const validHomeContact = {
   'form-type': 'home-contact',
@@ -150,6 +167,7 @@ describe('form-type validation', () => {
         suburb: 'CBD',
         'area-code': '1010',
         'referral-source': 'GP',
+        'date-of-birth': '15/06/1990',
       },
       {
         'form-type': 'training',
@@ -317,6 +335,109 @@ describe('field validation', () => {
     const actionErr = err as ActionError;
     const lines = actionErr.message.split('\n').filter(Boolean);
     expect(lines.length).toBeGreaterThan(1);
+  });
+});
+
+// ─── Date of birth validation ────────────────────────────────────────────────
+
+describe('date-of-birth validation', () => {
+  beforeEach(() => mockTurnstile(true));
+
+  it('accepts valid dates with all three separators', async () => {
+    for (const dob of ['15/06/1990', '15-06-1990', '15.06.1990']) {
+      await expect(
+        submitForm({ ...validReferralBase, 'date-of-birth': dob }, fakeContext),
+      ).resolves.toEqual({ success: true });
+    }
+  });
+
+  it('rejects a missing date of birth with format hint', async () => {
+    const { 'date-of-birth': _dob, ...withoutDob } = validReferralBase;
+    await expect(submitForm(withoutDob, fakeContext)).rejects.toMatchObject({
+      code: 'BAD_REQUEST',
+      message: expect.stringContaining('DD/MM/YYYY'),
+    });
+  });
+
+  it('rejects wrong format', async () => {
+    await expect(
+      submitForm(
+        { ...validReferralBase, 'date-of-birth': '1990-06-15' },
+        fakeContext,
+      ),
+    ).rejects.toMatchObject({
+      code: 'BAD_REQUEST',
+      message: expect.stringContaining('DD/MM/YYYY'),
+    });
+  });
+
+  it('rejects mixed separators', async () => {
+    await expect(
+      submitForm(
+        { ...validReferralBase, 'date-of-birth': '15/06-1990' },
+        fakeContext,
+      ),
+    ).rejects.toMatchObject({
+      code: 'BAD_REQUEST',
+      message: expect.stringContaining('DD/MM/YYYY'),
+    });
+  });
+
+  it('rejects impossible dates', async () => {
+    await expect(
+      submitForm(
+        { ...validReferralBase, 'date-of-birth': '31/02/1990' },
+        fakeContext,
+      ),
+    ).rejects.toMatchObject({
+      code: 'BAD_REQUEST',
+      message: expect.stringContaining('valid date of birth'),
+    });
+  });
+
+  it('rejects future dates', async () => {
+    await expect(
+      submitForm(
+        { ...validReferralBase, 'date-of-birth': '01/01/2099' },
+        fakeContext,
+      ),
+    ).rejects.toMatchObject({
+      code: 'BAD_REQUEST',
+      message: expect.stringContaining('valid date of birth'),
+    });
+  });
+
+  it('rejects years before 1900', async () => {
+    await expect(
+      submitForm(
+        { ...validReferralBase, 'date-of-birth': '01/01/1899' },
+        fakeContext,
+      ),
+    ).rejects.toMatchObject({
+      code: 'BAD_REQUEST',
+      message: expect.stringContaining('valid date of birth'),
+    });
+  });
+
+  it('accepts 29/02 on a leap year', async () => {
+    await expect(
+      submitForm(
+        { ...validReferralBase, 'date-of-birth': '29/02/2000' },
+        fakeContext,
+      ),
+    ).resolves.toEqual({ success: true });
+  });
+
+  it('rejects 29/02 on a non-leap year', async () => {
+    await expect(
+      submitForm(
+        { ...validReferralBase, 'date-of-birth': '29/02/1900' },
+        fakeContext,
+      ),
+    ).rejects.toMatchObject({
+      code: 'BAD_REQUEST',
+      message: expect.stringContaining('valid date of birth'),
+    });
   });
 });
 
