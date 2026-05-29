@@ -7,7 +7,6 @@ export default defineConfig({
   output: 'static',
   adapter: cloudflare({
     imageService: 'compile',
-    prerenderEnvironment: 'node',
   }),
   integrations: [sitemap()],
   vite: {
