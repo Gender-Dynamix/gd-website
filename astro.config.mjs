@@ -5,8 +5,21 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://gdnz.org',
   output: 'static',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: 'compile',
+    prerenderEnvironment: 'node',
+  }),
   integrations: [sitemap()],
+  vite: {
+    optimizeDeps: {
+      // astro/zod is imported from actions/index.ts (a .ts file, not .astro).
+      // The adapter's frontmatter scanner only scans .astro files, so this
+      // import is discovered lazily mid-build, triggering a Vite optimizer
+      // reload that races with the workerd runner. Pre-bundling it here
+      // prevents the reload entirely.
+      include: ['astro/zod'],
+    },
+  },
   env: {
     schema: {
       PUBLIC_GA_MEASUREMENT_ID: envField.string({
