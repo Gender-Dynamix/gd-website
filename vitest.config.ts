@@ -14,7 +14,7 @@ export default defineConfig({
         __dirname,
         './src/tests/__mocks__/astro-actions.ts',
       ),
-      'astro:schema': path.resolve(
+      'astro/zod': path.resolve(
         __dirname,
         './src/tests/__mocks__/astro-schema.ts',
       ),
