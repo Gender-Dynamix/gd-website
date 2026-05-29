@@ -50,6 +50,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: dist/server
+          wranglerVersion: '4'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload preview version
         if: github.event_name == 'pull_request'
@@ -58,5 +59,6 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: dist/server
+          wranglerVersion: '4'
           command: versions upload
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
