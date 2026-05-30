@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, preview]
   pull_request:
     branches: [main]
 
@@ -35,7 +35,9 @@ jobs:
   deploy:
     name: Deploy
     needs: lint
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'preview' }}
     permissions:
       contents: read
       deployments: write
@@ -58,8 +60,18 @@ jobs:
           workingDirectory: dist/server
           wranglerVersion: '4'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          secrets: |
+            TURNSTILE_SECRET_KEY
+            GOOGLE_SERVICE_ACCOUNT_EMAIL
+            GOOGLE_PRIVATE_KEY
+            GOOGLE_SPREADSHEET_ID
+        env:
+          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+          GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
       - name: Upload preview version
-        if: github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/preview'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
