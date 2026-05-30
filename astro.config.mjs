@@ -52,6 +52,10 @@ export default defineConfig({
         context: 'server',
         access: 'secret',
       }),
+      GOOGLE_CALENDAR_ID_TAURANGA: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
     },
   },
 });

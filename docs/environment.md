@@ -4,14 +4,15 @@ All environment variables are managed in a single `.env` file. Astro's `env.sche
 
 ## Variable Reference
 
-| Variable                       | Type                  | Used by                      |
-| ------------------------------ | --------------------- | ---------------------------- |
-| `PUBLIC_GA_MEASUREMENT_ID`     | Build-time (optional) | `GoogleAnalytics.astro`      |
-| `PUBLIC_TURNSTILE_SITE_KEY`    | Build-time (required) | Contact/services forms       |
-| `TURNSTILE_SECRET_KEY`         | Runtime (secret)      | `src/actions/index.ts`       |
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Runtime (secret)      | `src/utils/google-sheets.ts` |
-| `GOOGLE_PRIVATE_KEY`           | Runtime (secret)      | `src/utils/google-sheets.ts` |
-| `GOOGLE_SPREADSHEET_ID`        | Runtime (secret)      | `src/utils/google-sheets.ts` |
+| Variable                       | Type                  | Used by                        |
+| ------------------------------ | --------------------- | ------------------------------ |
+| `PUBLIC_GA_MEASUREMENT_ID`     | Build-time (optional) | `GoogleAnalytics.astro`        |
+| `PUBLIC_TURNSTILE_SITE_KEY`    | Build-time (required) | Contact/services forms         |
+| `TURNSTILE_SECRET_KEY`         | Runtime (secret)      | `src/actions/index.ts`         |
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Runtime (secret)      | `src/utils/google-sheets.ts`   |
+| `GOOGLE_PRIVATE_KEY`           | Runtime (secret)      | `src/utils/google-sheets.ts`   |
+| `GOOGLE_SPREADSHEET_ID`        | Runtime (secret)      | `src/utils/google-sheets.ts`   |
+| `GOOGLE_CALENDAR_ID_TAURANGA`  | Runtime (secret)      | `src/utils/google-calendar.ts` |
 
 `PUBLIC_` variables are embedded into the HTML/JS output during `astro build` and accessible via `import.meta.env`.
 
@@ -97,6 +98,44 @@ Set the following in `.env` (local) and Cloudflare Pages dashboard (production):
 | `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `client_email` from the JSON key file                  | Service account JSON |
 | `GOOGLE_PRIVATE_KEY`           | `private_key` from the JSON key file (full PEM string) | Service account JSON |
 | `GOOGLE_SPREADSHEET_ID`        | The ID from the spreadsheet URL                        | Spreadsheet URL      |
+
+### Google Calendar (events page)
+
+The events page reads from Google Calendar via the same service account used for Google Sheets.
+
+#### 1. Enable Google Calendar API
+
+In the same Google Cloud project: **APIs & Services → Library → Google Calendar API → Enable**.
+
+#### 2. Create a shared calendar
+
+1. Open Google Calendar and create a new calendar (e.g. "GDX Tauranga Events")
+2. In **Settings → Share with specific people**, add the service account email (`GOOGLE_SERVICE_ACCOUNT_EMAIL`) with **Make changes to events** access
+3. Also add any staff who will manage events (Editor access)
+4. Go to **Settings → Integrate calendar** and copy the **Calendar ID** (looks like `abc123@group.calendar.google.com`)
+
+#### 3. Tag convention
+
+Staff prefix event titles with `[tagname]` to categorise events:
+
+```
+[group] Thursday Night Group
+[group][youth] Rainbow Youth Catch-up
+[closure] Office Closed – Public Holiday
+Roller Disco   ← no tag = general event
+```
+
+Tags are parsed dynamically — filter chips on the page appear only for tags that exist in the current month's events.
+
+#### 4. Environment variable
+
+| Variable                      | Value                   | Source                   |
+| ----------------------------- | ----------------------- | ------------------------ |
+| `GOOGLE_CALENDAR_ID_TAURANGA` | Calendar ID from step 2 | Google Calendar settings |
+
+Set this in `.env` (local) and the Cloudflare Pages dashboard (production), encrypted.
+
+---
 
 ### Cloudflare Turnstile (bot protection)
 
