@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, preview]
   pull_request:
     branches: [main]
 
@@ -20,7 +20,63 @@ jobs:
           cache: npm
       - run: npm ci
       - run: cp .env.example .env
+      - run: echo "PUBLIC_TURNSTILE_SITE_KEY=${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}" >> .env
+      - run: echo "PUBLIC_GA_MEASUREMENT_ID=${{ vars.PUBLIC_GA_MEASUREMENT_ID }}" >> .env
       - run: npm run format:check
       - run: npm run lint
       - run: npm run check
       - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    name: Deploy
+    needs: lint
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'preview' }}
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Patch wrangler.json
+        run: |
+          jq '.kv_namespaces = [] | .previews.kv_namespaces = [] | .no_bundle = false' \
+            dist/server/wrangler.json > tmp.json && mv tmp.json dist/server/wrangler.json
+      - name: Deploy to production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: dist/server
+          wranglerVersion: '4'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          secrets: |
+            TURNSTILE_SECRET_KEY
+            GOOGLE_SERVICE_ACCOUNT_EMAIL
+            GOOGLE_PRIVATE_KEY
+            GOOGLE_SPREADSHEET_ID
+        env:
+          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+          GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
+          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
+      - name: Upload preview version
+        if: github.ref == 'refs/heads/preview'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: dist/server
+          wranglerVersion: '4'
+          command: versions upload
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

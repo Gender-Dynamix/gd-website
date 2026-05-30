@@ -30,6 +30,10 @@
   color: var(--primary-lavender);
 }
 
+.address-link:hover {
+  text-decoration: underline;
+}
+
 /* Utility Classes */
 .wave-divider {
   line-height: 0;

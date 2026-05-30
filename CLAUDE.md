@@ -27,6 +27,17 @@ Branches use the pattern `type/description` in kebab-case. PR titles use the sam
 Branch example: `feature/add-contact-page`
 PR title example: `feature: Add contact page`
 
+## Special Branches and Deployment
+
+| Branch    | Who can push | Deploys to                           |
+| --------- | ------------ | ------------------------------------ |
+| `main`    | Via PR only  | Production (Cloudflare Worker)       |
+| `preview` | Org admin    | Preview Worker version (workers.dev) |
+
+- Pushing to `preview` directly triggers a preview deployment — no PR required
+- All other PRs run lint/build only; no deployment occurs
+- Runtime secrets are scoped to GitHub environments (`main` and `preview`) — never stored at repo level
+
 ## Issue Templates
 
 Each branch type has a matching issue template in `.github/ISSUE_TEMPLATE/` (e.g. `feature.yml`, `bug.yml`, `chore.yml`). When creating an issue via the `gh` CLI, use the appropriate template and ask the user each of the template's questions to populate the issue body.

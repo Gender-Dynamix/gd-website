@@ -5,8 +5,26 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://gdnz.org',
   output: 'static',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: 'compile',
+  }),
+  session: {
+    // Site does not use sessions. Null driver prevents the Cloudflare adapter
+    // from injecting the KV session driver, which imports miniflare and inflates
+    // the Worker bundle by ~21 MB. See: github.com/withastro/astro/issues/15802
+    driver: 'unstorage/drivers/null',
+  },
   integrations: [sitemap()],
+  vite: {
+    optimizeDeps: {
+      // astro/zod is imported from actions/index.ts (a .ts file, not .astro).
+      // The adapter's frontmatter scanner only scans .astro files, so this
+      // import is discovered lazily mid-build, triggering a Vite optimizer
+      // reload that races with the workerd runner. Pre-bundling it here
+      // prevents the reload entirely.
+      include: ['astro/zod'],
+    },
+  },
   env: {
     schema: {
       PUBLIC_GA_MEASUREMENT_ID: envField.string({

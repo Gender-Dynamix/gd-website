@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node --eval \"require('fs').rmSync('node_modules/.vite', {recursive:true, force:true})\"",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -22,15 +23,15 @@
     "*.{astro,js,ts}": "eslint --fix"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.0"
+    "@astrojs/sitemap": "^3.7.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/cloudflare": "^13.6.0",
     "@cloudflare/workers-types": "^4.20250312.0",
     "@typescript-eslint/parser": "^8.56.1",
     "@vitest/coverage-v8": "^3.0.0",
-    "astro": "^5.18.0",
+    "astro": "^6.4.2",
     "eslint": "^9.39.3",
     "eslint-plugin-astro": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -40,6 +41,6 @@
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
     "vitest": "^3.0.0",
-    "zod": "^3.23.0"
+    "zod": "^4.4.3"
   }
 }

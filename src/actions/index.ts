@@ -1,5 +1,5 @@
 import { ActionError, defineAction } from 'astro:actions';
-import { z } from 'astro:schema';
+import { z } from 'astro/zod';
 import { TURNSTILE_SECRET_KEY } from 'astro:env/server';
 import { FIELD_LABELS } from '../scripts/field-labels';
 import { appendFormSubmission, type FormType } from '../utils/google-sheets';
@@ -117,12 +117,10 @@ async function verifyTurnstile(
 export const server = {
   submitForm: defineAction({
     accept: 'form',
-    input: z
-      .object({
-        'form-type': z.string(),
-        'cf-turnstile-response': z.string().optional(),
-      })
-      .passthrough(),
+    input: z.looseObject({
+      'form-type': z.string(),
+      'cf-turnstile-response': z.string().optional(),
+    }),
     handler: async (input, context) => {
       const fields: Record<string, string> = {};
       for (const [key, value] of Object.entries(input)) {
