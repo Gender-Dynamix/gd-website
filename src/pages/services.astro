@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import WaveDivider from '../components/WaveDivider.astro';
 import '../styles/services.css';
+import '../styles/events.css';
 ---
 
 <BaseLayout
@@ -64,6 +65,12 @@ import '../styles/services.css';
             <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
           </div>
           <h3>FAQ</h3>
+        </a>
+        <a href="#events" class="quick-nav-btn">
+          <div class="nav-icon" aria-hidden="true">
+            <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+          </div>
+          <h3>Events</h3>
         </a>
         <a href="#training" class="quick-nav-btn">
           <div class="nav-icon" aria-hidden="true">
@@ -725,6 +732,88 @@ import '../styles/services.css';
     </div>
   </section>
 
+  <!-- Events Calendar -->
+  <section class="service-detail" id="events">
+    <div class="service-detail-container">
+      <div class="service-header js-accordion-header">
+        <div class="service-title-group">
+          <div class="service-icon-small" aria-hidden="true">
+            <div class="icon-circle-bg">
+              <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+            </div>
+          </div>
+          <h2>Upcoming Events</h2>
+        </div>
+        <button
+          class="accordion-toggle"
+          aria-label="Toggle section"
+          aria-expanded="true"
+        >
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="service-content">
+        <div class="hub-selector">
+          <p class="hub-label">Select your area:</p>
+          <div class="hub-buttons">
+            <button
+              class="hub-btn active"
+              data-hub="tauranga"
+              aria-pressed="true">Tauranga</button
+            >
+          </div>
+        </div>
+
+        <div class="calendar-controls">
+          <div class="month-nav">
+            <button
+              class="month-nav-btn"
+              id="prev-month"
+              aria-label="Previous month"
+            >
+              <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <h3 id="current-month-label">Loading&hellip;</h3>
+            <button
+              class="month-nav-btn"
+              id="next-month"
+              aria-label="Next month"
+            >
+              <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div
+            class="tag-filters"
+            id="tag-filters"
+            role="group"
+            aria-label="Filter events by type"
+          >
+          </div>
+        </div>
+
+        <div id="calendar-loading" class="calendar-loading" aria-live="polite">
+          <div class="loading-spinner" aria-hidden="true"></div>
+          <p>Loading events&hellip;</p>
+        </div>
+
+        <div id="calendar-error" class="calendar-error" hidden role="alert">
+        </div>
+
+        <div id="calendar-grid" class="calendar-grid" aria-live="polite" hidden>
+        </div>
+
+        <div
+          id="event-detail-panel"
+          class="event-detail-panel"
+          hidden
+          aria-live="polite"
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-banner">
     <div class="cta-banner-container">
       <h2>Ready To Connect?</h2>
@@ -1104,6 +1193,348 @@ import '../styles/services.css';
   </section>
   <script src="../scripts/form-handler.ts"></script>
 </BaseLayout>
+
+<script>
+  const MONTH_NAMES = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  interface CalendarEvent {
+    id: string;
+    title: string;
+    tags: string[];
+    start: string;
+    end: string;
+    isAllDay: boolean;
+    location: string | null;
+    description: string | null;
+    isRecurring: boolean;
+  }
+
+  const state = {
+    hub: 'tauranga',
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    activeTags: new Set<string>(),
+    events: [] as CalendarEvent[],
+    availableTags: [] as string[],
+    selectedDay: null as string | null,
+  };
+
+  function escapeHtml(str: string): string {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function formatTime(isoStr: string, isAllDay: boolean): string {
+    if (isAllDay) return 'All day';
+    try {
+      return new Date(isoStr).toLocaleTimeString('en-NZ', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Pacific/Auckland',
+      });
+    } catch {
+      return '';
+    }
+  }
+
+  function getFilteredEvents(): CalendarEvent[] {
+    if (state.activeTags.size === 0) return state.events;
+    return state.events.filter((e) =>
+      e.tags.some((t) => state.activeTags.has(t)),
+    );
+  }
+
+  function getEventsForDay(dateStr: string): CalendarEvent[] {
+    return getFilteredEvents().filter(
+      (e) => e.start.substring(0, 10) === dateStr,
+    );
+  }
+
+  async function fetchEvents(): Promise<void> {
+    const loadingEl = document.getElementById('calendar-loading')!;
+    const errorEl = document.getElementById('calendar-error')!;
+    const gridEl = document.getElementById('calendar-grid')!;
+
+    loadingEl.hidden = false;
+    gridEl.hidden = true;
+    errorEl.hidden = true;
+
+    try {
+      const url = `/api/events.json?hub=${state.hub}&year=${state.year}&month=${state.month}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      state.events = data.events as CalendarEvent[];
+      state.availableTags = data.availableTags as string[];
+      state.activeTags = new Set(
+        [...state.activeTags].filter((t) => state.availableTags.includes(t)),
+      );
+    } catch {
+      errorEl.textContent = 'Unable to load events. Please try again later.';
+      errorEl.hidden = false;
+      loadingEl.hidden = true;
+      return;
+    }
+
+    loadingEl.hidden = true;
+    gridEl.hidden = false;
+    renderFilters();
+    renderCalendar();
+  }
+
+  function renderFilters(): void {
+    const container = document.getElementById('tag-filters')!;
+    container.innerHTML = '';
+
+    if (state.availableTags.length === 0) return;
+
+    const allBtn = document.createElement('button');
+    allBtn.className =
+      'tag-chip' + (state.activeTags.size === 0 ? ' active' : '');
+    allBtn.textContent = 'All events';
+    allBtn.addEventListener('click', () => {
+      state.activeTags.clear();
+      renderFilters();
+      renderCalendar();
+      if (state.selectedDay) showDayDetail(state.selectedDay);
+    });
+    container.appendChild(allBtn);
+
+    for (const tag of state.availableTags) {
+      const btn = document.createElement('button');
+      btn.className = 'tag-chip' + (state.activeTags.has(tag) ? ' active' : '');
+      btn.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+      btn.addEventListener('click', () => {
+        if (state.activeTags.has(tag)) {
+          state.activeTags.delete(tag);
+        } else {
+          state.activeTags.add(tag);
+        }
+        renderFilters();
+        renderCalendar();
+        if (state.selectedDay) showDayDetail(state.selectedDay);
+      });
+      container.appendChild(btn);
+    }
+  }
+
+  function renderCalendar(): void {
+    const grid = document.getElementById('calendar-grid')!;
+    grid.innerHTML = '';
+
+    document.getElementById('current-month-label')!.textContent =
+      `${MONTH_NAMES[state.month - 1]} ${state.year}`;
+
+    for (const name of DAY_NAMES) {
+      const header = document.createElement('div');
+      header.className = 'calendar-day-header';
+      header.textContent = name;
+      grid.appendChild(header);
+    }
+
+    const firstDay = new Date(state.year, state.month - 1, 1);
+    const lastDay = new Date(state.year, state.month, 0);
+    const today = new Date();
+    const todayStr = [
+      today.getFullYear(),
+      String(today.getMonth() + 1).padStart(2, '0'),
+      String(today.getDate()).padStart(2, '0'),
+    ].join('-');
+
+    const startPadding = (firstDay.getDay() + 6) % 7;
+    const prevMonthLastDay = new Date(state.year, state.month - 1, 0).getDate();
+
+    for (let i = startPadding - 1; i >= 0; i--) {
+      const cell = document.createElement('div');
+      cell.className = 'calendar-day other-month';
+      cell.innerHTML = `<span class="day-number">${prevMonthLastDay - i}</span>`;
+      grid.appendChild(cell);
+    }
+
+    for (let day = 1; day <= lastDay.getDate(); day++) {
+      const dateStr = [
+        state.year,
+        String(state.month).padStart(2, '0'),
+        String(day).padStart(2, '0'),
+      ].join('-');
+
+      const dayEvents = getEventsForDay(dateStr);
+      const hasClosure = dayEvents.some((e) => e.tags.includes('closure'));
+      const isToday = dateStr === todayStr;
+
+      const cell = document.createElement('div');
+      cell.className = [
+        'calendar-day',
+        hasClosure ? 'has-closure' : '',
+        isToday ? 'today' : '',
+        dayEvents.length > 0 ? 'has-events' : '',
+      ]
+        .filter(Boolean)
+        .join(' ');
+
+      const dayNum = document.createElement('span');
+      dayNum.className = 'day-number';
+      dayNum.textContent = String(day);
+      cell.appendChild(dayNum);
+
+      const maxPills = 3;
+      for (const event of dayEvents.slice(0, maxPills)) {
+        const pill = document.createElement('span');
+        pill.className = [
+          'event-pill',
+          event.tags.includes('closure') ? 'closure' : '',
+          event.isAllDay ? 'all-day' : '',
+        ]
+          .filter(Boolean)
+          .join(' ');
+        pill.textContent = event.title;
+        pill.title = event.title;
+        cell.appendChild(pill);
+      }
+
+      const overflow = dayEvents.length - maxPills;
+      if (overflow > 0) {
+        const more = document.createElement('span');
+        more.className = 'event-pill more';
+        more.textContent = `+${overflow} more`;
+        cell.appendChild(more);
+      }
+
+      cell.addEventListener('click', () => {
+        state.selectedDay = dateStr;
+        document
+          .querySelectorAll('.calendar-day')
+          .forEach((c) => c.classList.remove('selected'));
+        cell.classList.add('selected');
+        showDayDetail(dateStr);
+      });
+
+      grid.appendChild(cell);
+    }
+
+    const totalCells = startPadding + lastDay.getDate();
+    const endPadding = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+    for (let day = 1; day <= endPadding; day++) {
+      const cell = document.createElement('div');
+      cell.className = 'calendar-day other-month';
+      cell.innerHTML = `<span class="day-number">${day}</span>`;
+      grid.appendChild(cell);
+    }
+  }
+
+  function showDayDetail(dateStr: string): void {
+    const panel = document.getElementById('event-detail-panel')!;
+    const dayEvents = getEventsForDay(dateStr);
+
+    if (dayEvents.length === 0) {
+      panel.hidden = true;
+      return;
+    }
+
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dateLabel = new Date(y, m - 1, d).toLocaleDateString('en-NZ', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+
+    let html = `<h3 class="detail-date">${dateLabel}</h3><ul class="detail-event-list">`;
+
+    for (const event of dayEvents) {
+      const startTime = formatTime(event.start, event.isAllDay);
+      const endTime =
+        event.isAllDay || !event.end
+          ? ''
+          : ` – ${formatTime(event.end, false)}`;
+
+      const tagBadges = event.tags
+        .map(
+          (t) =>
+            `<span class="detail-tag detail-tag--${escapeHtml(t)}">${escapeHtml(t)}</span>`,
+        )
+        .join('');
+
+      html += `
+        <li class="detail-event${event.tags.includes('closure') ? ' detail-event--closure' : ''}">
+          <div class="detail-event-header">
+            <span class="detail-time">${startTime}${endTime}</span>
+            <div class="detail-tags">${tagBadges}</div>
+          </div>
+          <strong class="detail-title">${escapeHtml(event.title)}</strong>
+          ${event.location ? `<p class="detail-location"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${escapeHtml(event.location)}</p>` : ''}
+          ${event.description ? `<div class="detail-description">${event.description}</div>` : ''}
+          ${event.isRecurring ? '<p class="detail-recurring"><i class="fa-solid fa-rotate" aria-hidden="true"></i> Recurring event</p>' : ''}
+        </li>`;
+    }
+
+    html += '</ul>';
+    panel.innerHTML = html;
+    panel.hidden = false;
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.getElementById('prev-month')!.addEventListener('click', () => {
+    if (state.month === 1) {
+      state.month = 12;
+      state.year--;
+    } else {
+      state.month--;
+    }
+    state.selectedDay = null;
+    document.getElementById('event-detail-panel')!.hidden = true;
+    fetchEvents();
+  });
+
+  document.getElementById('next-month')!.addEventListener('click', () => {
+    if (state.month === 12) {
+      state.month = 1;
+      state.year++;
+    } else {
+      state.month++;
+    }
+    state.selectedDay = null;
+    document.getElementById('event-detail-panel')!.hidden = true;
+    fetchEvents();
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.hub-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const hub = btn.dataset.hub;
+      if (!hub || hub === state.hub) return;
+      state.hub = hub;
+      state.selectedDay = null;
+      state.activeTags.clear();
+      document.getElementById('event-detail-panel')!.hidden = true;
+      document.querySelectorAll('.hub-btn').forEach((b) => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      fetchEvents();
+    });
+  });
+
+  fetchEvents();
+</script>
 
 <script is:inline>
   // Accordian Toggle Logic
