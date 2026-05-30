@@ -49,7 +49,7 @@ jobs:
           path: dist/
       - name: Patch wrangler.json
         run: |
-          jq '.kv_namespaces = [] | .previews.kv_namespaces = [] | .no_bundle = false' \
+          jq '.kv_namespaces = [] | .previews.kv_namespaces = [] | .no_bundle = false | .observability.enabled = true' \
             dist/server/wrangler.json > tmp.json && mv tmp.json dist/server/wrangler.json
       - name: Deploy to production
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
