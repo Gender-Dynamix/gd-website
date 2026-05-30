@@ -9,6 +9,7 @@ This project follows **GitHub Flow** — a simple, branch-based workflow built a
 - Changes are merged back to `main` via pull request (PR) after review
 - Every PR requires at least one approving review from a code owner before merging
 - PRs are merged using **squash and merge** to keep `main` history clean
+- `preview` is a long-lived branch for staging deployments — push directly, no PR needed
 
 ## Branch Naming
 
@@ -101,11 +102,24 @@ for the change. Wrap at 72 characters.
 - `WIP`, `stuff`, `fix`, `updates` — these tell the reviewer nothing
 - Overly long first lines — keep the summary concise
 
+## Deployment
+
+CI runs on every push to `main` and `preview`, and on every PR targeting `main`.
+
+| Event             | Lint & Build | Deploy                                             |
+| ----------------- | ------------ | -------------------------------------------------- |
+| Push to `main`    | Yes          | Production Worker (via `main` environment)         |
+| Push to `preview` | Yes          | Preview Worker version (via `preview` environment) |
+| PR to `main`      | Yes          | None                                               |
+
+Runtime secrets (`TURNSTILE_SECRET_KEY`, `GOOGLE_*`, `CLOUDFLARE_*`) are stored in GitHub environment secrets — never at repository level. Only pushes to the matching branch can access each environment's secrets.
+
 ## Rules
 
-1. **Never push directly to `main`** (unless you are an org admin making an urgent fix)
-2. **Keep branches short-lived** — aim to merge within a few days
-3. **One branch per issue** — don't bundle unrelated changes
-4. **Keep PRs focused** — smaller PRs are easier to review and less likely to introduce bugs
-5. **Delete branches after merging** — keep the repo tidy
-6. **Pull from `main` regularly** — if your branch lives for more than a day, rebase or merge `main` into it to avoid conflicts
+1. **Never push directly to `main`** — all changes go through a PR
+2. **`preview` is push-only for org admins** — used for staging, not for feature development
+3. **Keep branches short-lived** — aim to merge within a few days
+4. **One branch per issue** — don't bundle unrelated changes
+5. **Keep PRs focused** — smaller PRs are easier to review and less likely to introduce bugs
+6. **Delete branches after merging** — keep the repo tidy
+7. **Pull from `main` regularly** — if your branch lives for more than a day, rebase or merge `main` into it to avoid conflicts
