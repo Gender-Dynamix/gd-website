@@ -20,6 +20,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: cp .env.example .env
+      - run: echo "PUBLIC_TURNSTILE_SITE_KEY=${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}" >> .env
+      - run: echo "PUBLIC_GA_MEASUREMENT_ID=${{ vars.PUBLIC_GA_MEASUREMENT_ID }}" >> .env
       - run: npm run format:check
       - run: npm run lint
       - run: npm run check
