@@ -1,7 +1,12 @@
-import { GOOGLE_CALENDAR_ID_TAURANGA } from 'astro:env/server';
+import {
+  GOOGLE_CALENDAR_ID_TAURANGA,
+  GOOGLE_CALENDAR_ID_LAKES,
+  GOOGLE_CALENDAR_ID_ONLINE,
+  GOOGLE_CALENDAR_ID_WHAKATANE,
+} from 'astro:env/server';
 import { getAccessToken, fetchWithRetry } from './google-auth';
 
-export type HubId = 'tauranga';
+export type HubId = 'tauranga' | 'lakes' | 'online' | 'whakatane';
 
 export interface CalendarEvent {
   id: string;
@@ -56,6 +61,9 @@ const eventsCache = new Map<string, EventsCache>();
 function getCalendarId(hub: HubId): string {
   const ids: Record<HubId, string> = {
     tauranga: GOOGLE_CALENDAR_ID_TAURANGA,
+    lakes: GOOGLE_CALENDAR_ID_LAKES,
+    online: GOOGLE_CALENDAR_ID_ONLINE,
+    whakatane: GOOGLE_CALENDAR_ID_WHAKATANE,
   };
   return ids[hub];
 }

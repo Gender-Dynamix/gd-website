@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { getCalendarEvents, type HubId } from '../../utils/google-calendar';
 
-const VALID_HUBS: HubId[] = ['tauranga'];
+const VALID_HUBS: HubId[] = ['tauranga', 'lakes', 'online', 'whakatane'];
 
 export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);

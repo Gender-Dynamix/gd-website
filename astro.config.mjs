@@ -60,6 +60,18 @@ export default defineConfig({
         context: 'server',
         access: 'secret',
       }),
+      GOOGLE_CALENDAR_ID_LAKES: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      GOOGLE_CALENDAR_ID_ONLINE: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+      GOOGLE_CALENDAR_ID_WHAKATANE: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
     },
   },
 });
