@@ -17,12 +17,16 @@ export default defineConfig({
   integrations: [sitemap()],
   vite: {
     optimizeDeps: {
-      // astro/zod is imported from actions/index.ts (a .ts file, not .astro).
-      // The adapter's frontmatter scanner only scans .astro files, so this
-      // import is discovered lazily mid-build, triggering a Vite optimizer
-      // reload that races with the workerd runner. Pre-bundling it here
-      // prevents the reload entirely.
-      include: ['astro/zod'],
+      // These modules are imported from .ts files (not .astro files), so the
+      // Cloudflare adapter's frontmatter scanner misses them. Without explicit
+      // pre-bundling they are discovered lazily mid-startup, triggering a Vite
+      // optimizer reload that races with the workerd runner and produces
+      // "file does not exist" errors for stale chunk references.
+      //
+      // astro/zod: imported from actions/index.ts
+      // astro/app/entrypoint: imported by @astrojs/cloudflare/dist/utils/handler.js
+      //   (the adapter's include list has the /dev variant but not the base path)
+      include: ['astro/zod', 'astro/app/entrypoint'],
     },
   },
   env: {
