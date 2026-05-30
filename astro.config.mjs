@@ -8,6 +8,12 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: 'compile',
   }),
+  session: {
+    // Site does not use sessions. Null driver prevents the Cloudflare adapter
+    // from injecting the KV session driver, which imports miniflare and inflates
+    // the Worker bundle by ~21 MB. See: github.com/withastro/astro/issues/15802
+    driver: 'unstorage/drivers/null',
+  },
   integrations: [sitemap()],
   vite: {
     optimizeDeps: {
