@@ -10,13 +10,6 @@ export default defineConfig({
   }),
   integrations: [sitemap()],
   vite: {
-    ssr: {
-      // Bundle all packages into the output chunks at build time so that
-      // wrangler (no_bundle:true) only uploads the pre-bundled app code.
-      // Without this, wrangler resolves external imports from the project
-      // root node_modules and uploads 700+ modules including dev tools.
-      noExternal: true,
-    },
     optimizeDeps: {
       // astro/zod is imported from actions/index.ts (a .ts file, not .astro).
       // The adapter's frontmatter scanner only scans .astro files, so this

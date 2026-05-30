@@ -43,10 +43,11 @@ jobs:
         with:
           name: dist
           path: dist/
-      - name: Inject KV namespace IDs
+      - name: Patch wrangler.json
         run: |
           jq '.kv_namespaces = [{"binding":"SESSION","id":"f741cb9562504607af8413021885dda1"}] |
-              .previews.kv_namespaces = [{"binding":"SESSION","id":"f741cb9562504607af8413021885dda1"}]' \
+              .previews.kv_namespaces = [{"binding":"SESSION","id":"f741cb9562504607af8413021885dda1"}] |
+              .no_bundle = false' \
             dist/server/wrangler.json > tmp.json && mv tmp.json dist/server/wrangler.json
       - name: Deploy to production
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
