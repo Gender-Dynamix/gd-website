@@ -12,21 +12,23 @@ export default defineConfig({
     // Site does not use sessions. Null driver prevents the Cloudflare adapter
     // from injecting the KV session driver, which imports miniflare and inflates
     // the Worker bundle by ~21 MB. See: github.com/withastro/astro/issues/15802
-    driver: 'unstorage/drivers/null',
+    driver: { entrypoint: 'unstorage/drivers/null' },
   },
   integrations: [sitemap()],
   vite: {
     optimizeDeps: {
-      // These modules are imported from .ts files (not .astro files), so the
-      // Cloudflare adapter's frontmatter scanner misses them. Without explicit
-      // pre-bundling they are discovered lazily mid-startup, triggering a Vite
-      // optimizer reload that races with the workerd runner and produces
-      // "file does not exist" errors for stale chunk references.
+      // These modules are imported outside of .astro frontmatter, so the
+      // Cloudflare adapter's esbuild scanner misses them at startup. Without
+      // explicit pre-bundling they are discovered lazily mid-startup, triggering
+      // a Vite SSR optimizer reload that races with the workerd runner and
+      // produces "file does not exist" errors for stale chunk references.
       //
       // astro/zod: imported from actions/index.ts
       // astro/app/entrypoint: imported by @astrojs/cloudflare/dist/utils/handler.js
       //   (the adapter's include list has the /dev variant but not the base path)
-      include: ['astro/zod', 'astro/app/entrypoint'],
+      // unstorage/drivers/null: imported by Astro's session vite plugin at startup
+      //   via virtual:astro:session-driver — not in the adapter's pre-bundle list
+      include: ['astro/zod', 'astro/app/entrypoint', 'unstorage/drivers/null'],
     },
   },
   env: {
