@@ -757,10 +757,11 @@ import '../styles/events.css';
         <div class="hub-selector">
           <p class="hub-label">Select your area:</p>
           <div class="hub-buttons">
-            <button
-              class="hub-btn active"
-              data-hub="tauranga"
-              aria-pressed="true">Tauranga</button
+            <button class="hub-btn active" data-hub="all" aria-pressed="true"
+              >All Locations</button
+            >
+            <button class="hub-btn" data-hub="tauranga" aria-pressed="false"
+              >Tauranga</button
             >
             <button class="hub-btn" data-hub="lakes" aria-pressed="false"
               >Lakes</button
@@ -1230,10 +1231,23 @@ import '../styles/events.css';
     location: string | null;
     description: string | null;
     isRecurring: boolean;
+    hub?: string;
   }
 
+  const HUB_LABELS: Record<string, string> = {
+    tauranga: 'Tauranga',
+    lakes: 'Lakes',
+    whakatane: 'Whakatāne',
+    online: 'Online',
+  };
+
+  const TAG_LABELS: Record<string, string> = {
+    social: 'Community Events',
+    wi: 'Whānau Inclusive',
+  };
+
   const state = {
-    hub: 'tauranga',
+    hub: 'all',
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
     activeTags: new Set<string>(),
@@ -1331,7 +1345,8 @@ import '../styles/events.css';
     for (const tag of state.availableTags) {
       const btn = document.createElement('button');
       btn.className = 'tag-chip' + (state.activeTags.has(tag) ? ' active' : '');
-      btn.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+      btn.textContent =
+        TAG_LABELS[tag] ?? tag.charAt(0).toUpperCase() + tag.slice(1);
       btn.addEventListener('click', () => {
         if (state.activeTags.has(tag)) {
           state.activeTags.delete(tag);
@@ -1483,11 +1498,16 @@ import '../styles/events.css';
         )
         .join('');
 
+      const hubBadge =
+        event.hub && state.hub === 'all'
+          ? `<span class="detail-hub">${escapeHtml(HUB_LABELS[event.hub] ?? event.hub)}</span>`
+          : '';
+
       html += `
         <li class="detail-event${event.tags.includes('closure') ? ' detail-event--closure' : ''}">
           <div class="detail-event-header">
             <span class="detail-time">${startTime}${endTime}</span>
-            <div class="detail-tags">${tagBadges}</div>
+            <div class="detail-tags">${hubBadge}${tagBadges}</div>
           </div>
           <strong class="detail-title">${escapeHtml(event.title)}</strong>
           ${event.location ? `<p class="detail-location"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> ${escapeHtml(event.location)}</p>` : ''}

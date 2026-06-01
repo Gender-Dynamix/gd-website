@@ -344,6 +344,16 @@
   background: #c0392b;
 }
 
+.detail-hub {
+  font-size: 0.7rem;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--primary-lavender);
+  border: 1px solid var(--primary-lavender);
+  font-weight: 500;
+}
+
 .detail-title {
   display: block;
   font-size: 0.95rem;

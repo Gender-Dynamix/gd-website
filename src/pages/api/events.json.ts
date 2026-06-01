@@ -1,17 +1,22 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { getCalendarEvents, type HubId } from '../../utils/google-calendar';
+import {
+  getCalendarEvents,
+  getAllCalendarEvents,
+  type HubId,
+} from '../../utils/google-calendar';
 
 const VALID_HUBS: HubId[] = ['tauranga', 'lakes', 'online', 'whakatane'];
+const ALL_HUB = 'all';
 
 export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);
-  const hub = url.searchParams.get('hub') as HubId | null;
+  const hub = url.searchParams.get('hub');
   const yearParam = url.searchParams.get('year');
   const monthParam = url.searchParams.get('month');
 
-  if (!hub || !VALID_HUBS.includes(hub)) {
+  if (!hub || (hub !== ALL_HUB && !VALID_HUBS.includes(hub as HubId))) {
     return new Response(JSON.stringify({ error: 'Invalid or missing hub' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
@@ -37,7 +42,10 @@ export const GET: APIRoute = async ({ request }) => {
   }
 
   try {
-    const { events, availableTags } = await getCalendarEvents(hub, year, month);
+    const { events, availableTags } =
+      hub === ALL_HUB
+        ? await getAllCalendarEvents(year, month)
+        : await getCalendarEvents(hub as HubId, year, month);
 
     return new Response(
       JSON.stringify({ hub, year, month, events, availableTags }),

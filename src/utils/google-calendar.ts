@@ -18,6 +18,7 @@ export interface CalendarEvent {
   location: string | null;
   description: string | null;
   isRecurring: boolean;
+  hub?: HubId;
 }
 
 interface GoogleCalendarDateTime {
@@ -147,4 +148,24 @@ export async function getCalendarEvents(
   eventsCache.set(cacheKey, { events, availableTags, cachedAt: Date.now() });
 
   return { events, availableTags };
+}
+
+export async function getAllCalendarEvents(
+  year: number,
+  month: number,
+): Promise<{ events: CalendarEvent[]; availableTags: string[] }> {
+  const hubs: HubId[] = ['tauranga', 'lakes', 'online', 'whakatane'];
+  const results = await Promise.all(
+    hubs.map((hub) => getCalendarEvents(hub, year, month)),
+  );
+
+  const allEvents = results
+    .flatMap((result, i) =>
+      result.events.map((event) => ({ ...event, hub: hubs[i] })),
+    )
+    .sort((a, b) => a.start.localeCompare(b.start));
+
+  const availableTags = [...new Set(allEvents.flatMap((e) => e.tags))].sort();
+
+  return { events: allEvents, availableTags };
 }
