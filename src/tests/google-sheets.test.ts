@@ -101,6 +101,7 @@ const referralFields = {
   suburb: 'CBD',
   'area-code': '1010',
   'referral-source': 'GP',
+  'date-of-birth': '15/06/1990',
 };
 
 const trainingFields = {
@@ -510,7 +511,7 @@ describe('appendFormSubmission — row building', () => {
   });
 
   describe('referral', () => {
-    it('builds the correct number of columns (16)', async () => {
+    it('builds the correct number of columns (17)', async () => {
       const fetchMock = vi.mocked(fetch);
       mockFullCycle(fetchMock, SHEET_HEADERS.referral);
       await appendFormSubmission('referral', referralFields);
@@ -533,12 +534,14 @@ describe('appendFormSubmission — row building', () => {
       // col: 0=Timestamp 1=Referral Type 2=First Name 3=Last Name 4=Email
       //      5=Phone 6=Address 7=City 8=Suburb 9=Area Code 10=Referral Source
       //      11=Identified Name 12=NHI 13=Out Status 14=Services 15=Additional Info
+      //      16=Date of Birth
       expect(row[1]).toBe('GP'); // Referral Type
       expect(row[2]).toBe('Bob'); // First Name
       expect(row[3]).toBe('Smith'); // Last Name
       expect(row[4]).toBe('bob@example.com'); // Email
       expect(row[5]).toBe('021000000'); // Phone
       expect(row[10]).toBe('GP'); // Referral Source
+      expect(row[16]).toBe('15/06/1990'); // Date of Birth
     });
 
     it('maps Identified Name, NHI, and Services correctly', async () => {
