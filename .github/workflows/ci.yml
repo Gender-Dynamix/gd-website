@@ -60,16 +60,22 @@ jobs:
           workingDirectory: dist/server
           wranglerVersion: '4'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          secrets: |
-            TURNSTILE_SECRET_KEY
-            GOOGLE_SERVICE_ACCOUNT_EMAIL
-            GOOGLE_PRIVATE_KEY
-            GOOGLE_SPREADSHEET_ID
-        env:
-          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
-          GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
-          GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
-          GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
+          # TEMPORARY: secrets upload disabled for this deploy.
+          # The Worker's latest version != deployed version (Cloudflare error
+          # 10215), so any secret edit is refused and would block the deploy.
+          # A plain `wrangler deploy` re-aligns latest==deployed. Existing
+          # secrets persist untouched. RESTORE this block in the next PR once
+          # the version split is cleared.
+          # secrets: |
+          #   TURNSTILE_SECRET_KEY
+          #   GOOGLE_SERVICE_ACCOUNT_EMAIL
+          #   GOOGLE_PRIVATE_KEY
+          #   GOOGLE_SPREADSHEET_ID
+        # env:
+        #   TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+        #   GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
+        #   GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+        #   GOOGLE_SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
       - name: Upload preview version
         if: github.ref == 'refs/heads/preview'
         uses: cloudflare/wrangler-action@v3
