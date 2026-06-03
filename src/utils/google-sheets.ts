@@ -44,6 +44,7 @@ export const SHEET_HEADERS: Record<FormType, string[]> = {
     'Out Status',
     'Services',
     'Additional Info',
+    'Date of Birth',
   ],
   training: [
     'Timestamp',
@@ -77,6 +78,7 @@ const FIELD_TO_HEADER: Record<string, string> = {
   'out-status': 'Out Status',
   services: 'Services',
   'additional-info': 'Additional Info',
+  'date-of-birth': 'Date of Birth',
   'contact-name': 'Contact Name',
   'contact-phone': 'Contact Phone',
   'training-hours': 'Training Hours',
