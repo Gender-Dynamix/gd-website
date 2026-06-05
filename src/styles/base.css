@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+/* Ensure [hidden] always wins over display:flex/grid layout classes */
+[hidden] {
+  display: none !important;
+}
+
 /* Color Variables */
 :root {
   --primary-lavender: #8869a9;
