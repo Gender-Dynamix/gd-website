@@ -24,6 +24,7 @@ interface Props {
   ogDescription?: string;
   ogImage?: string;
   ogUrl?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -33,6 +34,7 @@ const {
   ogDescription,
   ogImage = '/images/gd-logolong.webp',
   ogUrl,
+  noindex = false,
 } = Astro.props;
 
 const resolvedOgImage = new URL(ogImage, Astro.site).href;
@@ -47,6 +49,7 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     {ogTitle && <meta property="og:title" content={ogTitle} />}
     {
@@ -96,12 +99,18 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
         });
       };
 
-      // 3. Initialize: Disable buttons until Turnstile passes
+      // 3. Initialize: Disable buttons until Turnstile passes. The widget can
+      // solve before DOMContentLoaded fires (e.g. instant-pass test keys), so
+      // leave buttons enabled when their form already holds a token.
       document.addEventListener('DOMContentLoaded', () => {
         const buttons = document.querySelectorAll(
           '.submit-btn, input[type="submit"]',
         );
         buttons.forEach((btn) => {
+          const form = btn.closest('form');
+          const tokenInput =
+            form && form.querySelector('input[name="cf-turnstile-response"]');
+          if (tokenInput && tokenInput.value) return;
           btn.disabled = true;
         });
       });
