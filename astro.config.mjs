@@ -14,7 +14,13 @@ export default defineConfig({
     // the Worker bundle by ~21 MB. See: github.com/withastro/astro/issues/15802
     driver: { entrypoint: 'unstorage/drivers/null' },
   },
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // The referrals page is intentionally unlisted — reachable only by
+      // direct link, so it must not be advertised in the sitemap
+      filter: (page) => !page.includes('/referrals'),
+    }),
+  ],
   vite: {
     optimizeDeps: {
       // These modules are imported outside of .astro frontmatter, so the

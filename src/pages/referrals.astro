@@ -1,0 +1,397 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveDivider from '../components/WaveDivider.astro';
+import '../styles/contact.css';
+---
+
+<BaseLayout
+  title="Referrals | Gender Dynamix Aotearoa"
+  description="Use our secure referral form to refer yourself or someone else for individual therapy, peer support, and other gender-diverse support services."
+  noindex
+>
+  <section class="hero">
+    <div class="hero-bg-container">
+      <img src="/images/hero-pattern-bg.webp" alt="" class="hero-bg-img" />
+    </div>
+    <div class="hero-content">
+      <h1>Make a referral</h1>
+      <p>
+        Refer yourself or someone else to our services. All information is kept
+        confidential and secure.
+      </p>
+    </div>
+    <WaveDivider
+      direction="down"
+      fillVar="--wave-top-color"
+      className="custom-shape-divider-top"
+    />
+  </section>
+
+  <!-- Referral Form Section -->
+  <section class="form-card-section" id="referrals">
+    <div class="form-card-container">
+      <div class="form-card-header js-accordion-header">
+        <div class="form-title-group">
+          <div class="form-icon" aria-hidden="true">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <h2>Referral Form</h2>
+        </div>
+        <button
+          class="form-collapse-btn accordion-toggle"
+          aria-label="Toggle form"
+          aria-expanded="true"
+          aria-controls="referralFormContainer"
+        >
+          <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div class="form-content service-content">
+        <p class="form-description">
+          Complete this form to refer yourself or someone else to our services.
+          All information is kept confidential.
+        </p>
+
+        <div class="form-info-box">
+          <h3>What to Expect</h3>
+          <ul>
+            <li>We'll review your referral within 2 business days</li>
+            <li>A team member will contact you to discuss next steps</li>
+            <li>All information is confidential and secure</li>
+          </ul>
+        </div>
+
+        <h3>Referral Information</h3>
+        <form data-form-type="referral" novalidate id="referral-form">
+          <input type="hidden" name="form-type" value="referral" />
+          <div class="visually-hidden" aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+          <div class="form-group">
+            <label for="referral-type">Referral Type:*</label>
+            <select
+              id="referral-type"
+              name="referral-type"
+              required
+              aria-describedby="rf-referral-error"
+            >
+              <option value="">Select...</option>
+              <option value="self">Self Referral</option>
+              <option value="other">Referring Someone Else</option>
+            </select>
+            <span id="rf-referral-error" class="validation-message"
+              >Please tell us if this referral is for you or someone else.</span
+            >
+          </div>
+
+          <h4>Legal Full Name</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name:*</label>
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                required
+                aria-describedby="rf-fname-legal-error"
+              />
+              <span id="rf-fname-legal-error" class="validation-message"
+                >Legal names are needed for our official records and NHI.</span
+              >
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name:*</label>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                required
+                aria-describedby="rf-lname-legal-error"
+              />
+              <span id="rf-lname-legal-error" class="validation-message"
+                >Legal names are needed for our official records and NHI.</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="identified-name">Identified Name:</label>
+            <input
+              type="text"
+              id="identified-name"
+              name="identified-name"
+              aria-describedby="rf-id-name"
+              placeholder="e.g. A name that fits you better"
+            />
+            <span id="rf-id-name" class="validation-message"
+              >If the person has a name that fits them better than their legal
+              name, please enter it here.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="referral-email">Email:*</label>
+            <input
+              type="email"
+              id="referral-email"
+              name="email"
+              required
+              aria-describedby="rf-email-error"
+            />
+            <span id="rf-email-error" class="validation-message"
+              >Please provide a secure email address for follow-up
+              correspondence.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number:*</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              aria-describedby="rf-phone-error"
+            />
+            <span id="rf-phone-error" class="validation-message"
+              >A contact number is required to coordinate the initial intake.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address:*</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              required
+              aria-describedby="rf-address-error"
+            />
+            <span id="rf-address-error" class="validation-message"
+              >Please enter the physical address.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="city">City/Town:*</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              required
+              aria-describedby="rf-city-error"
+            />
+            <span id="rf-city-error" class="validation-message"
+              >Please enter the city or town.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="suburb">Suburb:*</label>
+            <input
+              type="text"
+              id="suburb"
+              name="suburb"
+              required
+              aria-describedby="rf-suburb-error"
+            />
+            <span id="rf-suburb-error" class="validation-message"
+              >Please enter the suburb.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="area-code">Area Code:*</label>
+            <input
+              type="text"
+              id="area-code"
+              name="area-code"
+              required
+              aria-describedby="rf-postcode-error"
+            />
+            <span id="rf-postcode-error" class="validation-message"
+              >Please enter the postcode</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="referral-source">Referral Source:*</label>
+            <input
+              type="text"
+              id="referral-source"
+              name="referral-source"
+              required
+              aria-describedby="rf-referral-source-error"
+            />
+            <span id="rf-referral-source-error" class="validation-message"
+              >Please specify who is making this referral</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="NHI">NHI:</label>
+            <input
+              type="text"
+              id="NHI"
+              name="NHI"
+              aria-describedby="rf-nhi-error"
+            />
+            <span id="rf-nhi-error" class="validation-message"
+              >National Health Index number (found on prescriptions or clinical
+              letters).</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="date-of-birth">Date of Birth:*</label>
+            <input
+              type="text"
+              id="date-of-birth"
+              name="date-of-birth"
+              required
+              placeholder="DD/MM/YYYY"
+              inputmode="numeric"
+              autocomplete="bday"
+              aria-describedby="rf-dob-error"
+            />
+            <span id="rf-dob-error" class="validation-message"
+              >Date of birth is required for NHI verification. Please use
+              DD/MM/YYYY format.</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="out-status">Out Status:</label>
+            <textarea
+              id="out-status"
+              name="out-status"
+              placeholder="Tell us a bit about your 'out' status..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Services Interested In:*</label>
+            <div class="checkbox-group">
+              <div class="checkbox-option">
+                <input
+                  type="checkbox"
+                  id="mental-health"
+                  name="services"
+                  value="Mental Health Support"
+                  aria-describedby="rf-services-error"
+                />
+                <label for="mental-health">Mental Health Support</label>
+              </div>
+              <div class="checkbox-option">
+                <input
+                  type="checkbox"
+                  id="gender-exploration"
+                  name="services"
+                  value="Gender Exploration"
+                  aria-describedby="rf-services-error"
+                />
+                <label for="gender-exploration">Gender Exploration</label>
+              </div>
+              <div class="checkbox-option">
+                <input
+                  type="checkbox"
+                  id="peer-support"
+                  name="services"
+                  value="Peer Support"
+                  aria-describedby="rf-services-error"
+                />
+                <label for="peer-support">Peer Support</label>
+              </div>
+              <div class="checkbox-option">
+                <input
+                  type="checkbox"
+                  id="group-therapy"
+                  name="services"
+                  value="Group Therapy"
+                  aria-describedby="rf-services-error"
+                />
+                <label for="group-therapy">Group Therapy</label>
+              </div>
+              <div class="checkbox-option">
+                <input
+                  type="checkbox"
+                  id="whanau-support"
+                  name="services"
+                  value="Whānau Support"
+                  aria-describedby="rf-services-error"
+                />
+                <label for="whanau-support"
+                  ><span lang="mi">Whānau</span> Support</label
+                >
+              </div>
+              <span id="rf-services-error" class="validation-message"
+                >Please select at least one service you're interested in.</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="additional-info">Additional Information:</label>
+            <textarea
+              id="additional-info"
+              name="additional-info"
+              placeholder="Tell us a bit about what support you're looking for..."
+            ></textarea>
+          </div>
+
+          <div class="turnstile-container">
+            <div
+              class="cf-turnstile"
+              data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+              data-callback="onReferralSuccess"
+              data-theme="light"
+            >
+            </div>
+          </div>
+          <div class="form-feedback" aria-live="assertive"></div>
+          <button type="submit" id="referral-submit-btn" class="submit-btn"
+            >Submit Referral</button
+          >
+          <p class="privacy-notice">
+            &#128274; All information is encrypted and confidential
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+  <script src="../scripts/form-handler.ts"></script>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    function toggleAccordion(header) {
+      var content = header.nextElementSibling;
+      var icon = header.querySelector('.accordion-toggle i');
+      content.classList.toggle('collapsed');
+      if (content.classList.contains('collapsed')) {
+        icon.classList.replace('fa-arrow-up', 'fa-arrow-down');
+        header
+          .querySelector('.accordion-toggle')
+          .setAttribute('aria-expanded', 'false');
+      } else {
+        icon.classList.replace('fa-arrow-down', 'fa-arrow-up');
+        header
+          .querySelector('.accordion-toggle')
+          .setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    var accordionHeaders = document.querySelectorAll('.js-accordion-header');
+    accordionHeaders.forEach(function (header) {
+      header.addEventListener('click', function () {
+        toggleAccordion(header);
+      });
+      header.style.cursor = 'pointer';
+    });
+  })();
+</script>
