@@ -99,12 +99,18 @@ const resolvedOgImage = new URL(ogImage, Astro.site).href;
         });
       };
 
-      // 3. Initialize: Disable buttons until Turnstile passes
+      // 3. Initialize: Disable buttons until Turnstile passes. The widget can
+      // solve before DOMContentLoaded fires (e.g. instant-pass test keys), so
+      // leave buttons enabled when their form already holds a token.
       document.addEventListener('DOMContentLoaded', () => {
         const buttons = document.querySelectorAll(
           '.submit-btn, input[type="submit"]',
         );
         buttons.forEach((btn) => {
+          const form = btn.closest('form');
+          const tokenInput =
+            form && form.querySelector('input[name="cf-turnstile-response"]');
+          if (tokenInput && tokenInput.value) return;
           btn.disabled = true;
         });
       });
