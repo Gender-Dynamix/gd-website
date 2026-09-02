@@ -77,7 +77,13 @@ import '../styles/home.css';
   <section class="home-contact">
     <div class="contact-content">
       <h2>Get in Touch</h2>
-      <form class="home-contact-form" data-form-type="home-contact" novalidate>
+      <!--This is the chunk that has been changed -->
+      <p>
+        Want to reach out? Send an email to <a href="mailto:referrals@gdnz.org"
+          >referrals@gdnz.org</a
+        > and we'll get back to you as soon as possible!
+      </p>
+      <!--<form class="home-contact-form" data-form-type="home-contact" novalidate>
         <input type="hidden" name="form-type" value="home-contact" />
         <div class="visually-hidden" aria-hidden="true">
           <input type="text" name="website" tabindex="-1" autocomplete="off" />
@@ -177,7 +183,7 @@ import '../styles/home.css';
         src="/images/image-asset.webp"
         alt="Contact illustration"
         loading="lazy"
-      />
+      />-->
     </div>
   </section>
   <script src="../scripts/form-handler.ts"></script>
