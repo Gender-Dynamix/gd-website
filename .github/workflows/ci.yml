@@ -48,8 +48,14 @@ jobs:
           name: dist
           path: dist/
       - name: Patch wrangler.json
+        # legacy_env is a defaulted field baked into the generated config by the
+        # build-time wrangler (4.95.0, pinned via @astrojs/cloudflare). The deploy
+        # resolves wrangler 4 fresh, and 4.136+ rejects the field outright. Its
+        # value (true) was the old default behaviour, so dropping it is a no-op
+        # for how the Worker deploys. Remove once the build-time wrangler is on
+        # a release that no longer emits it.
         run: |
-          jq '.kv_namespaces = [] | .previews.kv_namespaces = [] | .no_bundle = false' \
+          jq 'del(.legacy_env) | .kv_namespaces = [] | .previews.kv_namespaces = [] | .no_bundle = false' \
             dist/server/wrangler.json > tmp.json && mv tmp.json dist/server/wrangler.json
       - name: Deploy to production
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
