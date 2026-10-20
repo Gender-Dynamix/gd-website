@@ -232,7 +232,42 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
+.service-content ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 0 0 2.5rem;
+  line-height: 1.6;
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: inherit;
+  opacity: 0.9;
+}
 
+.service-content ol li {
+  display: list-item; /* in case something set li to block/flex */
+  padding-left: 0.4rem;
+  margin-bottom: 0.65rem;
+}
+
+.service-content ol li::before {
+  content: none; /* stops any inherited bullet pseudo-element */
+}
+.service-content ol li::marker {
+  color: var(--primary-lavender);
+  font-weight: bold;
+}
+.service-content ul {
+  padding-top: 1.5rem;
+  padding-left: 3rem;
+  margin: 0 0 2.5rem;
+  line-height: 1.6;
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: inherit;
+  opacity: 0.9;
+}
 .category-card {
   background-color: var(--secondary-white);
   border: 3px solid var(--primary-lavender);
