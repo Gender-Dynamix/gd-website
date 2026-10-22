@@ -11,16 +11,14 @@ import '../styles/home.css';
   ogDescription="Specialist support for gender diverse individuals. Access professional therapy and a welcoming community in the Bay of Plenty"
 >
   <section class="hero">
-    <div class="hero-bg-container" aria-hidden="true">
+    <div class="hero-bg-container">
       <img src="/images/hero-pattern-bg.webp" alt="" class="hero-bg-img" />
     </div>
-
     <div class="hero-content">
       <h1>Where your authentic self can thrive</h1>
       <p>
         Meeting the specific mental health, transitional, & community needs of
-        the Transgender, Nonbinary and Gender Diverse community of the Bay of
-        Plenty
+        the Transgender, Nonbinary, Takatāpui, and gender expansive communities.
       </p>
     </div>
     <WaveDivider
@@ -33,40 +31,32 @@ import '../styles/home.css';
   <section class="home-services">
     <div class="services-container">
       <h2>Our Services</h2>
-      <p class="services-intro">
-        We offer compassionate support tailored to the unique needs of the
-        transgender, non-binary and gender diverse community
-      </p>
       <div class="services-grid">
-        <a href="services#individual-support" class="service-card">
+        <a href="services#peer-support" class="service-card">
           <div class="circle-icon" aria-hidden="true">
             <img src="/images/icons-01.webp" alt="Transgender Icon" />
           </div>
-          <h3>Individual Support</h3>
-          <p>We offer individualised one on one clinical mental health care.</p>
+          <h3>Peer Support</h3>
         </a>
-        <a href="services#peer-support" class="service-card">
+        <a href="services#Therapy" class="service-card">
           <div class="circle-icon" aria-hidden="true">
             <img src="/images/icons-02.webp" alt="Rainbow Icon" />
           </div>
-          <h3>Peer Support</h3>
-          <p>We offer individualised one on one Trans peer support.</p>
+          <h3>Therapy</h3>
         </a>
 
         <a href="services#group-support" class="service-card">
           <div class="circle-icon" aria-hidden="true">
             <img src="/images/icons-03.webp" alt="Group Icon" />
           </div>
-          <h3>Group Support</h3>
-          <p>We offer Trans community support through our various groups.</p>
+          <h3>Groups</h3>
         </a>
 
         <a href="services#training" class="service-card">
           <div class="circle-icon" aria-hidden="true">
             <img src="/images/work_icon.svg" alt="" />
           </div>
-          <h3>Training</h3>
-          <p>We offer Training for organisations and schools.</p>
+          <h3>Trainings</h3>
         </a>
       </div>
     </div>
@@ -77,99 +67,11 @@ import '../styles/home.css';
   <section class="home-contact">
     <div class="contact-content">
       <h2>Get in Touch</h2>
-      <form class="home-contact-form" data-form-type="home-contact" novalidate>
-        <input type="hidden" name="form-type" value="home-contact" />
-        <div class="visually-hidden" aria-hidden="true">
-          <input type="text" name="website" tabindex="-1" autocomplete="off" />
-        </div>
-        <div class="name-row">
-          <div class="field-group">
-            <label for="first-name"
-              >First Name <span>&#40;Required&#41;</span></label
-            >
-            <input
-              type="text"
-              name="first-name"
-              id="first-name"
-              required
-              aria-describedby="first-name-error"
-            />
-            <span id="first-name-error" class="validation-message"
-              >Please enter your first name</span
-            >
-          </div>
-          <div class="field-group">
-            <label for="last-name"
-              >Last Name <span>&#40;Required&#41;</span></label
-            >
-            <input
-              type="text"
-              name="last-name"
-              id="last-name"
-              required
-              aria-describedby="last-name-error"
-            />
-            <span id="last-name-error" class="validation-message"
-              >Please enter your last name</span
-            >
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label for="email">Email <span>&#40;Required&#41;</span></label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            aria-describedby="email-address-error"
-          />
-          <span id="email-address-error" class="validation-message"
-            >Please enter a valid email address.</span
-          >
-        </div>
-
-        <div class="field-group">
-          <label for="subject">Subject <span>&#40;Required&#41;</span></label>
-          <input
-            type="text"
-            name="subject"
-            id="subject"
-            required
-            aria-describedby="subject-error"
-          />
-          <span id="subject-error" class="validation-message"
-            >Please enter a subject title.</span
-          >
-        </div>
-
-        <div class="field-group">
-          <label for="message">Message <span>&#40;Required&#41;</span></label>
-          <textarea
-            name="message"
-            id="message"
-            rows="5"
-            required
-            aria-describedby="message-error"></textarea>
-          <span id="message-error" class="validation-message"
-            >Please tell us a bit about your inquiry.</span
-          >
-        </div>
-        <div class="turnstile-container">
-          <div
-            class="cf-turnstile"
-            data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
-            data-callback="onTurnstileSuccess"
-            data-theme="light"
-          >
-          </div>
-        </div>
-        <div class="form-feedback" aria-live="polite"></div>
-        <input type="submit" value="Send" class="submit-btn" />
-        <p class="privacy-notice">
-          &#128274; All information is encrypted and confidential
-        </p>
-      </form>
+      <p>
+        Want to get in touch? Send us an email at <a
+          href="mailto:referrals@gdnz.org">referrals@gdnz.org</a
+        > and we'll get back to you as soon as we can!
+      </p>
     </div>
 
     <div class="image-container">

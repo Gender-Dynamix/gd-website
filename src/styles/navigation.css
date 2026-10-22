@@ -77,11 +77,11 @@ nav a:hover {
 }
 
 .btn-donate {
-  font-weight: 800;
+  font-weight: 100;
 }
 
 .btn-donate:hover {
-  font-weight: 900;
+  font-weight: 500;
 }
 
 /* Dropdown Menus */
