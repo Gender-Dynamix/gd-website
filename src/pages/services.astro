@@ -30,7 +30,7 @@ import '../styles/events.css';
       className="custom-shape-divider-top"
     />
   </section>
-
+  <WaveDivider direction="up" />
   <!--Therapy-->
   <section class="service-detail" id="Therapy">
     <div class="service-detail-container">
@@ -461,7 +461,11 @@ import '../styles/events.css';
       <a href="/contact" class="cta-button">Get In Touch</a>
     </div>
   </section>
-
+  <style>
+    #Therapy {
+      padding-top: 0px;
+    }
+  </style>
   <script>
     const MONTH_NAMES = [
       'January',
