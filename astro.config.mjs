@@ -35,6 +35,12 @@ export default defineConfig({
       // unstorage/drivers/null: imported by Astro's session vite plugin at startup
       //   via virtual:astro:session-driver — not in the adapter's pre-bundle list
       include: ['astro/zod', 'astro/app/entrypoint', 'unstorage/drivers/null'],
+      // The actions route entrypoint is resolved before Vite's SSR optimizer has
+      // loaded its cache. Vite records it as a new dependency, then discards that
+      // record when the cache loads, but still schedules a re-bundle. The re-bundle
+      // renames the chunks under the workerd runner and causes the same "file does
+      // not exist" error on every start. Excluding it stops the early registration.
+      exclude: ['astro/actions/runtime/entrypoints/route.js'],
     },
   },
   env: {
