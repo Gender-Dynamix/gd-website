@@ -418,7 +418,11 @@
   margin-bottom: 1.5rem;
   font-weight: 700;
 }
-
+.newsbutton {
+  padding-top: 2%;
+  padding-left: 28.7%;
+  align-content: center;
+}
 .social-grid {
   display: flex;
   flex-wrap: wrap;
@@ -469,6 +473,11 @@
 
 .social-btn.instagram {
   background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045);
+}
+
+.social-btn.news {
+  max-width: 580px;
+  background: linear-gradient(135deg, #833ab4 0%, #1d7afd 50%, #fc45f9);
 }
 
 .social-btn:hover {
